@@ -14,8 +14,8 @@ export const metadata: Metadata = {
 };
 
 const socialLinks = [
-    { name: 'GitHub', icon: <Github />, href: '#', handle: '@vasudevai' },
-    { name: 'Discord', icon: <Disc />, href: '#', handle: 'discord.gg/vasudevai' },
+    { name: 'GitHub', icon: <Github />, href: 'https://github.com/Vasudev-ai', handle: '@vasudevai' },
+    { name: 'Discord', icon: <Disc />, href: 'https://discord.gg/e5uPQDXSSk', handle: 'discord.gg/vasudevai' },
     { name: 'Twitter', icon: <Twitter />, href: '#', handle: '@vasudev_ai' },
     { name: 'YouTube', icon: <Youtube />, href: '#', handle: 'Vasudev AI' },
 ];

@@ -8,12 +8,12 @@ const footerLinks = [
   { href: '/projects', label: 'Projects' },
   { href: '/team', label: 'Team' },
   { href: '/events', label: 'Events' },
-  { href: '/join', label: 'Join' },
+  { href: 'https://discord.gg/e5uPQDXSSk', label: 'Join' },
 ];
 
 const socialLinks = [
-  { name: 'GitHub', icon: <Github />, href: '#' },
-  { name: 'Discord', icon: <Disc />, href: '#' },
+  { name: 'GitHub', icon: <Github />, href: 'https://github.com/Vasudev-ai' },
+  { name: 'Discord', icon: <Disc />, href: 'https://discord.gg/e5uPQDXSSk' },
   { name: 'Twitter', icon: <Twitter />, href: '#' },
   { name: 'YouTube', icon: <Youtube />, href: '#' },
 ];
@@ -36,7 +36,7 @@ export default function Footer() {
           <div className="flex justify-center">
             <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2">
               {footerLinks.map((link) => (
-                <Link key={link.href} href={link.href} className="text-sm text-gray-300 hover:text-primary transition-colors">
+                <Link key={link.href} href={link.href} className="text-sm text-gray-300 hover:text-primary transition-colors" target={link.href.startsWith('http') ? '_blank' : undefined} rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}>
                   {link.label}
                 </Link>
               ))}
@@ -45,7 +45,7 @@ export default function Footer() {
           <div className="flex justify-center md:justify-end">
             <div className="flex gap-4">
               {socialLinks.map((social) => (
-                <Link key={social.name} href={social.href} className="text-gray-400 hover:text-primary transition-colors" aria-label={social.name}>
+                <Link key={social.name} href={social.href} className="text-gray-400 hover:text-primary transition-colors" aria-label={social.name} target="_blank" rel="noopener noreferrer">
                   {social.icon}
                 </Link>
               ))}

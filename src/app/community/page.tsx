@@ -104,7 +104,7 @@ export default function CommunityPage() {
           <h2 className="text-3xl md:text-4xl font-headline font-bold text-accent">Awaken with Vasudev AI — Join the Divine-Tech Movement</h2>
           <div className="mt-8">
             <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-bold text-lg px-10 py-6 rounded-full shadow-[0_0_20px] shadow-accent/40 transition-all duration-300 hover:shadow-accent/70">
-              <Link href="/join">Become a Member</Link>
+              <Link href="https://discord.gg/e5uPQDXSSk" target="_blank" rel="noopener noreferrer">Become a Member</Link>
             </Button>
           </div>
         </div>

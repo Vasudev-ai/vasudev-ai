@@ -41,7 +41,7 @@ export default function Header() {
         </nav>
         <div className="hidden md:flex items-center gap-4">
           <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold rounded-full">
-            <Link href="/join">Join</Link>
+            <Link href="https://discord.gg/e5uPQDXSSk" target="_blank" rel="noopener noreferrer">Join</Link>
           </Button>
         </div>
         <div className="md:hidden">
@@ -77,7 +77,7 @@ export default function Header() {
                 </nav>
                 <div className="mt-auto">
                     <Button asChild className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold rounded-full text-lg py-6">
-                        <Link href="/join" onClick={() => setMenuOpen(false)}>Join Now</Link>
+                        <Link href="https://discord.gg/e5uPQDXSSk" target="_blank" rel="noopener noreferrer" onClick={() => setMenuOpen(false)}>Join Now</Link>
                     </Button>
                 </div>
               </div>
