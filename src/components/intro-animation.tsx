@@ -1,6 +1,37 @@
 import { BrainCircuit } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+
+const AnimatedParticle: React.FC<{ style: React.CSSProperties }> = ({ style }) => (
+  <div
+    className="absolute bg-primary rounded-full animate-particleFlow"
+    style={style}
+  />
+);
 
 export default function IntroAnimation() {
+  const [particles, setParticles] = useState<React.ReactElement[]>([]);
+
+  useEffect(() => {
+    const generateParticles = (count: number) => {
+      const newParticles = [];
+      for (let i = 0; i < count; i++) {
+        const style = {
+          left: `${Math.random() * 100}%`,
+          top: `${Math.random() * 100}%`,
+          width: `${Math.random() * 3 + 1}px`,
+          height: `${Math.random() * 3 + 1}px`,
+          animationDelay: `${Math.random() * 5}s`,
+          animationDuration: `${Math.random() * 5 + 5}s`,
+          opacity: Math.random() * 0.7,
+        };
+        newParticles.push(<AnimatedParticle key={i} style={style} />);
+      }
+      return newParticles;
+    };
+    setParticles(generateParticles(30));
+  }, []);
+
+
   return (
     <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-background animate-fadeOut">
       <div className="relative flex flex-col items-center justify-center">
@@ -15,21 +46,7 @@ export default function IntroAnimation() {
         </p>
       </div>
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        {[...Array(30)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute bg-primary rounded-full animate-particleFlow"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              width: `${Math.random() * 3 + 1}px`,
-              height: `${Math.random() * 3 + 1}px`,
-              animationDelay: `${Math.random() * 5}s`,
-              animationDuration: `${Math.random() * 5 + 5}s`,
-              opacity: Math.random() * 0.7,
-            }}
-          />
-        ))}
+        {particles}
       </div>
     </div>
   );
