@@ -31,7 +31,7 @@ export default function RootLayout({
           <AnimatedBackground />
           <div className="relative z-10">
             <Header />
-            <main>{children}</main>
+            <main className="fade-in">{children}</main>
             <Footer />
           </div>
         </div>
