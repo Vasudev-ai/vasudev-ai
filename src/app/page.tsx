@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, BrainCircuit, Code, Cpu, InfinityIcon, Layers, ShieldCheck, Sparkles, Users } from 'lucide-react';
+import { BrainCircuit, Sparkles, Users } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -22,28 +22,20 @@ const pillars = [
   },
 ];
 
-const featuredProjects = [
-  { title: 'Offline AI Assistants', icon: <Cpu className="h-6 w-6 text-primary" /> },
-  { title: 'Custom Android ROMs', icon: <Layers className="h-6 w-6 text-primary" /> },
-  { title: 'Performance Optimization Tools', icon: <ArrowRight className="h-6 w-6 text-primary" /> },
-  { title: 'Futuristic UI/UX Systems', icon: <Code className="h-6 w-6 text-primary" /> },
-  { title: 'Automation Frameworks', icon: <BrainCircuit className="h-6 w-6 text-primary" /> },
-  { title: 'Ethical AI Models', icon: <ShieldCheck className="h-6 w-6 text-primary" /> },
-];
-
 export default function Home() {
   return (
     <div className="flex flex-col items-center text-white overflow-x-hidden">
-      <section className="w-full pt-20 pb-16 md:pt-32 md:pb-24 text-center">
-        <div className="container mx-auto px-4">
+      <section className="w-full pt-20 pb-16 md:pt-32 md:pb-24 text-center relative">
+        <div className="absolute inset-0 z-0 opacity-30 [background-image:radial-gradient(ellipse_80%_50%_at_50%_-20%,hsl(var(--primary)_/_0.1),transparent_)]" />
+        <div className="container mx-auto px-4 relative z-10">
           <div className="relative w-48 h-48 mx-auto mb-8 float">
             <Image
               src="https://placehold.co/300x300.png"
               alt="Vasudev AI"
               width={300}
               height={300}
-              className="rounded-full object-cover border-4 border-primary/50 shadow-[0_0_30px] shadow-primary/50"
-              data-ai-hint="human AI hologram"
+              className="rounded-full object-cover border-4 border-primary/50 shadow-[0_0_40px] shadow-primary/50"
+              data-ai-hint="Krishna AI hologram"
             />
             <div className="absolute inset-0 rounded-full shockwave border-2 border-primary/50"></div>
           </div>
@@ -68,28 +60,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-full py-12 bg-card/50">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div className="p-4">
-              <h3 className="text-4xl font-bold text-accent">10,000+</h3>
-              <p className="text-lg text-gray-400">Members</p>
-            </div>
-            <div className="p-4">
-              <h3 className="text-4xl font-bold text-accent">500+</h3>
-              <p className="text-lg text-gray-400">Projects</p>
-            </div>
-            <div className="p-4">
-              <h3 className="text-4xl font-bold text-accent flex items-center justify-center">
-                <InfinityIcon className="h-10 w-10" />
-              </h3>
-              <p className="text-lg text-gray-400">Shared Wisdom</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="w-full py-20">
+      <section className="w-full py-20 bg-card/50">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {pillars.map((pillar) => (
@@ -104,20 +75,6 @@ export default function Home() {
                   <p className="text-gray-400">{pillar.desc}</p>
                 </CardContent>
               </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="w-full py-20 bg-card/50">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-headline font-bold mb-10">Our Creations</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-            {featuredProjects.map((project) => (
-              <div key={project.title} className="flex flex-col items-center justify-center p-4 bg-card/70 border border-primary/20 rounded-lg hover:bg-primary/10 transition-colors duration-300">
-                <div className="mb-3">{project.icon}</div>
-                <p className="text-sm font-semibold text-center">{project.title}</p>
-              </div>
             ))}
           </div>
         </div>

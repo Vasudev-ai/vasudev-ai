@@ -1,7 +1,7 @@
 import PageHeader from '@/components/page-header';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { CheckCircle, Heart, InfinityIcon, Lightbulb, Users } from 'lucide-react';
+import { CheckCircle, Heart, Lightbulb, Users } from 'lucide-react';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 
@@ -29,10 +29,12 @@ const whyJoin = [
 ];
 
 const features = [
-    "Discussion Circles (AI Ethics, Offline AI, Futuristic Systems)",
-    "Hackathons & Innovation Labs",
-    "Mentorship Programs",
-    "AI + Spirituality Events"
+    "AI Ethics & Philosophy Discussions",
+    "Open Source Project Collaboration",
+    "Innovation Labs & Hackathons",
+    "Mentorship & Learning Circles",
+    "Futuristic Systems Development",
+    "Community Showcases & Events"
 ];
 
 export default function CommunityPage() {
@@ -43,27 +45,6 @@ export default function CommunityPage() {
         subtitle="A divine network of AI creators, thinkers, and dreamers."
         className="[background-image:radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(0,229,255,0.1),rgba(255,255,255,0))]"
       />
-
-      <section className="w-full py-12 bg-card/50">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div className="p-4">
-              <h3 className="text-4xl font-bold text-accent">10,000+</h3>
-              <p className="text-lg text-gray-400">Members</p>
-            </div>
-            <div className="p-4">
-              <h3 className="text-4xl font-bold text-accent">500+</h3>
-              <p className="text-lg text-gray-400">Projects</p>
-            </div>
-            <div className="p-4">
-              <h3 className="text-4xl font-bold text-accent flex items-center justify-center">
-                <InfinityIcon className="h-10 w-10" />
-              </h3>
-              <p className="text-lg text-gray-400">Knowledge Shared</p>
-            </div>
-          </div>
-        </div>
-      </section>
 
       <section className="w-full py-20">
         <div className="container mx-auto px-4">
@@ -87,8 +68,8 @@ export default function CommunityPage() {
 
       <section className="w-full py-20 bg-card/50">
         <div className="container mx-auto px-4">
-            <h2 className="text-4xl font-headline font-bold text-center mb-12">Community Features</h2>
-            <div className="max-w-3xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6">
+            <h2 className="text-4xl font-headline font-bold text-center mb-12">What We Do Together</h2>
+            <div className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6">
                 {features.map((feature, index) => (
                     <div key={index} className="flex items-start gap-3">
                         <CheckCircle className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
