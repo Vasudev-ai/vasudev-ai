@@ -16,6 +16,9 @@ export default {
       },
     },
     extend: {
+      perspective: {
+        '1000': '1000px',
+      },
       fontFamily: {
         body: ['var(--font-inter)'],
         headline: ['var(--font-space-grotesk)'],
