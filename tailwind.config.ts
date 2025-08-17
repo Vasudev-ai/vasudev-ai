@@ -102,15 +102,6 @@ export default {
           '90%': { opacity: '1' },
           '100%': { opacity: '0', visibility: 'hidden' },
         },
-        introGlow: {
-          '0%': { filter: 'drop-shadow(0 0 0px hsl(var(--primary)))' },
-          '50%': { filter: 'drop-shadow(0 0 20px hsl(var(--primary)))' },
-          '100%': { filter: 'drop-shadow(0 0 0px hsl(var(--primary)))' },
-        },
-        introPulse: {
-          '0%, 100%': { transform: 'scale(1)' },
-          '50%': { transform: 'scale(1.1)' },
-        },
         introTextFadeIn: {
           '0%': { opacity: '0', transform: 'translateY(20px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
@@ -120,21 +111,19 @@ export default {
             '50%': { opacity: '0' },
             '100%': { opacity: '1' },
         },
-        particleFlow: {
-          '0%': { transform: 'translateY(0) translateX(0)', opacity: '0' },
-          '50%': { opacity: '1' },
-          '100%': { transform: 'translateY(-100vh) translateX(20vw)', opacity: '0' },
-        }
+        lightFade: {
+          '0%': { opacity: '0', transform: 'scale(0.5)' },
+          '50%': { opacity: '1', transform: 'scale(1.2)' },
+          '100%': { opacity: '0', transform: 'scale(0.5)' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         fadeOut: 'fadeOut 5s ease-out forwards',
-        introGlow: 'introGlow 3s ease-in-out infinite',
-        introPulse: 'introPulse 3s ease-in-out infinite 0.5s',
         introTextFadeIn: 'introTextFadeIn 2s ease-out 0.5s forwards',
         introSubtitleFadeIn: 'introSubtitleFadeIn 3s ease-out 1s forwards',
-        particleFlow: 'particleFlow 10s linear infinite',
+        lightFade: 'lightFade 4.5s ease-in-out forwards',
       },
     },
   },

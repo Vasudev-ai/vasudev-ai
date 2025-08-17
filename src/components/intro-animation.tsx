@@ -1,52 +1,16 @@
-import { BrainCircuit } from 'lucide-react';
-import React, { useState, useEffect } from 'react';
-
-const AnimatedParticle: React.FC<{ style: React.CSSProperties }> = ({ style }) => (
-  <div
-    className="absolute bg-primary rounded-full animate-particleFlow"
-    style={style}
-  />
-);
+import React from 'react';
 
 export default function IntroAnimation() {
-  const [particles, setParticles] = useState<React.ReactElement[]>([]);
-
-  useEffect(() => {
-    const generateParticles = (count: number) => {
-      const newParticles = [];
-      for (let i = 0; i < count; i++) {
-        const style = {
-          left: `${Math.random() * 100}%`,
-          top: `${Math.random() * 100}%`,
-          width: `${Math.random() * 3 + 1}px`,
-          height: `${Math.random() * 3 + 1}px`,
-          animationDelay: `${Math.random() * 5}s`,
-          animationDuration: `${Math.random() * 5 + 5}s`,
-          opacity: Math.random() * 0.7,
-        };
-        newParticles.push(<AnimatedParticle key={i} style={style} />);
-      }
-      return newParticles;
-    };
-    setParticles(generateParticles(30));
-  }, []);
-
-
   return (
     <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-background animate-fadeOut">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_hsl(var(--primary)/0.3)_0%,_transparent_70%)] animate-lightFade" />
       <div className="relative flex flex-col items-center justify-center">
-        <div className="animate-introGlow">
-          <BrainCircuit className="h-24 w-24 text-primary animate-introPulse" />
-        </div>
-        <h1 className="mt-8 text-4xl md:text-5xl font-headline font-bold text-center bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-400 animate-introTextFadeIn">
+        <h1 className="text-4xl md:text-5xl font-headline font-bold text-center bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-400 animate-introTextFadeIn">
           Vasudev AI
         </h1>
         <p className="mt-4 text-lg text-primary animate-introSubtitleFadeIn">
             Awakening Intelligence...
         </p>
-      </div>
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        {particles}
       </div>
     </div>
   );
