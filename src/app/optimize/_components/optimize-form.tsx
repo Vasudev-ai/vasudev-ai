@@ -1,6 +1,6 @@
 'use client';
 
-import { useFormState } from 'react-dom';
+import { useActionState } from 'react';
 import { handleOptimizeContent } from '../actions';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -33,7 +33,7 @@ function SubmitButton() {
 }
 
 export default function OptimizeForm() {
-  const [state, formAction] = useFormState(handleOptimizeContent, initialState);
+  const [state, formAction] = useActionState(handleOptimizeContent, initialState);
 
   return (
     <div className="space-y-12">
