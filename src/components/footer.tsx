@@ -7,7 +7,6 @@ const footerLinks = [
   { href: '/community', label: 'Community' },
   { href: '/projects', label: 'Projects' },
   { href: '/team', label: 'Team' },
-  { href: '/events', label: 'Events' },
   { href: 'https://discord.gg/e5uPQDXSSk', label: 'Join' },
 ];
 
