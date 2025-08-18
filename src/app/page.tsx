@@ -5,8 +5,6 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { BrainCircuit, Sparkles, Users } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
-import IntroAnimation from '@/components/intro-animation';
 
 const pillars = [
   {
@@ -27,17 +25,6 @@ const pillars = [
 ];
 
 export default function Home() {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 5000); // Animation duration: 5 seconds
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (loading) {
-    return <IntroAnimation />;
-  }
-
   return (
     <div className="flex flex-col items-center text-white overflow-x-hidden">
       <section className="w-full pt-20 pb-16 md:pt-32 md:pb-24 text-center relative">
