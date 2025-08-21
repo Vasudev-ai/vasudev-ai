@@ -85,20 +85,28 @@ export default function Header() {
           <NavigationMenu>
             <NavigationMenuList>
               <NavigationMenuItem>
-                <Link href="/" passHref>
+                <Link href="/" legacyBehavior passHref>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                     Home
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                 <NavigationMenuTrigger>
-                    <Link href="/services" passHref>
-                        <NavigationMenuLink>Services</NavigationMenuLink>
-                    </Link>
-                </NavigationMenuTrigger>
+                 <NavigationMenuTrigger>Services</NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <div className="grid w-[600px] grid-cols-2 gap-3 p-4">
+                  <ul className="grid w-[600px] grid-cols-2 gap-3 p-4">
+                    <li className="col-span-2">
+                      <NavigationMenuLink asChild>
+                         <Link href="/services" className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md">
+                            <div className="text-lg font-medium">
+                              All Services
+                            </div>
+                            <p className="text-sm leading-tight text-muted-foreground">
+                              Explore our comprehensive solutions.
+                            </p>
+                         </Link>
+                      </NavigationMenuLink>
+                    </li>
                     {services.map((service) => (
                       <ListItem
                         key={service.title}
@@ -108,39 +116,39 @@ export default function Header() {
                         {service.description}
                       </ListItem>
                     ))}
-                  </div>
+                  </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
                <NavigationMenuItem>
-                <Link href="/about" passHref>
+                <Link href="/about" legacyBehavior passHref>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                     About
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
                <NavigationMenuItem>
-                <Link href="/team" passHref>
+                <Link href="/team" legacyBehavior passHref>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                     Our Team
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
                <NavigationMenuItem>
-                <Link href="/features" passHref>
+                <Link href="/features" legacyBehavior passHref>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                     Features
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
                <NavigationMenuItem>
-                <Link href="/pricing" passHref>
+                <Link href="/pricing" legacyBehavior passHref>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                     Pricing
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
                <NavigationMenuItem>
-                <Link href="/contact" passHref>
+                <Link href="/contact" legacyBehavior passHref>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                     Contact
                   </NavigationMenuLink>
