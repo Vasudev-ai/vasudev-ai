@@ -1,15 +1,20 @@
 import type { Metadata } from 'next';
-import { Inter, Space_Grotesk } from 'next/font/google';
+import { Cinzel, Lato } from 'next/font/google';
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
 import AnimatedBackground from '@/components/animated-background';
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
-const spaceGrotesk = Space_Grotesk({
+const lato = Lato({ 
+  subsets: ['latin'], 
+  variable: '--font-lato',
+  weight: ['400', '700']
+});
+const cinzel = Cinzel({
   subsets: ['latin'],
-  variable: '--font-space-grotesk',
+  variable: '--font-cinzel',
+  weight: ['400', '700'],
 });
 
 export const metadata: Metadata = {
@@ -25,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${inter.variable} ${spaceGrotesk.variable} font-body antialiased`}
+        className={`${lato.variable} ${cinzel.variable} font-body antialiased`}
       >
         <div className="relative min-h-screen">
           <AnimatedBackground />
