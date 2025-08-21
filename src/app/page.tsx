@@ -32,12 +32,11 @@ export default function Home() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="relative w-48 h-48 mx-auto mb-8 float">
             <Image
-              src="https://placehold.co/300x300.png"
+              src="/image.png"
               alt="Vasudev AI"
               width={300}
               height={300}
               className="rounded-full object-cover border-4 border-primary/50 shadow-[0_0_40px] shadow-primary/50"
-              data-ai-hint="Krishna AI hologram"
             />
             <div className="absolute inset-0 rounded-full shockwave border-2 border-primary/50"></div>
           </div>
