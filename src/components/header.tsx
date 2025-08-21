@@ -7,41 +7,71 @@ import { useState } from 'react';
 import { Sheet, SheetContent, SheetTrigger } from './ui/sheet';
 import Logo from './logo';
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from './ui/dropdown-menu';
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
+} from '@/components/ui/navigation-menu';
 import { cn } from '@/lib/utils';
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from './ui/collapsible';
+import React from 'react';
 
 const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
   { href: '/team', label: 'Our Team' },
-  { href: '#', label: 'Features' },
-  { href: '#', label: 'Pricing' },
+  { href: '/features', label: 'Features' },
+  { href: '/pricing', label: 'Pricing' },
   { href: '/contact', label: 'Contact' },
 ];
 
-const services = [
-  { href: '#', label: 'Web Development' },
-  { href: '#', label: 'App Development' },
-  { href: '#', label: 'Graphic Design' },
-  { href: '#', label: 'UI/UX Design' },
-  { href: '#', label: 'AI Solutions' },
-  { href: '#', label: 'CMS Development' },
-  { href: '#', label: 'PCB Design' },
-  { href: '#', label: 'Accounting Professional' },
+const services: { title: string; href: string; description: string }[] = [
+  {
+    title: 'Web Development',
+    href: '#',
+    description: 'Modern, responsive websites built with cutting-edge tech.',
+  },
+  {
+    title: 'App Development',
+    href: '#',
+    description: 'Cross-platform mobile apps for iOS and Android.',
+  },
+  {
+    title: 'Graphic Design',
+    href: '#',
+    description: 'Stunning visuals and branding that tell your story.',
+  },
+  {
+    title: 'UI/UX Design',
+    href: '#',
+    description: 'Intuitive and engaging user interfaces for your applications.',
+  },
+  {
+    title: 'AI Solutions',
+    href: '#',
+    description: 'Integrate artificial intelligence to automate and innovate.',
+  },
+  {
+    title: 'CMS Development',
+    href: '#',
+    description: 'Custom content management systems tailored to your needs.',
+  },
+  {
+    title: 'PCB Design',
+    href: '#',
+    description: 'Expert electronic circuit board design and prototyping.',
+  },
+  {
+    title: 'Accounting Professional',
+    href: '#',
+    description: 'Professional accounting services to keep your finances in order.',
+  },
 ];
 
 export default function Header() {
   const [isMenuOpen, setMenuOpen] = useState(false);
-  const [isServicesOpen, setServicesOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -49,50 +79,69 @@ export default function Header() {
         <Link href="/" className="flex items-center gap-2">
           <Logo />
         </Link>
-        <nav className="hidden md:flex items-center gap-6 text-sm">
-          {navLinks.slice(0, 1).map((link) => (
-            <Link
-              key={`${link.href}-${link.label}`}
-              href={link.href}
-              className="font-medium text-foreground/60 transition-colors hover:text-foreground/80"
-            >
-              {link.label}
-            </Link>
-          ))}
-
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button
-                variant="ghost"
-                className="font-medium text-foreground/60 transition-colors hover:text-foreground/80 hover:bg-transparent p-0"
-              >
-                Services <ChevronDown className="ml-1 h-4 w-4" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-56">
-              <div className="grid grid-cols-1 gap-1 p-2">
-                {services.map((service) => (
-                  <DropdownMenuItem
-                    key={service.label}
-                    asChild
-                    className="cursor-pointer"
-                  >
-                    <Link href={service.href}>{service.label}</Link>
-                  </DropdownMenuItem>
-                ))}
-              </div>
-            </DropdownMenuContent>
-          </DropdownMenu>
-
-          {navLinks.slice(1).map((link) => (
-            <Link
-              key={`${link.href}-${link.label}`}
-              href={link.href}
-              className="font-medium text-foreground/60 transition-colors hover:text-foreground/80"
-            >
-              {link.label}
-            </Link>
-          ))}
+        <nav className="hidden md:flex items-center gap-1 text-sm">
+          <NavigationMenu>
+            <NavigationMenuList>
+              <NavigationMenuItem>
+                <Link href="/" legacyBehavior passHref>
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    Home
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <NavigationMenuTrigger>Services</NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <div className="grid w-[600px] grid-cols-2 gap-3 p-4">
+                    {services.map((service) => (
+                      <ListItem
+                        key={service.title}
+                        title={service.title}
+                        href={service.href}
+                      >
+                        {service.description}
+                      </ListItem>
+                    ))}
+                  </div>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+               <NavigationMenuItem>
+                <Link href="/about" legacyBehavior passHref>
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    About
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+               <NavigationMenuItem>
+                <Link href="/team" legacyBehavior passHref>
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    Our Team
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+               <NavigationMenuItem>
+                <Link href="/features" legacyBehavior passHref>
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    Features
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+               <NavigationMenuItem>
+                <Link href="/pricing" legacyBehavior passHref>
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    Pricing
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+               <NavigationMenuItem>
+                <Link href="/contact" legacyBehavior passHref>
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    Contact
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
         </nav>
         <div className="hidden md:flex items-center gap-4">
           <Button
@@ -139,41 +188,7 @@ export default function Header() {
                   </Button>
                 </div>
                 <nav className="flex flex-col gap-4">
-                  {navLinks.slice(0,1).map((link) => (
-                    <Link
-                      key={`${link.href}-${link.label}`}
-                      href={link.href}
-                      className="text-lg font-medium text-foreground/80 hover:text-primary"
-                      onClick={() => setMenuOpen(false)}
-                    >
-                      {link.label}
-                    </Link>
-                  ))}
-
-                  <Collapsible
-                    open={isServicesOpen}
-                    onOpenChange={setServicesOpen}
-                  >
-                    <CollapsibleTrigger className="flex items-center justify-between w-full text-lg font-medium text-foreground/80 hover:text-primary">
-                      Services <ChevronDown className={cn("h-5 w-5 transition-transform", isServicesOpen && "rotate-180")} />
-                    </CollapsibleTrigger>
-                    <CollapsibleContent>
-                      <div className="flex flex-col gap-4 pl-4 mt-2">
-                        {services.map((service) => (
-                          <Link
-                            key={service.label}
-                            href={service.href}
-                            className="text-base font-medium text-foreground/70 hover:text-primary"
-                            onClick={() => setMenuOpen(false)}
-                          >
-                            {service.label}
-                          </Link>
-                        ))}
-                      </div>
-                    </CollapsibleContent>
-                  </Collapsible>
-
-                  {navLinks.slice(1).map((link) => (
+                  {navLinks.map((link) => (
                     <Link
                       key={`${link.href}-${link.label}`}
                       href={link.href}
@@ -207,3 +222,29 @@ export default function Header() {
     </header>
   );
 }
+
+const ListItem = React.forwardRef<
+  React.ElementRef<'a'>,
+  React.ComponentPropsWithoutRef<'a'>
+>(({ className, title, children, ...props }, ref) => {
+  return (
+    <li>
+      <NavigationMenuLink asChild>
+        <a
+          ref={ref}
+          className={cn(
+            'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
+            className
+          )}
+          {...props}
+        >
+          <div className="text-sm font-medium leading-none">{title}</div>
+          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+            {children}
+          </p>
+        </a>
+      </NavigationMenuLink>
+    </li>
+  );
+});
+ListItem.displayName = 'ListItem';
