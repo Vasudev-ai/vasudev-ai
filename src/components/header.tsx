@@ -1,8 +1,9 @@
+
 'use client';
 
 import Link from 'next/link';
 import { Button } from './ui/button';
-import { ChevronDown, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { Sheet, SheetContent, SheetTrigger } from './ui/sheet';
 import Logo from './logo';
@@ -19,12 +20,13 @@ import { cn } from '@/lib/utils';
 import React from 'react';
 
 const navLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/about', label: 'About' },
-  { href: '/team', label: 'Our Team' },
-  { href: '/features', label: 'Features' },
-  { href: '/pricing', label: 'Pricing' },
-  { href: '/contact', label: 'Contact' },
+    { href: '/', label: 'Home' },
+    { href: '/services', label: 'Services' },
+    { href: '/about', label: 'About' },
+    { href: '/team', label: 'Our Team' },
+    { href: '/features', label: 'Features' },
+    { href: '/pricing', label: 'Pricing' },
+    { href: '/contact', label: 'Contact' },
 ];
 
 const services: { title: string; href: string; description: string }[] = [
@@ -83,14 +85,18 @@ export default function Header() {
           <NavigationMenu>
             <NavigationMenuList>
               <NavigationMenuItem>
-                <Link href="/" legacyBehavior passHref>
+                <Link href="/" passHref>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                     Home
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <NavigationMenuTrigger>Services</NavigationMenuTrigger>
+                 <NavigationMenuTrigger>
+                    <Link href="/services" passHref>
+                        <NavigationMenuLink>Services</NavigationMenuLink>
+                    </Link>
+                </NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <div className="grid w-[600px] grid-cols-2 gap-3 p-4">
                     {services.map((service) => (
@@ -106,35 +112,35 @@ export default function Header() {
                 </NavigationMenuContent>
               </NavigationMenuItem>
                <NavigationMenuItem>
-                <Link href="/about" legacyBehavior passHref>
+                <Link href="/about" passHref>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                     About
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
                <NavigationMenuItem>
-                <Link href="/team" legacyBehavior passHref>
+                <Link href="/team" passHref>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                     Our Team
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
                <NavigationMenuItem>
-                <Link href="/features" legacyBehavior passHref>
+                <Link href="/features" passHref>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                     Features
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
                <NavigationMenuItem>
-                <Link href="/pricing" legacyBehavior passHref>
+                <Link href="/pricing" passHref>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                     Pricing
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
                <NavigationMenuItem>
-                <Link href="/contact" legacyBehavior passHref>
+                <Link href="/contact" passHref>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                     Contact
                   </NavigationMenuLink>
