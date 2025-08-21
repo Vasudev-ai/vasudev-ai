@@ -9,10 +9,11 @@ import Logo from './logo';
 
 const navLinks = [
   { href: '/', label: 'Home' },
-  { href: '/community', label: 'Community' },
-  { href: '/projects', label: 'Projects' },
+  { href: '#', label: 'Services' },
   { href: '/about', label: 'About' },
-  { href: '/team', label: 'Team' },
+  { href: '/team', label: 'Our Team' },
+  { href: '#', label: 'Features' },
+  { href: '#', label: 'Pricing' },
   { href: '/contact', label: 'Contact' },
 ];
 
