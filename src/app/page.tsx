@@ -3,6 +3,7 @@
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { BrainCircuit, Sparkles, Users, CheckCircle, Milestone, Rocket, Wind, Box, Code, Component, Globe } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -26,15 +27,15 @@ const pillars = [
 ];
 
 const roadmapItems = [
-    { status: 'past', description: 'Community Launch' },
-    { status: 'past', description: 'Train LLM from Scratch' },
-    { status: 'past', description: 'AI Chatbot' },
-    { status: 'past', description: 'Building Sahayak AI' },
-    { status: 'past', description: 'Building Open Source Vasudev Browser' },
-    { status: 'present', description: 'Developing Vasudev Browser' },
-    { status: 'present', description: 'Expanding Sahayak AI' },
-    { status: 'present', description: 'Developing Utsavy' },
-    { status: 'future', description: 'Launch Sahayak AI' },
+    { status: 'past', title: 'Community Launch', details: 'The official start of the Vasudev AI community, bringing innovators together.' },
+    { status: 'past', title: 'Train LLM from Scratch', details: 'Began the ambitious journey of training our own custom Large Language Model.' },
+    { status: 'past', title: 'AI Chatbot', details: 'Launched our first intelligent, offline-capable chat assistant.' },
+    { status: 'past', title: 'Building Sahayak AI', details: 'Started development on a cross-OS personal AI assistant for system control.' },
+    { status: 'past', title: 'Building Vasudev Browser', details: 'Initiated the open-source development of an AI-integrated web browser.' },
+    { status: 'present', title: 'Developing Vasudev Browser', details: 'Actively building and refining the AI-powered browser for public release.' },
+    { status: 'present', title: 'Expanding Sahayak AI', details: 'Adding new features and automation capabilities to our personal AI assistant.' },
+    { status: 'present', title: 'Developing Utsavy', details: 'Creating a new divine-tech solution for festive and cultural experiences.' },
+    { status: 'future', title: 'Launch Sahayak AI', details: 'Preparing for the official launch of our revolutionary personal AI assistant.' },
 ];
 
 const techStack = [
@@ -105,30 +106,39 @@ export default function Home() {
       </section>
 
       <section id="roadmap" className="w-full py-24">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl md:text-5xl font-headline font-bold text-center mb-16 text-accent">Our Cosmic Journey</h2>
-          <div className="relative">
-            <div className="absolute left-1/2 top-0 h-full w-0.5 bg-primary/20" aria-hidden="true"></div>
-            <div className="absolute left-1/2 top-0 h-full w-px bg-gradient-to-b from-primary via-accent to-transparent" aria-hidden="true"></div>
-            
-            <div className="space-y-16">
-              {roadmapItems.map((item, index) => (
-                <div key={index} className="relative flex items-center group">
-                  <div className={`flex-1 ${index % 2 === 0 ? 'text-right pr-8' : 'text-left pl-8'}`}>
-                    <p className="text-lg font-semibold text-white">{item.description}</p>
+          <div className="container mx-auto px-4">
+              <h2 className="text-4xl md:text-5xl font-headline font-bold text-center mb-4 text-accent">Our Cosmic Journey</h2>
+              <p className="text-center text-lg text-gray-400 mb-16">Follow our path of innovation, from genesis to the future.</p>
+              <div className="relative w-full overflow-x-auto pb-8">
+                  <div className="relative inline-flex justify-center min-w-full px-10">
+                      <div className="absolute top-1/2 left-0 h-0.5 w-full -translate-y-1/2 bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
+                      <div className="absolute top-1/2 left-0 h-[1px] w-full -translate-y-1/2" style={{background: 'repeating-linear-gradient(90deg, transparent, transparent 4px, hsl(var(--primary) / 0.3) 4px, hsl(var(--primary) / 0.3) 8px)'}}></div>
+                      
+                      <div className="flex justify-between w-full">
+                        <TooltipProvider>
+                          {roadmapItems.map((item, index) => (
+                              <div key={index} className="relative flex flex-col items-center group z-10 px-4">
+                                  <Tooltip>
+                                      <TooltipTrigger asChild>
+                                          <button className="w-10 h-10 rounded-full bg-background border-2 border-primary flex items-center justify-center z-10 transition-all duration-300 group-hover:scale-125 group-hover:shadow-[0_0_20px] group-hover:shadow-primary/50">
+                                              {item.status === 'past' && <CheckCircle className="w-6 h-6 text-green-400" />}
+                                              {item.status === 'present' && <div className="w-4 h-4 rounded-full bg-accent animate-pulse"></div>}
+                                              {item.status === 'future' && <Rocket className="w-6 h-6 text-primary/70" />}
+                                          </button>
+                                      </TooltipTrigger>
+                                      <TooltipContent>
+                                          <p className="font-bold">{item.title}</p>
+                                          <p className="text-sm text-muted-foreground">{item.details}</p>
+                                      </TooltipContent>
+                                  </Tooltip>
+                                  <p className="text-sm font-semibold text-white mt-4 text-center w-32 break-words">{item.title}</p>
+                              </div>
+                          ))}
+                        </TooltipProvider>
+                      </div>
                   </div>
-                  <div className="absolute left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-background border-2 border-primary flex items-center justify-center z-10">
-                    {item.status === 'past' && <CheckCircle className="w-5 h-5 text-green-400" />}
-                    {item.status === 'present' && <div className="w-3 h-3 rounded-full bg-accent animate-pulse"></div>}
-                    {item.status === 'future' && <Rocket className="w-5 h-5 text-primary/70" />}
-                  </div>
-                   <div className={`flex-1 ${index % 2 !== 0 ? 'pr-8' : 'pl-8'}`}>
-                   </div>
-                </div>
-              ))}
-            </div>
+              </div>
           </div>
-        </div>
       </section>
 
       <section className="w-full py-20 bg-card/50">
