@@ -1,70 +1,76 @@
-
-
 'use client';
 
-import React, { useRef, useEffect } from 'react';
-import { cn } from '@/lib/utils';
+import type { Metadata } from 'next';
+import { Inter, Cinzel_Decorative } from 'next/font/google';
+import './globals.css';
+import { Toaster } from '@/components/ui/toaster';
+import Header from '@/components/header';
+import Footer from '@/components/footer';
+import AnimatedBackground from '@/components/animated-background';
+import IntroAnimation from '@/components/intro-animation';
+import { useState, useEffect } from 'react';
 
-const CustomCursor: React.FC = () => {
-  const cursorRef = useRef<HTMLDivElement>(null);
-  const dotRef = useRef<HTMLDivElement>(null);
-  const requestRef = useRef<number>();
-  const previousTimeRef = useRef<number>();
-  let lastX = 0;
-  let lastY = 0;
+const inter = Inter({ 
+  subsets: ['latin'], 
+  variable: '--font-inter',
+});
+const cinzel = Cinzel_Decorative({
+  subsets: ['latin'],
+  weight: '400',
+  variable: '--font-cinzel',
+});
+
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      lastX = e.clientX;
-      lastY = e.clientY;
-      const target = e.target as HTMLElement;
+    const hasAnimationPlayed = sessionStorage.getItem('vasudevAnimationPlayed');
 
-      if (cursorRef.current && dotRef.current) {
-        if (target.closest('a, button, [role="button"]')) {
-          cursorRef.current.classList.add('is-hovering');
-          dotRef.current.classList.add('is-hovering');
-        } else {
-          cursorRef.current.classList.remove('is-hovering');
-          dotRef.current.classList.remove('is-hovering');
-        }
-      }
-    };
-
-    const animate = (time: number) => {
-        if (previousTimeRef.current !== undefined) {
-            if (cursorRef.current && dotRef.current) {
-                cursorRef.current.style.transform = `translate3d(${lastX - 16}px, ${lastY - 16}px, 0)`;
-                dotRef.current.style.transform = `translate3d(${lastX - 4}px, ${lastY - 4}px, 0)`;
-            }
-        }
-        previousTimeRef.current = time;
-        requestRef.current = requestAnimationFrame(animate);
+    if (hasAnimationPlayed) {
+      setLoading(false);
+      return;
     }
-    
-    window.addEventListener('mousemove', handleMouseMove);
-    requestRef.current = requestAnimationFrame(animate);
 
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      if(requestRef.current) {
-        cancelAnimationFrame(requestRef.current);
-      }
-    };
+    const timer = setTimeout(() => {
+      setLoading(false);
+      sessionStorage.setItem('vasudevAnimationPlayed', 'true');
+    }, 4000); // Animation duration
+
+    return () => clearTimeout(timer);
   }, []);
 
 
   return (
-    <div className="hidden md:block">
-      <div
-        ref={cursorRef}
-        className="fixed top-0 left-0 w-8 h-8 rounded-full pointer-events-none z-[9999] border-2 border-primary custom-cursor-ring"
-      />
-      <div
-        ref={dotRef}
-        className="fixed top-0 left-0 w-2 h-2 rounded-full pointer-events-none z-[9999] bg-primary custom-cursor-dot"
-      />
-    </div>
+    <html lang="en" className="dark">
+       <head>
+        <title>Vasudev AI</title>
+        <meta name="description" content="Where Intelligence Meets Innovation." />
+        <link rel="icon" href="/vasudev-ai-hero.png" />
+      </head>
+      <body
+        className={`${inter.variable} ${cinzel.variable} font-body antialiased`}
+      >
+        {loading ? (
+          <IntroAnimation />
+        ) : (
+          <>
+            <div className="relative min-h-screen">
+              <AnimatedBackground />
+              <div className="relative z-10">
+                <Header />
+                <main className="fade-in">{children}</main>
+                <Footer />
+              </div>
+            </div>
+            <Toaster />
+          </>
+        )}
+      </body>
+    </html>
   );
-};
-
-export default CustomCursor;
+}

@@ -11,7 +11,6 @@ import Footer from '@/components/footer';
 import AnimatedBackground from '@/components/animated-background';
 import IntroAnimation from '@/components/intro-animation';
 import { useState, useEffect } from 'react';
-import CustomCursor from '@/components/custom-cursor';
 
 const inter = Inter({ 
   subsets: ['latin'], 
@@ -22,17 +21,6 @@ const cinzel = Cinzel_Decorative({
   weight: '400',
   variable: '--font-cinzel',
 });
-
-// A new component to safely render the cursor only on the client
-const HydrationSafeCursor = () => {
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  return isClient ? <CustomCursor /> : null;
-};
 
 
 export default function RootLayout({
@@ -69,7 +57,6 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${cinzel.variable} font-body antialiased`}
       >
-        <HydrationSafeCursor />
         {loading ? (
           <IntroAnimation />
         ) : (
