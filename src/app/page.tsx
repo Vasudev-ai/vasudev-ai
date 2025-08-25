@@ -1,8 +1,9 @@
+
 'use client';
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { BrainCircuit, Sparkles, Users } from 'lucide-react';
+import { BrainCircuit, Sparkles, Users, CheckCircle, Milestone, Rocket, Wind, Box } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -22,6 +23,24 @@ const pillars = [
     title: 'Knowledge for All',
     desc: 'Workshops, mentorship, and open-source contributions.',
   },
+];
+
+const roadmapItems = [
+    { status: 'past', description: 'Community Launch' },
+    { status: 'past', description: 'Train LLM from Scratch' },
+    { status: 'past', description: 'AI Chatbot' },
+    { status: 'past', description: 'Building Sahayak AI' },
+    { status: 'past', description: 'Building Open Source Vasudev Browser' },
+    { status: 'present', description: 'Developing Vasudev Browser' },
+    { status: 'present', description: 'Expanding Sahayak AI' },
+    { status: 'present', description: 'Developing Utsavy' },
+    { status: 'future', description: 'Launch Sahayak AI' },
+];
+
+const techStack = [
+    { name: 'Next.js', icon: <Box className="h-10 w-10" /> },
+    { name: 'Genkit', icon: <BrainCircuit className="h-10 w-10" /> },
+    { name: 'Tailwind CSS', icon: <Wind className="h-10 w-10" /> },
 ];
 
 export default function Home() {
@@ -77,6 +96,47 @@ export default function Home() {
                   <p className="text-gray-400">{pillar.desc}</p>
                 </CardContent>
               </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="roadmap" className="w-full py-24">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl md:text-5xl font-headline font-bold text-center mb-16 text-accent">Our Cosmic Journey</h2>
+          <div className="relative">
+            <div className="absolute left-1/2 top-0 h-full w-0.5 bg-primary/20" aria-hidden="true"></div>
+            <div className="absolute left-1/2 top-0 h-full w-px bg-gradient-to-b from-primary via-accent to-transparent" aria-hidden="true"></div>
+            
+            <div className="space-y-16">
+              {roadmapItems.map((item, index) => (
+                <div key={index} className="relative flex items-center group">
+                  <div className={`flex-1 ${index % 2 === 0 ? 'text-right pr-8' : 'text-left pl-8'}`}>
+                    <p className="text-lg font-semibold text-white">{item.description}</p>
+                  </div>
+                  <div className="absolute left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-background border-2 border-primary flex items-center justify-center z-10">
+                    {item.status === 'past' && <CheckCircle className="w-5 h-5 text-green-400" />}
+                    {item.status === 'present' && <div className="w-3 h-3 rounded-full bg-accent animate-pulse"></div>}
+                    {item.status === 'future' && <Rocket className="w-5 h-5 text-primary/70" />}
+                  </div>
+                   <div className={`flex-1 ${index % 2 !== 0 ? 'pr-8' : 'pl-8'}`}>
+                   </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="w-full py-20 bg-card/50">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-headline font-bold text-center mb-12">Powered by Future-Forward Technology</h2>
+          <div className="flex justify-center items-center gap-8 md:gap-16">
+            {techStack.map(tech => (
+              <div key={tech.name} className="flex flex-col items-center gap-2 text-gray-400 hover:text-primary transition-colors duration-300">
+                {tech.icon}
+                <span className="font-semibold">{tech.name}</span>
+              </div>
             ))}
           </div>
         </div>
