@@ -5,7 +5,7 @@
 import PageHeader from '@/components/page-header';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { CheckCircle, Heart, Lightbulb, Users, Calendar, Code, Mic, Star, MessageSquare, Book, Compass, Wrench, Award, BrainCircuit, Rocket } from 'lucide-react';
+import { CheckCircle, Heart, Lightbulb, Users, Calendar, Code, Mic, Star, MessageSquare, Book, Compass, Wrench, Award, BrainCircuit, Rocket, Brush } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Cinzel_Decorative } from 'next/font/google';
@@ -144,6 +144,14 @@ const councilMembers = [
     avatarHint: 'golden nebula',
     glowColor: '#39FF14',
   },
+  {
+    name: 'Biswjeet',
+    badgeIcon: <Brush className="h-6 w-6" />,
+    badgeLabel: 'Artist',
+    avatarUrl: '/team/binod.png',
+    avatarHint: 'holographic sphere',
+    glowColor: '#FF00FF',
+  },
 ];
 
 
@@ -160,7 +168,7 @@ export default function CommunityPage() {
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-headline font-bold text-center mb-12">The Celestial Council</h2>
           <p className="text-lg text-gray-400 text-center max-w-3xl mx-auto mb-16">Meet the guardians of our community—members recognized for their outstanding contributions, vision, and guidance.</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {councilMembers.map((member) => (
               <MemberCard
                 key={member.name}
@@ -239,8 +247,8 @@ export default function CommunityPage() {
                     <Star className="w-8 h-8 text-secondary fill-secondary mr-3" />
                     <h2 className="text-3xl font-headline text-white">Community Spotlight</h2>
                 </div>
-                <div className="relative w-24 h-24 mx-auto mb-4">
-                  <Image src="/team/aman.png" alt="Aman Dangi" layout="fill" className="rounded-full object-cover border-2 border-primary" />
+                <div className="relative w-full h-48 mx-auto mb-4">
+                  <Image src="/team/aman.png" alt="Aman Dangi" layout="fill" className="object-contain" data-ai-hint="cyan planet rings"/>
                 </div>
                 <blockquote className="text-xl italic text-gray-300 border-l-4 border-accent pl-4 text-left mb-4">
                     {communitySpotlight.quote}
