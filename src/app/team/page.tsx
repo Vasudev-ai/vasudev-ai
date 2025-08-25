@@ -4,7 +4,7 @@
 import React, { useState } from 'react';
 import PageHeader from '@/components/page-header';
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import Link from 'next/link';
 import { Github, Linkedin, Youtube, ArrowRight, X } from 'lucide-react';
 import './team.css';
@@ -130,6 +130,10 @@ export default function TeamPage() {
             className="spotlight-modal p-0 m-0 max-w-2xl bg-card/80 border-[1px] rounded-2xl shadow-2xl"
             style={{'--theme-color': selectedMember.theme['--accent-glow']} as React.CSSProperties}
           >
+            <DialogHeader className="sr-only">
+              <DialogTitle>{selectedMember.name}</DialogTitle>
+              <DialogDescription>{selectedMember.role}</DialogDescription>
+            </DialogHeader>
             <div className="spotlight-modal-content p-8">
                 <div className="flex justify-center mb-6">
                     <div className="relative">
@@ -182,3 +186,5 @@ export default function TeamPage() {
     </div>
   );
 }
+
+    
