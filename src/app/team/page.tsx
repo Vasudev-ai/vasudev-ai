@@ -58,7 +58,7 @@ const teamMembers = [
   },
   {
     id: 'binod',
-    name: 'Binod',
+    name: 'Biswjeet',
     role: 'UI/UX Designer',
     bio: 'The artistic soul of Vasudev AI, Binod crafts stunning, futuristic designs that blend divine aesthetics with cutting-edge user experiences to create an intuitive and immersive journey.',
     avatar: '/team/binod.png',
