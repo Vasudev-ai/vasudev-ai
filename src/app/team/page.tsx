@@ -1,9 +1,12 @@
+
 import PageHeader from '@/components/page-header';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import './team.css';
+import { Github, Linkedin, Youtube } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Team | Vasudev AI',
@@ -12,87 +15,124 @@ export const metadata: Metadata = {
 
 const teamMembers = [
   {
+    id: 'surya',
     name: 'Surya Pratap Singh',
     role: 'Founder & Visionary',
-    desc: 'Hardcore tech enthusiast, creator of CodeCraft with Surya, and the driving force behind Vasudev AI. Expert in offline AI, OS-level mods, automation, and futuristic systems.',
+    bio: 'Pushing AI Beyond Boundaries. Creator of Vasudev AI, CodeCraft with Surya, and a hardcore tech enthusiast focused on offline AI, OS-level mods, and futuristic systems.',
     avatar: 'https://placehold.co/150x150.png',
     avatarHint: 'glowing sun star',
-    cardStyle: 'shadow-yellow-400/40 hover:shadow-yellow-300/60 border-yellow-400/50',
-    avatarStyle: 'border-yellow-400/50 group-hover:border-yellow-300',
-    roleStyle: 'text-yellow-400'
+    socials: {
+      github: 'https://github.com/surya-pratap-singh',
+      linkedin: 'https://www.linkedin.com/in/suryapratap-singh/',
+      youtube: 'https://www.youtube.com/c/CodeCraftwithSurya',
+    }
   },
   {
+    id: 'aman',
     name: 'Aman Dangi',
     role: 'Co-Builder & Innovator',
-    desc: 'Passionate developer contributing to AI systems, community building, and futuristic performance-driven solutions.',
+    bio: 'Passionate developer contributing to AI systems, community building, and performance-driven solutions.',
     avatar: 'https://placehold.co/150x150.png',
     avatarHint: 'cyan planet rings',
-    cardStyle: 'shadow-cyan-400/40 hover:shadow-cyan-300/60 border-cyan-400/50',
-    avatarStyle: 'border-cyan-400/50 group-hover:border-cyan-300',
-    roleStyle: 'text-cyan-400'
+    socials: { github: '#', linkedin: '#' }
   },
   {
+    id: 'ashutosh',
     name: 'Ashutosh Kumar Tripathi',
     role: 'AI Engineer',
-    desc: 'Focused on building ethical AI models, automation frameworks, and advanced intelligent systems.',
+    bio: 'Focused on building ethical AI models, automation frameworks, and advanced intelligent systems.',
     avatar: 'https://placehold.co/150x150.png',
     avatarHint: 'golden nebula',
-    cardStyle: 'shadow-amber-400/40 hover:shadow-amber-300/60 border-amber-400/50',
-    avatarStyle: 'border-amber-400/50 group-hover:border-amber-300',
-    roleStyle: 'text-amber-400'
+    socials: { github: '#', linkedin: '#' }
   },
   {
+    id: 'zerox',
     name: 'Zerox.exe',
-    role: 'UI/UX Designer & Tech Creator',
-    desc: 'Crafts futuristic designs blending divine aesthetics with cutting-edge user experiences.',
+    role: 'UI/UX Designer',
+    bio: 'Crafts futuristic designs blending divine aesthetics with cutting-edge user experiences.',
     avatar: 'https://placehold.co/150x150.png',
     avatarHint: 'holographic sphere',
-    cardStyle: 'shadow-indigo-400/40 hover:shadow-indigo-300/60 border-indigo-400/50',
-    avatarStyle: 'border-indigo-400/50 group-hover:border-indigo-300',
-    roleStyle: 'text-indigo-400'
+    socials: { github: '#', linkedin: '#' }
   },
 ];
 
+
 export default function TeamPage() {
   return (
-    <div className="pb-20 perspective-1000 relative overflow-hidden">
-       <div className="absolute inset-0 z-[-1] bg-gradient-to-b from-[#0D0F1A] to-[#12141F] animate-pulse" 
-         style={{
-           backgroundImage: 'radial-gradient(ellipse at 70% 20%, hsl(var(--primary) / 0.1), transparent 50%), radial-gradient(ellipse at 30% 80%, hsl(var(--accent) / 0.1), transparent 50%)'
-         }}
-      />
+    <div className="team-page-container overflow-hidden pb-20">
       <PageHeader
         title="Meet the Visionaries Behind Vasudev AI"
-        subtitle="Visionaries, coders, and creators shaping the future of Vasudev AI."
-        className="bg-transparent"
+        subtitle="A solar system of creators shaping the future of divine intelligence."
       />
+      
+      <div className="solar-system-container">
+        <div id="solar-system">
+          {teamMembers.map((member, index) => {
+            if (member.id === 'surya') {
+              return (
+                <div key={member.id} className="orbit-center sun-container">
+                  <div className="sun">
+                    <Avatar className="w-full h-full border-4 border-yellow-400/50 shadow-[0_0_40px_10px] shadow-yellow-400/50">
+                       <AvatarImage src={member.avatar} alt={member.name} data-ai-hint={member.avatarHint} />
+                       <AvatarFallback>{member.name.charAt(0)}</AvatarFallback>
+                    </Avatar>
+                  </div>
+                  <div className="member-card-container">
+                    <Card className="member-card bg-card/70 border-yellow-400/50 shadow-yellow-300/60">
+                        <CardHeader className="items-center text-center">
+                            <CardTitle className="text-2xl font-headline">{member.name}</CardTitle>
+                            <p className="font-semibold text-yellow-400">{member.role}</p>
+                        </CardHeader>
+                        <CardContent className="text-center">
+                            <p className="text-gray-300 mb-4">{member.bio}</p>
+                            <div className="flex justify-center gap-4">
+                                {member.socials.github && <Link href={member.socials.github} target="_blank"><Github className="hover:text-primary"/></Link>}
+                                {member.socials.linkedin && <Link href={member.socials.linkedin} target="_blank"><Linkedin className="hover:text-primary"/></Link>}
+                                {member.socials.youtube && <Link href={member.socials.youtube} target="_blank"><Youtube className="hover:text-primary"/></Link>}
+                            </div>
+                        </CardContent>
+                    </Card>
+                  </div>
+                </div>
+              );
+            }
+            return null;
+          })}
 
-      <div className="container mx-auto px-4 mt-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          {teamMembers.map((member) => (
-            <Card
-              key={member.name}
-              className={`bg-card/50 border backdrop-blur-sm p-6 group transition-all duration-500 [transform-style:preserve-3d] hover:[transform:rotateY(10deg)_rotateX(5deg)] shadow-2xl text-center ${member.cardStyle}`}
-            >
-              <div className="transition-all duration-500 [transform:translateZ(40px)]">
-                <CardHeader className="items-center">
-                  <Avatar className={`w-32 h-32 mb-4 border-4 transition-all duration-300 group-hover:scale-110 group-hover:shadow-[0_0_35px] ${member.avatarStyle} ${member.cardStyle}`}>
-                    <AvatarImage src={member.avatar} alt={member.name} data-ai-hint={member.avatarHint} />
-                    <AvatarFallback>{member.name.charAt(0)}</AvatarFallback>
-                  </Avatar>
-                  <CardTitle className="text-2xl font-headline text-white">{member.name}</CardTitle>
-                  <p className={`font-semibold transition-colors duration-300 ${member.roleStyle}`}>{member.role}</p>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-300">{member.desc}</p>
-                </CardContent>
+          {teamMembers.filter(m => m.id !== 'surya').map((member, index) => {
+            const planet_id = `planet-${index + 1}`
+            return (
+              <div key={member.id} className={`orbit`} id={`orbit-${index+1}`}>
+                <div className="planet-container" id={planet_id}>
+                   <div className="planet">
+                        <Avatar className="w-full h-full border-2 border-cyan-400/50">
+                           <AvatarImage src={member.avatar} alt={member.name} data-ai-hint={member.avatarHint} />
+                           <AvatarFallback>{member.name.charAt(0)}</AvatarFallback>
+                        </Avatar>
+                   </div>
+                   <div className="member-card-container">
+                     <Card className="member-card bg-card/70 border-cyan-400/50 shadow-cyan-300/60">
+                         <CardHeader className="items-center text-center">
+                             <CardTitle className="text-xl font-headline">{member.name}</CardTitle>
+                             <p className="font-semibold text-cyan-400">{member.role}</p>
+                         </CardHeader>
+                         <CardContent className="text-center">
+                             <p className="text-gray-300 mb-4 text-sm">{member.bio}</p>
+                             <div className="flex justify-center gap-4">
+                                 {member.socials.github && <Link href={member.socials.github} target="_blank"><Github className="hover:text-primary"/></Link>}
+                                 {member.socials.linkedin && <Link href={member.socials.linkedin} target="_blank"><Linkedin className="hover:text-primary"/></Link>}
+                             </div>
+                         </CardContent>
+                     </Card>
+                   </div>
+                </div>
               </div>
-            </Card>
-          ))}
+            )
+          })}
         </div>
       </div>
 
-      <section className="w-full pt-24 pb-12 text-center">
+       <section className="w-full pt-24 pb-12 text-center mt-[100vh] md:mt-0">
         <div className="container mx-auto px-4">
           <div className="bg-card/50 border border-primary/20 rounded-2xl p-10 backdrop-blur-sm shadow-lg">
             <h2 className="text-3xl md:text-4xl font-headline font-bold mb-4 text-accent">
