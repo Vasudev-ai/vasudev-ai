@@ -47,6 +47,13 @@ const projects = [
     features: ["Performance Optimizers", "Automation Scripts", "AI Coding Utilities"],
     href: "#"
   },
+  {
+    icon: <Sprout className="h-10 w-10 text-accent" />,
+    title: "UTSAVY",
+    tagline: "A Web Based Invitation Creation Platform.",
+    features: ["AI-Powered Designs", "Easy Customization", "Event Management"],
+    href: "#"
+  },
 ];
 
 export default function ProjectsPage() {

@@ -140,7 +140,7 @@ const councilMembers = [
     name: 'Ashutosh K. Tripathi',
     badgeIcon: <Award className="h-6 w-6" />,
     badgeLabel: 'Oracle',
-    avatarUrl: '/team/ashutosh.png',
+    avatarUrl: '/team/ashutosh1.png',
     avatarHint: 'golden nebula',
     glowColor: '#39FF14',
   },
