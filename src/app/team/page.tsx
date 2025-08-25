@@ -1,17 +1,15 @@
 
+'use client';
+
+import React, { useState } from 'react';
 import PageHeader from '@/components/page-header';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import Link from 'next/link';
-import type { Metadata } from 'next';
-import { Github, Linkedin, Youtube } from 'lucide-react';
+import { Github, Linkedin, Youtube, X } from 'lucide-react';
 import './team.css';
-
-export const metadata: Metadata = {
-  title: 'Team | Vasudev AI',
-  description: 'Visionaries, coders, and creators shaping the future of Vasudev AI.',
-};
 
 const teamMembers = [
   {
@@ -60,8 +58,11 @@ const teamMembers = [
   },
 ];
 
+type TeamMember = typeof teamMembers[0];
 
 export default function TeamPage() {
+  const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
+
   return (
     <div className="team-page-container overflow-hidden pb-20">
       <div className="absolute inset-0 z-[-1] bg-gradient-to-br from-background via-[#10121c] to-background" 
@@ -75,36 +76,72 @@ export default function TeamPage() {
       />
       
       <div className="container mx-auto px-4 mt-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-12">
           {teamMembers.map((member) => (
             <div key={member.id} className="[perspective:1000px]">
               <Card 
-                className="team-card h-full bg-card/40 border border-primary/20 backdrop-blur-sm p-6 group transition-all duration-500 [transform-style:preserve-3d] hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/20"
+                className="team-card h-full bg-card/40 border border-primary/20 backdrop-blur-sm p-6 group transition-all duration-500 [transform-style:preserve-3d] hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/20 flex flex-col justify-between"
                 style={{'--theme-color': member.themeColor} as React.CSSProperties}
               >
-                  <div className="relative z-10 flex flex-col sm:flex-row items-center gap-6">
-                      <Avatar className="w-28 h-28 border-4 border-[var(--theme-color)] shadow-[0_0_20px] shadow-[var(--theme-color)] transition-all duration-300 group-hover:scale-110">
-                         <AvatarImage src={member.avatar} alt={member.name} data-ai-hint={member.avatarHint} />
-                         <AvatarFallback>{member.name.charAt(0)}</AvatarFallback>
-                      </Avatar>
-                      <div className="flex-1 text-center sm:text-left">
-                          <h3 className="text-2xl font-headline font-bold text-white">{member.name}</h3>
-                          <p className="font-semibold text-[var(--theme-color)] text-lg">{member.role}</p>
-                      </div>
+                <div className="[transform:translateZ(20px)]">
+                  <div className="flex flex-col items-center text-center">
+                    <Avatar className="w-28 h-28 border-4 border-[var(--theme-color)] shadow-[0_0_20px] shadow-[var(--theme-color)] transition-all duration-300 group-hover:scale-110">
+                       <AvatarImage src={member.avatar} alt={member.name} data-ai-hint={member.avatarHint} />
+                       <AvatarFallback>{member.name.charAt(0)}</AvatarFallback>
+                    </Avatar>
+                    <h3 className="mt-6 text-2xl font-headline font-bold text-white">{member.name}</h3>
+                    <p className="font-semibold text-[var(--theme-color)] text-lg">{member.role}</p>
                   </div>
-                   <CardContent className="pt-6 text-center sm:text-left">
-                      <p className="text-gray-300 mb-6">{member.bio}</p>
-                      <div className="flex justify-center sm:justify-start gap-4">
-                          {member.socials.github && <Link href={member.socials.github} target="_blank" className="text-gray-400 hover:text-[var(--theme-color)] transition-colors"><Github /></Link>}
-                          {member.socials.linkedin && <Link href={member.socials.linkedin} target="_blank" className="text-gray-400 hover:text-[var(--theme-color)] transition-colors"><Linkedin /></Link>}
-                          {member.socials.youtube && <Link href={member.socials.youtube} target="_blank" className="text-gray-400 hover:text-[var(--theme-color)] transition-colors"><Youtube /></Link>}
-                      </div>
-                  </CardContent>
+                </div>
+                <div className="mt-6 text-center [transform:translateZ(40px)]">
+                   <Button onClick={() => setSelectedMember(member)} variant="outline" className="border-primary text-primary hover:bg-primary/10 hover:text-accent font-bold group-hover:shadow-[0_0_15px] group-hover:shadow-primary/50 transition-all duration-300">
+                      View Profile
+                  </Button>
+                </div>
               </Card>
             </div>
           ))}
         </div>
       </div>
+
+       {selectedMember && (
+         <Dialog open={!!selectedMember} onOpenChange={() => setSelectedMember(null)}>
+            <DialogContent 
+              className="bg-black/40 text-white border-2 border-[var(--theme-color)] backdrop-blur-lg shadow-2xl shadow-[var(--theme-color)] w-[90vw] max-w-2xl rounded-2xl"
+              style={{'--theme-color': selectedMember.themeColor} as React.CSSProperties}
+            >
+              <DialogHeader className="items-center text-center pt-8">
+                  <Avatar className="w-32 h-32 border-4 border-[var(--theme-color)] shadow-[0_0_25px] shadow-[var(--theme-color)]">
+                    <AvatarImage src={selectedMember.avatar} alt={selectedMember.name} data-ai-hint={selectedMember.avatarHint} />
+                    <AvatarFallback>{selectedMember.name.charAt(0)}</AvatarFallback>
+                  </Avatar>
+                  <DialogTitle className="text-3xl font-headline mt-4">{selectedMember.name}</DialogTitle>
+                  <DialogDescription className="text-[var(--theme-color)] text-xl font-semibold">{selectedMember.role}</DialogDescription>
+              </DialogHeader>
+              <div className="py-6 px-8 text-center">
+                  <p className="text-lg text-gray-300">{selectedMember.bio}</p>
+                  <div className="flex justify-center gap-6 mt-8">
+                      {selectedMember.socials.github && (
+                          <Link href={selectedMember.socials.github} target="_blank" className="text-gray-400 hover:text-[var(--theme-color)] transition-colors duration-300">
+                              <Github size={28} />
+                          </Link>
+                      )}
+                      {selectedMember.socials.linkedin && (
+                          <Link href={selectedMember.socials.linkedin} target="_blank" className="text-gray-400 hover:text-[var(--theme-color)] transition-colors duration-300">
+                              <Linkedin size={28} />
+                          </Link>
+                      )}
+                      {selectedMember.socials.youtube && (
+                          <Link href={selectedMember.socials.youtube} target="_blank" className="text-gray-400 hover:text-[var(--theme-color)] transition-colors duration-300">
+                              <Youtube size={28} />
+                          </Link>
+                      )}
+                  </div>
+              </div>
+            </DialogContent>
+         </Dialog>
+       )}
+
 
        <section className="w-full pt-24 pb-12 text-center">
         <div className="container mx-auto px-4">

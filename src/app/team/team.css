@@ -4,6 +4,32 @@
 }
 
 .team-card:hover {
-  transform: translateZ(20px) rotateX(5deg) rotateY(-5deg);
-  box-shadow: 0px 10px 30px -5px var(--theme-color);
+  transform: translateZ(30px) rotateX(5deg) rotateY(-5deg);
+  box-shadow: 0px 15px 35px -5px rgba(0,0,0,0.2), 0 0 20px var(--theme-color);
+}
+
+.dialog-content[data-state=open] {
+  animation: fadeIn 0.4s ease-out, scaleIn 0.4s ease-out;
+}
+
+.dialog-content[data-state=closed] {
+  animation: fadeOut 0.3s ease-in, scaleOut 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.9); }
+  to { transform: scale(1); }
+}
+@keyframes scaleOut {
+  from { transform: scale(1); }
+  to { transform: scale(0.95); }
 }
