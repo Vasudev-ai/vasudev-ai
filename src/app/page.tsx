@@ -30,12 +30,13 @@ export default function Home() {
       <section className="w-full pt-20 pb-16 md:pt-32 md:pb-24 text-center relative">
         <div className="absolute inset-0 z-0 opacity-30 [background-image:radial-gradient(ellipse_80%_50%_at_50%_-20%,hsl(var(--primary)_/_0.1),transparent_)]" />
         <div className="container mx-auto px-4 relative z-10">
-          <div className="relative w-48 h-48 mx-auto mb-8 float">
+          <div className="relative w-48 h-48 md:w-56 md:h-56 mx-auto mb-8 float">
             <Image
-              src="/image.png"
+              src="https://placehold.co/400x400.png"
+              data-ai-hint="divine being hologram"
               alt="Vasudev AI"
-              width={300}
-              height={300}
+              width={400}
+              height={400}
               className="rounded-full object-cover border-4 border-primary/50 shadow-[0_0_40px] shadow-primary/50"
             />
             <div className="absolute inset-0 rounded-full shockwave border-2 border-primary/50"></div>
