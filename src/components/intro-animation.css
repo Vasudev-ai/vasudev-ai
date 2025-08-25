@@ -23,9 +23,10 @@
   transform: scale(0.9);
 }
 
-.intro-logo .lucide-brain-circuit {
+.intro-logo svg {
     height: 6rem;
     width: 6rem;
+    margin: 0 auto 1rem;
 }
 .intro-logo span {
     font-size: 4rem;
@@ -80,7 +81,7 @@
 }
 
 @media (max-width: 768px) {
-    .intro-logo .lucide-brain-circuit {
+    .intro-logo svg {
         height: 4rem;
         width: 4rem;
     }
