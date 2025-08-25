@@ -42,7 +42,7 @@ const teamMembers = [
     roleStyle: 'text-amber-400'
   },
   {
-    name: 'Biswjeet',
+    name: 'Zerox.exe',
     role: 'UI/UX Designer & Tech Creator',
     desc: 'Crafts futuristic designs blending divine aesthetics with cutting-edge user experiences.',
     avatar: 'https://placehold.co/150x150.png',
