@@ -1,6 +1,6 @@
 
 import Link from 'next/link';
-import { Github, Twitter, Youtube, Disc } from 'lucide-react';
+import { Github, Twitter, Youtube, Disc, Linkedin } from 'lucide-react';
 import Logo from './logo';
 
 const footerLinks = [
@@ -13,6 +13,7 @@ const footerLinks = [
 
 const socialLinks = [
   { name: 'GitHub', icon: <Github />, href: 'https://github.com/Vasudev-ai' },
+  { name: 'LinkedIn', icon: <Linkedin />, href: 'https://www.linkedin.com/company/108165965/' },
   { name: 'Discord', icon: <Disc />, href: 'https://discord.gg/e5uPQDXSSk' },
   { name: 'Twitter', icon: <Twitter />, href: 'https://x.com/VashudevAi' },
   { name: 'YouTube', icon: <Youtube />, href: 'https://www.youtube.com/@CodeCraftwithSurya' },
