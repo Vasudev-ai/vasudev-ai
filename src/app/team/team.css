@@ -47,6 +47,7 @@
   right: 0;
   bottom: 0;
   transition: transform 0.4s ease;
+  z-index: 2;
 }
 
 .profile-card:hover .profile-card-image img {
@@ -63,6 +64,7 @@
     background: radial-gradient(circle at 70% 50%, var(--accent-glow) 0%, transparent 60%);
     opacity: 0.3;
     transition: opacity 0.4s ease;
+    z-index: 1;
 }
 
 .profile-card:hover .image-glow {
