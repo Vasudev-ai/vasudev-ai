@@ -46,7 +46,7 @@ const MemberCard: React.FC<MemberCardProps> = ({ name, badgeIcon, badgeLabel, av
             width={160}
             height={220}
             data-ai-hint={avatarHint}
-            className="object-contain absolute bottom-0 right-0 w-full h-full transition-transform duration-300 group-hover:scale-115"
+            className="object-contain absolute bottom-0 right-0 w-full h-full transition-transform duration-300 group-hover:scale-125"
           />
         </div>
       </div>
