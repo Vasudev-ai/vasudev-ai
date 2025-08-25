@@ -24,7 +24,7 @@ const projects = [
     title: "Vasudev Browser",
     tagline: "Where AI meets the web — your intelligent browsing companion.",
     features: ["Built-in Offline AI", "Distraction-Free UI", "Integrated Research Tools"],
-    href: "#"
+    href: "https://github.com/Vasudev-ai/Vasudev-Browser"
   },
   {
     icon: <Hand className="h-10 w-10 text-accent" />,
