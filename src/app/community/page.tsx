@@ -184,29 +184,17 @@ export default function CommunityPage() {
 
       <section className="w-full py-20 bg-card/50">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 items-center bg-card/70 border border-primary/20 backdrop-blur-sm p-8 rounded-lg shadow-lg">
-                <div className="md:col-span-1 flex flex-col items-center text-center">
-                    <div className="relative w-40 h-40 mb-4">
-                         <Image 
-                            src={communitySpotlight.avatar} 
-                            alt={communitySpotlight.name} 
-                            data-ai-hint={communitySpotlight.avatarHint}
-                            width={200}
-                            height={200}
-                            className="rounded-full object-cover border-4 border-accent shadow-[0_0_20px] shadow-accent/40"
-                         />
-                    </div>
+            <div className="max-w-4xl mx-auto text-center bg-card/70 border border-primary/20 backdrop-blur-sm p-8 rounded-lg shadow-lg">
+                <div className="flex items-center justify-center mb-4">
+                    <Star className="w-8 h-8 text-secondary fill-secondary mr-3" />
+                    <h2 className="text-3xl font-headline text-white">Community Spotlight</h2>
+                </div>
+                <blockquote className="text-xl italic text-gray-300 border-l-4 border-accent pl-4 text-left mb-4">
+                    {communitySpotlight.quote}
+                </blockquote>
+                <div className="text-right">
                     <h3 className="text-2xl font-headline text-white">{communitySpotlight.name}</h3>
                     <p className="text-accent font-semibold">{communitySpotlight.role}</p>
-                </div>
-                <div className="md:col-span-2">
-                    <div className="flex items-center mb-2">
-                        <Star className="w-6 h-6 text-secondary fill-secondary mr-2" />
-                        <h2 className="text-3xl font-headline text-white">Community Spotlight</h2>
-                    </div>
-                    <blockquote className="text-lg italic text-gray-300 border-l-4 border-accent pl-4">
-                        {communitySpotlight.quote}
-                    </blockquote>
                 </div>
             </div>
           </div>
