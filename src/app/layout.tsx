@@ -23,10 +23,17 @@ const cinzel = Cinzel_Decorative({
   variable: '--font-cinzel',
 });
 
-// export const metadata: Metadata = {
-//   title: 'Vasudev AI',
-//   description: 'Where Intelligence Meets Innovation.',
-// };
+// A new component to safely render the cursor only on the client
+const HydrationSafeCursor = () => {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  return isClient ? <CustomCursor /> : null;
+};
+
 
 export default function RootLayout({
   children,
@@ -61,7 +68,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${cinzel.variable} font-body antialiased`}
       >
-        <CustomCursor />
+        <HydrationSafeCursor />
         {loading ? (
           <IntroAnimation />
         ) : (
