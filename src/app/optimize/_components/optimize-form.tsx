@@ -1,6 +1,7 @@
+
 'use client';
 
-import { useActionState } from 'react';
+import { useActionState, useFormStatus } from 'react';
 import { handleOptimizeContent } from '../actions';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -18,7 +19,7 @@ const initialState = {
 };
 
 function SubmitButton() {
-  const { pending } = (React as any).useFormStatus();
+  const { pending } = useFormStatus();
   return (
     <Button
       type="submit"
@@ -104,3 +105,5 @@ export default function OptimizeForm() {
     </div>
   );
 }
+
+    

@@ -1,3 +1,6 @@
+
+'use client';
+
 import PageHeader from '@/components/page-header';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -5,11 +8,19 @@ import { CheckCircle, Heart, Lightbulb, Users, Calendar, Code, Mic, Star, Messag
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Cinzel_Decorative } from 'next/font/google';
+import { cn } from '@/lib/utils';
 
-export const metadata: Metadata = {
-  title: 'Community | Vasudev AI',
-  description: 'Join a divine network of AI creators, thinkers, and dreamers.',
-};
+const cinzel = Cinzel_Decorative({
+  subsets: ['latin'],
+  weight: '400',
+  variable: '--font-cinzel',
+});
+
+// export const metadata: Metadata = {
+//   title: 'Community | Vasudev AI',
+//   description: 'Join a divine network of AI creators, thinkers, and dreamers.',
+// };
 
 const whyJoin = [
     {
@@ -63,7 +74,7 @@ const communitySpotlight = {
     name: "Aman Dangi",
     role: "Co-Builder & Innovator",
     quote: "“Being part of Vasudev AI is like building the future in a family. The collaboration and vision here are unparalleled.”",
-    avatar: 'https://placehold.co/100x100.png',
+    avatar: '/team/aman.png',
     avatarHint: "cyan planet rings"
 };
 
@@ -90,26 +101,26 @@ const resourceHub = [
         icon: <Compass className="h-8 w-8 text-accent"/>,
         title: "New Member Guide",
         desc: "Your starting point for navigating the Vasudev AI cosmos.",
-        href: "#"
+        href: "https://discord.gg/e5uPQDXSSk"
     },
     {
         icon: <Book className="h-8 w-8 text-accent"/>,
         title: "Community Tutorials",
         desc: "Learn from guides and articles created by our talented members.",
-        href: "#"
+        href: "https://discord.gg/e5uPQDXSSk"
     },
     {
         icon: <Wrench className="h-8 w-8 text-accent"/>,
         title: "Open-Source Tools",
         desc: "Explore the tools and frameworks we build and use together.",
-        href: "#"
+        href: "https://discord.gg/e5uPQDXSSk"
     }
 ];
 
 
 export default function CommunityPage() {
   return (
-    <div className="pb-20">
+    <div className={cn("pb-20", cinzel.variable)}>
       <PageHeader
         title="The Vasudev AI Community"
         subtitle="A divine network of AI creators, thinkers, and dreamers."
@@ -153,13 +164,13 @@ export default function CommunityPage() {
       <section className="w-full py-20">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-headline font-bold text-center mb-12">Upcoming Events</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {upcomingEvents.map((event) => (
               <Card key={event.title} className="bg-card/70 border-primary/20 backdrop-blur-sm p-6 hover:border-primary hover:-translate-y-2 transition-all duration-300 shadow-lg hover:shadow-primary/30">
-                <CardHeader className="flex flex-row items-start gap-4">
+                <CardHeader className="flex flex-col sm:flex-row items-start gap-4">
                    <div className="p-3 bg-primary/10 rounded-full">{event.icon}</div>
                    <div>
-                    <CardTitle className="text-2xl font-headline text-white">{event.title}</CardTitle>
+                    <CardTitle className="text-xl sm:text-2xl font-headline text-white">{event.title}</CardTitle>
                     <p className="text-accent text-sm font-semibold">{event.date}</p>
                    </div>
                 </CardHeader>
@@ -230,7 +241,7 @@ export default function CommunityPage() {
                 <CardContent>
                   <p className="text-gray-400 mb-4">{item.desc}</p>
                   <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary/10 hover:text-accent">
-                    <Link href={item.href}>Explore</Link>
+                    <Link href={item.href} target="_blank" rel="noopener noreferrer">Explore</Link>
                   </Button>
                 </CardContent>
               </Card>
@@ -252,3 +263,5 @@ export default function CommunityPage() {
     </div>
   );
 }
+
+    
