@@ -1,12 +1,11 @@
 
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import PageHeader from '@/components/page-header';
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import Link from 'next/link';
-import { Github, Linkedin, Youtube, ArrowRight, X } from 'lucide-react';
+import { Github, Linkedin, Youtube, ArrowRight } from 'lucide-react';
 import './team.css';
 
 const teamMembers = [
@@ -14,8 +13,7 @@ const teamMembers = [
     id: 'surya',
     name: 'Surya Pratap Singh',
     role: 'Founder & Visionary',
-    bio: "Pushing AI Beyond Boundaries. Creator of Vasudev AI, CodeCraft with Surya, and a hardcore tech enthusiast focused on offline AI, OS-level mods, and futuristic systems that merge divine wisdom with technological prowess. His vision is to create a decentralized, intelligent future for all.",
-    shortBio: 'Creator of Vasudev AI, pushing the boundaries of offline and futuristic AI systems.',
+    bio: "Creator of Vasudev AI, pushing the boundaries of offline and futuristic AI systems. He is focused on OS-level mods and merging divine wisdom with technological prowess to build a decentralized, intelligent future.",
     avatar: 'https://placehold.co/400x400.png',
     avatarHint: 'glowing sun star',
     socials: {
@@ -33,8 +31,7 @@ const teamMembers = [
     id: 'aman',
     name: 'Aman Dangi',
     role: 'Co-Builder & Innovator',
-    bio: 'A passionate developer and core contributor to Vasudev AI. Aman specializes in building high-performance systems, strengthening community infrastructure, and turning complex ideas into reality with elegant, efficient code.',
-    shortBio: 'Passionate developer contributing to AI systems and performance-driven solutions.',
+    bio: 'A passionate developer and core contributor to Vasudev AI. Aman specializes in building high-performance systems and turning complex ideas into reality with elegant, efficient code.',
     avatar: 'https://placehold.co/400x400.png',
     avatarHint: 'cyan planet rings',
     socials: { github: '#', linkedin: '#' },
@@ -48,8 +45,7 @@ const teamMembers = [
     id: 'ashutosh',
     name: 'Ashutosh Kumar Tripathi',
     role: 'AI Engineer',
-    bio: 'Focused on the frontier of artificial intelligence, Ashutosh architects ethical AI models, develops robust automation frameworks, and engineers the advanced intelligent systems that power Vasudev AI.',
-    shortBio: 'Focused on building ethical AI models and advanced intelligent systems.',
+    bio: 'Focused on the frontier of artificial intelligence, Ashutosh architects ethical AI models and develops the robust automation frameworks that power Vasudev AI\'s advanced intelligent systems.',
     avatar: 'https://placehold.co/400x400.png',
     avatarHint: 'golden nebula',
     socials: { github: '#', linkedin: '#' },
@@ -63,8 +59,7 @@ const teamMembers = [
     id: 'zerox',
     name: 'Zerox.exe',
     role: 'UI/UX Designer',
-    bio: 'The artistic soul of Vasudev AI, Zerox crafts stunning, futuristic designs that blend divine aesthetics with cutting-edge user experiences. Every pixel is placed with purpose to create an intuitive and immersive journey.',
-    shortBio: 'Crafts futuristic designs blending divine aesthetics with cutting-edge user experiences.',
+    bio: 'The artistic soul of Vasudev AI, Zerox crafts stunning, futuristic designs that blend divine aesthetics with cutting-edge user experiences to create an intuitive and immersive journey.',
     avatar: 'https://placehold.co/400x400.png',
     avatarHint: 'holographic sphere',
     socials: { github: '#', linkedin: '#' },
@@ -79,7 +74,6 @@ const teamMembers = [
 type TeamMember = typeof teamMembers[0];
 
 export default function TeamPage() {
-  const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
 
   return (
     <div className="team-page-container overflow-hidden pb-20">
@@ -108,10 +102,24 @@ export default function TeamPage() {
                       {member.role.split('&')[0].trim()}
                     </span>
                     <h3 className="name font-headline">{member.name}</h3>
-                    <p className="bio-short">{member.shortBio}</p>
-                    <Button onClick={() => setSelectedMember(member)} className="cta-button font-bold">
-                      View Full Profile <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
+                    <p className="bio-full">{member.bio}</p>
+                     <div className="social-links">
+                        {member.socials.github && (
+                            <Link href={member.socials.github} target="_blank" className="social-link">
+                                <Github size={20} />
+                            </Link>
+                        )}
+                        {member.socials.linkedin && (
+                            <Link href={member.socials.linkedin} target="_blank" className="social-link">
+                                <Linkedin size={20} />
+                            </Link>
+                        )}
+                        {member.socials.youtube && (
+                            <Link href={member.socials.youtube} target="_blank" className="social-link">
+                                <Youtube size={20} />
+                            </Link>
+                        )}
+                    </div>
                   </div>
                 </div>
                 <div className="profile-card-image">
@@ -123,52 +131,6 @@ export default function TeamPage() {
           ))}
         </div>
       </div>
-
-       {selectedMember && (
-        <Dialog open={!!selectedMember} onOpenChange={() => setSelectedMember(null)}>
-          <DialogContent 
-            className="spotlight-modal p-0 m-0 max-w-2xl bg-card/80 border-[1px] rounded-2xl shadow-2xl"
-            style={{'--theme-color': selectedMember.theme['--accent-glow']} as React.CSSProperties}
-          >
-            <DialogHeader className="sr-only">
-              <DialogTitle>{selectedMember.name}</DialogTitle>
-              <DialogDescription>{selectedMember.role}</DialogDescription>
-            </DialogHeader>
-            <div className="spotlight-modal-content p-8">
-                <div className="flex justify-center mb-6">
-                    <div className="relative">
-                        <img src={selectedMember.avatar} alt={selectedMember.name} data-ai-hint={selectedMember.avatarHint} className="w-32 h-32 rounded-full border-4 border-[var(--theme-color)] shadow-[0_0_20px_var(--theme-color)]"/>
-                    </div>
-                </div>
-                <div className="text-center">
-                    <h2 className="text-3xl font-headline font-bold" style={{color: 'var(--theme-color)', textShadow: '0 0 10px var(--theme-color)'}}>{selectedMember.name}</h2>
-                    <p className="text-lg text-white/80 font-headline mb-4">{selectedMember.role}</p>
-                    <p className="text-white/90 leading-relaxed">{selectedMember.bio}</p>
-                </div>
-                <div className="flex justify-center gap-6 mt-8">
-                    {selectedMember.socials.github && (
-                        <Link href={selectedMember.socials.github} target="_blank" className="social-link-spotlight">
-                            <Github size={24} />
-                        </Link>
-                    )}
-                    {selectedMember.socials.linkedin && (
-                        <Link href={selectedMember.socials.linkedin} target="_blank" className="social-link-spotlight">
-                            <Linkedin size={24} />
-                        </Link>
-                    )}
-                    {selectedMember.socials.youtube && (
-                        <Link href={selectedMember.socials.youtube} target="_blank" className="social-link-spotlight">
-                            <Youtube size={24} />
-                        </Link>
-                    )}
-                </div>
-            </div>
-            <button onClick={() => setSelectedMember(null)} className="absolute top-4 right-4 text-gray-500 hover:text-white transition-colors">
-              <X size={24} />
-            </button>
-          </DialogContent>
-        </Dialog>
-       )}
 
        <section className="w-full pt-24 pb-12 text-center">
         <div className="container mx-auto px-4">
@@ -186,5 +148,3 @@ export default function TeamPage() {
     </div>
   );
 }
-
-    

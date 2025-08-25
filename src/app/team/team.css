@@ -1,5 +1,4 @@
 
-
 .profile-card {
   position: relative;
   border-radius: 1rem;
@@ -93,81 +92,31 @@
     font-weight: 700;
 }
 
-.bio-short {
+.bio-full {
     font-size: 0.95rem;
     color: hsl(var(--foreground) / 0.8);
     max-width: 300px;
     margin-bottom: 1.5rem;
-    min-height: 60px;
+    flex-grow: 1;
 }
 
-.cta-button {
-    background-color: var(--accent-glow);
-    color: hsl(var(--background));
-    border-radius: 9999px;
-    padding: 0.75rem 1.5rem;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 15px var(--accent-glow);
+.social-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: auto;
 }
 
-.cta-button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 25px var(--accent-glow);
-    background-color: var(--accent-glow) !important;
-    opacity: 0.9;
+.social-link {
+  color: hsl(var(--foreground) / 0.7);
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
-
-/* New Spotlight Modal Styles */
-.spotlight-modal[data-state=open] {
-    animation: fadeIn 0.5s ease-out forwards;
-}
-
-.spotlight-modal[data-state=open] .spotlight-modal-content {
-    animation: scaleIn 0.5s 0.1s ease-out forwards;
-}
-
-@keyframes scaleIn {
-    from {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(0.9);
-    }
-    to {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
-    }
-}
-
-.spotlight-modal-content {
-    opacity: 0;
-    border-color: var(--theme-color) !important;
-    box-shadow: 0 0 40px var(--theme-color);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-}
-
-.spotlight-modal-content .social-link-spotlight {
-    color: hsl(var(--foreground) / 0.7);
-    transition: color 0.3s, transform 0.3s;
-}
-
-.spotlight-modal-content .social-link-spotlight:hover {
-    color: var(--theme-color);
-    transform: scale(1.1);
-}
-
-
-/* General Animation Fallback/Base */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+.social-link:hover {
+  color: var(--accent-glow);
+  transform: scale(1.1);
 }
 
 /* Responsive adjustments */
-@media (max-width: 1024px) {
-  /* No changes needed for modal, it's centered */
-}
-
 @media (max-width: 768px) {
   .profile-card-inner {
     flex-direction: column;
