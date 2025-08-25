@@ -20,8 +20,8 @@ export default {
         '1000': '1000px',
       },
       fontFamily: {
-        body: ['var(--font-lato)'],
-        headline: ['var(--font-cinzel)'],
+        body: ['var(--font-inter)'],
+        headline: ['var(--font-space-grotesk)'],
       },
       colors: {
         background: 'hsl(var(--background))',
