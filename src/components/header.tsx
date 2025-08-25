@@ -21,11 +21,10 @@ import React from 'react';
 
 const navLinks = [
     { href: '/', label: 'Home' },
-    { href: '/services', label: 'Services' },
-    { href: '/about', label: 'About' },
-    { href: '/team', label: 'Our Team' },
-    { href: '/features', label: 'Features' },
-    { href: '/pricing', label: 'Pricing' },
+    { href: '/community', label: 'Community' },
+    { href: '/projects', label: 'Projects' },
+    { href: '/team', label: 'Team' },
+    { href: '/optimize', label: 'Optimize' },
     { href: '/contact', label: 'Contact' },
 ];
 
@@ -90,51 +89,23 @@ export default function Header() {
                 </NavigationMenuLink>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                 <NavigationMenuTrigger>Services</NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="grid w-[600px] grid-cols-2 gap-3 p-4">
-                    <li className="col-span-2">
-                      <NavigationMenuLink asChild>
-                         <Link href="/services" className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md">
-                            <div className="text-lg font-medium">
-                              All Services
-                            </div>
-                            <p className="text-sm leading-tight text-muted-foreground">
-                              Explore our comprehensive solutions.
-                            </p>
-                         </Link>
-                      </NavigationMenuLink>
-                    </li>
-                    {services.map((service) => (
-                      <ListItem
-                        key={service.title}
-                        title={service.title}
-                        href={service.href}
-                      >
-                        {service.description}
-                      </ListItem>
-                    ))}
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-               <NavigationMenuItem>
                   <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-                    <Link href="/about">About</Link>
+                    <Link href="/community">Community</Link>
+                  </NavigationMenuLink>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                  <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+                    <Link href="/projects">Projects</Link>
                   </NavigationMenuLink>
               </NavigationMenuItem>
                <NavigationMenuItem>
                   <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-                    <Link href="/team">Our Team</Link>
+                    <Link href="/team">Team</Link>
                   </NavigationMenuLink>
               </NavigationMenuItem>
                <NavigationMenuItem>
                   <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-                    <Link href="/features">Features</Link>
-                  </NavigationMenuLink>
-              </NavigationMenuItem>
-               <NavigationMenuItem>
-                  <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-                    <Link href="/pricing">Pricing</Link>
+                    <Link href="/optimize">Optimize</Link>
                   </NavigationMenuLink>
               </NavigationMenuItem>
                <NavigationMenuItem>
