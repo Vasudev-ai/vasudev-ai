@@ -36,8 +36,8 @@ const teamMembers = [
     avatarHint: 'cyan planet rings',
     socials: { github: '#', linkedin: '#' },
     theme: {
-      '--accent-glow': '#39FF14', // Neon Green
-      '--bg-gradient-start': 'rgba(57, 255, 20, 0.2)',
+      '--accent-glow': 'hsl(var(--secondary))', // Golden Yellow
+      '--bg-gradient-start': 'hsl(var(--secondary) / 0.2)',
       '--bg-gradient-end': 'hsl(var(--background) / 0.1)',
     }
   },
@@ -45,13 +45,13 @@ const teamMembers = [
     id: 'ashutosh',
     name: 'Ashutosh Kumar Tripathi',
     role: 'AI Engineer',
-    bio: 'Focused on the frontier of artificial intelligence, Ashutosh architects ethical AI models and develops the robust automation frameworks that power Vasudev AI\'s advanced intelligent systems.',
+    bio: 'Focused on the frontier of artificial intelligence, Ashutosh architect\'s ethical AI models and develops the robust automation frameworks that power Vasudev AI\'s advanced intelligent systems.',
     avatar: 'https://placehold.co/400x400.png',
     avatarHint: 'golden nebula',
     socials: { github: '#', linkedin: '#' },
     theme: {
-      '--accent-glow': 'hsl(var(--secondary))', // Golden Yellow
-      '--bg-gradient-start': 'hsl(var(--secondary) / 0.2)',
+      '--accent-glow': '#39FF14', // Neon Green
+      '--bg-gradient-start': 'rgba(57, 255, 20, 0.2)',
       '--bg-gradient-end': 'hsl(var(--background) / 0.1)',
     }
   },
