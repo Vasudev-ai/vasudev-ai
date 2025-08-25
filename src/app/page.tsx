@@ -33,8 +33,7 @@ export default function Home() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="relative w-48 h-48 md:w-56 md:h-56 mx-auto mb-8 float">
             <Image
-              src="https://placehold.co/400x400.png"
-              data-ai-hint="divine being hologram"
+              src="/vasudev-ai-hero.png"
               alt="Vasudev AI"
               width={400}
               height={400}
