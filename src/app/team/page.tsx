@@ -35,7 +35,9 @@ const teamMembers = [
     bio: 'A passionate developer and core contributor to Vasudev AI. Aman specializes in building high-performance systems and turning complex ideas into reality with elegant, efficient code.',
     avatar: '/team/aman.png',
     avatarHint: 'cyan planet rings',
-    socials: { github: '#', linkedin: '#' },
+    socials: { github: 'https://github.com/AshutoshIIT1234',
+       linkedin: 'https://www.linkedin.com/in/ashutosh-kumar-tripathi-926308237/'
+      },
     theme: {
       '--accent-glow': 'hsl(var(--secondary))', // Golden Yellow
       '--bg-gradient-start': 'hsl(var(--secondary) / 0.2)',

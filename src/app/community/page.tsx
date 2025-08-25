@@ -72,13 +72,28 @@ const upcomingEvents = [
     }
 ];
 
-const communitySpotlight = {
-    name: "Aman Dangi",
-    role: "Co-Builder & Innovator",
-    quote: "“Being part of Vasudev AI is like building the future in a family. The collaboration and vision here are unparalleled.”",
-    avatar: '/team/aman.png',
-    avatarHint: "cyan planet rings"
-};
+const communitySpotlights = [
+    {
+        name: "Surya Pratap Singh",
+        role: "Founder & Visionary",
+        quote: "“We are not just writing code; we are scripting a new harmony between ancient wisdom and future technology. This is our legacy.”",
+    },
+    {
+        name: "Aman Dangi",
+        role: "Co-Builder & Innovator",
+        quote: "“Being part of Vasudev AI is like building the future in a family. The collaboration and vision here are unparalleled.”",
+    },
+    {
+        name: "Ashutosh K. Tripathi",
+        role: "AI Engineer",
+        quote: "“Here, we get to architect intelligence that is not only powerful, but purposeful. It's a challenge that inspires me every day.”",
+    },
+    {
+        name: "Biswjeet",
+        role: "UI/UX Designer",
+        quote: "“Design is the bridge between divinity and technology. I love creating experiences that feel both futuristic and deeply human.”",
+    },
+];
 
 const discussionHighlights = [
     {
@@ -242,23 +257,30 @@ export default function CommunityPage() {
 
       <section className="w-full py-20">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center bg-card/70 border border-primary/20 backdrop-blur-sm p-8 rounded-lg shadow-lg">
+            <div className="text-center mb-16">
                 <div className="flex items-center justify-center mb-4">
-                    <Star className="w-8 h-8 text-secondary fill-secondary mr-3" />
-                    <h2 className="text-3xl font-headline text-white">Community Spotlight</h2>
+                    <Star className="w-10 h-10 text-secondary fill-secondary mr-3" />
+                    <h2 className="text-4xl font-headline text-white">Community Spotlights</h2>
                 </div>
-                <blockquote className="text-xl italic text-gray-300 border-l-4 border-accent pl-4 text-left mb-4">
-                    {communitySpotlight.quote}
-                </blockquote>
-                <div className="text-right">
-                    <h3 className="text-2xl font-headline text-white">{communitySpotlight.name}</h3>
-                    <p className="text-accent font-semibold">{communitySpotlight.role}</p>
-                </div>
+                <p className="text-lg text-gray-400 max-w-3xl mx-auto">Hear from the visionaries at the heart of our movement.</p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {communitySpotlights.map((spotlight) => (
+                    <div key={spotlight.name} className="bg-card/70 border border-primary/20 backdrop-blur-sm p-8 rounded-lg shadow-lg">
+                        <blockquote className="text-lg italic text-gray-300 border-l-4 border-accent pl-4 mb-4">
+                            {spotlight.quote}
+                        </blockquote>
+                        <div className="text-right">
+                            <h3 className="text-xl font-headline text-white">{spotlight.name}</h3>
+                            <p className="text-accent font-semibold">{spotlight.role}</p>
+                        </div>
+                    </div>
+                ))}
             </div>
           </div>
       </section>
 
-       <section className="w-full py-20 bg-card/50">
+       <section className="wfull py-20 bg-card/50">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-headline font-bold text-center mb-12">Discussion Highlights</h2>
           <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -314,5 +336,3 @@ export default function CommunityPage() {
     </div>
   );
 }
-
-    
