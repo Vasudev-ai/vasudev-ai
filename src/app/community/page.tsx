@@ -247,9 +247,6 @@ export default function CommunityPage() {
                     <Star className="w-8 h-8 text-secondary fill-secondary mr-3" />
                     <h2 className="text-3xl font-headline text-white">Community Spotlight</h2>
                 </div>
-                <div className="relative w-full h-48 mx-auto mb-4">
-                  <Image src="/team/aman.png" alt="Aman Dangi" layout="fill" className="object-contain" data-ai-hint="cyan planet rings"/>
-                </div>
                 <blockquote className="text-xl italic text-gray-300 border-l-4 border-accent pl-4 text-left mb-4">
                     {communitySpotlight.quote}
                 </blockquote>
@@ -317,3 +314,5 @@ export default function CommunityPage() {
     </div>
   );
 }
+
+    
