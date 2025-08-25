@@ -64,6 +64,7 @@ export default function RootLayout({
        <head>
         <title>Vasudev AI</title>
         <meta name="description" content="Where Intelligence Meets Innovation." />
+        <link rel="icon" href="/vasudev-ai-hero.png" />
       </head>
       <body
         className={`${inter.variable} ${cinzel.variable} font-body antialiased`}
