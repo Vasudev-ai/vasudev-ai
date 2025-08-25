@@ -3,7 +3,7 @@
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { BrainCircuit, Sparkles, Users, CheckCircle, Milestone, Rocket, Wind, Box } from 'lucide-react';
+import { BrainCircuit, Sparkles, Users, CheckCircle, Milestone, Rocket, Wind, Box, Code, Component, Globe } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -38,9 +38,12 @@ const roadmapItems = [
 ];
 
 const techStack = [
+    { name: 'React', icon: <Component className="h-10 w-10" /> },
     { name: 'Next.js', icon: <Box className="h-10 w-10" /> },
+    { name: 'Electron', icon: <Globe className="h-10 w-10" /> },
     { name: 'Genkit', icon: <BrainCircuit className="h-10 w-10" /> },
     { name: 'Tailwind CSS', icon: <Wind className="h-10 w-10" /> },
+    { name: 'Vite', icon: <Rocket className="h-10 w-10" /> },
 ];
 
 export default function Home() {
@@ -131,7 +134,7 @@ export default function Home() {
       <section className="w-full py-20 bg-card/50">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-headline font-bold text-center mb-12">Powered by Future-Forward Technology</h2>
-          <div className="flex justify-center items-center gap-8 md:gap-16">
+          <div className="flex justify-center items-center flex-wrap gap-8 md:gap-12">
             {techStack.map(tech => (
               <div key={tech.name} className="flex flex-col items-center gap-2 text-gray-400 hover:text-primary transition-colors duration-300">
                 {tech.icon}
