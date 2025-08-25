@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter, Space_Grotesk } from 'next/font/google';
+import { Inter, Audiowide } from 'next/font/google';
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 import Header from '@/components/header';
@@ -10,9 +10,10 @@ const inter = Inter({
   subsets: ['latin'], 
   variable: '--font-inter',
 });
-const spaceGrotesk = Space_Grotesk({
+const audiowide = Audiowide({
   subsets: ['latin'],
-  variable: '--font-space-grotesk',
+  weight: '400',
+  variable: '--font-audiowide',
 });
 
 export const metadata: Metadata = {
@@ -28,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${inter.variable} ${spaceGrotesk.variable} font-body antialiased`}
+        className={`${inter.variable} ${audiowide.variable} font-body antialiased`}
       >
         <div className="relative min-h-screen">
           <AnimatedBackground />

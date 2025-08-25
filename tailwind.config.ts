@@ -21,7 +21,7 @@ export default {
       },
       fontFamily: {
         body: ['var(--font-inter)'],
-        headline: ['var(--font-space-grotesk)'],
+        headline: ['var(--font-audiowide)'],
       },
       colors: {
         background: 'hsl(var(--background))',
