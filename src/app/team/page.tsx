@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import React from 'react';
@@ -56,10 +57,10 @@ const teamMembers = [
     }
   },
   {
-    id: 'zerox',
-    name: 'Zerox.exe',
+    id: 'binod',
+    name: 'Binod',
     role: 'UI/UX Designer',
-    bio: 'The artistic soul of Vasudev AI, Zerox crafts stunning, futuristic designs that blend divine aesthetics with cutting-edge user experiences to create an intuitive and immersive journey.',
+    bio: 'The artistic soul of Vasudev AI, Binod crafts stunning, futuristic designs that blend divine aesthetics with cutting-edge user experiences to create an intuitive and immersive journey.',
     avatar: 'https://placehold.co/400x400.png',
     avatarHint: 'holographic sphere',
     socials: { github: '#', linkedin: '#' },
