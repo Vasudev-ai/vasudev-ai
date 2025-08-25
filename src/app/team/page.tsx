@@ -41,8 +41,8 @@ const teamMembers = [
     avatarHint: 'cyan planet rings',
     socials: { github: '#', linkedin: '#' },
     theme: {
-      '--accent-glow': '#00E5FF',
-      '--bg-gradient-start': 'rgba(0, 229, 255, 0.2)',
+      '--accent-glow': '#39FF14', // Neon Green
+      '--bg-gradient-start': 'rgba(57, 255, 20, 0.2)',
       '--bg-gradient-end': 'hsl(var(--background) / 0.1)',
     }
   },
@@ -56,8 +56,8 @@ const teamMembers = [
     avatarHint: 'golden nebula',
     socials: { github: '#', linkedin: '#' },
     theme: {
-      '--accent-glow': '#FFD700',
-      '--bg-gradient-start': 'rgba(255, 215, 0, 0.2)',
+      '--accent-glow': 'hsl(var(--secondary))', // Golden Yellow
+      '--bg-gradient-start': 'hsl(var(--secondary) / 0.2)',
       '--bg-gradient-end': 'hsl(var(--background) / 0.1)',
     }
   },
@@ -71,8 +71,8 @@ const teamMembers = [
     avatarHint: 'holographic sphere',
     socials: { github: '#', linkedin: '#' },
     theme: {
-      '--accent-glow': '#BA55D3',
-      '--bg-gradient-start': 'rgba(186, 85, 211, 0.2)',
+      '--accent-glow': '#FF00FF', // Magenta
+      '--bg-gradient-start': 'rgba(255, 0, 255, 0.2)',
       '--bg-gradient-end': 'hsl(var(--background) / 0.1)',
     }
   },
