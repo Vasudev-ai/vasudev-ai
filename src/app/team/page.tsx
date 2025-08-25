@@ -132,6 +132,10 @@ export default function TeamPage() {
             className="profile-modal p-0 m-0 max-w-none w-screen h-screen bg-black/80 border-0 backdrop-blur-lg"
             style={{'--theme-color': selectedMember.theme['--accent-glow']} as React.CSSProperties}
           >
+            <DialogHeader className="sr-only">
+              <DialogTitle>{selectedMember.name}</DialogTitle>
+              <DialogDescription>{selectedMember.bio}</DialogDescription>
+            </DialogHeader>
             <div className="profile-modal-content">
               <div className="profile-modal-details">
                 <div className="details-inner">
