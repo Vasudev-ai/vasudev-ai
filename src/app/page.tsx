@@ -106,39 +106,68 @@ export default function Home() {
       </section>
 
       <section id="roadmap" className="w-full py-24">
-          <div className="container mx-auto px-4">
-              <h2 className="text-4xl md:text-5xl font-headline font-bold text-center mb-4 text-accent">Our Cosmic Journey</h2>
-              <p className="text-center text-lg text-gray-400 mb-16">Follow our path of innovation, from genesis to the future.</p>
-              <div className="relative w-full overflow-x-auto pb-8">
-                  <div className="relative inline-flex justify-center min-w-full px-10">
-                      <div className="absolute top-1/2 left-0 h-0.5 w-full -translate-y-1/2 bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
-                      <div className="absolute top-1/2 left-0 h-[1px] w-full -translate-y-1/2" style={{background: 'repeating-linear-gradient(90deg, transparent, transparent 4px, hsl(var(--primary) / 0.3) 4px, hsl(var(--primary) / 0.3) 8px)'}}></div>
-                      
-                      <div className="flex justify-between w-full">
-                        <TooltipProvider>
-                          {roadmapItems.map((item, index) => (
-                              <div key={index} className="relative flex flex-col items-center group z-10 px-4">
-                                  <Tooltip>
-                                      <TooltipTrigger asChild>
-                                          <button className="w-10 h-10 rounded-full bg-background border-2 border-primary flex items-center justify-center z-10 transition-all duration-300 group-hover:scale-125 group-hover:shadow-[0_0_20px] group-hover:shadow-primary/50">
-                                              {item.status === 'past' && <CheckCircle className="w-6 h-6 text-green-400" />}
-                                              {item.status === 'present' && <div className="w-4 h-4 rounded-full bg-accent animate-pulse"></div>}
-                                              {item.status === 'future' && <Rocket className="w-6 h-6 text-primary/70" />}
-                                          </button>
-                                      </TooltipTrigger>
-                                      <TooltipContent>
-                                          <p className="font-bold">{item.title}</p>
-                                          <p className="text-sm text-muted-foreground">{item.details}</p>
-                                      </TooltipContent>
-                                  </Tooltip>
-                                  <p className="text-sm font-semibold text-white mt-4 text-center w-32 break-words">{item.title}</p>
-                              </div>
-                          ))}
-                        </TooltipProvider>
-                      </div>
-                  </div>
-              </div>
-          </div>
+        <div className="container mx-auto px-4">
+            <h2 className="text-4xl md:text-5xl font-headline font-bold text-center mb-4 text-accent">Our Cosmic Journey</h2>
+            <p className="text-center text-lg text-gray-400 mb-24">Follow our treasure map of innovation, from genesis to the future.</p>
+            
+            <div className="relative w-full h-[300px]">
+                <svg width="100%" height="100%" viewBox="0 0 1200 200" preserveAspectRatio="none" className="absolute top-0 left-0">
+                    <path 
+                        d="M 50 100 C 150 20, 250 180, 350 100 S 550 20, 650 100 S 850 180, 950 100 S 1150 20, 1150 100" 
+                        stroke="hsl(var(--primary) / 0.3)" 
+                        fill="none" 
+                        strokeWidth="2" 
+                        strokeDasharray="8 8"
+                    />
+                </svg>
+                
+                <TooltipProvider>
+                    <div className="relative w-full h-full flex justify-between items-center">
+                        {roadmapItems.map((item, index) => {
+                            const totalItems = roadmapItems.length -1;
+                            const x = (index / totalItems) * 1100 + 50;
+                            // Approximate y on the curve
+                            let y;
+                            if (x <= 350) {
+                                const t = (x - 50) / 300;
+                                y = (1 - t) * (1 - t) * 100 + 2 * (1 - t) * t * 20 + t * t * 100;
+                            } else if (x <= 650) {
+                                const t = (x - 350) / 300;
+                                y = (1-t)*(1-t)*100 + 2*(1-t)*t*180 + t*t*100;
+                            } else if (x <= 950) {
+                                const t = (x - 650) / 300;
+                                y = (1 - t) * (1 - t) * 100 + 2 * (1 - t) * t * 20 + t * t * 100;
+                            } else {
+                                const t = (x - 950) / 200;
+                                y = (1-t)*(1-t)*100 + 2*(1-t)*t*180 + t*t*100;
+                            }
+
+
+                            return (
+                                <div key={index} className="absolute group" style={{ left: `${(x/1200)*100}%`, top: `${(y/200)*100}%`, transform: 'translate(-50%, -50%)' }}>
+                                    <Tooltip>
+                                        <TooltipTrigger asChild>
+                                            <button className="w-10 h-10 rounded-full bg-background border-2 border-primary flex items-center justify-center z-10 transition-all duration-300 group-hover:scale-125 group-hover:shadow-[0_0_20px] group-hover:shadow-primary/50">
+                                                {item.status === 'past' && <CheckCircle className="w-6 h-6 text-green-400" />}
+                                                {item.status === 'present' && <div className="w-4 h-4 rounded-full bg-accent animate-pulse"></div>}
+                                                {item.status === 'future' && <Rocket className="w-6 h-6 text-primary/70" />}
+                                            </button>
+                                        </TooltipTrigger>
+                                        <TooltipContent>
+                                            <p className="font-bold">{item.title}</p>
+                                            <p className="text-sm text-muted-foreground">{item.details}</p>
+                                        </TooltipContent>
+                                    </Tooltip>
+                                    <p className="text-sm font-semibold text-white mt-4 text-center w-32 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{transform: 'translateX(-50%)', left: '50%'}}>
+                                        {item.title}
+                                    </p>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </TooltipProvider>
+            </div>
+        </div>
       </section>
 
       <section className="w-full py-20 bg-card/50">
