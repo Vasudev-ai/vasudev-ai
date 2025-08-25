@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter, Audiowide } from 'next/font/google';
+import { Inter, Cinzel_Decorative } from 'next/font/google';
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 import Header from '@/components/header';
@@ -10,10 +10,10 @@ const inter = Inter({
   subsets: ['latin'], 
   variable: '--font-inter',
 });
-const audiowide = Audiowide({
+const cinzel = Cinzel_Decorative({
   subsets: ['latin'],
   weight: '400',
-  variable: '--font-audiowide',
+  variable: '--font-cinzel-decorative',
 });
 
 export const metadata: Metadata = {
@@ -29,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${inter.variable} ${audiowide.variable} font-body antialiased`}
+        className={`${inter.variable} ${cinzel.variable} font-body antialiased`}
       >
         <div className="relative min-h-screen">
           <AnimatedBackground />
