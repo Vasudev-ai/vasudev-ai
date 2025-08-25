@@ -1,14 +1,17 @@
 
+
 'use client';
 
 import PageHeader from '@/components/page-header';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { CheckCircle, Heart, Lightbulb, Users, Calendar, Code, Mic, Star, MessageSquare, Book, Compass, Wrench } from 'lucide-react';
+import { CheckCircle, Heart, Lightbulb, Users, Calendar, Code, Mic, Star, MessageSquare, Book, Compass, Wrench, Award, BrainCircuit, Rocket } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Cinzel_Decorative } from 'next/font/google';
 import { cn } from '@/lib/utils';
+import MemberCard from './_components/member-card';
+
 
 const cinzel = Cinzel_Decorative({
   subsets: ['latin'],
@@ -116,6 +119,33 @@ const resourceHub = [
     }
 ];
 
+const councilMembers = [
+  {
+    name: 'Surya Pratap Singh',
+    badgeIcon: <Rocket className="h-6 w-6" />,
+    badgeLabel: 'Visionary',
+    avatarUrl: '/team/surya.png',
+    avatarHint: 'glowing sun star',
+    glowColor: 'hsl(var(--accent))',
+  },
+  {
+    name: 'Aman Dangi',
+    badgeIcon: <BrainCircuit className="h-6 w-6" />,
+    badgeLabel: 'Innovator',
+    avatarUrl: '/team/aman.png',
+    avatarHint: 'cyan planet rings',
+    glowColor: 'hsl(var(--secondary))',
+  },
+  {
+    name: 'Ashutosh K. Tripathi',
+    badgeIcon: <Award className="h-6 w-6" />,
+    badgeLabel: 'Oracle',
+    avatarUrl: '/team/ashutosh.png',
+    avatarHint: 'golden nebula',
+    glowColor: '#39FF14',
+  },
+];
+
 
 export default function CommunityPage() {
   return (
@@ -125,8 +155,28 @@ export default function CommunityPage() {
         subtitle="A divine network of AI creators, thinkers, and dreamers."
         className="[background-image:radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(0,229,255,0.1),rgba(255,255,255,0))]"
       />
-
+      
       <section className="w-full py-20">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-headline font-bold text-center mb-12">The Celestial Council</h2>
+          <p className="text-lg text-gray-400 text-center max-w-3xl mx-auto mb-16">Meet the guardians of our community—members recognized for their outstanding contributions, vision, and guidance.</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {councilMembers.map((member) => (
+              <MemberCard
+                key={member.name}
+                name={member.name}
+                badgeIcon={member.badgeIcon}
+                badgeLabel={member.badgeLabel}
+                avatarUrl={member.avatarUrl}
+                avatarHint={member.avatarHint}
+                glowColor={member.glowColor}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="w-full py-20 bg-card/50">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {whyJoin.map((item) => (
@@ -146,7 +196,7 @@ export default function CommunityPage() {
         </div>
       </section>
 
-      <section className="w-full py-20 bg-card/50">
+      <section className="w-full py-20">
         <div className="container mx-auto px-4">
             <h2 className="text-4xl font-headline font-bold text-center mb-12">What We Do Together</h2>
             <div className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6">
@@ -160,7 +210,7 @@ export default function CommunityPage() {
         </div>
       </section>
 
-      <section className="w-full py-20">
+      <section className="w-full py-20 bg-card/50">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-headline font-bold text-center mb-12">Upcoming Events</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -182,12 +232,15 @@ export default function CommunityPage() {
         </div>
       </section>
 
-      <section className="w-full py-20 bg-card/50">
+      <section className="w-full py-20">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center bg-card/70 border border-primary/20 backdrop-blur-sm p-8 rounded-lg shadow-lg">
                 <div className="flex items-center justify-center mb-4">
                     <Star className="w-8 h-8 text-secondary fill-secondary mr-3" />
                     <h2 className="text-3xl font-headline text-white">Community Spotlight</h2>
+                </div>
+                <div className="relative w-24 h-24 mx-auto mb-4">
+                  <Image src="/team/aman.png" alt="Aman Dangi" layout="fill" className="rounded-full object-cover border-2 border-primary" />
                 </div>
                 <blockquote className="text-xl italic text-gray-300 border-l-4 border-accent pl-4 text-left mb-4">
                     {communitySpotlight.quote}
@@ -200,7 +253,7 @@ export default function CommunityPage() {
           </div>
       </section>
 
-       <section className="w-full py-20">
+       <section className="w-full py-20 bg-card/50">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-headline font-bold text-center mb-12">Discussion Highlights</h2>
           <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -219,7 +272,7 @@ export default function CommunityPage() {
         </div>
       </section>
 
-      <section className="w-full py-20 bg-card/50">
+      <section className="w-full py-20">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-headline font-bold text-center mb-12">Resource Hub</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

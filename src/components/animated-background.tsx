@@ -1,6 +1,13 @@
+
+
+'use client';
+
 import React from 'react';
+import useMousePosition from '@/hooks/use-mouse-position';
 
 const AnimatedBackground: React.FC = () => {
+  const { x, y } = useMousePosition();
+
   const starStyle = (size: number, top: string, left: string, animationDuration: string, animationDelay: string) => ({
     position: 'absolute' as 'absolute',
     width: `${size}px`,
@@ -34,12 +41,20 @@ const AnimatedBackground: React.FC = () => {
     return stars;
   };
 
+  const backgroundStyle: React.CSSProperties = {
+    '--mouse-x': `${x}px`,
+    '--mouse-y': `${y}px`,
+    backgroundImage: `
+      radial-gradient(circle at center, hsl(var(--primary) / 0.03) 0%, transparent 30%),
+      radial-gradient(circle at 80% 70%, hsl(var(--accent) / 0.05) 0%, transparent 30%),
+      radial-gradient(400px at var(--mouse-x) var(--mouse-y), hsl(var(--primary) / 0.1), transparent 80%)
+    `,
+  };
+
   return (
     <div
-      className="fixed inset-0 z-0 bg-gradient-to-br from-background via-card to-background opacity-70"
-      style={{
-        backgroundImage: 'radial-gradient(circle at 20% 20%, hsl(var(--primary) / 0.05) 0%, transparent 30%), radial-gradient(circle at 80% 70%, hsl(var(--accent) / 0.05) 0%, transparent 30%)',
-      }}
+      className="fixed inset-0 z-0 bg-gradient-to-br from-background via-card to-background opacity-70 transition-all duration-300 ease-out"
+      style={backgroundStyle}
     >
       {generateStars(50)}
     </div>

@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import type { Metadata } from 'next';
@@ -10,6 +11,7 @@ import Footer from '@/components/footer';
 import AnimatedBackground from '@/components/animated-background';
 import IntroAnimation from '@/components/intro-animation';
 import { useState, useEffect } from 'react';
+import CustomCursor from '@/components/custom-cursor';
 
 const inter = Inter({ 
   subsets: ['latin'], 
@@ -59,6 +61,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${cinzel.variable} font-body antialiased`}
       >
+        <CustomCursor />
         {loading ? (
           <IntroAnimation />
         ) : (
