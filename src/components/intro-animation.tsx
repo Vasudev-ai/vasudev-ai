@@ -1,14 +1,13 @@
 
 import React from 'react';
 import './intro-animation.css';
-import Logo from './logo';
 
 const IntroAnimation = () => {
   return (
     <div className="intro-container">
       <div className="intro-content">
-        <div className="intro-logo">
-           <Logo />
+        <div className="intro-title font-headline">
+          Vasudev AI
         </div>
         <div className="intro-subtitle">
           Awakening Intelligence...
