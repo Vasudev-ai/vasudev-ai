@@ -3,7 +3,7 @@
 import React from 'react';
 import './roadmap.css';
 import { motion } from 'framer-motion';
-import { Check, Rocket, Flag, Bot, Sprout, Browser, Send } from 'lucide-react';
+import { Check, Rocket, Flag } from 'lucide-react';
 
 const roadmapData = [
     {
