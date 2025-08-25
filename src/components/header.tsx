@@ -24,7 +24,6 @@ const navLinks = [
     { href: '/community', label: 'Community' },
     { href: '/projects', label: 'Projects' },
     { href: '/team', label: 'Team' },
-    { href: '/optimize', label: 'Optimize' },
     { href: '/contact', label: 'Contact' },
 ];
 
@@ -101,11 +100,6 @@ export default function Header() {
                <NavigationMenuItem>
                   <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
                     <Link href="/team">Team</Link>
-                  </NavigationMenuLink>
-              </NavigationMenuItem>
-               <NavigationMenuItem>
-                  <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-                    <Link href="/optimize">Optimize</Link>
                   </NavigationMenuLink>
               </NavigationMenuItem>
                <NavigationMenuItem>
