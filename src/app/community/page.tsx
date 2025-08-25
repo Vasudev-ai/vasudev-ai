@@ -6,8 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle, Heart, Lightbulb, Users, Calendar, Code, Mic, Star, MessageSquare, Book, Compass, Wrench } from 'lucide-react';
 import Link from 'next/link';
-import type { Metadata } from 'next';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import Image from 'next/image';
 import { Cinzel_Decorative } from 'next/font/google';
 import { cn } from '@/lib/utils';
 
@@ -187,10 +186,16 @@ export default function CommunityPage() {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 items-center bg-card/70 border border-primary/20 backdrop-blur-sm p-8 rounded-lg shadow-lg">
                 <div className="md:col-span-1 flex flex-col items-center text-center">
-                    <Avatar className="w-32 h-32 mb-4 border-4 border-accent shadow-[0_0_20px] shadow-accent/40">
-                        <AvatarImage src={communitySpotlight.avatar} data-ai-hint={communitySpotlight.avatarHint} alt={communitySpotlight.name} />
-                        <AvatarFallback>{communitySpotlight.name.charAt(0)}</AvatarFallback>
-                    </Avatar>
+                    <div className="relative w-40 h-40 mb-4">
+                         <Image 
+                            src={communitySpotlight.avatar} 
+                            alt={communitySpotlight.name} 
+                            data-ai-hint={communitySpotlight.avatarHint}
+                            width={200}
+                            height={200}
+                            className="rounded-full object-cover border-4 border-accent shadow-[0_0_20px] shadow-accent/40"
+                         />
+                    </div>
                     <h3 className="text-2xl font-headline text-white">{communitySpotlight.name}</h3>
                     <p className="text-accent font-semibold">{communitySpotlight.role}</p>
                 </div>
@@ -263,5 +268,3 @@ export default function CommunityPage() {
     </div>
   );
 }
-
-    
