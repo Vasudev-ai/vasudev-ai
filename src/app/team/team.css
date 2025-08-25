@@ -1,4 +1,5 @@
 
+
 .profile-card {
   position: relative;
   border-radius: 1rem;
@@ -86,11 +87,10 @@
 }
 
 .name {
-    font-family: var(--font-headline);
     font-size: 2.25rem;
-    font-weight: 700;
     line-height: 1.2;
     margin-bottom: 1rem;
+    font-weight: 700;
 }
 
 .bio-short {
@@ -104,7 +104,6 @@
 .cta-button {
     background-color: var(--accent-glow);
     color: hsl(var(--background));
-    font-weight: bold;
     border-radius: 9999px;
     padding: 0.75rem 1.5rem;
     transition: all 0.3s ease;
@@ -119,184 +118,54 @@
 }
 
 
-/* New Profile Modal Styles */
-.profile-modal[data-state=open] {
+/* New Spotlight Modal Styles */
+.spotlight-modal[data-state=open] {
     animation: fadeIn 0.5s ease-out forwards;
 }
 
-.profile-modal[data-state=closed] {
-    animation: fadeOut 0.4s ease-in forwards;
+.spotlight-modal[data-state=open] .spotlight-modal-content {
+    animation: scaleIn 0.5s 0.1s ease-out forwards;
 }
 
-.profile-modal-content {
-    display: grid;
-    grid-template-columns: 3fr 2fr;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    position: relative;
-    color: white;
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
 }
 
-.profile-modal-content[data-state=open] .profile-modal-details {
-    animation: slideInFromLeft 0.8s 0.2s ease-out forwards;
-}
-.profile-modal-content[data-state=open] .profile-modal-character {
-    animation: slideInFromRight 0.8s 0.2s ease-out forwards;
-}
-
-.profile-modal-details {
-    padding: 6vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background: radial-gradient(ellipse at 0% 50%, rgba(13, 15, 26, 0.5), transparent 70%);
+.spotlight-modal-content {
     opacity: 0;
-}
-.details-inner {
-    max-width: 600px;
-}
-
-.member-rank {
-    font-size: clamp(1rem, 2.5vw, 1.5rem);
-    font-weight: 700;
-    color: var(--theme-color);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 1rem;
-    text-shadow: 0 0 15px var(--theme-color);
+    border-color: var(--theme-color) !important;
+    box-shadow: 0 0 40px var(--theme-color);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 }
 
-.member-name {
-    font-family: var(--font-headline);
-    font-size: clamp(2.5rem, 6vw, 5rem);
-    font-weight: 700;
-    line-height: 1.1;
-    margin-bottom: 2rem;
-    background: linear-gradient(45deg, #fff, #ccc);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.member-bio {
-    font-size: clamp(0.9rem, 1.5vw, 1.1rem);
-    color: hsl(var(--foreground) / 0.8);
-    line-height: 1.7;
-    margin-bottom: 3rem;
-}
-
-.member-socials {
-    display: flex;
-    gap: 1.5rem;
-}
-
-.social-link {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: hsl(var(--foreground) / 0.7);
-    font-weight: 500;
-    transition: color 0.3s, text-shadow 0.3s;
-}
-
-.social-link:hover {
-    color: var(--theme-color);
-    text-shadow: 0 0 10px var(--theme-color);
-}
-
-.profile-modal-character {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-}
-
-.character-image {
-    position: absolute;
-    bottom: -10%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 120%;
-    max-width: 800px;
-    height: auto;
-    object-fit: contain;
-    filter: drop-shadow(0 20px 30px rgba(0,0,0,0.5));
-}
-.character-glow {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at 50% 50%, var(--theme-color) 0%, transparent 60%);
-    opacity: 0.2;
-    z-index: -1;
-}
-
-.close-modal-button {
-    position: absolute;
-    top: 2rem;
-    right: 2rem;
+.spotlight-modal-content .social-link-spotlight {
     color: hsl(var(--foreground) / 0.7);
     transition: color 0.3s, transform 0.3s;
-    background: none;
-    border: none;
-    cursor: pointer;
-    z-index: 100;
 }
-.close-modal-button:hover {
+
+.spotlight-modal-content .social-link-spotlight:hover {
     color: var(--theme-color);
-    transform: scale(1.1) rotate(90deg);
+    transform: scale(1.1);
 }
 
 
-/* Animations */
+/* General Animation Fallback/Base */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
 }
-@keyframes fadeOut {
-  from { opacity: 1; }
-  to { opacity: 0; }
-}
-
-@keyframes slideInFromLeft {
-    from { transform: translateX(-100px); opacity: 0; }
-    to { transform: translateX(0); opacity: 1; }
-}
-@keyframes slideInFromRight {
-    from { transform: translateX(100px); opacity: 0; }
-    to { transform: translateX(0); opacity: 1; }
-}
 
 /* Responsive adjustments */
 @media (max-width: 1024px) {
-  .profile-modal-content {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr;
-  }
-  .profile-modal-details {
-    padding: 4rem 2rem 2rem;
-    text-align: center;
-    align-items: center;
-    background: none;
-    z-index: 10;
-  }
-  .profile-modal-character {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 1 !important; /* Override animation */
-  }
-  .character-image {
-    width: 80%;
-    opacity: 0.2;
-  }
-  .character-glow {
-    opacity: 0.1;
-  }
-  .member-socials {
-    justify-content: center;
-  }
+  /* No changes needed for modal, it's centered */
 }
 
 @media (max-width: 768px) {

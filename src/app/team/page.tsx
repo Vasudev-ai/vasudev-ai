@@ -3,10 +3,8 @@
 
 import React, { useState } from 'react';
 import PageHeader from '@/components/page-header';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import { Dialog, DialogContent } from '@/components/ui/dialog';
 import Link from 'next/link';
 import { Github, Linkedin, Youtube, ArrowRight, X } from 'lucide-react';
 import './team.css';
@@ -16,7 +14,7 @@ const teamMembers = [
     id: 'surya',
     name: 'Surya Pratap Singh',
     role: 'Founder & Visionary',
-    bio: 'Pushing AI Beyond Boundaries. Creator of Vasudev AI, CodeCraft with Surya, and a hardcore tech enthusiast focused on offline AI, OS-level mods, and futuristic systems that merge divine wisdom with technological prowess. His vision is to create a decentralized, intelligent future for all.',
+    bio: "Pushing AI Beyond Boundaries. Creator of Vasudev AI, CodeCraft with Surya, and a hardcore tech enthusiast focused on offline AI, OS-level mods, and futuristic systems that merge divine wisdom with technological prowess. His vision is to create a decentralized, intelligent future for all.",
     shortBio: 'Creator of Vasudev AI, pushing the boundaries of offline and futuristic AI systems.',
     avatar: 'https://placehold.co/400x400.png',
     avatarHint: 'glowing sun star',
@@ -50,7 +48,7 @@ const teamMembers = [
     id: 'ashutosh',
     name: 'Ashutosh Kumar Tripathi',
     role: 'AI Engineer',
-    bio: 'Focused on the frontier of artificial intelligence, Ashutosh architect\'s ethical AI models, develops robust automation frameworks, and engineers the advanced intelligent systems that power Vasudev AI.',
+    bio: 'Focused on the frontier of artificial intelligence, Ashutosh architects ethical AI models, develops robust automation frameworks, and engineers the advanced intelligent systems that power Vasudev AI.',
     shortBio: 'Focused on building ethical AI models and advanced intelligent systems.',
     avatar: 'https://placehold.co/400x400.png',
     avatarHint: 'golden nebula',
@@ -109,9 +107,9 @@ export default function TeamPage() {
                     <span className="role-rank">
                       {member.role.split('&')[0].trim()}
                     </span>
-                    <h3 className="name">{member.name}</h3>
+                    <h3 className="name font-headline">{member.name}</h3>
                     <p className="bio-short">{member.shortBio}</p>
-                    <Button onClick={() => setSelectedMember(member)} className="cta-button">
+                    <Button onClick={() => setSelectedMember(member)} className="cta-button font-bold">
                       View Full Profile <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
                   </div>
@@ -129,50 +127,44 @@ export default function TeamPage() {
        {selectedMember && (
         <Dialog open={!!selectedMember} onOpenChange={() => setSelectedMember(null)}>
           <DialogContent 
-            className="profile-modal p-0 m-0 max-w-none w-screen h-screen bg-black/80 border-0 backdrop-blur-lg"
+            className="spotlight-modal p-0 m-0 max-w-2xl bg-card/80 border-[1px] rounded-2xl shadow-2xl"
             style={{'--theme-color': selectedMember.theme['--accent-glow']} as React.CSSProperties}
           >
-            <DialogHeader className="sr-only">
-              <DialogTitle>{selectedMember.name}</DialogTitle>
-              <DialogDescription>{selectedMember.bio}</DialogDescription>
-            </DialogHeader>
-            <div className="profile-modal-content">
-              <div className="profile-modal-details">
-                <div className="details-inner">
-                   <h2 className="member-rank">{selectedMember.role}</h2>
-                   <h1 className="member-name">{selectedMember.name}</h1>
-                   <p className="member-bio">{selectedMember.bio}</p>
-                   <div className="member-socials">
-                      {selectedMember.socials.github && (
-                          <Link href={selectedMember.socials.github} target="_blank" className="social-link">
-                              <Github size={24} /> <span>GitHub</span>
-                          </Link>
-                      )}
-                      {selectedMember.socials.linkedin && (
-                          <Link href={selectedMember.socials.linkedin} target="_blank" className="social-link">
-                              <Linkedin size={24} /> <span>LinkedIn</span>
-                          </Link>
-                      )}
-                      {selectedMember.socials.youtube && (
-                          <Link href={selectedMember.socials.youtube} target="_blank" className="social-link">
-                              <Youtube size={24} /> <span>YouTube</span>
-                          </Link>
-                      )}
-                   </div>
+            <div className="spotlight-modal-content p-8">
+                <div className="flex justify-center mb-6">
+                    <div className="relative">
+                        <img src={selectedMember.avatar} alt={selectedMember.name} data-ai-hint={selectedMember.avatarHint} className="w-32 h-32 rounded-full border-4 border-[var(--theme-color)] shadow-[0_0_20px_var(--theme-color)]"/>
+                    </div>
                 </div>
-              </div>
-              <div className="profile-modal-character">
-                  <img src={selectedMember.avatar} alt={selectedMember.name} data-ai-hint={selectedMember.avatarHint} className="character-image"/>
-                  <div className="character-glow"></div>
-              </div>
+                <div className="text-center">
+                    <h2 className="text-3xl font-headline font-bold" style={{color: 'var(--theme-color)', textShadow: '0 0 10px var(--theme-color)'}}>{selectedMember.name}</h2>
+                    <p className="text-lg text-white/80 font-headline mb-4">{selectedMember.role}</p>
+                    <p className="text-white/90 leading-relaxed">{selectedMember.bio}</p>
+                </div>
+                <div className="flex justify-center gap-6 mt-8">
+                    {selectedMember.socials.github && (
+                        <Link href={selectedMember.socials.github} target="_blank" className="social-link-spotlight">
+                            <Github size={24} />
+                        </Link>
+                    )}
+                    {selectedMember.socials.linkedin && (
+                        <Link href={selectedMember.socials.linkedin} target="_blank" className="social-link-spotlight">
+                            <Linkedin size={24} />
+                        </Link>
+                    )}
+                    {selectedMember.socials.youtube && (
+                        <Link href={selectedMember.socials.youtube} target="_blank" className="social-link-spotlight">
+                            <Youtube size={24} />
+                        </Link>
+                    )}
+                </div>
             </div>
-            <button onClick={() => setSelectedMember(null)} className="close-modal-button">
-              <X size={32} />
+            <button onClick={() => setSelectedMember(null)} className="absolute top-4 right-4 text-gray-500 hover:text-white transition-colors">
+              <X size={24} />
             </button>
           </DialogContent>
         </Dialog>
        )}
-
 
        <section className="w-full pt-24 pb-12 text-center">
         <div className="container mx-auto px-4">
