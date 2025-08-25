@@ -6,6 +6,9 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { BrainCircuit, Sparkles, Users } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import TechStack from './_components/tech-stack';
+import Roadmap from './_components/roadmap';
+
 
 const pillars = [
   {
@@ -81,6 +84,10 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <TechStack />
+
+      <Roadmap />
 
       <section className="w-full py-24 text-center">
         <div className="container mx-auto px-4">

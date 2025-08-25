@@ -1,0 +1,132 @@
+
+.roadmap-container {
+    --line-color: hsl(var(--primary) / 0.2);
+    --line-width: 2px;
+}
+
+.roadmap-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 23px; /* Adjust to center the line on the icon */
+    width: var(--line-width);
+    background-image: linear-gradient(to bottom, transparent, var(--line-color), transparent);
+    z-index: 0;
+}
+
+@media (min-width: 768px) {
+    .roadmap-container::before {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+
+.roadmap-phase {
+    margin-bottom: 2rem;
+}
+
+.roadmap-phase:last-child {
+    margin-bottom: 0;
+}
+
+.roadmap-icon-wrapper {
+    flex-shrink: 0;
+    width: 48px;
+    position: relative;
+    z-index: 1;
+}
+
+@media (min-width: 768px) {
+    .roadmap-phase {
+        flex-direction: row-reverse;
+    }
+
+    .roadmap-phase:nth-child(even) {
+        flex-direction: row;
+    }
+
+    .roadmap-icon-wrapper {
+        position: absolute;
+        left: 50%;
+        top: 0;
+        transform: translateX(-50%);
+        width: 48px;
+    }
+}
+
+.roadmap-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: hsl(var(--card));
+    border: 2px solid hsl(var(--primary) / 0.3);
+    box-shadow: 0 0 15px hsl(var(--primary) / 0.2);
+}
+
+.roadmap-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.roadmap-content {
+    flex-grow: 1;
+    padding-left: 24px;
+    width: calc(100% - 48px);
+}
+
+@media (min-width: 768px) {
+    .roadmap-content {
+        width: 50%;
+        padding-left: 48px;
+        padding-right: 48px;
+    }
+    
+    .roadmap-phase:nth-child(even) .roadmap-content {
+       text-align: right;
+    }
+
+    .roadmap-phase:nth-child(even) .roadmap-content ul li {
+       justify-content: flex-end;
+       flex-direction: row-reverse;
+    }
+}
+
+.roadmap-card {
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    position: relative;
+}
+
+.roadmap-card::before {
+    content: "";
+    position: absolute;
+    top: 18px;
+    left: -8px;
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-right: 8px solid hsl(var(--card) / 0.5);
+    z-index: -1;
+}
+
+
+@media (min-width: 768px) {
+    .roadmap-card::before {
+        left: -8px;
+        border-right: 8px solid hsl(var(--border));
+        border-left: none;
+    }
+
+    .roadmap-phase:nth-child(even) .roadmap-card::before {
+        left: auto;
+        right: -8px;
+        border-right: none;
+        border-left: 8px solid hsl(var(--border));
+    }
+}
