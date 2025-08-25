@@ -1,9 +1,10 @@
 import PageHeader from '@/components/page-header';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { CheckCircle, Heart, Lightbulb, Users } from 'lucide-react';
+import { CheckCircle, Heart, Lightbulb, Users, Calendar, Code, Mic, Star, MessageSquare, Book, Compass, Wrench } from 'lucide-react';
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 export const metadata: Metadata = {
   title: 'Community | Vasudev AI',
@@ -36,6 +37,75 @@ const features = [
     "Futuristic Systems Development",
     "Community Showcases & Events"
 ];
+
+const upcomingEvents = [
+    {
+        icon: <Calendar className="h-8 w-8 text-accent"/>,
+        title: "Weekly Community Sync",
+        date: "Every Friday, 9 PM IST",
+        desc: "Catch up on project progress, share ideas, and plan for the future."
+    },
+    {
+        icon: <Code className="h-8 w-8 text-accent"/>,
+        title: "Vasudev Browser Hackathon",
+        date: "Coming Soon",
+        desc: "Contribute to our open-source browser and add innovative features."
+    },
+    {
+        icon: <Mic className="h-8 w-8 text-accent"/>,
+        title: "Tech Talk Tuesdays",
+        date: "Monthly",
+        desc: "Listen to experts discuss the latest trends in AI and divine-tech."
+    }
+];
+
+const communitySpotlight = {
+    name: "Aman Dangi",
+    role: "Co-Builder & Innovator",
+    quote: "“Being part of Vasudev AI is like building the future in a family. The collaboration and vision here are unparalleled.”",
+    avatar: 'https://placehold.co/100x100.png',
+    avatarHint: "cyan planet rings"
+};
+
+const discussionHighlights = [
+    {
+        icon: <MessageSquare className="h-6 w-6 text-primary"/>,
+        title: "The Future of Offline-First AI",
+        category: "AI Philosophy"
+    },
+    {
+        icon: <MessageSquare className="h-6 w-6 text-primary"/>,
+        title: "Feature Brainstorm: Vasudev Browser",
+        category: "Project Collaboration"
+    },
+    {
+        icon: <MessageSquare className="h-6 w-6 text-primary"/>,
+        title: "Best Practices for Fine-Tuning LLMs",
+        category: "Learning & Resources"
+    }
+];
+
+const resourceHub = [
+    {
+        icon: <Compass className="h-8 w-8 text-accent"/>,
+        title: "New Member Guide",
+        desc: "Your starting point for navigating the Vasudev AI cosmos.",
+        href: "#"
+    },
+    {
+        icon: <Book className="h-8 w-8 text-accent"/>,
+        title: "Community Tutorials",
+        desc: "Learn from guides and articles created by our talented members.",
+        href: "#"
+    },
+    {
+        icon: <Wrench className="h-8 w-8 text-accent"/>,
+        title: "Open-Source Tools",
+        desc: "Explore the tools and frameworks we build and use together.",
+        href: "#"
+    }
+];
+
 
 export default function CommunityPage() {
   return (
@@ -77,6 +147,95 @@ export default function CommunityPage() {
                     </div>
                 ))}
             </div>
+        </div>
+      </section>
+
+      <section className="w-full py-20">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-headline font-bold text-center mb-12">Upcoming Events</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {upcomingEvents.map((event) => (
+              <Card key={event.title} className="bg-card/70 border-primary/20 backdrop-blur-sm p-6 hover:border-primary hover:-translate-y-2 transition-all duration-300 shadow-lg hover:shadow-primary/30">
+                <CardHeader className="flex flex-row items-start gap-4">
+                   <div className="p-3 bg-primary/10 rounded-full">{event.icon}</div>
+                   <div>
+                    <CardTitle className="text-2xl font-headline text-white">{event.title}</CardTitle>
+                    <p className="text-accent text-sm font-semibold">{event.date}</p>
+                   </div>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-400">{event.desc}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="w-full py-20 bg-card/50">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 items-center bg-card/70 border border-primary/20 backdrop-blur-sm p-8 rounded-lg shadow-lg">
+                <div className="md:col-span-1 flex flex-col items-center text-center">
+                    <Avatar className="w-32 h-32 mb-4 border-4 border-accent shadow-[0_0_20px] shadow-accent/40">
+                        <AvatarImage src={communitySpotlight.avatar} data-ai-hint={communitySpotlight.avatarHint} alt={communitySpotlight.name} />
+                        <AvatarFallback>{communitySpotlight.name.charAt(0)}</AvatarFallback>
+                    </Avatar>
+                    <h3 className="text-2xl font-headline text-white">{communitySpotlight.name}</h3>
+                    <p className="text-accent font-semibold">{communitySpotlight.role}</p>
+                </div>
+                <div className="md:col-span-2">
+                    <div className="flex items-center mb-2">
+                        <Star className="w-6 h-6 text-secondary fill-secondary mr-2" />
+                        <h2 className="text-3xl font-headline text-white">Community Spotlight</h2>
+                    </div>
+                    <blockquote className="text-lg italic text-gray-300 border-l-4 border-accent pl-4">
+                        {communitySpotlight.quote}
+                    </blockquote>
+                </div>
+            </div>
+          </div>
+      </section>
+
+       <section className="w-full py-20">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-headline font-bold text-center mb-12">Discussion Highlights</h2>
+          <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+            {discussionHighlights.map((item, index) => (
+               <Card key={index} className="bg-card/70 border-primary/20 backdrop-blur-sm p-6 hover:border-primary transition-all duration-300 shadow-lg hover:shadow-primary/30">
+                  <div className="flex items-start gap-4">
+                      {item.icon}
+                      <div>
+                          <p className="text-sm text-primary font-semibold">{item.category}</p>
+                          <h3 className="font-bold text-lg text-white">{item.title}</h3>
+                      </div>
+                  </div>
+               </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="w-full py-20 bg-card/50">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-headline font-bold text-center mb-12">Resource Hub</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {resourceHub.map((item) => (
+              <Card key={item.title} className="bg-card/70 border-primary/20 backdrop-blur-sm text-center p-6 hover:border-primary hover:-translate-y-2 transition-all duration-300 shadow-lg hover:shadow-primary/30">
+                <CardHeader className="flex flex-col items-center">
+                  <div className="p-4 bg-primary/10 rounded-full mb-4">
+                    {item.icon}
+                  </div>
+                  <CardTitle className="text-2xl font-headline text-white">{item.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-400 mb-4">{item.desc}</p>
+                  <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary/10 hover:text-accent">
+                    <Link href={item.href}>Explore</Link>
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
       </section>
 
