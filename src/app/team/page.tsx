@@ -1,5 +1,4 @@
 
-
 'use client';
 
 import React from 'react';
@@ -8,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Github, Linkedin, Youtube, ArrowRight } from 'lucide-react';
 import './team.css';
+import Image from 'next/image';
 
 const teamMembers = [
   {
@@ -124,7 +124,7 @@ export default function TeamPage() {
                   </div>
                 </div>
                 <div className="profile-card-image">
-                  <img src={member.avatar} alt={member.name} data-ai-hint={member.avatarHint} />
+                  <Image src={member.avatar} alt={member.name} layout="fill" objectFit="contain" data-ai-hint={member.avatarHint} />
                   <div className="image-glow"></div>
                 </div>
               </div>
