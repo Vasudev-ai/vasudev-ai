@@ -4,7 +4,7 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { BrainCircuit, Sparkles, Users, CheckCircle, Milestone, Rocket, Wind, Box, Code, Component, Globe } from 'lucide-react';
+import { BrainCircuit, Sparkles, Users, CheckCircle, Rocket, Wind, Box, Component, Globe } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -108,12 +108,13 @@ export default function Home() {
       <section id="roadmap" className="w-full py-24">
         <div className="container mx-auto px-4">
             <h2 className="text-4xl md:text-5xl font-headline font-bold text-center mb-4 text-accent">Our Cosmic Journey</h2>
-            <p className="text-center text-lg text-gray-400 mb-24">Follow our treasure map of innovation, from genesis to the future.</p>
+            <p className="text-center text-lg text-gray-400 mb-16 md:mb-24">Follow our treasure map of innovation, from genesis to the future.</p>
             
-            <div className="relative w-full h-[300px]">
-                <svg width="100%" height="100%" viewBox="0 0 1200 200" preserveAspectRatio="none" className="absolute top-0 left-0">
+            <div className="relative w-full max-w-lg mx-auto">
+                <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-primary/20 -translate-x-1/2"></div>
+                <svg width="100%" height="100%" viewBox="0 0 400 1200" preserveAspectRatio="none" className="absolute top-0 left-0 h-full w-full">
                     <path 
-                        d="M 50 100 C 150 20, 250 180, 350 100 S 550 20, 650 100 S 850 180, 950 100 S 1150 20, 1150 100" 
+                        d="M 200 50 C 350 150, 50 250, 200 350 S 350 450, 200 550 S 50 650, 200 750 S 350 850, 200 950 S 50 1050, 200 1150" 
                         stroke="hsl(var(--primary) / 0.3)" 
                         fill="none" 
                         strokeWidth="2" 
@@ -122,45 +123,41 @@ export default function Home() {
                 </svg>
                 
                 <TooltipProvider>
-                    <div className="relative w-full h-full flex justify-between items-center">
+                    <div className="relative flex flex-col items-center gap-24">
                         {roadmapItems.map((item, index) => {
                             const totalItems = roadmapItems.length -1;
-                            const x = (index / totalItems) * 1100 + 50;
-                            // Approximate y on the curve
-                            let y;
-                            if (x <= 350) {
-                                const t = (x - 50) / 300;
-                                y = (1 - t) * (1 - t) * 100 + 2 * (1 - t) * t * 20 + t * t * 100;
-                            } else if (x <= 650) {
-                                const t = (x - 350) / 300;
-                                y = (1-t)*(1-t)*100 + 2*(1-t)*t*180 + t*t*100;
-                            } else if (x <= 950) {
-                                const t = (x - 650) / 300;
-                                y = (1 - t) * (1 - t) * 100 + 2 * (1 - t) * t * 20 + t * t * 100;
-                            } else {
-                                const t = (x - 950) / 200;
-                                y = (1-t)*(1-t)*100 + 2*(1-t)*t*180 + t*t*100;
-                            }
+                            const y = (index / totalItems) * 1100 + 50;
+                            let x;
+                            if (index % 4 === 0) x = 200;
+                            else if (index % 4 === 1) x = 350;
+                            else if (index % 4 === 2) x = 50;
+                            else x = 200;
 
+                            const alignment = index % 2 === 0 ? 'left' : 'right';
 
                             return (
-                                <div key={index} className="absolute group" style={{ left: `${(x/1200)*100}%`, top: `${(y/200)*100}%`, transform: 'translate(-50%, -50%)' }}>
+                                <div key={index} className="relative group w-full flex" style={{justifyContent: alignment === 'left' ? 'flex-start' : 'flex-end'}}>
+                                  <div className="w-1/2 relative">
                                     <Tooltip>
                                         <TooltipTrigger asChild>
-                                            <button className="w-10 h-10 rounded-full bg-background border-2 border-primary flex items-center justify-center z-10 transition-all duration-300 group-hover:scale-125 group-hover:shadow-[0_0_20px] group-hover:shadow-primary/50">
+                                            <button className={`absolute ${alignment === 'left' ? 'right-[-20px]' : 'left-[-20px]'} top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background border-2 border-primary flex items-center justify-center z-10 transition-all duration-300 group-hover:scale-125 group-hover:shadow-[0_0_20px] group-hover:shadow-primary/50`}>
                                                 {item.status === 'past' && <CheckCircle className="w-6 h-6 text-green-400" />}
                                                 {item.status === 'present' && <div className="w-4 h-4 rounded-full bg-accent animate-pulse"></div>}
                                                 {item.status === 'future' && <Rocket className="w-6 h-6 text-primary/70" />}
                                             </button>
                                         </TooltipTrigger>
-                                        <TooltipContent>
+                                        <TooltipContent side={alignment === 'left' ? 'right' : 'left'}>
                                             <p className="font-bold">{item.title}</p>
                                             <p className="text-sm text-muted-foreground">{item.details}</p>
                                         </TooltipContent>
                                     </Tooltip>
-                                    <p className="text-sm font-semibold text-white mt-4 text-center w-32 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{transform: 'translateX(-50%)', left: '50%'}}>
-                                        {item.title}
-                                    </p>
+                                    <div className={`p-4 rounded-lg bg-card/70 border border-primary/20 w-[calc(100%-40px)] text-${alignment === 'left' ? 'right' : 'left'}`}>
+                                        <p className="text-sm font-semibold text-white">
+                                            {item.title}
+                                        </p>
+                                        <p className="text-xs text-gray-400">{item.details}</p>
+                                    </div>
+                                  </div>
                                 </div>
                             );
                         })}
@@ -169,6 +166,7 @@ export default function Home() {
             </div>
         </div>
       </section>
+
 
       <section className="w-full py-20 bg-card/50">
         <div className="container mx-auto px-4">
