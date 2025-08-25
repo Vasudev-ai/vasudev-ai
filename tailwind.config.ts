@@ -21,7 +21,7 @@ export default {
       },
       fontFamily: {
         body: ['var(--font-inter)'],
-        headline: ['var(--font-cinzel-decorative)'],
+        headline: ['var(--font-cinzel)'],
       },
       colors: {
         background: 'hsl(var(--background))',

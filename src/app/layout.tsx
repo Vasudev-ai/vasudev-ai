@@ -18,7 +18,7 @@ const inter = Inter({
 const cinzel = Cinzel_Decorative({
   subsets: ['latin'],
   weight: '400',
-  variable: '--font-cinzel-decorative',
+  variable: '--font-cinzel',
 });
 
 // export const metadata: Metadata = {
