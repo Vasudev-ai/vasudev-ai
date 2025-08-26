@@ -18,7 +18,8 @@
 
 .profile-card-inner {
   display: flex;
-  min-height: 380px;
+  flex-direction: column;
+  min-height: 480px;
   align-items: stretch;
   position: relative;
   z-index: 2;
@@ -26,7 +27,7 @@
 
 .profile-card-content {
   flex: 1;
-  padding: 2.5rem;
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -34,15 +35,16 @@
 }
 
 .profile-card-image {
-  flex: 0 0 45%;
+  flex: 0 0 50%;
   position: relative;
+  height: 250px;
 }
 
 .profile-card-image img {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  object-position: bottom right;
+  object-position: bottom center;
   position: absolute;
   right: 0;
   bottom: 0;
@@ -61,7 +63,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at 70% 50%, var(--accent-glow) 0%, transparent 60%);
+    background: radial-gradient(circle at 50% 70%, var(--accent-glow) 0%, transparent 60%);
     opacity: 0.3;
     transition: opacity 0.4s ease;
     z-index: 1;
@@ -74,30 +76,31 @@
 .text-content {
   position: relative;
   z-index: 1;
+  text-align: center;
 }
 
 .role-rank {
-    font-size: 1rem;
+    font-size: 0.875rem;
     font-weight: 700;
     color: var(--accent-glow);
     text-transform: uppercase;
     letter-spacing: 1px;
     display: block;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
     text-shadow: 0 0 10px var(--accent-glow);
 }
 
 .name {
-    font-size: 2.25rem;
+    font-size: 1.75rem;
     line-height: 1.2;
     margin-bottom: 1rem;
     font-weight: 700;
 }
 
 .bio-full {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     color: hsl(var(--foreground) / 0.8);
-    max-width: 300px;
+    max-width: 100%;
     margin-bottom: 1.5rem;
     flex-grow: 1;
 }
@@ -106,6 +109,7 @@
   display: flex;
   gap: 1rem;
   margin-top: auto;
+  justify-content: center;
 }
 
 .social-link {
@@ -118,18 +122,46 @@
   transform: scale(1.1);
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .profile-card-inner {
-    flex-direction: column;
-  }
-  .profile-card-image {
-    width: 100%;
-    height: 300px;
-    clip-path: none;
-    flex-basis: 300px;
-  }
-  .name {
-    font-size: 2rem;
-  }
+
+@media (min-width: 1024px) {
+    .profile-card-inner {
+        flex-direction: row;
+        min-height: 380px;
+    }
+    
+    .profile-card-content {
+        flex: 1;
+        padding: 2.5rem;
+        text-align: left;
+    }
+
+    .text-content {
+        text-align: left;
+    }
+    
+    .profile-card-image {
+        flex: 0 0 45%;
+        height: auto;
+    }
+
+    .profile-card-image img {
+      object-position: bottom right;
+    }
+
+    .image-glow {
+      background: radial-gradient(circle at 70% 50%, var(--accent-glow) 0%, transparent 60%);
+    }
+
+    .name {
+        font-size: 2.25rem;
+    }
+
+    .bio-full {
+        font-size: 0.95rem;
+        max-width: 300px;
+    }
+
+    .social-links {
+        justify-content: flex-start;
+    }
 }

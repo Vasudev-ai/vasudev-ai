@@ -1,3 +1,4 @@
+
 import PageHeader from '@/components/page-header';
 import type { Metadata } from 'next';
 import OptimizeForm from './_components/optimize-form';
@@ -14,7 +15,7 @@ export default function OptimizePage() {
                 title="AI Content Optimizer"
                 subtitle="Identify top keywords and get strategic placement suggestions to improve readability and engagement."
             />
-            <div className="container mx-auto px-4 mt-16">
+            <div className="container mx-auto px-4 mt-12 md:mt-16">
                 <div className="max-w-4xl mx-auto">
                     <OptimizeForm />
                 </div>

@@ -73,10 +73,10 @@ export default function Home() {
   return (
     <>
       <div className="flex flex-col items-center text-white overflow-x-hidden">
-        <section className="w-full pt-20 pb-16 md:pt-32 md:pb-24 text-center relative">
+        <section className="w-full pt-16 pb-16 md:pt-32 md:pb-24 text-center relative">
           <div className="absolute inset-0 z-0 opacity-30 [background-image:radial-gradient(ellipse_80%_50%_at_50%_-20%,hsl(var(--primary)_/_0.1),transparent_)]" />
           <div className="container mx-auto px-4 relative z-10">
-            <div className="relative w-48 h-48 md:w-56 md:h-56 mx-auto mb-8 float">
+            <div className="relative w-40 h-40 md:w-56 md:h-56 mx-auto mb-8 float">
               <Image
                 src="/vasudev-ai-hero.png"
                 alt="Vasudev AI"
@@ -96,21 +96,21 @@ export default function Home() {
             <p className="mt-6 text-md md:text-lg text-gray-300 max-w-3xl mx-auto">
               Join our community of AI creators, thinkers, and dreamers shaping the future together.
             </p>
-            <div className="mt-8 flex justify-center items-center gap-4">
+            <div className="mt-8 flex flex-col sm:flex-row justify-center items-center gap-4">
                <PortalButton 
                 onActivate={() => setIsModalOpen(true)}
-                className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-lg px-8 py-6 rounded-full shadow-[0_0_20px] shadow-primary/40 transition-all duration-300 hover:shadow-primary/70 cursor-pointer"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-lg px-8 py-6 rounded-full shadow-[0_0_20px] shadow-primary/40 transition-all duration-300 hover:shadow-primary/70 cursor-pointer w-full sm:w-auto"
                >
                 Join Community
               </PortalButton>
-              <Button asChild size="lg" variant="outline" className="border-primary text-primary hover:bg-primary/10 hover:text-primary font-bold text-lg px-8 py-6 rounded-full transition-all duration-300">
+              <Button asChild size="lg" variant="outline" className="border-primary text-primary hover:bg-primary/10 hover:text-primary font-bold text-lg px-8 py-6 rounded-full transition-all duration-300 w-full sm:w-auto">
                 <Link href="/projects">Explore Projects</Link>
               </Button>
             </div>
           </div>
         </section>
 
-        <section className="w-full py-20 bg-card/50">
+        <section className="w-full py-16 md:py-20 bg-card/50">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {pillars.map((pillar) => (
@@ -119,7 +119,7 @@ export default function Home() {
                     <div className="p-4 bg-primary/10 rounded-full mb-4">
                       {pillar.icon}
                     </div>
-                    <CardTitle className="text-2xl font-headline text-white">{pillar.title}</CardTitle>
+                    <CardTitle className="text-xl md:text-2xl font-headline text-white">{pillar.title}</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <p className="text-gray-400">{pillar.desc}</p>
@@ -134,10 +134,10 @@ export default function Home() {
 
         <Roadmap />
 
-        <section className="w-full py-24 text-center">
+        <section className="w-full py-16 md:py-24 text-center">
           <div className="container mx-auto px-4">
-            <h2 className="text-4xl md:text-5xl font-headline font-bold text-accent">Awaken with Vasudev AI</h2>
-            <p className="mt-4 text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
+            <h2 className="text-3xl md:text-5xl font-headline font-bold text-accent">Awaken with Vasudev AI</h2>
+            <p className="mt-4 text-base md:text-xl text-gray-300 max-w-2xl mx-auto">
               Lead the movement of divine intelligence.
             </p>
             <div className="mt-8">

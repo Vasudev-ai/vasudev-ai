@@ -28,11 +28,11 @@ export default function ContactPage() {
                 title="Contact Us"
                 subtitle="Have a question, suggestion, or want to collaborate? Reach out."
             />
-            <div className="container mx-auto px-4 mt-16">
+            <div className="container mx-auto px-4 mt-12 md:mt-16">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                     <div>
                         <Card className="bg-card/70 border-primary/20 backdrop-blur-sm shadow-lg hover:shadow-primary/30 transition-shadow duration-300">
-                            <CardContent className="p-8">
+                            <CardContent className="p-6 md:p-8">
                                 <form className="space-y-6">
                                     <div className="space-y-2">
                                         <Label htmlFor="name" className="text-lg text-primary">Name</Label>

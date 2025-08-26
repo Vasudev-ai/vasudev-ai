@@ -5,7 +5,7 @@ import React from 'react';
 import PageHeader from '@/components/page-header';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { Github, Linkedin, Youtube, ArrowRight } from 'lucide-react';
+import { Github, Linkedin, Youtube } from 'lucide-react';
 import './team.css';
 import Image from 'next/image';
 
@@ -74,8 +74,6 @@ const teamMembers = [
   },
 ];
 
-type TeamMember = typeof teamMembers[0];
-
 export default function TeamPage() {
 
   return (
@@ -90,7 +88,7 @@ export default function TeamPage() {
         subtitle="A galaxy of creators shaping the future of divine intelligence."
       />
       
-      <div className="container mx-auto px-4 mt-20">
+      <div className="container mx-auto px-4 mt-16 md:mt-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           {teamMembers.map((member) => (
             <div 
@@ -99,6 +97,10 @@ export default function TeamPage() {
               style={member.theme as React.CSSProperties}
             >
               <div className="profile-card-inner">
+                <div className="profile-card-image">
+                  <Image src={member.avatar} alt={member.name} layout="fill" objectFit="contain" data-ai-hint={member.avatarHint} />
+                  <div className="image-glow"></div>
+                </div>
                 <div className="profile-card-content">
                   <div className="text-content">
                     <span className="role-rank">
@@ -108,26 +110,22 @@ export default function TeamPage() {
                     <p className="bio-full">{member.bio}</p>
                      <div className="social-links">
                         {member.socials.github && (
-                            <Link href={member.socials.github} target="_blank" className="social-link">
+                            <Link href={member.socials.github} target="_blank" rel="noopener noreferrer" className="social-link">
                                 <Github size={20} />
                             </Link>
                         )}
                         {member.socials.linkedin && (
-                            <Link href={member.socials.linkedin} target="_blank" className="social-link">
+                            <Link href={member.socials.linkedin} target="_blank" rel="noopener noreferrer" className="social-link">
                                 <Linkedin size={20} />
                             </Link>
                         )}
                         {member.socials.youtube && (
-                            <Link href={member.socials.youtube} target="_blank" className="social-link">
+                            <Link href={member.socials.youtube} target="_blank" rel="noopener noreferrer" className="social-link">
                                 <Youtube size={20} />
                             </Link>
                         )}
                     </div>
                   </div>
-                </div>
-                <div className="profile-card-image">
-                  <Image src={member.avatar} alt={member.name} layout="fill" objectFit="contain" data-ai-hint={member.avatarHint} />
-                  <div className="image-glow"></div>
                 </div>
               </div>
             </div>
@@ -135,14 +133,14 @@ export default function TeamPage() {
         </div>
       </div>
 
-       <section className="w-full pt-24 pb-12 text-center">
+       <section className="w-full pt-16 md:pt-24 pb-12 text-center">
         <div className="container mx-auto px-4">
-          <div className="bg-card/30 border border-accent/20 rounded-2xl p-10 backdrop-blur-sm shadow-lg">
-            <h2 className="text-3xl md:text-4xl font-headline font-bold mb-4 text-accent">
+          <div className="bg-card/30 border border-accent/20 rounded-2xl p-8 md:p-10 backdrop-blur-sm shadow-lg">
+            <h2 className="text-2xl md:text-4xl font-headline font-bold mb-4 text-accent">
               Want to join our constellation?
             </h2>
-            <p className="text-lg text-gray-400 mb-8 max-w-2xl mx-auto">“Together, we awaken intelligence with divinity.”</p>
-            <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-bold text-lg px-10 py-6 rounded-full shadow-[0_0_25px] shadow-accent/50 transition-all duration-300 hover:shadow-accent/80 hover:scale-105 animate-pulse">
+            <p className="text-base md:text-lg text-gray-400 mb-8 max-w-2xl mx-auto">“Together, we awaken intelligence with divinity.”</p>
+            <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-bold text-base md:text-lg px-8 md:px-10 py-5 md:py-6 rounded-full shadow-[0_0_25px] shadow-accent/50 transition-all duration-300 hover:shadow-accent/80 hover:scale-105 animate-pulse">
               <Link href="https://discord.gg/e5uPQDXSSk" target="_blank" rel="noopener noreferrer">Join Vasudev AI</Link>
             </Button>
           </div>

@@ -24,9 +24,9 @@ const MemberCard: React.FC<MemberCardProps> = ({ name, badgeIcon, badgeLabel, av
       <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--glow-color)_0,_transparent_70%)] opacity-0 group-hover:opacity-20 transition-opacity duration-300"/>
       <div className="flex items-center justify-between gap-4 relative z-10">
         <div className="flex flex-col items-start text-left gap-2 flex-grow">
-          <h3 className="text-2xl font-headline text-white">{name}</h3>
+          <h3 className="text-xl md:text-2xl font-headline text-white">{name}</h3>
           <Badge
-            className="border-transparent text-base"
+            className="border-transparent text-sm md:text-base"
             style={{ 
               backgroundColor: `${glowColor}33`, // 20% opacity
               color: glowColor,
@@ -39,7 +39,7 @@ const MemberCard: React.FC<MemberCardProps> = ({ name, badgeIcon, badgeLabel, av
             </div>
           </Badge>
         </div>
-        <div className="relative w-28 h-40 flex-shrink-0 -mr-10 -mb-10">
+        <div className="relative w-24 h-32 md:w-28 md:h-40 flex-shrink-0 -mr-6 -mb-6 md:-mr-10 md:-mb-10">
           <Image 
             src={avatarUrl} 
             alt={name} 
