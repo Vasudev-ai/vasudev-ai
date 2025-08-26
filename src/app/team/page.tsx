@@ -18,8 +18,8 @@ const teamMembers = [
     avatar: '/team/surya.png',
     avatarHint: 'glowing sun star',
     socials: {
-      github: 'https://github.com/surya-pratap-singh',
-      linkedin: 'https://www.linkedin.com/in/suryapratap-singh/',
+      github: 'https://github.com/sg-surya',
+      linkedin: 'https://www.linkedin.com/in/sgsurya/',
       youtube: 'https://www.youtube.com/c/CodeCraftwithSurya',
     },
     theme: {
