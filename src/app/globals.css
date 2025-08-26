@@ -92,6 +92,9 @@
 }
 
 @layer utilities {
+  .nav-link:hover, .nav-link:focus {
+    color: hsl(var(--primary));
+  }
   .nav-link::after {
     content: '';
     position: absolute;

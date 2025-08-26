@@ -7,14 +7,6 @@ import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { Sheet, SheetContent, SheetTrigger } from './ui/sheet';
 import Logo from './logo';
-import { cn } from '@/lib/utils';
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  navigationMenuTriggerStyle,
-} from '@/components/ui/navigation-menu';
 
 const navLinks = [
     { href: '/', label: 'Home' },
@@ -33,21 +25,19 @@ export default function Header() {
         <Link href="/" className="flex items-center gap-2">
           <Logo />
         </Link>
-        <nav className="hidden md:flex items-center gap-1 text-sm">
-          <NavigationMenu>
-            <NavigationMenuList>
-              {navLinks.map((link) => (
-                <NavigationMenuItem key={link.href}>
-                  <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "bg-transparent hover:bg-transparent focus:bg-transparent data-[active]:bg-transparent data-[state=open]:bg-transparent")}>
-                    <Link href={link.href} className="relative nav-link text-base">
-                      {link.label}
-                    </Link>
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
-              ))}
-            </NavigationMenuList>
-          </NavigationMenu>
+        
+        <nav className="hidden md:flex items-center gap-6 text-sm">
+          {navLinks.map((link) => (
+            <Link 
+              key={link.href} 
+              href={link.href} 
+              className="relative nav-link text-base font-medium text-foreground/80 hover:text-primary transition-colors"
+            >
+              {link.label}
+            </Link>
+          ))}
         </nav>
+
         <div className="hidden md:flex items-center gap-4">
           <Button
             asChild
@@ -62,6 +52,7 @@ export default function Header() {
             </Link>
           </Button>
         </div>
+
         <div className="md:hidden">
           <Sheet open={isMenuOpen} onOpenChange={setMenuOpen}>
             <SheetTrigger asChild>
