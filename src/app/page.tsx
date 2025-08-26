@@ -8,6 +8,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import TechStack from './_components/tech-stack';
 import Roadmap from './_components/roadmap';
+import { useState } from 'react';
+import CosmicSignatureModal from '@/components/cosmic-signature-modal';
 
 
 const pillars = [
@@ -29,79 +31,96 @@ const pillars = [
 ];
 
 export default function Home() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
-    <div className="flex flex-col items-center text-white overflow-x-hidden">
-      <section className="w-full pt-20 pb-16 md:pt-32 md:pb-24 text-center relative">
-        <div className="absolute inset-0 z-0 opacity-30 [background-image:radial-gradient(ellipse_80%_50%_at_50%_-20%,hsl(var(--primary)_/_0.1),transparent_)]" />
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="relative w-48 h-48 md:w-56 md:h-56 mx-auto mb-8 float">
-            <Image
-              src="/vasudev-ai-hero.png"
-              alt="Vasudev AI"
-              width={400}
-              height={400}
-              className="rounded-full object-cover border-4 border-primary/50 shadow-[0_0_40px] shadow-primary/50"
-            />
-            <div className="absolute inset-0 rounded-full shockwave border-2 border-primary/50"></div>
+    <>
+      <CosmicSignatureModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)}
+        redirectUrl="https://discord.gg/e5uPQDXSSk"
+      />
+      <div className="flex flex-col items-center text-white overflow-x-hidden">
+        <section className="w-full pt-20 pb-16 md:pt-32 md:pb-24 text-center relative">
+          <div className="absolute inset-0 z-0 opacity-30 [background-image:radial-gradient(ellipse_80%_50%_at_50%_-20%,hsl(var(--primary)_/_0.1),transparent_)]" />
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="relative w-48 h-48 md:w-56 md:h-56 mx-auto mb-8 float">
+              <Image
+                src="/vasudev-ai-hero.png"
+                alt="Vasudev AI"
+                width={400}
+                height={400}
+                className="rounded-full object-cover border-4 border-primary/50 shadow-[0_0_40px] shadow-primary/50"
+              />
+              <div className="absolute inset-0 rounded-full shockwave border-2 border-primary/50"></div>
+            </div>
+
+            <h1 className="text-5xl md:text-7xl font-headline font-bold text-center bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-400">
+              Vasudev AI
+            </h1>
+            <p className="mt-4 text-lg md:text-xl text-primary max-w-2xl mx-auto">
+              Where Intelligence Meets Innovation.
+            </p>
+            <p className="mt-6 text-md md:text-lg text-gray-300 max-w-3xl mx-auto">
+              Join our community of AI creators, thinkers, and dreamers shaping the future together.
+            </p>
+            <div className="mt-8 flex justify-center gap-4">
+              <Button 
+                size="lg" 
+                onClick={() => setIsModalOpen(true)}
+                className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-lg px-8 py-6 rounded-full shadow-[0_0_20px] shadow-primary/40 transition-all duration-300 hover:shadow-primary/70 cursor-pointer"
+              >
+                Join Community
+              </Button>
+              <Button asChild size="lg" variant="outline" className="border-primary text-primary hover:bg-primary/10 hover:text-primary font-bold text-lg px-8 py-6 rounded-full transition-all duration-300">
+                <Link href="/projects">Explore Projects</Link>
+              </Button>
+            </div>
           </div>
+        </section>
 
-          <h1 className="text-5xl md:text-7xl font-headline font-bold text-center bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-400">
-            Vasudev AI
-          </h1>
-          <p className="mt-4 text-lg md:text-xl text-primary max-w-2xl mx-auto">
-            Where Intelligence Meets Innovation.
-          </p>
-          <p className="mt-6 text-md md:text-lg text-gray-300 max-w-3xl mx-auto">
-            Join our community of AI creators, thinkers, and dreamers shaping the future together.
-          </p>
-          <div className="mt-8 flex justify-center gap-4">
-            <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-lg px-8 py-6 rounded-full shadow-[0_0_20px] shadow-primary/40 transition-all duration-300 hover:shadow-primary/70">
-              <Link href="https://discord.gg/e5uPQDXSSk" target="_blank" rel="noopener noreferrer">Join Community</Link>
-            </Button>
-            <Button asChild size="lg" variant="outline" className="border-primary text-primary hover:bg-primary/10 hover:text-primary font-bold text-lg px-8 py-6 rounded-full transition-all duration-300">
-              <Link href="/projects">Explore Projects</Link>
-            </Button>
+        <section className="w-full py-20 bg-card/50">
+          <div className="container mx-auto px-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {pillars.map((pillar) => (
+                <Card key={pillar.title} className="bg-card/70 border-primary/20 backdrop-blur-sm text-center p-6 hover:border-primary hover:-translate-y-2 transition-all duration-300 shadow-lg hover:shadow-primary/30">
+                  <CardHeader className="flex flex-col items-center">
+                    <div className="p-4 bg-primary/10 rounded-full mb-4">
+                      {pillar.icon}
+                    </div>
+                    <CardTitle className="text-2xl font-headline text-white">{pillar.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-gray-400">{pillar.desc}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="w-full py-20 bg-card/50">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {pillars.map((pillar) => (
-              <Card key={pillar.title} className="bg-card/70 border-primary/20 backdrop-blur-sm text-center p-6 hover:border-primary hover:-translate-y-2 transition-all duration-300 shadow-lg hover:shadow-primary/30">
-                <CardHeader className="flex flex-col items-center">
-                  <div className="p-4 bg-primary/10 rounded-full mb-4">
-                    {pillar.icon}
-                  </div>
-                  <CardTitle className="text-2xl font-headline text-white">{pillar.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-400">{pillar.desc}</p>
-                </CardContent>
-              </Card>
-            ))}
+        <TechStack />
+
+        <Roadmap />
+
+        <section className="w-full py-24 text-center">
+          <div className="container mx-auto px-4">
+            <h2 className="text-4xl md:text-5xl font-headline font-bold text-accent">Awaken with Vasudev AI</h2>
+            <p className="mt-4 text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
+              Lead the movement of divine intelligence.
+            </p>
+            <div className="mt-8">
+              <Button 
+                size="lg" 
+                onClick={() => setIsModalOpen(true)}
+                className="bg-accent hover:bg-accent/90 text-accent-foreground font-bold text-lg px-10 py-6 rounded-full shadow-[0_0_20px] shadow-accent/40 transition-all duration-300 hover:shadow-accent/70 cursor-pointer"
+                >
+                Join Now
+              </Button>
+            </div>
           </div>
-        </div>
-      </section>
-
-      <TechStack />
-
-      <Roadmap />
-
-      <section className="w-full py-24 text-center">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl md:text-5xl font-headline font-bold text-accent">Awaken with Vasudev AI</h2>
-          <p className="mt-4 text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
-            Lead the movement of divine intelligence.
-          </p>
-          <div className="mt-8">
-            <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-bold text-lg px-10 py-6 rounded-full shadow-[0_0_20px] shadow-accent/40 transition-all duration-300 hover:shadow-accent/70">
-              <Link href="https://discord.gg/e5uPQDXSSk" target="_blank" rel="noopener noreferrer">Join Now</Link>
-            </Button>
-          </div>
-        </div>
-      </section>
-    </div>
+        </section>
+      </div>
+    </>
   );
 }
