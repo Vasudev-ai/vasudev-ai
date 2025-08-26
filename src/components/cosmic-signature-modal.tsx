@@ -1,168 +1,155 @@
-
 'use client';
 
-import React, { useRef, useEffect, useState, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { X } from 'lucide-react';
-import { Button } from './ui/button';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { BrainCircuit, Sparkles, Users } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import TechStack from './_components/tech-stack';
+import Roadmap from './_components/roadmap';
+import { useState } from 'react';
+import './_components/portal-button.css';
 
-interface Particle {
-  x: number;
-  y: number;
-  size: number;
-  life: number;
-  initialLife: number;
-  vx: number;
-  vy: number;
-}
 
-interface CosmicSignatureModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  redirectUrl: string;
-}
+const pillars = [
+  {
+    icon: <Sparkles className="h-8 w-8 text-accent" />,
+    title: 'AI with Divinity',
+    desc: 'Blending intelligence with spiritual harmony.',
+  },
+  {
+    icon: <Users className="h-8 w-8 text-accent" />,
+    title: 'Innovation Together',
+    desc: 'Community-driven projects shaping the future.',
+  },
+  {
+    icon: <BrainCircuit className="h-8 w-8 text-accent" />,
+    title: 'Knowledge for All',
+    desc: 'Workshops, mentorship, and open-source contributions.',
+  },
+];
 
-const CosmicSignatureModal: React.FC<CosmicSignatureModalProps> = ({ isOpen, onClose, redirectUrl }) => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [isDrawing, setIsDrawing] = useState(false);
-  const [hasDrawn, setHasDrawn] = useState(false);
-  const particles = useRef<Particle[]>([]);
+const PortalButton = ({ children, className }: {children: React.ReactNode, className?: string}) => {
+  const [status, setStatus] = useState('idle'); // idle, activating, active
 
-  const resizeCanvas = useCallback(() => {
-    const canvas = canvasRef.current;
-    if (canvas) {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-  }, []);
-
-  useEffect(() => {
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-    return () => window.removeEventListener('resize', resizeCanvas);
-  }, [resizeCanvas]);
-
-  const animate = useCallback(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    particles.current.forEach((p, index) => {
-      p.life -= 1;
-      p.x += p.vx;
-      p.y += p.vy;
-
-      if (p.life <= 0) {
-        particles.current.splice(index, 1);
-      } else {
-        ctx.beginPath();
-        const opacity = p.life / p.initialLife;
-        ctx.fillStyle = `rgba(0, 229, 255, ${opacity * 0.8})`;
-        ctx.shadowColor = 'hsl(var(--primary))';
-        ctx.shadowBlur = 15;
-        ctx.arc(p.x, p.y, p.size * opacity, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    });
-
-    requestAnimationFrame(animate);
-  }, []);
-
-  useEffect(() => {
-    const animationFrameId = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(animationFrameId);
-  }, [animate]);
-
-  const handlePointerDown = (e: React.PointerEvent<HTMLCanvasElement>) => {
-    setIsDrawing(true);
-    setHasDrawn(true);
-  };
-
-  const handlePointerMove = (e: React.PointerEvent<HTMLCanvasElement>) => {
-    if (!isDrawing) return;
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    for (let i = 0; i < 5; i++) {
-      const life = Math.random() * 60 + 40;
-      particles.current.push({
-        x,
-        y,
-        size: Math.random() * 3 + 1,
-        life,
-        initialLife: life,
-        vx: (Math.random() - 0.5) * 2,
-        vy: (Math.random() - 0.5) * 2,
-      });
+  const handleClick = () => {
+    if (status === 'idle') {
+      setStatus('activating');
+      setTimeout(() => setStatus('active'), 2000); // Duration of activation animation
+    } else if (status === 'active') {
+      window.open('https://discord.gg/e5uPQDXSSk', '_blank');
     }
   };
-  
-  const handlePointerUp = () => {
-    if (!isDrawing) return;
-    setIsDrawing(false);
-    
-    // Animate and redirect
-    setTimeout(() => {
-      onClose();
-      window.open(redirectUrl, '_blank');
-    }, 800); // Wait for trail to fade
-  };
+
+  const buttonText = () => {
+    switch (status) {
+      case 'activating':
+        return 'Activating...';
+      case 'active':
+        return 'Enter Portal';
+      default:
+        return children;
+    }
+  }
 
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[100] bg-background/80 backdrop-blur-lg flex items-center justify-center"
-        >
-          <Button variant="ghost" size="icon" className="absolute top-6 right-6 z-20 text-gray-400 hover:text-white" onClick={onClose}>
-            <X size={32} />
-          </Button>
-
-          <div className="absolute inset-0 z-10 text-center flex flex-col items-center justify-center pointer-events-none">
-             <motion.h2 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0, transition: { delay: 0.2 } }}
-                className="text-4xl md:text-6xl font-headline font-bold text-center bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-400"
-            >
-                Leave Your Cosmic Signature
-            </motion.h2>
-            <motion.p 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0, transition: { delay: 0.4 } }}
-                className="mt-4 text-lg text-primary"
-            >
-                Click and drag to make your mark on the universe.
-            </motion.p>
-            {hasDrawn && !isDrawing && (
-                <motion.p
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1, transition: { delay: 0.2 }}}
-                    className="mt-8 text-2xl text-accent animate-pulse font-headline"
-                >
-                    Connecting to the cosmos...
-                </motion.p>
-            )}
-          </div>
-
-          <canvas
-            ref={canvasRef}
-            onPointerDown={handlePointerDown}
-            onPointerMove={handlePointerMove}
-            onPointerUp={handlePointerUp}
-            onPointerLeave={handlePointerUp}
-            className="absolute inset-0 z-0 cursor-crosshair"
-          />
-        </motion.div>
+    <div className={`portal-button-container ${status !== 'idle' ? 'is-active' : ''}`}>
+      <Button 
+        size="lg" 
+        onClick={handleClick}
+        className={className}
+      >
+        {buttonText()}
+      </Button>
+      {status === 'activating' && (
+        <div className="rings">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
       )}
-    </AnimatePresence>
+    </div>
   );
 };
 
-export default CosmicSignatureModal;
+
+export default function Home() {
+  return (
+    <>
+      <div className="flex flex-col items-center text-white overflow-x-hidden">
+        <section className="w-full pt-20 pb-16 md:pt-32 md:pb-24 text-center relative">
+          <div className="absolute inset-0 z-0 opacity-30 [background-image:radial-gradient(ellipse_80%_50%_at_50%_-20%,hsl(var(--primary)_/_0.1),transparent_)]" />
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="relative w-48 h-48 md:w-56 md:h-56 mx-auto mb-8 float">
+              <Image
+                src="/vasudev-ai-hero.png"
+                alt="Vasudev AI"
+                width={400}
+                height={400}
+                className="rounded-full object-cover border-4 border-primary/50 shadow-[0_0_40px] shadow-primary/50"
+              />
+              <div className="absolute inset-0 rounded-full shockwave border-2 border-primary/50"></div>
+            </div>
+
+            <h1 className="text-5xl md:text-7xl font-headline font-bold text-center bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-400">
+              Vasudev AI
+            </h1>
+            <p className="mt-4 text-lg md:text-xl text-primary max-w-2xl mx-auto">
+              Where Intelligence Meets Innovation.
+            </p>
+            <p className="mt-6 text-md md:text-lg text-gray-300 max-w-3xl mx-auto">
+              Join our community of AI creators, thinkers, and dreamers shaping the future together.
+            </p>
+            <div className="mt-8 flex justify-center items-center gap-4">
+               <PortalButton className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-lg px-8 py-6 rounded-full shadow-[0_0_20px] shadow-primary/40 transition-all duration-300 hover:shadow-primary/70 cursor-pointer">
+                Join Community
+              </PortalButton>
+              <Button asChild size="lg" variant="outline" className="border-primary text-primary hover:bg-primary/10 hover:text-primary font-bold text-lg px-8 py-6 rounded-full transition-all duration-300">
+                <Link href="/projects">Explore Projects</Link>
+              </Button>
+            </div>
+          </div>
+        </section>
+
+        <section className="w-full py-20 bg-card/50">
+          <div className="container mx-auto px-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {pillars.map((pillar) => (
+                <Card key={pillar.title} className="bg-card/70 border-primary/20 backdrop-blur-sm text-center p-6 hover:border-primary hover:-translate-y-2 transition-all duration-300 shadow-lg hover:shadow-primary/30">
+                  <CardHeader className="flex flex-col items-center">
+                    <div className="p-4 bg-primary/10 rounded-full mb-4">
+                      {pillar.icon}
+                    </div>
+                    <CardTitle className="text-2xl font-headline text-white">{pillar.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-gray-400">{pillar.desc}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <TechStack />
+
+        <Roadmap />
+
+        <section className="w-full py-24 text-center">
+          <div className="container mx-auto px-4">
+            <h2 className="text-4xl md:text-5xl font-headline font-bold text-accent">Awaken with Vasudev AI</h2>
+            <p className="mt-4 text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
+              Lead the movement of divine intelligence.
+            </p>
+            <div className="mt-8">
+              <PortalButton className="bg-accent hover:bg-accent/90 text-accent-foreground font-bold text-lg px-10 py-6 rounded-full shadow-[0_0_20px] shadow-accent/40 transition-all duration-300 hover:shadow-accent/70 cursor-pointer">
+                Join Now
+              </PortalButton>
+            </div>
+          </div>
+        </section>
+      </div>
+    </>
+  );
+}

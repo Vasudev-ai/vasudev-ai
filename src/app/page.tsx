@@ -9,7 +9,7 @@ import Link from 'next/link';
 import TechStack from './_components/tech-stack';
 import Roadmap from './_components/roadmap';
 import { useState } from 'react';
-import CosmicSignatureModal from '@/components/cosmic-signature-modal';
+import './_components/portal-button.css';
 
 
 const pillars = [
@@ -30,16 +30,54 @@ const pillars = [
   },
 ];
 
-export default function Home() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+const PortalButton = ({ children, className }: {children: React.ReactNode, className?: string}) => {
+  const [status, setStatus] = useState('idle'); // idle, activating, active
+
+  const handleClick = () => {
+    if (status === 'idle') {
+      setStatus('activating');
+      setTimeout(() => setStatus('active'), 2000); // Duration of activation animation
+    } else if (status === 'active') {
+      window.open('https://discord.gg/e5uPQDXSSk', '_blank');
+    }
+  };
+
+  const buttonText = () => {
+    switch (status) {
+      case 'activating':
+        return 'Activating...';
+      case 'active':
+        return 'Enter Portal';
+      default:
+        return children;
+    }
+  }
 
   return (
+    <div className={`portal-button-container ${status !== 'idle' ? 'is-active' : ''}`}>
+      <Button 
+        size="lg" 
+        onClick={handleClick}
+        className={className}
+      >
+        {buttonText()}
+      </Button>
+      {status === 'activating' && (
+        <div className="rings">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+
+export default function Home() {
+  return (
     <>
-      <CosmicSignatureModal 
-        isOpen={isModalOpen} 
-        onClose={() => setIsModalOpen(false)}
-        redirectUrl="https://discord.gg/e5uPQDXSSk"
-      />
       <div className="flex flex-col items-center text-white overflow-x-hidden">
         <section className="w-full pt-20 pb-16 md:pt-32 md:pb-24 text-center relative">
           <div className="absolute inset-0 z-0 opacity-30 [background-image:radial-gradient(ellipse_80%_50%_at_50%_-20%,hsl(var(--primary)_/_0.1),transparent_)]" />
@@ -64,14 +102,10 @@ export default function Home() {
             <p className="mt-6 text-md md:text-lg text-gray-300 max-w-3xl mx-auto">
               Join our community of AI creators, thinkers, and dreamers shaping the future together.
             </p>
-            <div className="mt-8 flex justify-center gap-4">
-              <Button 
-                size="lg" 
-                onClick={() => setIsModalOpen(true)}
-                className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-lg px-8 py-6 rounded-full shadow-[0_0_20px] shadow-primary/40 transition-all duration-300 hover:shadow-primary/70 cursor-pointer"
-              >
+            <div className="mt-8 flex justify-center items-center gap-4">
+               <PortalButton className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-lg px-8 py-6 rounded-full shadow-[0_0_20px] shadow-primary/40 transition-all duration-300 hover:shadow-primary/70 cursor-pointer">
                 Join Community
-              </Button>
+              </PortalButton>
               <Button asChild size="lg" variant="outline" className="border-primary text-primary hover:bg-primary/10 hover:text-primary font-bold text-lg px-8 py-6 rounded-full transition-all duration-300">
                 <Link href="/projects">Explore Projects</Link>
               </Button>
@@ -110,13 +144,9 @@ export default function Home() {
               Lead the movement of divine intelligence.
             </p>
             <div className="mt-8">
-              <Button 
-                size="lg" 
-                onClick={() => setIsModalOpen(true)}
-                className="bg-accent hover:bg-accent/90 text-accent-foreground font-bold text-lg px-10 py-6 rounded-full shadow-[0_0_20px] shadow-accent/40 transition-all duration-300 hover:shadow-accent/70 cursor-pointer"
-                >
+              <PortalButton className="bg-accent hover:bg-accent/90 text-accent-foreground font-bold text-lg px-10 py-6 rounded-full shadow-[0_0_20px] shadow-accent/40 transition-all duration-300 hover:shadow-accent/70 cursor-pointer">
                 Join Now
-              </Button>
+              </PortalButton>
             </div>
           </div>
         </section>

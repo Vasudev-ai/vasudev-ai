@@ -1,0 +1,62 @@
+
+.portal-button-container {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.portal-button-container.is-active .rings {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.rings {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    height: 300px;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    pointer-events: none;
+}
+
+.rings div {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    opacity: 0;
+    animation: portal-ring-animation 2s ease-out forwards;
+}
+
+.rings div:nth-child(1) { 
+    border-color: hsl(var(--primary) / 0.3);
+    animation-delay: 0s;
+}
+.rings div:nth-child(2) { 
+    border-color: hsl(var(--primary) / 0.5);
+    animation-delay: 0.2s;
+}
+.rings div:nth-child(3) { 
+    border-color: hsl(var(--primary) / 0.7);
+    animation-delay: 0.4s;
+}
+.rings div:nth-child(4) { 
+    border-color: hsl(var(--primary));
+    animation-delay: 0.6s;
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.5);
+}
+
+@keyframes portal-ring-animation {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    80%, 100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
