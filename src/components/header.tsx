@@ -7,6 +7,7 @@ import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { Sheet, SheetContent, SheetTrigger } from './ui/sheet';
 import Logo from './logo';
+import { cn } from '@/lib/utils';
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -37,8 +38,10 @@ export default function Header() {
             <NavigationMenuList>
               {navLinks.map((link) => (
                 <NavigationMenuItem key={link.href}>
-                  <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-                    <Link href={link.href}>{link.label}</Link>
+                  <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "bg-transparent hover:bg-transparent focus:bg-transparent data-[active]:bg-transparent data-[state=open]:bg-transparent")}>
+                    <Link href={link.href} className="relative nav-link text-base">
+                      {link.label}
+                    </Link>
                   </NavigationMenuLink>
                 </NavigationMenuItem>
               ))}
@@ -94,7 +97,7 @@ export default function Header() {
                     <Link
                       key={`${link.href}-${link.label}`}
                       href={link.href}
-                      className="text-lg font-medium text-foreground/80 hover:text-primary"
+                      className="text-lg font-medium text-foreground/80 hover:text-primary transition-colors duration-300"
                       onClick={() => setMenuOpen(false)}
                     >
                       {link.label}
