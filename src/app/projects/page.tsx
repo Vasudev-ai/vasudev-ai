@@ -1,15 +1,15 @@
+
+'use client';
+
 import PageHeader from '@/components/page-header';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowRight, Bot, Cpu, Hand, MessageSquare, Smartphone, Sprout, Terminal, ToyBrick, Waves } from 'lucide-react';
-import type { Metadata } from 'next';
 import Link from 'next/link';
-
-export const metadata: Metadata = {
-  title: 'Our Creations | Vasudev AI',
-  description: 'Explore the innovations shaping the future from the Vasudev AI community.',
-};
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import ProjectModal from './_components/project-modal';
 
 const projects = [
   {
@@ -57,6 +57,8 @@ const projects = [
 ];
 
 export default function ProjectsPage() {
+  const [selectedProject, setSelectedProject] = useState<(typeof projects)[0] | null>(null);
+
   return (
     <div className="pb-20 overflow-hidden">
        <div className="absolute inset-0 z-[-1] bg-gradient-to-br from-background via-[#10121c] to-background" 
@@ -74,33 +76,31 @@ export default function ProjectsPage() {
       <div className="container mx-auto px-4 mt-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {projects.map((project) => (
-                <Card key={project.title} className="bg-card/40 border border-primary/20 backdrop-blur-sm p-4 group transition-all duration-300 hover:border-primary hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/30 [transform-style:preserve-3d]">
-                    <div className="transition-all duration-300 [transform:translateZ(20px)]">
-                        <CardHeader className="flex flex-row items-center justify-between gap-4">
-                            <div className="flex items-center gap-4">
-                                <div className="p-3 bg-primary/10 rounded-full group-hover:bg-primary/20 transition-colors group-hover:animate-pulse">
-                                    {project.icon}
-                                </div>
-                                <CardTitle className="text-xl font-headline text-white">{project.title}</CardTitle>
-                            </div>
-                        </CardHeader>
-                        <CardContent className="space-y-6">
-                            <p className="text-gray-400 text-base min-h-[56px]">{project.tagline}</p>
-                            <div className="flex flex-wrap gap-2">
-                                {project.features.map(feature => (
-                                    <Badge key={feature} variant="outline" className="border-primary/30 text-primary/80">{feature}</Badge>
-                                ))}
-                            </div>
-                            <div className="pt-4">
-                                <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary/10 hover:text-accent font-bold group-hover:shadow-[0_0_15px] group-hover:shadow-primary/50 transition-all duration-300">
-                                  <Link href={project.href}>
-                                    Explore Project <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1"/>
-                                  </Link>
-                                </Button>
-                            </div>
-                        </CardContent>
-                    </div>
+              <motion.div
+                key={project.title}
+                layoutId={`card-${project.title}`}
+                onClick={() => setSelectedProject(project)}
+                className="cursor-pointer"
+              >
+                <Card className="bg-card/40 border border-primary/20 backdrop-blur-sm p-4 group transition-all duration-300 hover:border-primary hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/30 h-full">
+                  <CardHeader className="flex flex-row items-center justify-between gap-4">
+                      <div className="flex items-center gap-4">
+                          <div className="p-3 bg-primary/10 rounded-full group-hover:bg-primary/20 transition-colors group-hover:animate-pulse">
+                              {project.icon}
+                          </div>
+                          <CardTitle className="text-xl font-headline text-white">{project.title}</CardTitle>
+                      </div>
+                  </CardHeader>
+                  <CardContent className="space-y-6">
+                      <p className="text-gray-400 text-base min-h-[56px]">{project.tagline}</p>
+                      <div className="flex flex-wrap gap-2">
+                          {project.features.map(feature => (
+                              <Badge key={feature} variant="outline" className="border-primary/30 text-primary/80">{feature}</Badge>
+                          ))}
+                      </div>
+                  </CardContent>
                 </Card>
+              </motion.div>
             ))}
              <Card className="bg-card/30 border border-dashed border-primary/30 backdrop-blur-sm p-4 group flex items-center justify-center text-center min-h-[350px] lg:col-span-3">
                 <div className="space-y-2">
@@ -110,6 +110,16 @@ export default function ProjectsPage() {
             </Card>
         </div>
       </div>
+      
+      <AnimatePresence>
+        {selectedProject && (
+          <ProjectModal 
+            project={selectedProject} 
+            onClose={() => setSelectedProject(null)} 
+          />
+        )}
+      </AnimatePresence>
+
       <section className="w-full pt-24 pb-12 text-center">
         <div className="container mx-auto px-4">
           <div className="bg-card/30 border border-accent/20 rounded-2xl p-10 backdrop-blur-sm shadow-lg">
