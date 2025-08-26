@@ -1,8 +1,5 @@
-
-
 'use client';
 
-import type { Metadata } from 'next';
 import { Inter, Cinzel_Decorative } from 'next/font/google';
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
@@ -63,9 +60,9 @@ export default function RootLayout({
           <>
             <div className="relative min-h-screen">
               <AnimatedBackground />
-              <div className="relative z-10">
+              <div className="relative z-10 flex flex-col min-h-screen">
                 <Header />
-                <main className="fade-in">{children}</main>
+                <main className="flex-grow">{children}</main>
                 <Footer />
               </div>
             </div>
