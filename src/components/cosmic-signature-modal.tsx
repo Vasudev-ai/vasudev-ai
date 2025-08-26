@@ -26,7 +26,7 @@ const CosmicSignatureModal: React.FC<CosmicSignatureModalProps> = ({ isOpen, onC
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isDrawing, setIsDrawing] = useState(false);
   const [hasDrawn, setHasDrawn] = useState(false);
-  const particles = useRef<Particle[]>([]).current;
+  const particles = useRef<Particle[]>([]);
 
   const resizeCanvas = useCallback(() => {
     const canvas = canvasRef.current;
@@ -50,13 +50,13 @@ const CosmicSignatureModal: React.FC<CosmicSignatureModalProps> = ({ isOpen, onC
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    particles.forEach((p, index) => {
+    particles.current.forEach((p, index) => {
       p.life -= 1;
       p.x += p.vx;
       p.y += p.vy;
 
       if (p.life <= 0) {
-        particles.splice(index, 1);
+        particles.current.splice(index, 1);
       } else {
         ctx.beginPath();
         const opacity = p.life / p.initialLife;
@@ -69,7 +69,7 @@ const CosmicSignatureModal: React.FC<CosmicSignatureModalProps> = ({ isOpen, onC
     });
 
     requestAnimationFrame(animate);
-  }, [particles]);
+  }, []);
 
   useEffect(() => {
     const animationFrameId = requestAnimationFrame(animate);
@@ -89,7 +89,7 @@ const CosmicSignatureModal: React.FC<CosmicSignatureModalProps> = ({ isOpen, onC
 
     for (let i = 0; i < 5; i++) {
       const life = Math.random() * 60 + 40;
-      particles.push({
+      particles.current.push({
         x,
         y,
         size: Math.random() * 3 + 1,
