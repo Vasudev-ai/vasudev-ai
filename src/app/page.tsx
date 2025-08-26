@@ -10,6 +10,8 @@ import TechStack from './_components/tech-stack';
 import Roadmap from './_components/roadmap';
 import { useState } from 'react';
 import './_components/portal-button.css';
+import { AnimatePresence } from 'framer-motion';
+import CosmicJoinModal from './_components/cosmic-join-modal';
 
 
 const pillars = [
@@ -30,39 +32,29 @@ const pillars = [
   },
 ];
 
-const PortalButton = ({ children, className }: {children: React.ReactNode, className?: string}) => {
-  const [status, setStatus] = useState('idle'); // idle, activating, active
+const PortalButton = ({ children, className, onActivate }: {children: React.ReactNode, className?: string, onActivate: () => void}) => {
+  const [isActivating, setIsActivating] = useState(false);
 
   const handleClick = () => {
-    if (status === 'idle') {
-      setStatus('activating');
-      setTimeout(() => setStatus('active'), 2000); // Duration of activation animation
-    } else if (status === 'active') {
-      window.open('https://discord.gg/e5uPQDXSSk', '_blank');
-    }
+    if (isActivating) return;
+    setIsActivating(true);
+    setTimeout(() => {
+      onActivate();
+      setIsActivating(false);
+    }, 2000); // Duration of activation animation
   };
 
-  const buttonText = () => {
-    switch (status) {
-      case 'activating':
-        return 'Activating...';
-      case 'active':
-        return 'Enter Portal';
-      default:
-        return children;
-    }
-  }
-
   return (
-    <div className={`portal-button-container ${status !== 'idle' ? 'is-active' : ''}`}>
+    <div className={`portal-button-container ${isActivating ? 'is-active' : ''}`}>
       <Button 
         size="lg" 
         onClick={handleClick}
         className={className}
+        disabled={isActivating}
       >
-        {buttonText()}
+        {isActivating ? 'Activating...' : children}
       </Button>
-      {status === 'activating' && (
+      {isActivating && (
         <div className="rings">
           <div></div>
           <div></div>
@@ -76,6 +68,8 @@ const PortalButton = ({ children, className }: {children: React.ReactNode, class
 
 
 export default function Home() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <>
       <div className="flex flex-col items-center text-white overflow-x-hidden">
@@ -103,7 +97,10 @@ export default function Home() {
               Join our community of AI creators, thinkers, and dreamers shaping the future together.
             </p>
             <div className="mt-8 flex justify-center items-center gap-4">
-               <PortalButton className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-lg px-8 py-6 rounded-full shadow-[0_0_20px] shadow-primary/40 transition-all duration-300 hover:shadow-primary/70 cursor-pointer">
+               <PortalButton 
+                onActivate={() => setIsModalOpen(true)}
+                className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-lg px-8 py-6 rounded-full shadow-[0_0_20px] shadow-primary/40 transition-all duration-300 hover:shadow-primary/70 cursor-pointer"
+               >
                 Join Community
               </PortalButton>
               <Button asChild size="lg" variant="outline" className="border-primary text-primary hover:bg-primary/10 hover:text-primary font-bold text-lg px-8 py-6 rounded-full transition-all duration-300">
@@ -144,13 +141,19 @@ export default function Home() {
               Lead the movement of divine intelligence.
             </p>
             <div className="mt-8">
-              <PortalButton className="bg-accent hover:bg-accent/90 text-accent-foreground font-bold text-lg px-10 py-6 rounded-full shadow-[0_0_20px] shadow-accent/40 transition-all duration-300 hover:shadow-accent/70 cursor-pointer">
+               <PortalButton 
+                onActivate={() => setIsModalOpen(true)}
+                className="bg-accent hover:bg-accent/90 text-accent-foreground font-bold text-lg px-10 py-6 rounded-full shadow-[0_0_20px] shadow-accent/40 transition-all duration-300 hover:shadow-accent/70 cursor-pointer"
+               >
                 Join Now
               </PortalButton>
             </div>
           </div>
         </section>
       </div>
+      <AnimatePresence>
+        {isModalOpen && <CosmicJoinModal onClose={() => setIsModalOpen(false)} />}
+      </AnimatePresence>
     </>
   );
 }
