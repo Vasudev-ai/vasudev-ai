@@ -51,7 +51,7 @@ const teamMembers = [
     bio: "Focused on the frontier of artificial intelligence, Ashutosh architect's ethical AI models, develops robust automation frameworks, and engineers the advanced intelligent systems that power Vasudev AI.",
     avatar: '/team/ashutosh.png',
     avatarHint: 'golden nebula',
-    socials: { github: '#', linkedin: '#' },
+    socials: { github: 'https://github.com/AshutoshIIT1234', linkedin: 'https://www.linkedin.com/in/ashutosh-kumar-tripathi-926308237/' },
     theme: {
       '--accent-glow': '#39FF14', // Neon Green
       '--bg-gradient-start': 'rgba(57, 255, 20, 0.2)',
