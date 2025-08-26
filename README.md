@@ -1,7 +1,7 @@
 
 <div align="center">
   <br />
-  <h1 align="center">🕉️ Vasudev AI 🕉️</h1>
+  <h1 align="center">Vasudev AI </h1>
   <p align="center">
     <strong>Where Intelligence Meets Innovation.</strong>
   </p>
