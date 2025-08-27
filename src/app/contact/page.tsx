@@ -1,13 +1,10 @@
 
 import PageHeader from '@/components/page-header';
-import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
 import { Disc, Github, Twitter, Youtube } from 'lucide-react';
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import ContactForm from './_components/contact-form';
 
 export const metadata: Metadata = {
   title: 'Contact | Vasudev AI',
@@ -33,23 +30,7 @@ export default function ContactPage() {
                     <div>
                         <Card className="bg-card/70 border-primary/20 backdrop-blur-sm shadow-lg hover:shadow-primary/30 transition-shadow duration-300">
                             <CardContent className="p-6 md:p-8">
-                                <form className="space-y-6">
-                                    <div className="space-y-2">
-                                        <Label htmlFor="name" className="text-lg text-primary">Name</Label>
-                                        <Input id="name" placeholder="Your Name" className="bg-background/50 h-12 text-base" />
-                                    </div>
-                                    <div className="space-y-2">
-                                        <Label htmlFor="email" className="text-lg text-primary">Email</Label>
-                                        <Input id="email" type="email" placeholder="your.email@example.com" className="bg-background/50 h-12 text-base" />
-                                    </div>
-                                    <div className="space-y-2">
-                                        <Label htmlFor="message" className="text-lg text-primary">Message</Label>
-                                        <Textarea id="message" placeholder="Your message..." className="bg-background/50 text-base" rows={6} />
-                                    </div>
-                                    <Button type="submit" size="lg" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-lg py-6 rounded-full shadow-[0_0_20px] shadow-primary/40 transition-all duration-300 hover:shadow-primary/70">
-                                        Send Message
-                                    </Button>
-                                </form>
+                               <ContactForm />
                             </CardContent>
                         </Card>
                     </div>
