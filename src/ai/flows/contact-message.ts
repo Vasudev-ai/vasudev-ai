@@ -39,7 +39,7 @@ A user named {{{name}}} (email: {{{email}}}) has sent the following message:
 
 Your task is to generate a short, friendly, on-brand confirmation message to be displayed to the user after they submit the form.
 The message should acknowledge their submission, use their name for personalization, and mention that the team will get back to them if a response is needed.
-Keep it concise and positive. For example: "Thank you, {{{name}}}! Your message has been received by the council. We'll be in touch soon."
+Make it personal and on-brand. For example: "Transmission from {{{name}}} received. The cosmos thanks you. We'll be in touch if a response is needed."
 `,
 });
 
@@ -63,26 +63,30 @@ const contactMessageFlow = ai.defineFlow(
     outputSchema: ContactMessageOutputSchema,
   },
   async input => {
-    // First, send the email notification.
+    // First, try to send the email notification.
     try {
-      await transporter.sendMail({
-        from: `"${input.name}" <${process.env.EMAIL_USER}>`, // Sender's name and your sending email
-        to: 'info@vasudev.online', // Your destination email
-        subject: `New Contact Message from ${input.name}`,
-        html: `
-          <h1>New Message from Vasudev AI Contact Form</h1>
-          <p><strong>Name:</strong> ${input.name}</p>
-          <p><strong>Email:</strong> ${input.email}</p>
-          <hr />
-          <p><strong>Message:</strong></p>
-          <p>${input.message}</p>
-        `,
-      });
+      if (process.env.EMAIL_HOST) {
+        await transporter.sendMail({
+          from: `"${input.name}" <${process.env.EMAIL_USER}>`, // Sender's name and your sending email
+          to: 'info@vasudev.online', // Your destination email
+          subject: `New Contact Message from ${input.name}`,
+          html: `
+            <h1>New Message from Vasudev AI Contact Form</h1>
+            <p><strong>Name:</strong> ${input.name}</p>
+            <p><strong>Email:</strong> ${input.email}</p>
+            <hr />
+            <p><strong>Message:</strong></p>
+            <p>${input.message}</p>
+          `,
+        });
+      } else {
+        console.log('EMAIL_HOST not configured. Skipping email send.');
+      }
     } catch (error) {
       console.error('Failed to send email:', error);
       // Even if email fails, we don't want to block the user.
       // We'll log the error and proceed to generate the confirmation.
-      // In a production app, you might add more robust error handling here.
+      // In a production app, you might add more robust error handling here (e.g., to a logging service).
     }
     
     // Then, generate the confirmation reply for the user.
