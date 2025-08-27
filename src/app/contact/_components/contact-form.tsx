@@ -22,10 +22,10 @@ function SubmitButton() {
     <Button
       type="submit"
       size="lg"
-      className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-lg py-6 rounded-full shadow-[0_0_20px] shadow-primary/40 transition-all duration-300 hover:shadow-primary/70"
+      className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-bold text-lg py-6 rounded-full shadow-[0_0_20px] shadow-accent/40 transition-all duration-300 hover:shadow-accent/70 group"
       disabled={pending}
     >
-      {pending ? <Loader2 className="mr-2 h-6 w-6 animate-spin" /> : <Send className="mr-2 h-6 w-6" />}
+      {pending ? <Loader2 className="mr-2 h-6 w-6 animate-spin" /> : <Send className="mr-2 h-6 w-6 group-hover:animate-pulse" />}
       {pending ? 'Transmitting...' : 'Transmit Message'}
     </Button>
   );
@@ -55,18 +55,18 @@ export default function ContactForm() {
   }, [state, toast]);
 
   return (
-      <form ref={formRef} action={formAction} className="space-y-6">
-        <div className="space-y-2">
-            <Label htmlFor="name" className="text-lg text-primary">Name</Label>
-            <Input id="name" name="name" placeholder="Your Name" className="bg-background/50 h-12 text-base" required/>
+      <form ref={formRef} action={formAction} className="space-y-8">
+        <div className="space-y-3">
+            <Label htmlFor="name" className="text-lg font-headline text-primary">Your Name</Label>
+            <Input id="name" name="name" placeholder="Enter your callsign" className="bg-background/50 border-primary/30 h-12 text-base focus:border-primary focus:shadow-[0_0_15px_hsl(var(--primary)/0.5)] transition-all" required/>
         </div>
-        <div className="space-y-2">
-            <Label htmlFor="email" className="text-lg text-primary">Email</Label>
-            <Input id="email" name="email" type="email" placeholder="your.email@example.com" className="bg-background/50 h-12 text-base" required/>
+        <div className="space-y-3">
+            <Label htmlFor="email" className="text-lg font-headline text-primary">Your Coordinates (Email)</Label>
+            <Input id="email" name="email" type="email" placeholder="your.signal@domain.com" className="bg-background/50 border-primary/30 h-12 text-base focus:border-primary focus:shadow-[0_0_15px_hsl(var(--primary)/0.5)] transition-all" required/>
         </div>
-        <div className="space-y-2">
-            <Label htmlFor="message" className="text-lg text-primary">Message</Label>
-            <Textarea id="message" name="message" placeholder="Your message..." className="bg-background/50 text-base" rows={6} required/>
+        <div className="space-y-3">
+            <Label htmlFor="message" className="text-lg font-headline text-primary">Your Transmission</Label>
+            <Textarea id="message" name="message" placeholder="Share your vision... Ask the collective..." className="bg-background/50 border-primary/30 text-base focus:border-primary focus:shadow-[0_0_15px_hsl(var(--primary)/0.5)] transition-all" rows={6} required/>
         </div>
         <SubmitButton />
     </form>

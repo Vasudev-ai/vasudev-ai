@@ -38,7 +38,7 @@ A user named {{{name}}} (email: {{{email}}}) has sent the following message:
 "{{{message}}}"
 
 Your task is to generate a short, friendly, on-brand confirmation message to be displayed to the user after they submit the form.
-The message should acknowledge their submission and mention that the team will get back to them if a response is needed.
+The message should acknowledge their submission, use their name for personalization, and mention that the team will get back to them if a response is needed.
 Keep it concise and positive. For example: "Thank you, {{{name}}}! Your message has been received by the council. We'll be in touch soon."
 `,
 });
