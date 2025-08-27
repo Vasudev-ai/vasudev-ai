@@ -2,7 +2,7 @@
 'use server';
 
 /**
- * @fileOverview A Genkit flow to handle contact form submissions.
+ * @fileOverview A Genkit flow to handle contact form submissions and send an email notification.
  *
  * - handleContactMessage - A function that processes the contact message.
  * - ContactMessageInput - The input type for the handleContactMessage function.
@@ -11,6 +11,7 @@
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
+import nodemailer from 'nodemailer';
 
 const ContactMessageInputSchema = z.object({
   name: z.string().describe('The name of the person sending the message.'),
@@ -42,6 +43,19 @@ Keep it concise and positive. For example: "Thank you, {{{name}}}! Your message 
 `,
 });
 
+// Configure the email transporter using environment variables
+// IMPORTANT: You must create a .env.local file in your project root and add these variables.
+const transporter = nodemailer.createTransport({
+  host: process.env.EMAIL_HOST, // e.g., 'smtp.gmail.com'
+  port: Number(process.env.EMAIL_PORT), // e.g., 587
+  secure: process.env.EMAIL_PORT === '465', // true for 465, false for other ports
+  auth: {
+    user: process.env.EMAIL_USER, // Your email address
+    pass: process.env.EMAIL_PASS, // Your email password or app password
+  },
+});
+
+
 const contactMessageFlow = ai.defineFlow(
   {
     name: 'contactMessageFlow',
@@ -49,9 +63,29 @@ const contactMessageFlow = ai.defineFlow(
     outputSchema: ContactMessageOutputSchema,
   },
   async input => {
-    // In a real application, you would add logic here to save the message
-    // to a database, send an email notification, etc.
-    // For now, we will just generate a confirmation reply.
+    // First, send the email notification.
+    try {
+      await transporter.sendMail({
+        from: `"${input.name}" <${process.env.EMAIL_USER}>`, // Sender's name and your sending email
+        to: 'info@vasudev.online', // Your destination email
+        subject: `New Contact Message from ${input.name}`,
+        html: `
+          <h1>New Message from Vasudev AI Contact Form</h1>
+          <p><strong>Name:</strong> ${input.name}</p>
+          <p><strong>Email:</strong> ${input.email}</p>
+          <hr />
+          <p><strong>Message:</strong></p>
+          <p>${input.message}</p>
+        `,
+      });
+    } catch (error) {
+      console.error('Failed to send email:', error);
+      // Even if email fails, we don't want to block the user.
+      // We'll log the error and proceed to generate the confirmation.
+      // In a production app, you might add more robust error handling here.
+    }
+    
+    // Then, generate the confirmation reply for the user.
     const {output} = await prompt(input);
     return output!;
   }
