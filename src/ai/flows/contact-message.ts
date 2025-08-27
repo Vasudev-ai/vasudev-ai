@@ -43,19 +43,6 @@ Make it personal and on-brand. For example: "Transmission from {{{name}}} receiv
 `,
 });
 
-// Configure the email transporter using environment variables
-// IMPORTANT: You must create a .env.local file in your project root and add these variables.
-const transporter = nodemailer.createTransport({
-  host: process.env.EMAIL_HOST, // e.g., 'smtp.gmail.com'
-  port: Number(process.env.EMAIL_PORT), // e.g., 587
-  secure: process.env.EMAIL_PORT === '465', // true for 465, false for other ports
-  auth: {
-    user: process.env.EMAIL_USER, // Your email address
-    pass: process.env.EMAIL_PASS, // Your email password or app password
-  },
-});
-
-
 const contactMessageFlow = ai.defineFlow(
   {
     name: 'contactMessageFlow',
@@ -64,11 +51,21 @@ const contactMessageFlow = ai.defineFlow(
   },
   async input => {
     // First, try to send the email notification.
-    try {
-      if (process.env.EMAIL_HOST) {
+    if (process.env.EMAIL_HOST && process.env.EMAIL_USER && process.env.EMAIL_PASS) {
+      try {
+        const transporter = nodemailer.createTransport({
+          host: process.env.EMAIL_HOST,
+          port: Number(process.env.EMAIL_PORT) || 587,
+          secure: process.env.EMAIL_PORT === '465',
+          auth: {
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASS,
+          },
+        });
+
         await transporter.sendMail({
-          from: `"${input.name}" <${process.env.EMAIL_USER}>`, // Sender's name and your sending email
-          to: 'info@vasudev.online', // Your destination email
+          from: `"${input.name}" <${process.env.EMAIL_USER}>`,
+          to: 'info@vasudev.online',
           subject: `New Contact Message from ${input.name}`,
           html: `
             <h1>New Message from Vasudev AI Contact Form</h1>
@@ -79,14 +76,13 @@ const contactMessageFlow = ai.defineFlow(
             <p>${input.message}</p>
           `,
         });
-      } else {
-        console.log('EMAIL_HOST not configured. Skipping email send.');
+      } catch (error) {
+        console.error('Failed to send email:', error);
+        // Even if email fails, we don't want to block the user.
+        // We'll log the error and proceed to generate the confirmation.
       }
-    } catch (error) {
-      console.error('Failed to send email:', error);
-      // Even if email fails, we don't want to block the user.
-      // We'll log the error and proceed to generate the confirmation.
-      // In a production app, you might add more robust error handling here (e.g., to a logging service).
+    } else {
+      console.log('Email environment variables not fully configured. Skipping email send.');
     }
     
     // Then, generate the confirmation reply for the user.
