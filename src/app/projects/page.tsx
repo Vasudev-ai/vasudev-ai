@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { projects } from '@/lib/projects-data.tsx';
+import { projects } from '@/lib/projects-data';
 
 
 export default function ProjectsPage() {
