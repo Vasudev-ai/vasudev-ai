@@ -9,29 +9,12 @@ import Link from 'next/link';
 import { Cinzel_Decorative } from 'next/font/google';
 import { cn } from '@/lib/utils';
 import MemberCard from './_components/member-card';
-import type { Metadata } from 'next';
 
 const cinzel = Cinzel_Decorative({
   subsets: ['latin'],
   weight: '400',
   variable: '--font-cinzel',
 });
-
-export const metadata: Metadata = {
-  title: 'Community',
-  description: 'Join the Vasudev AI community, a divine network of AI creators, thinkers, and dreamers. Collaborate on projects, learn from experts, and create an impact.',
-  keywords: ['AI community', 'Vasudev AI members', 'AI collaboration', 'AI events', 'open source AI', 'divine tech'],
-  openGraph: {
-    title: 'The Vasudev AI Community',
-    description: 'A divine network of AI creators, thinkers, and dreamers. Join us to collaborate, learn, and innovate.',
-    url: 'https://www.vasudev.ai/community',
-  },
-  twitter: {
-    title: 'The Vasudev AI Community',
-    description: 'A divine network of AI creators, thinkers, and dreamers. Join us to collaborate, learn, and innovate.',
-  },
-};
-
 
 const whyJoin = [
     {
