@@ -51,12 +51,14 @@ const contactMessageFlow = ai.defineFlow(
   },
   async input => {
     // First, try to send the email notification.
+    // This will only proceed if all required environment variables for email are set.
     if (process.env.EMAIL_HOST && process.env.EMAIL_USER && process.env.EMAIL_PASS) {
       try {
+        const port = Number(process.env.EMAIL_PORT) || 587;
         const transporter = nodemailer.createTransport({
           host: process.env.EMAIL_HOST,
-          port: Number(process.env.EMAIL_PORT) || 587,
-          secure: process.env.EMAIL_PORT === '465',
+          port: port,
+          secure: port === 465, // Use SSL for port 465
           auth: {
             user: process.env.EMAIL_USER,
             pass: process.env.EMAIL_PASS,
