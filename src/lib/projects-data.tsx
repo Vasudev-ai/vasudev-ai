@@ -1,5 +1,5 @@
-import { Cpu, Waves, Hand, MessageSquare, ToyBrick, Sprout } from 'lucide-react';
 import React from 'react';
+import { Cpu, Waves, Hand, MessageSquare, ToyBrick, Sprout } from 'lucide-react';
 
 export interface Project {
   icon: React.ReactNode;
