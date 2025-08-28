@@ -13,7 +13,6 @@
 .profile-card:hover {
   transform: translateY(-10px);
   box-shadow: 0 20px 40px rgba(0,0,0,0.2), 0 0 30px var(--accent-glow);
-  clip-path: inset(-50px 0 0 0 round 1rem); /* Expand the top clip area on hover */
 }
 
 .profile-card-inner {
@@ -149,7 +148,7 @@
     }
 
     .image-glow {
-      background: radial-gradient(circle at 70% 50%, var(--accent-glow) 0%, transparent 60%);
+      background: radial-gradient(circle at 30% 50%, var(--accent-glow) 0%, transparent 60%);
     }
 
     .name {
