@@ -1,4 +1,3 @@
-
 'use client';
 
 import Link from 'next/link';
@@ -18,8 +17,8 @@ export default function BottomNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-t border-primary/20">
-      <div className="container mx-auto flex justify-around items-center h-16 px-2">
+    <nav className="md:hidden fixed bottom-4 inset-x-4 z-50 bg-background/80 backdrop-blur-lg border border-primary/20 rounded-[30px] p-[2px] shadow-2xl shadow-primary/30">
+      <div className="flex justify-around items-center h-16">
         {navLinks.map((link) => {
           const isActive = pathname === link.href;
           return (
@@ -27,14 +26,14 @@ export default function BottomNav() {
               key={link.href}
               href={link.href}
               className={cn(
-                'flex flex-col items-center justify-center text-xs font-medium transition-colors w-1/5 pt-1',
-                isActive ? 'text-primary' : 'text-gray-400 hover:text-primary'
+                'flex flex-col items-center justify-center text-xs font-medium transition-colors w-1/5 pt-1 h-full rounded-[28px]',
+                isActive ? 'text-primary bg-primary/10' : 'text-gray-400 hover:text-primary'
               )}
             >
               <div className="relative">
                 {link.icon}
                 {isActive && (
-                    <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-primary"></span>
+                    <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-primary animate-pulse"></span>
                 )}
               </div>
               <span className="mt-1 truncate">{link.label}</span>
