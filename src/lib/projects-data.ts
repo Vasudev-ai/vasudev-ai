@@ -1,4 +1,3 @@
-
 import { Cpu, Waves, Hand, MessageSquare, ToyBrick, Sprout } from 'lucide-react';
 import React from 'react';
 

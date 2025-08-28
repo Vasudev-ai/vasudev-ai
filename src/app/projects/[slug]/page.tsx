@@ -1,4 +1,3 @@
-
 import { projects } from '@/lib/projects-data';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
