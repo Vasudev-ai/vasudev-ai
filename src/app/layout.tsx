@@ -1,3 +1,4 @@
+
 'use client';
 
 import { Inter, Cinzel_Decorative } from 'next/font/google';
@@ -8,6 +9,7 @@ import Footer from '@/components/footer';
 import AnimatedBackground from '@/components/animated-background';
 import IntroAnimation from '@/components/intro-animation';
 import { useState, useEffect } from 'react';
+import BottomNav from '@/components/bottom-nav';
 
 const inter = Inter({ 
   subsets: ['latin'], 
@@ -62,11 +64,12 @@ export default function RootLayout({
               <AnimatedBackground />
               <div className="relative z-10 flex flex-col min-h-screen">
                 <Header />
-                <main className="flex-grow">{children}</main>
+                <main className="flex-grow pb-20 md:pb-0">{children}</main>
                 <Footer />
               </div>
             </div>
             <Toaster />
+            <BottomNav />
           </>
         )}
       </body>
