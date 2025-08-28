@@ -4,8 +4,18 @@ import type { Metadata } from 'next';
 import OptimizeForm from './_components/optimize-form';
 
 export const metadata: Metadata = {
-  title: 'Content Optimizer | Vasudev AI',
-  description: 'Use our AI-driven tool to get suggestions for optimal content placement.',
+  title: 'AI Content Optimizer Tool',
+  description: 'Use our free AI-driven tool to optimize your content. Identify top keywords and get strategic placement suggestions to improve SEO, readability, and engagement.',
+  keywords: ['AI content optimizer', 'SEO tool', 'keyword suggestion tool', 'content strategy', 'Vasudev AI tools'],
+  openGraph: {
+    title: 'AI Content Optimizer Tool by Vasudev AI',
+    description: 'Identify top keywords and get strategic placement suggestions to improve readability and engagement.',
+    url: 'https://www.vasudev.ai/optimize',
+  },
+  twitter: {
+    title: 'AI Content Optimizer Tool by Vasudev AI',
+    description: 'Identify top keywords and get strategic placement suggestions to improve readability and engagement.',
+  },
 };
 
 export default function OptimizePage() {

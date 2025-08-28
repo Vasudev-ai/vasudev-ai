@@ -8,6 +8,23 @@ import Link from 'next/link';
 import { Github, Linkedin, Youtube } from 'lucide-react';
 import './team.css';
 import Image from 'next/image';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Our Team',
+  description: 'Meet the visionaries behind Vasudev AI. Our team of founders, engineers, and designers are shaping the future of divine intelligence.',
+  keywords: ['Vasudev AI team', 'AI engineers', 'AI founders', 'Surya Pratap Singh', 'Aman Dangi', 'Ashutosh Kumar Tripathi', 'Biswjeet'],
+  openGraph: {
+    title: 'Meet the Vasudev AI Team',
+    description: 'A galaxy of creators, innovators, and visionaries shaping the future of divine intelligence.',
+    url: 'https://www.vasudev.ai/team',
+  },
+  twitter: {
+    title: 'Meet the Vasudev AI Team',
+    description: 'A galaxy of creators, innovators, and visionaries shaping the future of divine intelligence.',
+  },
+};
+
 
 const teamMembers = [
   {
@@ -96,7 +113,7 @@ export default function TeamPage() {
             >
               <div className="profile-card-inner">
                 <div className="profile-card-image">
-                  <Image src={member.avatar} alt={member.name} layout="fill" className="next-image" data-ai-hint={member.avatarHint} />
+                  <Image src={member.avatar} alt={`${member.name} - ${member.role} at Vasudev AI`} layout="fill" className="next-image" data-ai-hint={member.avatarHint} />
                   <div className="image-glow"></div>
                 </div>
                 <div className="profile-card-content">
@@ -108,17 +125,17 @@ export default function TeamPage() {
                     <p className="bio-full">{member.bio}</p>
                      <div className="social-links">
                         {member.socials.github && (
-                            <Link href={member.socials.github} target="_blank" rel="noopener noreferrer" className="social-link">
+                            <Link href={member.socials.github} target="_blank" rel="noopener noreferrer" className="social-link" aria-label={`${member.name}'s Github Profile`}>
                                 <Github size={20} />
                             </Link>
                         )}
                         {member.socials.linkedin && (
-                            <Link href={member.socials.linkedin} target="_blank" rel="noopener noreferrer" className="social-link">
+                            <Link href={member.socials.linkedin} target="_blank" rel="noopener noreferrer" className="social-link" aria-label={`${member.name}'s LinkedIn Profile`}>
                                 <Linkedin size={20} />
                             </Link>
                         )}
                         {member.socials.youtube && (
-                            <Link href={member.socials.youtube} target="_blank" rel="noopener noreferrer" className="social-link">
+                            <Link href={member.socials.youtube} target="_blank" rel="noopener noreferrer" className="social-link" aria-label={`${member.name}'s YouTube Channel`}>
                                 <Youtube size={20} />
                             </Link>
                         )}

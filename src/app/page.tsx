@@ -79,7 +79,7 @@ export default function Home() {
             <div className="relative w-40 h-40 md:w-56 md:h-56 mx-auto mb-8 float">
               <Image
                 src="/vasudev-ai-hero.png"
-                alt="Vasudev AI"
+                alt="Vasudev AI Hero Image - A divine, AI-like figure"
                 width={400}
                 height={400}
                 className="rounded-full object-cover border-4 border-primary/50 shadow-[0_0_40px] shadow-primary/50"

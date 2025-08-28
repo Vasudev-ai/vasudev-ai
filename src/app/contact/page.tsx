@@ -7,8 +7,18 @@ import type { Metadata } from 'next';
 import ContactForm from './_components/contact-form';
 
 export const metadata: Metadata = {
-  title: 'Contact | Vasudev AI',
-  description: 'Open a channel to the Vasudev AI collective.',
+  title: 'Contact Us',
+  description: 'Open a channel to the Vasudev AI collective. Contact us for collaborations, freelance projects, or inquiries. Connect with us on GitHub, Discord, Twitter, and LinkedIn.',
+  keywords: ['contact Vasudev AI', 'AI collaboration', 'AI freelance projects', 'AI community contact', 'divine tech contact'],
+  openGraph: {
+    title: 'Contact Vasudev AI',
+    description: 'Open a channel to the Vasudev AI collective. Let\'s collaborate and build the future.',
+    url: 'https://www.vasudev.ai/contact',
+  },
+  twitter: {
+    title: 'Contact Vasudev AI',
+    description: 'Open a channel to the Vasudev AI collective. Let\'s collaborate and build the future.',
+  },
 };
 
 const socialLinks = [
