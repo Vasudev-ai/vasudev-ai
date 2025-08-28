@@ -30,7 +30,8 @@
   position: relative;
   text-align: left;
   width: 60%;
-  padding-right: 1rem;
+  flex-shrink: 0;
+  padding-right: 1.5rem;
 }
 
 .profile-card-image {
@@ -40,6 +41,7 @@
   width: 40%;
   height: 100%;
   max-width: 250px;
+  z-index: 1;
 }
 
 .profile-card-image .next-image {
@@ -48,6 +50,8 @@
   object-fit: contain;
   object-position: bottom right;
   transition: transform 0.4s ease;
+  z-index: 2;
+  position: relative;
 }
 
 .profile-card:hover .next-image {
@@ -65,7 +69,7 @@
     background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
     opacity: 0;
     transition: opacity 0.4s ease;
-    z-index: -1;
+    z-index: 1;
     border-radius: 50%;
 }
 
@@ -75,7 +79,7 @@
 
 .text-content {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -124,18 +128,14 @@
   transform: scale(1.1);
 }
 
-
-@media (min-width: 768px) {
-    .name {
-        font-size: 2.25rem;
-    }
-}
-
-@media (min-width: 1024px) {
-    .profile-card-content {
-      padding: 1.5rem;
-    }
-    .bio-full {
-        font-size: 0.95rem;
-    }
+@media (max-width: 640px) {
+  .profile-card-inner {
+    padding: 1.5rem;
+  }
+  .name {
+    font-size: 1.5rem;
+  }
+  .bio-full {
+    font-size: 0.85rem;
+  }
 }

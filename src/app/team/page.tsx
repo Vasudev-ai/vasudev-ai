@@ -15,7 +15,7 @@ const teamMembers = [
     name: 'Surya Pratap Singh',
     role: 'Founder & Visionary',
     bio: "Creator of Vasudev AI, pushing the boundaries of offline and futuristic AI systems. He is focused on OS-level mods and merging divine wisdom with technological prowess to build a decentralized, intelligent future.",
-    avatar: '/team/surya.png',
+    avatar: 'https://picsum.photos/seed/surya/400/600',
     avatarHint: 'glowing sun star',
     socials: {
       github: 'https://github.com/sg-surya',
@@ -33,7 +33,7 @@ const teamMembers = [
     name: 'Aman Dangi',
     role: 'Co-Builder & Innovator',
     bio: 'A passionate developer and core contributor to Vasudev AI. Aman specializes in building high-performance systems and turning complex ideas into reality with elegant, efficient code.',
-    avatar: '/team/aman.png',
+    avatar: 'https://picsum.photos/seed/aman/400/600',
     avatarHint: 'cyan planet rings',
     socials: { github: 'https://github.com/Aman-Dangi', linkedin: 'https://www.linkedin.com/in/aman-dangi-085443246/' },
     theme: {
@@ -47,7 +47,7 @@ const teamMembers = [
     name: 'Ashutosh Kumar Tripathi',
     role: 'AI Engineer',
     bio: "Focused on the frontier of artificial intelligence, Ashutosh architect's ethical AI models, develops robust automation frameworks, and engineers the advanced intelligent systems that power Vasudev AI.",
-    avatar: '/team/ashutosh.png',
+    avatar: 'https://picsum.photos/seed/ashutosh/400/600',
     avatarHint: 'golden nebula',
     socials: { github: 'https://github.com/AshutoshIIT1234', linkedin: 'https://www.linkedin.com/in/ashutosh-kumar-tripathi-926308237/' },
     theme: {
@@ -61,7 +61,7 @@ const teamMembers = [
     name: 'Biswjeet',
     role: 'UI/UX Designer',
     bio: 'The artistic soul of Vasudev AI, Biswjeet crafts stunning, futuristic designs that blend divine aesthetics with cutting-edge user experiences to create an intuitive and immersive journey.',
-    avatar: '/team/biswjeet.png',
+    avatar: 'https://picsum.photos/seed/biswjeet/400/600',
     avatarHint: 'holographic sphere',
     socials: { github: '#', linkedin: '#' },
     theme: {
@@ -72,10 +72,31 @@ const teamMembers = [
   },
 ];
 
+const generatePersonSchema = (member: typeof teamMembers[0]) => {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: member.name,
+    jobTitle: member.role,
+    description: member.bio,
+    image: member.avatar,
+    url: `https://www.vasudev.ai/team#${member.id}`,
+    sameAs: Object.values(member.socials).filter(s => s !== '#'),
+    worksFor: {
+      '@type': 'Organization',
+      name: 'Vasudev AI',
+    },
+  };
+};
+
 export default function TeamPage() {
 
   return (
     <div className="team-page-container overflow-hidden pb-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(teamMembers.map(generatePersonSchema)) }}
+      />
       <div className="absolute inset-0 z-[-1] bg-gradient-to-br from-background via-[#10121c] to-background" 
          style={{
            backgroundImage: 'radial-gradient(ellipse at 20% 80%, hsl(var(--primary) / 0.1), transparent 50%), radial-gradient(ellipse at 80% 20%, hsl(var(--accent) / 0.1), transparent 50%)'
@@ -91,14 +112,11 @@ export default function TeamPage() {
           {teamMembers.map((member) => (
             <div 
               key={member.id} 
+              id={member.id}
               className="profile-card"
               style={member.theme as React.CSSProperties}
             >
               <div className="profile-card-inner">
-                <div className="profile-card-image">
-                  <Image src={member.avatar} alt={`${member.name} - ${member.role} at Vasudev AI`} layout="fill" className="next-image" data-ai-hint={member.avatarHint} />
-                  <div className="image-glow"></div>
-                </div>
                 <div className="profile-card-content">
                   <div className="text-content">
                     <span className="role-rank">
@@ -107,23 +125,27 @@ export default function TeamPage() {
                     <h3 className="name font-headline">{member.name}</h3>
                     <p className="bio-full">{member.bio}</p>
                      <div className="social-links">
-                        {member.socials.github && (
+                        {member.socials.github && member.socials.github !== '#' && (
                             <Link href={member.socials.github} target="_blank" rel="noopener noreferrer" className="social-link" aria-label={`${member.name}'s Github Profile`}>
                                 <Github size={20} />
                             </Link>
                         )}
-                        {member.socials.linkedin && (
+                        {member.socials.linkedin && member.socials.linkedin !== '#' && (
                             <Link href={member.socials.linkedin} target="_blank" rel="noopener noreferrer" className="social-link" aria-label={`${member.name}'s LinkedIn Profile`}>
                                 <Linkedin size={20} />
                             </Link>
                         )}
-                        {member.socials.youtube && (
+                        {member.socials.youtube && member.socials.youtube !== '#' && (
                             <Link href={member.socials.youtube} target="_blank" rel="noopener noreferrer" className="social-link" aria-label={`${member.name}'s YouTube Channel`}>
                                 <Youtube size={20} />
                             </Link>
                         )}
                     </div>
                   </div>
+                </div>
+                 <div className="profile-card-image">
+                  <Image src={member.avatar} alt={`${member.name} - ${member.role} at Vasudev AI`} width={400} height={600} className="next-image" data-ai-hint={member.avatarHint} />
+                  <div className="image-glow"></div>
                 </div>
               </div>
             </div>
