@@ -7,6 +7,7 @@
   background: linear-gradient(145deg, var(--bg-gradient-start), var(--bg-gradient-end));
   border: 1px solid hsl(var(--primary) / 0.2);
   backdrop-filter: blur(10px);
+  overflow: hidden;
 }
 
 .profile-card:hover {
@@ -17,9 +18,6 @@
 .profile-card-inner {
   display: flex;
   flex-direction: column;
-  min-height: 480px;
-  align-items: center;
-  justify-content: space-between;
   position: relative;
   z-index: 2;
   padding: 1.5rem;
@@ -41,6 +39,8 @@
   height: 150px;
   flex-shrink: 0;
   margin-bottom: 1.5rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .profile-card-image .avatar {
@@ -128,16 +128,15 @@
 @media (min-width: 1024px) {
     .profile-card-inner {
         flex-direction: row-reverse;
-        min-height: 320px;
-        padding: 2.5rem;
-        align-items: center;
+        align-items: stretch;
+        padding: 0;
     }
     
     .profile-card-content {
         text-align: left;
         align-items: flex-start;
         width: 60%;
-        padding-right: 2rem;
+        padding: 2.5rem;
     }
 
     .text-content {
@@ -149,11 +148,25 @@
     }
     
     .profile-card-image {
-        width: 200px;
-        height: 200px;
-        margin-bottom: 0;
+        width: 40%;
+        height: auto;
+        margin: 0;
+        align-self: stretch;
     }
 
+    .profile-card-image .next-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+    
+    .image-glow {
+        display: none;
+    }
+    
     .name {
         font-size: 2.25rem;
     }

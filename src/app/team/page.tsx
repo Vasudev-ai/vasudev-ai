@@ -35,9 +35,7 @@ const teamMembers = [
     bio: 'A passionate developer and core contributor to Vasudev AI. Aman specializes in building high-performance systems and turning complex ideas into reality with elegant, efficient code.',
     avatar: '/team/aman.png',
     avatarHint: 'cyan planet rings',
-    socials: { github: 'https://github.com/AshutoshIIT1234',
-       linkedin: 'https://www.linkedin.com/in/ashutosh-kumar-tripathi-926308237/'
-      },
+    socials: { github: 'https://github.com/Aman-Dangi', linkedin: 'https://www.linkedin.com/in/aman-dangi-085443246/' },
     theme: {
       '--accent-glow': 'hsl(var(--secondary))', // Golden Yellow
       '--bg-gradient-start': 'hsl(var(--secondary) / 0.2)',
@@ -98,7 +96,7 @@ export default function TeamPage() {
             >
               <div className="profile-card-inner">
                 <div className="profile-card-image">
-                  <Image src={member.avatar} alt={member.name} layout="fill" objectFit="contain" data-ai-hint={member.avatarHint} />
+                  <Image src={member.avatar} alt={member.name} layout="fill" className="next-image" data-ai-hint={member.avatarHint} />
                   <div className="image-glow"></div>
                 </div>
                 <div className="profile-card-content">
