@@ -113,7 +113,7 @@ export default function TeamPage() {
             <div 
               key={member.id} 
               id={member.id}
-              className="profile-card"
+              className="profile-card overflow-hidden"
               style={member.theme as React.CSSProperties}
             >
               <div className="profile-card-inner">

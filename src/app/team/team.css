@@ -21,6 +21,7 @@
   padding: 1.5rem;
   min-height: 400px;
   align-items: stretch;
+  overflow: visible;
 }
 
 .profile-card-content {
