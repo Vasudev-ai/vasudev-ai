@@ -7,7 +7,6 @@
   background: linear-gradient(145deg, var(--bg-gradient-start), var(--bg-gradient-end));
   border: 1px solid hsl(var(--primary) / 0.2);
   backdrop-filter: blur(10px);
-  overflow: hidden;
 }
 
 .profile-card:hover {
@@ -50,13 +49,15 @@
   height: 100%;
   object-fit: contain;
   object-position: bottom right;
-  transition: transform 0.4s ease;
+  transition: transform 0.4s ease, filter 0.4s ease;
   z-index: 2;
   position: relative;
+  filter: drop-shadow(0 0 0 transparent);
 }
 
 .profile-card:hover .next-image {
-  transform: scale(1.05);
+  transform: scale(1.2) rotate(-2deg);
+  filter: drop-shadow(10px 10px 20px rgba(0,0,0,0.3));
 }
 
 .image-glow {
