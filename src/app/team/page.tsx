@@ -79,7 +79,7 @@ const generatePersonSchema = (member: typeof teamMembers[0]) => {
     name: member.name,
     jobTitle: member.role,
     description: member.bio,
-    image: member.avatar,
+    image: `https://www.vasudev.ai${member.avatar}`,
     url: `https://www.vasudev.ai/team#${member.id}`,
     sameAs: Object.values(member.socials).filter(s => s !== '#'),
     worksFor: {
