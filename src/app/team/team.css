@@ -53,6 +53,7 @@
   z-index: 2;
   position: relative;
   filter: drop-shadow(0 0 0 transparent);
+  transform-origin: bottom center;
 }
 
 .profile-card:hover .next-image {
