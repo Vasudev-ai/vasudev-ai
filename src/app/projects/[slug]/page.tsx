@@ -166,15 +166,3 @@ export default function ProjectCaseStudyPage({ params }: Props) {
     </div>
   );
 }
-
-// Function to generate static paths for all projects
-export async function generateStaticPaths() {
-  const paths = projects.map(project => ({
-    params: { slug: project.slug },
-  }));
-
-  return {
-    paths,
-    fallback: false,
-  };
-}
