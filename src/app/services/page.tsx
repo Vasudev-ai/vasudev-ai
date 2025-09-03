@@ -1,11 +1,11 @@
 
 import PageHeader from '@/components/page-header';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowRight, CheckCircle, Bot, Code, Palette, Users, Shield, Heart, Search, Film, Briefcase, BarChart, Zap, Globe, Puzzle, Network, CloudCog, ShieldCheck, Server, Book, PenTool, MessageSquare } from 'lucide-react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
+import './services.css';
 
 export const metadata: Metadata = {
   title: 'Services - AI & Web Development | Vasudev AI',
@@ -18,25 +18,25 @@ const serviceCategories = [
     category: 'AI & Automation',
     services: [
       {
-        icon: <Bot className="h-8 w-8 text-accent" />,
+        icon: <Bot className="h-6 w-6" />,
         title: 'Custom AI Assistants',
         description: 'Bespoke AI assistants tailored to your needs, available offline or in the cloud.',
         offerings: ['Offline + Cloud-Based', 'RPA Integration', 'Task Automation', 'Personalized Workflows'],
       },
       {
-        icon: <MessageSquare className="h-8 w-8 text-accent" />,
+        icon: <MessageSquare className="h-6 w-6" />,
         title: 'Chatbots & Voicebots',
         description: 'Engage users with intelligent bots on websites, WhatsApp, and Telegram.',
         offerings: ['Customer Support Bots', 'Lead Generation Bots', 'Multi-platform Integration', 'Voice-activated Assistants'],
       },
       {
-        icon: <PenTool className="h-8 w-8 text-accent" />,
+        icon: <PenTool className="h-6 w-6" />,
         title: 'AI Content Tools',
         description: 'Automate your content creation pipeline from generation to editing.',
         offerings: ['Auto-blogging & Scripts', 'AI-assisted Video Editing', 'Thumbnail Generation', 'Content Summarization'],
       },
       {
-        icon: <BarChart className="h-8 w-8 text-accent" />,
+        icon: <BarChart className="h-6 w-6" />,
         title: 'Data Analytics & Visualization',
         description: 'Turn complex data into actionable insights with AI-powered analytics.',
         offerings: ['Predictive Modeling', 'Insight Generation', 'Interactive Dashboards', 'Trend Analysis'],
@@ -47,25 +47,25 @@ const serviceCategories = [
     category: 'Development & Tech',
     services: [
       {
-        icon: <Briefcase className="h-8 w-8 text-accent" />,
+        icon: <Briefcase className="h-6 w-6" />,
         title: 'SaaS Development',
         description: 'End-to-end development of scalable Software-as-a-Service platforms.',
         offerings: ['MVP for Startups', 'Multi-tenant Architecture', 'Subscription Billing', 'Full-Stack Development'],
       },
       {
-        icon: <Puzzle className="h-8 w-8 text-accent" />,
+        icon: <Puzzle className="h-6 w-6" />,
         title: 'API Development & Integration',
         description: 'Build robust APIs and integrate third-party services seamlessly.',
         offerings: ['REST & GraphQL APIs', 'Microservices', 'Payment Gateway Integration', 'Third-party API Sync'],
       },
       {
-        icon: <Globe className="h-8 w-8 text-accent" />,
+        icon: <Globe className="h-6 w-6" />,
         title: 'Blockchain & Web3 Solutions',
         description: 'Decentralized applications, smart contracts, and crypto integrations.',
         offerings: ['Smart Contract Dev', 'Crypto Wallets', 'dApp Development', 'NFT Marketplaces'],
       },
       {
-        icon: <Network className="h-8 w-8 text-accent" />,
+        icon: <Network className="h-6 w-6" />,
         title: 'IoT Projects',
         description: 'Connecting hardware to the cloud with intelligent AI-driven solutions.',
         offerings: ['Hardware + AI Integration', 'Sensor Data Processing', 'IoT Dashboards', 'Remote Device Control'],
@@ -76,25 +76,25 @@ const serviceCategories = [
     category: 'Creative & Business',
     services: [
       {
-        icon: <Search className="h-8 w-8 text-accent" />,
+        icon: <Search className="h-6 w-6" />,
         title: 'Digital Marketing & SEO',
         description: 'Boost your online presence with data-driven marketing and SEO strategies.',
         offerings: ['SEO Audits & Strategy', 'PPC Campaigns', 'Content Marketing', 'Analytics & Reporting'],
       },
       {
-        icon: <Users className="h-8 w-8 text-accent" />,
+        icon: <Users className="h-6 w-6" />,
         title: 'Social Media Management',
         description: 'Grow your brand and engage your audience with expert social media handling.',
         offerings: ['Content Calendars', 'Growth Strategies', 'Community Management', 'Performance Analytics'],
       },
       {
-        icon: <Film className="h-8 w-8 text-accent" />,
+        icon: <Film className="h-6 w-6" />,
         title: 'Video Production',
         description: 'High-quality video content, from promotional ads to engaging social media reels.',
         offerings: ['Promotional Ads', 'Explainer Videos', 'Social Media Reels', 'Post-Production'],
       },
       {
-        icon: <Palette className="h-8 w-8 text-accent" />,
+        icon: <Palette className="h-6 w-6" />,
         title: 'Brand Identity & Motion Graphics',
         description: 'Forge a memorable brand identity with stunning visuals and animations.',
         offerings: ['Logo & Style Guides', 'Animated Logos', 'UI/UX Motion', 'Marketing Graphics'],
@@ -105,19 +105,19 @@ const serviceCategories = [
     category: 'Community & Education',
     services: [
       {
-        icon: <Book className="h-8 w-8 text-accent" />,
+        icon: <Book className="h-6 w-6" />,
         title: 'Workshops & Training',
         description: 'Upskill your team or community with expert-led workshops and training.',
         offerings: ['AI & Coding Bootcamps', 'Freelancing Masterclass', 'Cybersecurity Training', 'Custom Curriculum'],
       },
       {
-        icon: <Heart className="h-8 w-8 text-accent" />,
+        icon: <Heart className="h-6 w-6" />,
         title: 'Career Guidance & Mentorship',
         description: 'Navigate your tech career with personalized guidance and mentorship.',
         offerings: ['1-on-1 Mentorship', 'Resume & Portfolio Review', 'Interview Preparation', 'Career Pathing'],
       },
       {
-        icon: <Code className="h-8 w-8 text-accent" />,
+        icon: <Code className="h-6 w-6" />,
         title: 'Freelance Project Hub',
         description: 'Connecting clients with our talented community for seamless project execution.',
         offerings: ['Vetted Community Talent', 'Project Management', 'Client-Community Liaison', 'Quality Assurance'],
@@ -128,21 +128,21 @@ const serviceCategories = [
     category: 'Coming Soon',
     services: [
       {
-        icon: <ShieldCheck className="h-8 w-8 text-accent" />,
+        icon: <ShieldCheck className="h-6 w-6" />,
         title: 'Cybersecurity Services',
         description: 'Protect your digital assets with comprehensive security assessments.',
         offerings: ['Penetration Testing', 'Data Security Audits', 'Vulnerability Checks', 'Security Hardening'],
         isComingSoon: true
       },
       {
-        icon: <Server className="h-8 w-8 text-accent" />,
+        icon: <Server className="h-6 w-6" />,
         title: 'Server Setup & Cloud Solutions',
         description: 'Reliable infrastructure on major cloud platforms or self-hosted offline setups.',
         offerings: ['AWS, GCP, Azure', 'Self-hosted Offline Infra', 'Scalable Architectures', 'Infrastructure as Code'],
         isComingSoon: true
       },
       {
-        icon: <CloudCog className="h-8 w-8 text-accent" />,
+        icon: <CloudCog className="h-6 w-6" />,
         title: 'DevOps Services',
         description: 'Automate your development lifecycle for faster, more reliable deployments.',
         offerings: ['CI/CD Pipelines', 'Docker & Kubernetes', 'Infrastructure Monitoring', 'Automated Testing'],
@@ -164,36 +164,36 @@ export default function ServicesPage() {
       <div className="container mx-auto px-4 mt-16 space-y-20">
         {serviceCategories.map((category) => (
           <section key={category.category}>
-            <h2 className="text-3xl md:text-4xl font-headline font-bold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-primary to-gray-400">{category.category}</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-              {category.services.map((service) => (
-                <Card key={service.title} className="bg-card/70 border-primary/20 backdrop-blur-sm p-6 hover:border-primary hover:-translate-y-2 transition-all duration-300 shadow-lg hover:shadow-primary/30 flex flex-col">
-                   {service.isComingSoon && (
-                     <Badge variant="secondary" className="absolute top-4 right-4 bg-secondary/80 text-secondary-foreground">Coming Soon</Badge>
-                   )}
-                  <CardHeader className="flex flex-row items-start gap-4">
-                    <div className="p-4 bg-primary/10 rounded-full">{service.icon}</div>
-                    <CardTitle className="text-xl md:text-2xl font-headline text-white mt-2">{service.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent className="flex-grow space-y-4">
-                    <p className="text-gray-300 min-h-[40px]">{service.description}</p>
-                     <ul className="space-y-2 text-sm text-gray-400">
-                      {service.offerings.map(item => (
-                        <li key={item} className="flex items-center gap-2">
-                            <CheckCircle className="h-4 w-4 text-primary" />
-                            <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                  <div className="p-6 pt-0 mt-auto">
-                     <Button asChild variant="outline" className="w-full border-primary text-primary hover:bg-primary/10 hover:text-accent" disabled={service.isComingSoon}>
-                        <Link href="/contact">
-                            Discuss Project <ArrowRight className="ml-2 h-4 w-4" />
-                        </Link>
-                    </Button>
+            <h2 className="text-3xl md:text-4xl font-headline font-bold text-center mb-16 bg-clip-text text-transparent bg-gradient-to-r from-primary to-gray-400">{category.category}</h2>
+            <div className="services-blueprint-container">
+              {category.services.map((service, index) => (
+                <div key={service.title} className="service-node">
+                  <div className="service-node-icon-wrapper text-accent">
+                    {service.icon}
                   </div>
-                </Card>
+                  <div className="service-node-content">
+                    <div className="service-card-blueprint">
+                      {service.isComingSoon && (
+                        <Badge variant="secondary" className="absolute top-4 right-4 bg-secondary/80 text-secondary-foreground z-10">Coming Soon</Badge>
+                      )}
+                      <h3 className="text-xl md:text-2xl font-headline text-white mb-2">{service.title}</h3>
+                      <p className="text-gray-400 mb-4">{service.description}</p>
+                      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-sm text-gray-300 mb-6">
+                        {service.offerings.map(item => (
+                          <li key={item} className="flex items-center gap-2">
+                              <CheckCircle className="h-4 w-4 text-primary flex-shrink-0" />
+                              <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      <Button asChild variant="outline" className="w-full border-primary/50 text-primary hover:bg-primary/10 hover:text-accent hover:border-accent" disabled={service.isComingSoon}>
+                          <Link href="/contact">
+                              Discuss Project <ArrowRight className="ml-2 h-4 w-4" />
+                          </Link>
+                      </Button>
+                    </div>
+                  </div>
+                </div>
               ))}
             </div>
           </section>
@@ -216,3 +216,4 @@ export default function ServicesPage() {
     </div>
   );
 }
+
