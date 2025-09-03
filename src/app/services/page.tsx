@@ -1,4 +1,6 @@
 
+'use client';
+
 import PageHeader from '@/components/page-header';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, CheckCircle, Bot, Code, Palette, Users, Shield, Heart, Search, Film, Briefcase, BarChart, Zap, Globe, Puzzle, Network, CloudCog, ShieldCheck, Server, Book, PenTool, MessageSquare } from 'lucide-react';
@@ -6,12 +8,8 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import './services.css';
+import { motion } from 'framer-motion';
 
-export const metadata: Metadata = {
-  title: 'Services - AI & Web Development | Vasudev AI',
-  description: 'Explore professional services by Vasudev AI, including custom AI solutions, SaaS development, Web3, cybersecurity, digital marketing, and community education.',
-  keywords: ['AI services', 'web development', 'SaaS development', 'Web3 solutions', 'AI automation', 'cybersecurity', 'digital marketing', 'community education'],
-};
 
 const serviceCategories = [
   {
@@ -152,6 +150,26 @@ const serviceCategories = [
   }
 ];
 
+const cardVariants = {
+  offscreen: {
+    opacity: 0,
+    x: -100
+  },
+  offscreenRight: {
+    opacity: 0,
+    x: 100
+  },
+  onscreen: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      type: "spring",
+      bounce: 0.4,
+      duration: 0.8
+    }
+  }
+};
+
 
 export default function ServicesPage() {
   return (
@@ -171,8 +189,13 @@ export default function ServicesPage() {
                   <div className="service-node-icon-wrapper text-accent">
                     {service.icon}
                   </div>
-                  <div className="service-node-content">
-                    <div className="service-card-blueprint">
+                  <motion.div 
+                    className="service-node-content"
+                    initial={index % 2 === 0 ? "offscreen" : "offscreenRight"}
+                    whileInView="onscreen"
+                    viewport={{ once: true, amount: 0.4 }}
+                  >
+                    <motion.div className="service-card-blueprint" variants={cardVariants}>
                       {service.isComingSoon && (
                         <Badge variant="secondary" className="absolute top-4 right-4 bg-secondary/80 text-secondary-foreground z-10">Coming Soon</Badge>
                       )}
@@ -191,8 +214,8 @@ export default function ServicesPage() {
                               Discuss Project <ArrowRight className="ml-2 h-4 w-4" />
                           </Link>
                       </Button>
-                    </div>
-                  </div>
+                    </motion.div>
+                  </motion.div>
                 </div>
               ))}
             </div>
@@ -216,4 +239,3 @@ export default function ServicesPage() {
     </div>
   );
 }
-
