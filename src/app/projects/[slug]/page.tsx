@@ -211,5 +211,3 @@ export default function ProjectCaseStudyPage({ params }: Props) {
     </>
   );
 }
-
-    
