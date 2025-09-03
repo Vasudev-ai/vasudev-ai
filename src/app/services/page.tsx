@@ -125,7 +125,7 @@ const serviceCategories = [
     ]
   },
   {
-    category: 'Coming Soon: Cybersecurity & Infra',
+    category: 'Coming Soon',
     services: [
       {
         icon: <ShieldCheck className="h-8 w-8 text-accent" />,
