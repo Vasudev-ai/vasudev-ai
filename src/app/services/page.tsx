@@ -4,7 +4,6 @@
 import PageHeader from '@/components/page-header';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, CheckCircle, Bot, Code, Palette, Users, Shield, Heart, Search, Film, Briefcase, BarChart, Zap, Globe, Puzzle, Network, CloudCog, ShieldCheck, Server, Book, PenTool, MessageSquare } from 'lucide-react';
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import './services.css';
