@@ -3,19 +3,24 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, Users, Rocket, Shield, Mail } from 'lucide-react';
+import { Home, Users, Rocket, Shield, Mail, Briefcase } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const navLinks = [
   { href: '/', label: 'Home', icon: <Home className="h-5 w-5" /> },
   { href: '/community', label: 'Community', icon: <Users className="h-5 w-5" /> },
   { href: '/projects', label: 'Projects', icon: <Rocket className="h-5 w-5" /> },
+  { href: '/services', label: 'Services', icon: <Briefcase className="h-5 w-5" /> },
   { href: '/team', label: 'Team', icon: <Shield className="h-5 w-5" /> },
   { href: '/contact', label: 'Contact', icon: <Mail className="h-5 w-5" /> },
 ];
 
 export default function BottomNav() {
   const pathname = usePathname();
+
+  if (navLinks.length > 6) {
+    console.warn("Bottom navigation has more than 6 items. This may cause layout issues.");
+  }
 
   return (
     <nav className="md:hidden fixed bottom-4 inset-x-4 z-50 bg-background/80 backdrop-blur-lg border border-primary/20 rounded-[30px] p-[2px] shadow-2xl shadow-primary/30">
@@ -27,7 +32,7 @@ export default function BottomNav() {
               key={link.href}
               href={link.href}
               className={cn(
-                'flex flex-col items-center justify-center text-xs font-medium transition-colors w-1/5 pt-1 h-full rounded-[28px]',
+                'flex flex-col items-center justify-center text-xs font-medium transition-colors w-1/6 pt-1 h-full rounded-[28px]',
                 isActive ? 'text-primary bg-primary/10' : 'text-gray-400 hover:text-primary'
               )}
             >
