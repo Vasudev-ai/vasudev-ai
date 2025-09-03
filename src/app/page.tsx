@@ -12,6 +12,7 @@ import { useState } from 'react';
 import './_components/portal-button.css';
 import { AnimatePresence } from 'framer-motion';
 import CosmicJoinModal from './_components/cosmic-join-modal';
+import ServicesShowcase from './_components/services-showcase';
 
 
 const pillars = [
@@ -129,6 +130,8 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        <ServicesShowcase />
 
         <TechStack />
 
