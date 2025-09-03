@@ -2,168 +2,204 @@
 import PageHeader from '@/components/page-header';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Lightbulb, Code, Bot, ArrowRight, CheckCircle, Smartphone, Palette, PenTool, LayoutTemplate, CircuitBoard, Calculator } from 'lucide-react';
+import { ArrowRight, CheckCircle, Bot, Code, Palette, Users, Shield, Heart, Search, Film, Briefcase, BarChart, Zap, Globe, Puzzle, Network, CloudCog, ShieldCheck, Server } from 'lucide-react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { Badge } from '@/components/ui/badge';
 
 export const metadata: Metadata = {
   title: 'Services - AI & Web Development | Vasudev AI',
-  description: 'Explore professional services by Vasudev AI, including Web & App Development, AI Solutions, UI/UX Design, and more to bring your vision to life.',
-  keywords: ['AI services', 'web development', 'app development', 'UI/UX design', 'AI solutions', 'graphic design', 'CMS development', 'PCB design', 'accounting'],
+  description: 'Explore professional services by Vasudev AI, including custom AI solutions, SaaS development, Web3, cybersecurity, digital marketing, and community education.',
+  keywords: ['AI services', 'web development', 'SaaS development', 'Web3 solutions', 'AI automation', 'cybersecurity', 'digital marketing', 'community education'],
 };
 
-const services = [
+const serviceCategories = [
   {
-    icon: <Code className="h-8 w-8 text-accent" />,
-    title: 'Web Development',
-    description: 'Professional web development services to build modern, responsive, and high-performance websites.',
-    offerings: ['Full-Stack Web Apps', 'E-commerce Solutions', 'API Development', 'Next.js & React'],
-    schema: {
-      '@type': 'Service',
-      serviceType: 'Web Development',
-      description: 'Professional web development services to build modern, responsive, and high-performance websites.',
-      provider: { '@type': 'Organization', name: 'Vasudev AI' },
-    },
-  },
-  {
-    icon: <Smartphone className="h-8 w-8 text-accent" />,
-    title: 'App Development',
-    description: 'Professional app development for iOS and Android, delivering seamless user experiences.',
-    offerings: ['Native & Cross-Platform', 'Flutter & React Native', 'UI/UX Integration', 'Backend Services'],
-     schema: {
-      '@type': 'Service',
-      serviceType: 'App Development',
-      description: 'Professional app development for iOS and Android, delivering seamless user experiences.',
-      provider: { '@type': 'Organization', name: 'Vasudev AI' },
-    },
-  },
-   {
-    icon: <Palette className="h-8 w-8 text-accent" />,
-    title: 'Graphic Design',
-    description: 'Creative graphic design services to build a strong brand identity and visually stunning materials.',
-    offerings: ['Logo & Brand Identity', 'Marketing Materials', 'Digital Illustrations', 'Social Media Graphics'],
-     schema: {
-      '@type': 'Service',
-      serviceType: 'Graphic Design',
-      description: 'Creative graphic design services to build a strong brand identity and visually stunning materials.',
-      provider: { '@type': 'Organization', name: 'Vasudev AI' },
-    },
+    category: 'AI & Automation',
+    services: [
+      {
+        icon: <Bot className="h-8 w-8 text-accent" />,
+        title: 'Custom AI Assistants',
+        description: 'Bespoke AI assistants tailored to your needs, available offline or in the cloud.',
+        offerings: ['Offline + Cloud-Based', 'RPA Integration', 'Task Automation', 'Personalized Workflows'],
+      },
+      {
+        icon: <MessageSquare className="h-8 w-8 text-accent" />,
+        title: 'Chatbots & Voicebots',
+        description: 'Engage users with intelligent bots on websites, WhatsApp, and Telegram.',
+        offerings: ['Customer Support Bots', 'Lead Generation Bots', 'Multi-platform Integration', 'Voice-activated Assistants'],
+      },
+      {
+        icon: <PenTool className="h-8 w-8 text-accent" />,
+        title: 'AI Content Tools',
+        description: 'Automate your content creation pipeline from generation to editing.',
+        offerings: ['Auto-blogging & Scripts', 'AI-assisted Video Editing', 'Thumbnail Generation', 'Content Summarization'],
+      },
+      {
+        icon: <BarChart className="h-8 w-8 text-accent" />,
+        title: 'Data Analytics & Visualization',
+        description: 'Turn complex data into actionable insights with AI-powered analytics.',
+        offerings: ['Predictive Modeling', 'Insight Generation', 'Interactive Dashboards', 'Trend Analysis'],
+      },
+    ]
   },
   {
-    icon: <PenTool className="h-8 w-8 text-accent" />,
-    title: 'UI/UX Design',
-    description: 'Professional UI/UX design services to create intuitive, engaging, and user-friendly digital products.',
-    offerings: ['Wireframing & Prototyping', 'User Research & Testing', 'Interaction Design', 'Figma & Adobe XD'],
-     schema: {
-      '@type': 'Service',
-      serviceType: 'UI/UX Design',
-      description: 'Professional UI/UX design services to create intuitive, engaging, and user-friendly digital products.',
-      provider: { '@type': 'Organization', name: 'Vasudev AI' },
-    },
+    category: 'Development & Tech',
+    services: [
+      {
+        icon: <Briefcase className="h-8 w-8 text-accent" />,
+        title: 'SaaS Development',
+        description: 'End-to-end development of scalable Software-as-a-Service platforms.',
+        offerings: ['MVP for Startups', 'Multi-tenant Architecture', 'Subscription Billing', 'Full-Stack Development'],
+      },
+      {
+        icon: <Puzzle className="h-8 w-8 text-accent" />,
+        title: 'API Development & Integration',
+        description: 'Build robust APIs and integrate third-party services seamlessly.',
+        offerings: ['REST & GraphQL APIs', 'Microservices', 'Payment Gateway Integration', 'Third-party API Sync'],
+      },
+      {
+        icon: <Globe className="h-8 w-8 text-accent" />,
+        title: 'Blockchain & Web3 Solutions',
+        description: 'Decentralized applications, smart contracts, and crypto integrations.',
+        offerings: ['Smart Contract Dev', 'Crypto Wallets', 'dApp Development', 'NFT Marketplaces'],
+      },
+      {
+        icon: <Network className="h-8 w-8 text-accent" />,
+        title: 'IoT Projects',
+        description: 'Connecting hardware to the cloud with intelligent AI-driven solutions.',
+        offerings: ['Hardware + AI Integration', 'Sensor Data Processing', 'IoT Dashboards', 'Remote Device Control'],
+      },
+    ]
   },
   {
-    icon: <Bot className="h-8 w-8 text-accent" />,
-    title: 'AI Solutions',
-    description: 'Professional AI solutions services to integrate intelligent features and automation into your business.',
-    offerings: ['Custom AI Models', 'Genkit & Gemini Integration', 'Chatbots & Virtual Assistants', 'Data Analysis'],
-     schema: {
-      '@type': 'Service',
-      serviceType: 'AI Solutions',
-      description: 'Professional AI solutions services to integrate intelligent features and automation into your business.',
-      provider: { '@type': 'Organization', name: 'Vasudev AI' },
-    },
+    category: 'Creative & Business',
+    services: [
+      {
+        icon: <Search className="h-8 w-8 text-accent" />,
+        title: 'Digital Marketing & SEO',
+        description: 'Boost your online presence with data-driven marketing and SEO strategies.',
+        offerings: ['SEO Audits & Strategy', 'PPC Campaigns', 'Content Marketing', 'Analytics & Reporting'],
+      },
+      {
+        icon: <Users className="h-8 w-8 text-accent" />,
+        title: 'Social Media Management',
+        description: 'Grow your brand and engage your audience with expert social media handling.',
+        offerings: ['Content Calendars', 'Growth Strategies', 'Community Management', 'Performance Analytics'],
+      },
+      {
+        icon: <Film className="h-8 w-8 text-accent" />,
+        title: 'Video Production',
+        description: 'High-quality video content, from promotional ads to engaging social media reels.',
+        offerings: ['Promotional Ads', 'Explainer Videos', 'Social Media Reels', 'Post-Production'],
+      },
+      {
+        icon: <Palette className="h-8 w-8 text-accent" />,
+        title: 'Brand Identity & Motion Graphics',
+        description: 'Forge a memorable brand identity with stunning visuals and animations.',
+        offerings: ['Logo & Style Guides', 'Animated Logos', 'UI/UX Motion', 'Marketing Graphics'],
+      },
+    ]
   },
   {
-    icon: <LayoutTemplate className="h-8 w-8 text-accent" />,
-    title: 'CMS Development',
-    description: 'Professional CMS development to give you full control over your website content with an easy-to-use backend.',
-    offerings: ['Headless CMS', 'WordPress & Strapi', 'Custom Plugin Dev', 'Content Migration'],
-     schema: {
-      '@type': 'Service',
-      serviceType: 'CMS Development',
-      description: 'Professional CMS development to give you full control over your website content with an easy-to-use backend.',
-      provider: { '@type': 'Organization', name: 'Vasudev AI' },
-    },
+    category: 'Community & Education',
+    services: [
+      {
+        icon: <Book className="h-8 w-8 text-accent" />,
+        title: 'Workshops & Training',
+        description: 'Upskill your team or community with expert-led workshops and training.',
+        offerings: ['AI & Coding Bootcamps', 'Freelancing Masterclass', 'Cybersecurity Training', 'Custom Curriculum'],
+      },
+      {
+        icon: <Heart className="h-8 w-8 text-accent" />,
+        title: 'Career Guidance & Mentorship',
+        description: 'Navigate your tech career with personalized guidance and mentorship.',
+        offerings: ['1-on-1 Mentorship', 'Resume & Portfolio Review', 'Interview Preparation', 'Career Pathing'],
+      },
+      {
+        icon: <Code className="h-8 w-8 text-accent" />,
+        title: 'Freelance Project Hub',
+        description: 'Connecting clients with our talented community for seamless project execution.',
+        offerings: ['Vetted Community Talent', 'Project Management', 'Client-Community Liaison', 'Quality Assurance'],
+      },
+    ]
   },
-   {
-    icon: <CircuitBoard className="h-8 w-8 text-accent" />,
-    title: 'PCB Design',
-    description: 'Professional PCB design services for your electronic hardware projects, from concept to production-ready files.',
-    offerings: ['Schematic Design', 'Multi-layer Layout', 'Component Sourcing', 'Gerber File Generation'],
-     schema: {
-      '@type': 'Service',
-      serviceType: 'PCB Design',
-      description: 'Professional PCB design services for your electronic hardware projects.',
-      provider: { '@type': 'Organization', name: 'Vasudev AI' },
-    },
-  },
-   {
-    icon: <Calculator className="h-8 w-8 text-accent" />,
-    title: 'Accounting Professional',
-    description: 'Professional accounting services to ensure financial accuracy and compliance for your business.',
-    offerings: ['Bookkeeping', 'Financial Reporting', 'Tax Preparation', 'Payroll Services'],
-     schema: {
-      '@type': 'Service',
-      serviceType: 'Accounting Professional',
-      description: 'Professional accounting services to ensure financial accuracy and compliance for your business.',
-      provider: { '@type': 'Organization', name: 'Vasudev AI' },
-    },
-  },
+  {
+    category: 'Coming Soon: Cybersecurity & Infra',
+    services: [
+      {
+        icon: <ShieldCheck className="h-8 w-8 text-accent" />,
+        title: 'Cybersecurity Services',
+        description: 'Protect your digital assets with comprehensive security assessments.',
+        offerings: ['Penetration Testing', 'Data Security Audits', 'Vulnerability Checks', 'Security Hardening'],
+        isComingSoon: true
+      },
+      {
+        icon: <Server className="h-8 w-8 text-accent" />,
+        title: 'Server Setup & Cloud Solutions',
+        description: 'Reliable infrastructure on major cloud platforms or self-hosted offline setups.',
+        offerings: ['AWS, GCP, Azure', 'Self-hosted Offline Infra', 'Scalable Architectures', 'Infrastructure as Code'],
+        isComingSoon: true
+      },
+      {
+        icon: <CloudCog className="h-8 w-8 text-accent" />,
+        title: 'DevOps Services',
+        description: 'Automate your development lifecycle for faster, more reliable deployments.',
+        offerings: ['CI/CD Pipelines', 'Docker & Kubernetes', 'Infrastructure Monitoring', 'Automated Testing'],
+        isComingSoon: true
+      },
+    ]
+  }
 ];
 
-export default function ServicesPage() {
-  const allServicesSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'ItemList',
-    itemListElement: services.map((service, index) => ({
-      '@type': 'ListItem',
-      position: index + 1,
-      item: service.schema,
-    })),
-  };
 
+export default function ServicesPage() {
   return (
     <div className="pb-20">
-       <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(allServicesSchema) }}
-      />
       <PageHeader
         title="Our Services"
         subtitle="Comprehensive solutions for your business needs."
         className="[background-image:radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(0,229,255,0.1),rgba(255,255,255,0))]"
       />
-      <div className="container mx-auto px-4 mt-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-          {services.map((service) => (
-            <Card key={service.title} className="bg-card/70 border-primary/20 backdrop-blur-sm p-6 hover:border-primary hover:-translate-y-2 transition-all duration-300 shadow-lg hover:shadow-primary/30 flex flex-col">
-              <CardHeader className="flex flex-row items-start gap-4">
-                <div className="p-4 bg-primary/10 rounded-full">{service.icon}</div>
-                <CardTitle className="text-xl md:text-2xl font-headline text-white mt-2">{service.title}</CardTitle>
-              </CardHeader>
-              <CardContent className="flex-grow space-y-4">
-                <p className="text-gray-300 min-h-[40px]">{service.description}</p>
-                 <ul className="space-y-2 text-sm text-gray-400">
-                  {service.offerings.map(item => (
-                    <li key={item} className="flex items-center gap-2">
-                        <CheckCircle className="h-4 w-4 text-primary" />
-                        <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-              <div className="p-6 pt-0 mt-auto">
-                 <Button asChild variant="outline" className="w-full border-primary text-primary hover:bg-primary/10 hover:text-accent">
-                    <Link href="/contact">
-                        Discuss Project <ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
-                </Button>
-              </div>
-            </Card>
-          ))}
-        </div>
+      <div className="container mx-auto px-4 mt-16 space-y-20">
+        {serviceCategories.map((category) => (
+          <section key={category.category}>
+            <h2 className="text-3xl md:text-4xl font-headline font-bold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-primary to-gray-400">{category.category}</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+              {category.services.map((service) => (
+                <Card key={service.title} className="bg-card/70 border-primary/20 backdrop-blur-sm p-6 hover:border-primary hover:-translate-y-2 transition-all duration-300 shadow-lg hover:shadow-primary/30 flex flex-col">
+                   {service.isComingSoon && (
+                     <Badge variant="secondary" className="absolute top-4 right-4 bg-secondary/80 text-secondary-foreground">Coming Soon</Badge>
+                   )}
+                  <CardHeader className="flex flex-row items-start gap-4">
+                    <div className="p-4 bg-primary/10 rounded-full">{service.icon}</div>
+                    <CardTitle className="text-xl md:text-2xl font-headline text-white mt-2">{service.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent className="flex-grow space-y-4">
+                    <p className="text-gray-300 min-h-[40px]">{service.description}</p>
+                     <ul className="space-y-2 text-sm text-gray-400">
+                      {service.offerings.map(item => (
+                        <li key={item} className="flex items-center gap-2">
+                            <CheckCircle className="h-4 w-4 text-primary" />
+                            <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                  <div className="p-6 pt-0 mt-auto">
+                     <Button asChild variant="outline" className="w-full border-primary text-primary hover:bg-primary/10 hover:text-accent" disabled={service.isComingSoon}>
+                        <Link href="/contact">
+                            Discuss Project <ArrowRight className="ml-2 h-4 w-4" />
+                        </Link>
+                    </Button>
+                  </div>
+                </Card>
+              ))}
+            </div>
+          </section>
+        ))}
 
-        <section className="w-full pt-20 md:pt-24 pb-12 text-center">
+        <section className="w-full pt-12 text-center">
             <div className="bg-card/30 border border-accent/20 rounded-2xl p-8 md:p-12 backdrop-blur-sm shadow-lg">
                 <h2 className="text-2xl md:text-4xl font-headline font-bold mb-4 text-accent">
                     Ready to build the future?
