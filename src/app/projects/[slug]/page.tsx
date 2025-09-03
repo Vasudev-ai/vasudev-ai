@@ -1,3 +1,4 @@
+
 import { projects } from '@/lib/projects-data';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
@@ -61,8 +62,67 @@ export default function ProjectCaseStudyPage({ params }: Props) {
     notFound();
   }
 
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    mainEntityOfPage: {
+        '@type': 'WebPage',
+        '@id': `https://www.vasudev.ai/projects/${project.slug}`,
+    },
+    headline: project.title,
+    description: project.solution,
+    image: project.coverImage,
+    author: {
+        '@type': 'Organization',
+        name: 'Vasudev AI',
+        url: 'https://www.vasudev.ai',
+    },
+    publisher: {
+        '@type': 'Organization',
+        name: 'Vasudev AI',
+        logo: {
+            '@type': 'ImageObject',
+            url: 'https://www.vasudev.ai/vasudev-ai-hero.png',
+        },
+    },
+    datePublished: new Date().toISOString(), // Placeholder
+    dateModified: new Date().toISOString(), // Placeholder
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://www.vasudev.ai',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Projects',
+        item: 'https://www.vasudev.ai/projects',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: project.title,
+      },
+    ],
+  };
+
   return (
     <div className="case-study-page pb-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <header className="relative w-full h-[40vh] min-h-[300px] flex items-center justify-center text-center p-4 overflow-hidden">
         <div className="absolute inset-0 z-0">
             <Image 
