@@ -1,3 +1,4 @@
+
 import { projects } from '@/lib/projects-data';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
@@ -8,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { ArrowLeft, CheckCircle, ExternalLink, FileText, Github, Zap } from 'lucide-react';
 import './project-case-study.css';
 import { cn } from '@/lib/utils';
+import { BreadcrumbJsonLd, ArticleJsonLd } from 'next-seo';
 
 type Props = {
   params: { slug: string };
@@ -22,13 +24,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
+  const url = `https://www.vasudev.ai/projects/${project.slug}`;
+
   return {
     title: `${project.title} | Project Case Study`,
     description: project.tagline,
     keywords: [project.title, 'Vasudev AI', 'case study', ...project.techStack],
+    alternates: {
+      canonical: url,
+    },
     openGraph: {
-      title: project.title,
+      title: `${project.title} | Vasudev AI`,
       description: project.tagline,
+      url: url,
+      type: 'article',
       images: [
         {
           url: project.coverImage,
@@ -40,7 +49,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     twitter: {
       card: 'summary_large_image',
-      title: project.title,
+      title: `${project.title} | Vasudev AI`,
       description: project.tagline,
       images: [project.coverImage],
     },
@@ -61,108 +70,146 @@ export default function ProjectCaseStudyPage({ params }: Props) {
     notFound();
   }
 
+  const url = `https://www.vasudev.ai/projects/${project.slug}`;
+
   return (
-    <div className="case-study-page pb-20">
-      <header className="relative w-full h-[40vh] min-h-[300px] flex items-center justify-center text-center p-4 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-            <Image 
-                src={project.coverImage}
-                alt={`${project.title} cover image`}
-                fill
-                className="object-cover"
-                data-ai-hint="futuristic abstract technology"
-            />
-            <div className="absolute inset-0 bg-background/70 backdrop-blur-sm" />
-             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
-        </div>
-        <div className="relative z-10 container mx-auto px-4">
-            <Badge variant="secondary" className="bg-primary/20 text-primary border-primary/50 mb-4">{project.status}</Badge>
-            <h1 className="text-4xl md:text-6xl font-headline font-bold bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-400">
-                {project.title}
-            </h1>
-            <p className="mt-4 text-lg md:text-xl text-primary max-w-3xl mx-auto">{project.tagline}</p>
-        </div>
-      </header>
+    <>
+      <ArticleJsonLd
+        useAppDir={true}
+        url={url}
+        title={project.title}
+        images={[project.coverImage]}
+        datePublished={new Date().toISOString()}
+        authorName="Vasudev AI"
+        publisherName="Vasudev AI"
+        publisherLogo="https://www.vasudev.ai/vasudev-ai-hero.webp"
+        description={project.tagline}
+      />
+      <BreadcrumbJsonLd
+        useAppDir={true}
+        itemListElements={[
+          {
+            position: 1,
+            name: 'Home',
+            item: 'https://www.vasudev.ai',
+          },
+          {
+            position: 2,
+            name: 'Projects',
+            item: 'https://www.vasudev.ai/projects',
+          },
+          {
+            position: 3,
+            name: project.title,
+            item: url,
+          },
+        ]}
+      />
+      <div className="case-study-page pb-20">
+        <header className="relative w-full h-[40vh] min-h-[300px] flex items-center justify-center text-center p-4 overflow-hidden">
+          <div className="absolute inset-0 z-0">
+              <Image 
+                  src={project.coverImage}
+                  alt={`${project.title} cover image`}
+                  fill
+                  priority
+                  className="object-cover"
+                  data-ai-hint="futuristic abstract technology"
+              />
+              <div className="absolute inset-0 bg-background/70 backdrop-blur-sm" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
+          </div>
+          <div className="relative z-10 container mx-auto px-4">
+              <Badge variant="secondary" className="bg-primary/20 text-primary border-primary/50 mb-4">{project.status}</Badge>
+              <h1 className="text-4xl md:text-6xl font-headline font-bold bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-400">
+                  {project.title}
+              </h1>
+              <p className="mt-4 text-lg md:text-xl text-primary max-w-3xl mx-auto">{project.tagline}</p>
+          </div>
+        </header>
 
-      <div className="container mx-auto px-4 mt-12 md:mt-16">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
-            <main className="lg:col-span-8">
-                <div className="space-y-12">
-                    <section id="problem" className="blueprint-section">
-                        <h2 className="section-title">Problem Statement</h2>
-                        <div className="section-content">
-                            <p>{project.problemStatement}</p>
-                        </div>
-                    </section>
+        <div className="container mx-auto px-4 mt-12 md:mt-16">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+              <main className="lg:col-span-8">
+                  <div className="space-y-12">
+                      <section id="problem" className="blueprint-section">
+                          <h2 className="section-title">Problem Statement</h2>
+                          <div className="section-content">
+                              <p>{project.problemStatement}</p>
+                          </div>
+                      </section>
 
-                     <section id="solution" className="blueprint-section">
-                        <h2 className="section-title">Solution</h2>
-                        <div className="section-content">
-                             <p>{project.solution}</p>
-                        </div>
-                    </section>
-                    
-                    <section id="tech-stack" className="blueprint-section">
-                        <h2 className="section-title">Tech Stack</h2>
-                        <div className="section-content">
-                            <ul className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                                {project.techStack.map(tech => (
-                                    <li key={tech} className="flex items-center gap-2 text-gray-300">
-                                        <Zap className="h-4 w-4 text-secondary"/>
-                                        <span>{tech}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    </section>
+                      <section id="solution" className="blueprint-section">
+                          <h2 className="section-title">Solution</h2>
+                          <div className="section-content">
+                              <p>{project.solution}</p>
+                          </div>
+                      </section>
+                      
+                      <section id="tech-stack" className="blueprint-section">
+                          <h2 className="section-title">Tech Stack</h2>
+                          <div className="section-content">
+                              <ul className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                                  {project.techStack.map(tech => (
+                                      <li key={tech} className="flex items-center gap-2 text-gray-300">
+                                          <Zap className="h-4 w-4 text-secondary"/>
+                                          <span>{tech}</span>
+                                      </li>
+                                  ))}
+                              </ul>
+                          </div>
+                      </section>
 
-                    <section id="architecture" className="blueprint-section">
-                        <h2 className="section-title">Architecture Overview</h2>
-                         <div className="section-content">
-                            <p>{project.architecture}</p>
-                        </div>
-                    </section>
-                </div>
-            </main>
+                      <section id="architecture" className="blueprint-section">
+                          <h2 className="section-title">Architecture Overview</h2>
+                          <div className="section-content">
+                              <p>{project.architecture}</p>
+                          </div>
+                      </section>
+                  </div>
+              </main>
 
-            <aside className="lg:col-span-4">
-                <div className="sticky top-24">
-                    <div className="bg-card/50 border border-primary/20 backdrop-blur-sm rounded-lg p-6">
-                        <h3 className="text-lg font-headline text-accent mb-4">Project Details</h3>
-                        
-                        <nav className="space-y-2 mb-6">
-                             <a href="#problem" className="toc-link">Problem</a>
-                             <a href="#solution" className="toc-link">Solution</a>
-                             <a href="#tech-stack" className="toc-link">Tech Stack</a>
-                             <a href="#architecture" className="toc-link">Architecture</a>
-                        </nav>
-                        
-                        <div className="space-y-3">
-                            <Button asChild className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
-                                <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                                    <Github className="mr-2 h-4 w-4" /> View on GitHub
-                                </Link>
-                            </Button>
-                             {project.liveUrl && (
-                                <Button asChild variant="outline" className="w-full border-primary text-primary hover:bg-primary/10 hover:text-accent">
-                                    <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                                        <ExternalLink className="mr-2 h-4 w-4" /> View Live
-                                    </Link>
-                                </Button>
-                             )}
-                        </div>
-                    </div>
-                     <div className="mt-6">
-                        <Button asChild variant="ghost" className="text-primary hover:text-accent">
-                            <Link href="/projects">
-                                <ArrowLeft className="mr-2 h-4 w-4"/> Back to Projects
-                            </Link>
-                        </Button>
-                    </div>
-                </div>
-            </aside>
+              <aside className="lg:col-span-4">
+                  <div className="sticky top-24">
+                      <div className="bg-card/50 border border-primary/20 backdrop-blur-sm rounded-lg p-6">
+                          <h3 className="text-lg font-headline text-accent mb-4">Project Details</h3>
+                          
+                          <nav className="space-y-2 mb-6">
+                              <a href="#problem" className="toc-link">Problem</a>
+                              <a href="#solution" className="toc-link">Solution</a>
+                              <a href="#tech-stack" className="toc-link">Tech Stack</a>
+                              <a href="#architecture" className="toc-link">Architecture</a>
+                          </nav>
+                          
+                          <div className="space-y-3">
+                              <Button asChild className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
+                                  <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                                      <Github className="mr-2 h-4 w-4" /> View on GitHub
+                                  </Link>
+                              </Button>
+                              {project.liveUrl && (
+                                  <Button asChild variant="outline" className="w-full border-primary text-primary hover:bg-primary/10 hover:text-accent">
+                                      <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                                          <ExternalLink className="mr-2 h-4 w-4" /> View Live
+                                      </Link>
+                                  </Button>
+                              )}
+                          </div>
+                      </div>
+                      <div className="mt-6">
+                          <Button asChild variant="ghost" className="text-primary hover:text-accent">
+                              <Link href="/projects">
+                                  <ArrowLeft className="mr-2 h-4 w-4"/> Back to Projects
+                              </Link>
+                          </Button>
+                      </div>
+                  </div>
+              </aside>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
+
+    

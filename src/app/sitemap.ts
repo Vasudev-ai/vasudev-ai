@@ -1,10 +1,11 @@
 
 import { MetadataRoute } from 'next'
+import { projects } from '@/lib/projects-data';
  
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://www.vasudev.ai';
 
-  // Assuming these are your main static pages
+  // Static pages
   const staticPages = [
     '/',
     '/about',
@@ -16,12 +17,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/team',
   ];
 
-  const sitemapEntries = staticPages.map((path) => ({
+  const sitemapEntries: MetadataRoute.Sitemap = staticPages.map((path) => ({
     url: `${baseUrl}${path}`,
     lastModified: new Date(),
-    changeFrequency: 'weekly' as const,
+    changeFrequency: 'weekly',
     priority: path === '/' ? 1 : 0.8,
   }));
+
+  // Dynamic project pages
+  const projectEntries = projects.map(project => ({
+    url: `${baseUrl}/projects/${project.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }));
  
-  return sitemapEntries;
+  return [...sitemapEntries, ...projectEntries];
 }
+
+    

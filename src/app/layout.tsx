@@ -26,7 +26,7 @@ const organizationSchema = {
   '@type': 'Organization',
   name: 'Vasudev AI',
   url: 'https://www.vasudev.ai',
-  logo: 'https://www.vasudev.ai/vasudev-ai-hero.png',
+  logo: 'https://www.vasudev.ai/vasudev-ai-hero.webp',
   sameAs: [
     'https://github.com/Vasudev-ai',
     'https://x.com/VashudevAi',
@@ -113,3 +113,5 @@ export default function RootLayout({
     </html>
   );
 }
+
+    
