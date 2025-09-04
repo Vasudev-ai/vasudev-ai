@@ -16,12 +16,12 @@
 
 .profile-card-inner {
   display: flex;
+  flex-direction: row-reverse;
   position: relative;
   z-index: 2;
-  padding: 1.5rem;
   min-height: 400px;
   align-items: stretch;
-  overflow: visible;
+  padding: 1.5rem;
 }
 
 .profile-card-content {
@@ -32,24 +32,22 @@
   text-align: left;
   width: 60%;
   flex-shrink: 0;
-  padding-right: 1.5rem;
+  padding-left: 1.5rem;
 }
 
 .profile-card-image {
-  position: absolute;
-  bottom: 0;
-  right: 0;
+  position: relative;
   width: 40%;
-  height: 100%;
-  max-width: 250px;
-  z-index: 1;
+  height: auto;
+  align-self: flex-end; /* Aligns image to the bottom of the flex container */
 }
 
 .profile-card-image .next-image {
   width: 100%;
-  height: 100%;
+  height: auto;
+  max-height: 380px; /* Control max height */
   object-fit: contain;
-  object-position: bottom right;
+  object-position: bottom center;
   transition: transform 0.4s ease, filter 0.4s ease;
   z-index: 2;
   position: relative;
@@ -58,7 +56,7 @@
 }
 
 .profile-card:hover .next-image {
-  transform: scale(1.2) rotate(-2deg);
+  transform: scale(1.15) translateY(-10px);
   filter: drop-shadow(10px 10px 20px rgba(0,0,0,0.3));
 }
 
@@ -66,10 +64,10 @@
     content: '';
     position: absolute;
     bottom: 0;
-    right: 0;
+    left: 50%;
+    transform: translateX(-50%);
     width: 200px;
     height: 200px;
-    transform: translate(20%, 20%);
     background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
     opacity: 0;
     transition: opacity 0.4s ease;
@@ -78,7 +76,7 @@
 }
 
 .profile-card:hover .image-glow {
-    opacity: 0.5;
+    opacity: 0.4;
 }
 
 .text-content {
@@ -132,14 +130,29 @@
   transform: scale(1.1);
 }
 
+
 @media (max-width: 640px) {
   .profile-card-inner {
+    flex-direction: column;
     padding: 1.5rem;
+    align-items: center;
+    text-align: center;
   }
-  .name {
-    font-size: 1.5rem;
+  .profile-card-image {
+    width: 60%;
+    margin-bottom: 1.5rem;
+  }
+  .profile-card-content {
+    width: 100%;
+    padding-left: 0;
+    align-items: center;
   }
   .bio-full {
     font-size: 0.85rem;
   }
+  .social-links {
+    justify-content: center;
+  }
 }
+
+    

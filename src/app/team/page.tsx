@@ -15,7 +15,7 @@ const teamMembers = [
     name: 'Surya Pratap Singh',
     role: 'Founder & Visionary',
     bio: "Creator of Vasudev AI, pushing the boundaries of offline and futuristic AI systems. He is focused on OS-level mods and merging divine wisdom with technological prowess to build a decentralized, intelligent future.",
-    avatar: '/team/surya.png',
+    avatar: '/team/surya.webp',
     avatarHint: 'glowing sun star',
     socials: {
       github: 'https://github.com/sg-surya',
@@ -33,7 +33,7 @@ const teamMembers = [
     name: 'Aman Dangi',
     role: 'Co-Builder & Innovator',
     bio: 'A passionate developer and core contributor to Vasudev AI. Aman specializes in building high-performance systems and turning complex ideas into reality with elegant, efficient code.',
-    avatar: '/team/aman.png',
+    avatar: '/team/aman.webp',
     avatarHint: 'cyan planet rings',
     socials: { github: 'https://github.com/Aman-Dangi', linkedin: 'https://www.linkedin.com/in/aman-dangi-085443246/' },
     theme: {
@@ -47,7 +47,7 @@ const teamMembers = [
     name: 'Ashutosh Kumar Tripathi',
     role: 'AI Engineer',
     bio: "Focused on the frontier of artificial intelligence, Ashutosh architect's ethical AI models, develops robust automation frameworks, and engineers the advanced intelligent systems that power Vasudev AI.",
-    avatar: '/team/ashutosh1.png',
+    avatar: '/team/ashutosh.webp',
     avatarHint: 'golden nebula',
     socials: { github: 'https://github.com/AshutoshIIT1234', linkedin: 'https://www.linkedin.com/in/ashutosh-kumar-tripathi-926308237/' },
     theme: {
@@ -61,7 +61,7 @@ const teamMembers = [
     name: 'Biswjeet',
     role: 'UI/UX Designer',
     bio: 'The artistic soul of Vasudev AI, Biswjeet crafts stunning, futuristic designs that blend divine aesthetics with cutting-edge user experiences to create an intuitive and immersive journey.',
-    avatar: '/team/biswjeet.png',
+    avatar: '/team/biswjeet.webp',
     avatarHint: 'holographic sphere',
     socials: { github: '#', linkedin: '#' },
     theme: {
@@ -113,10 +113,21 @@ export default function TeamPage() {
             <div 
               key={member.id} 
               id={member.id}
-              className="profile-card overflow-hidden"
+              className="profile-card"
               style={member.theme as React.CSSProperties}
             >
               <div className="profile-card-inner">
+                <div className="profile-card-image">
+                  <Image 
+                    src={member.avatar} 
+                    alt={`${member.name} - ${member.role} at Vasudev AI`} 
+                    width={250} 
+                    height={375} 
+                    className="next-image" 
+                    data-ai-hint={member.avatarHint}
+                  />
+                  <div className="image-glow"></div>
+                </div>
                 <div className="profile-card-content">
                   <div className="text-content">
                     <span className="role-rank">
@@ -142,10 +153,6 @@ export default function TeamPage() {
                         )}
                     </div>
                   </div>
-                </div>
-                 <div className="profile-card-image">
-                  <Image src={member.avatar} alt={`${member.name} - ${member.role} at Vasudev AI`} width={400} height={600} className="next-image" data-ai-hint={member.avatarHint} />
-                  <div className="image-glow"></div>
                 </div>
               </div>
             </div>
