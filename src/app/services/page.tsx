@@ -202,26 +202,29 @@ export default function ServicesPage() {
                   whileInView="onscreen"
                   viewport={{ once: true, amount: 0.3 }}
                   variants={cardVariants}
+                  className="h-full"
                 >
-                  <Card className="service-card h-full bg-card/50 border-primary/20 backdrop-blur-sm shadow-lg hover:shadow-primary/30">
+                  <Card className="service-card h-full bg-card/50 border-primary/20 backdrop-blur-sm shadow-lg hover:shadow-primary/30 flex flex-col">
                     {service.isComingSoon && (
                       <Badge variant="secondary" className="absolute top-4 right-4 bg-secondary/80 text-secondary-foreground z-10">Coming Soon</Badge>
                     )}
                     <CardHeader className="flex-row items-center gap-4">
-                      <div className="p-3 bg-primary/10 rounded-full">{service.icon}</div>
+                      <div className="p-3 bg-primary/10 rounded-full flex-shrink-0">{service.icon}</div>
                       <CardTitle className="text-xl md:text-2xl font-headline text-white">{service.title}</CardTitle>
                     </CardHeader>
-                    <CardContent className="flex flex-col h-full">
-                      <p className="text-gray-400 mb-4 flex-grow">{service.description}</p>
-                      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-sm text-gray-300 mb-6">
-                        {service.offerings.map(item => (
-                          <li key={item} className="flex items-center gap-2">
-                              <CheckCircle className="h-4 w-4 text-primary flex-shrink-0" />
-                              <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                      <div className="mt-auto">
+                    <CardContent className="flex flex-col flex-grow">
+                      <p className="text-gray-400 mb-6">{service.description}</p>
+                      <div className="flex-grow">
+                        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 text-sm text-gray-300">
+                          {service.offerings.map(item => (
+                            <li key={item} className="flex items-start gap-2">
+                                <CheckCircle className="h-4 w-4 text-primary flex-shrink-0 mt-1" />
+                                <span>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div className="mt-6 pt-6 border-t border-primary/10">
                         <Button asChild variant="outline" className="w-full border-primary/50 text-primary hover:bg-primary/10 hover:text-accent hover:border-accent" disabled={service.isComingSoon}>
                             <Link href="/contact">
                                 Discuss Project <ArrowRight className="ml-2 h-4 w-4" />
