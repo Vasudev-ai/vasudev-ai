@@ -1,5 +1,5 @@
 import React from 'react';
-import { Cpu, Waves, Hand, MessageSquare, ToyBrick, Sprout } from 'lucide-react';
+import { Cpu, Waves, Hand, MessageSquare, ToyBrick, Sprout, Music } from 'lucide-react';
 
 export interface Project {
   icon: React.ReactNode;
@@ -71,6 +71,21 @@ export const projects: Project[] = [
     architecture: "Sahayak AI is built on a modern, server-centric web architecture. The frontend uses Next.js with the App Router, enabling a fast, interactive user experience with Server Components for performance. The UI is built with the highly customizable ShadCN component library and styled with Tailwind CSS. Firebase serves as the core backend, handling user authentication (Email, Google) and data persistence with Firestore, which stores user profiles, library books, and generated content within workspaces. All generative AI features are powered by Genkit. Server-side AI 'flows' are defined for each tool (e.g., Lesson Planner, Quiz Generator). These flows interact with Google's Gemini models to generate text, images, and audio. This server-side approach keeps the frontend light and API keys secure. Custom API routes built within Next.js handle server-side tasks like PDF generation and proxying requests to external services, ensuring security and control.",
     githubUrl: "#",
     coverImage: "https://picsum.photos/seed/sahayak/1200/600",
+  },
+  {
+    icon: <Music className="h-8 w-8 md:h-10 md:w-10 text-accent" />,
+    title: "Vasudev Sangeet",
+    slug: "vasudev-sangeet",
+    tagline: "Your personal DJ, harmonizing your Discord server with crystal-clear audio and intelligent features.",
+    status: 'Live',
+    features: ["High-Fidelity Audio", "Advanced Queue Management", "Interactive Control Panel"],
+    problemStatement: "Discord servers lack a reliable, feature-rich music bot that provides high-quality audio streaming, advanced queue management, and intuitive controls without the complexity of multiple bots or premium subscriptions.",
+    solution: "Vasudev Sangeet provides a comprehensive, single-file music bot solution that streams directly from YouTube with professional-grade features like audio filters, DJ role management, voteskip systems, and 24/7 mode - all wrapped in an elegant, interactive Discord interface.",
+    techStack: ["Python 3.10+", "discord.py v2", "yt-dlp", "FFmpeg", "PyNaCl", "python-dotenv"],
+    architecture: "The bot uses an event-driven architecture with a per-guild music player system. It employs a command handler for both prefix (!) and slash commands, implements a queue system with deque for efficient track management, and streams audio using FFmpeg with real-time processing. The bot features an idle watcher for automatic disconnection, interactive Discord UI components for controls, and supports both text and voice state management.",
+    githubUrl: "https://github.com/Vasudev-ai/Vasudev-Sangeet",
+    liveUrl: "https://github.com/Vasudev-ai/Vasudev-Sangeet/releases",
+    coverImage: "https://picsum.photos/seed/sangeet/1200/600",
   },
   {
     icon: <MessageSquare className="h-8 w-8 md:h-10 md:w-10 text-accent" />,
