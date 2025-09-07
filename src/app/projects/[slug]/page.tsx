@@ -70,89 +70,6 @@ export default function ProjectCaseStudyPage({ params }: Props) {
     notFound();
   }
 
-<<<<<<< HEAD
-  const articleSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
-    mainEntityOfPage: {
-        '@type': 'WebPage',
-        '@id': `https://www.vasudev.ai/projects/${project.slug}`,
-    },
-    headline: project.title,
-    description: project.solution,
-    image: project.coverImage,
-    author: {
-        '@type': 'Organization',
-        name: 'Vasudev AI',
-        url: 'https://www.vasudev.ai',
-    },
-    publisher: {
-        '@type': 'Organization',
-        name: 'Vasudev AI',
-        logo: {
-            '@type': 'ImageObject',
-            url: 'https://www.vasudev.ai/vasudev-ai-hero.png',
-        },
-    },
-    datePublished: new Date().toISOString(), // Placeholder
-    dateModified: new Date().toISOString(), // Placeholder
-  };
-
-  const breadcrumbSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: 'https://www.vasudev.ai',
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Projects',
-        item: 'https://www.vasudev.ai/projects',
-      },
-      {
-        '@type': 'ListItem',
-        position: 3,
-        name: project.title,
-      },
-    ],
-  };
-
-  return (
-    <div className="case-study-page pb-20">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
-      <header className="relative w-full h-[40vh] min-h-[300px] flex items-center justify-center text-center p-4 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-            <Image 
-                src={project.coverImage}
-                alt={`${project.title} cover image`}
-                fill
-                className="object-cover"
-                data-ai-hint="futuristic abstract technology"
-            />
-            <div className="absolute inset-0 bg-background/70 backdrop-blur-sm" />
-             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
-        </div>
-        <div className="relative z-10 container mx-auto px-4">
-            <Badge variant="secondary" className="bg-primary/20 text-primary border-primary/50 mb-4">{project.status}</Badge>
-            <h1 className="text-4xl md:text-6xl font-headline font-bold bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-400">
-                {project.title}
-            </h1>
-            <p className="mt-4 text-lg md:text-xl text-primary max-w-3xl mx-auto">{project.tagline}</p>
-        </div>
-      </header>
-=======
   const url = `https://www.vasudev.ai/projects/${project.slug}`;
 
   return (
@@ -210,7 +127,6 @@ export default function ProjectCaseStudyPage({ params }: Props) {
               <p className="mt-4 text-lg md:text-xl text-primary max-w-3xl mx-auto">{project.tagline}</p>
           </div>
         </header>
->>>>>>> 8d3dee3313016037f1625499ea88057068c96100
 
         <div className="container mx-auto px-4 mt-12 md:mt-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
