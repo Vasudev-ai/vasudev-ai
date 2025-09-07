@@ -3,7 +3,7 @@
 
 import PageHeader from '@/components/page-header';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, CheckCircle, Bot, Code, Palette, Users, Shield, Heart, Search, Film, Briefcase, BarChart, Zap, Globe, Puzzle, Network, CloudCog, ShieldCheck, Server, Book, PenTool, MessageSquare } from 'lucide-react';
+import { ArrowRight, CheckCircle, Bot, Code, Palette, Users, Shield, Heart, Search, Film, Briefcase, BarChart, Zap, Globe, Puzzle, Network, CloudCog, ShieldCheck, Server, Book, PenTool, MessageSquare, Receipt, School } from 'lucide-react';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import './services.css';
@@ -24,9 +24,15 @@ const serviceCategories = [
       },
       {
         icon: <MessageSquare className="h-6 w-6 text-accent" />,
-        title: 'Chatbots & Voicebots',
-        description: 'Engage users with intelligent bots on websites, WhatsApp, and Telegram.',
+        title: 'AI-Powered Chatbots & Voicebots',
+        description: 'Engage users with intelligent, AI-powered bots on websites, WhatsApp, and Telegram.',
         offerings: ['Customer Support Bots', 'Lead Generation Bots', 'Multi-platform Integration', 'Voice-activated Assistants'],
+      },
+      {
+        icon: <Users className="h-6 w-6 text-accent" />,
+        title: 'Discord & Community Bots',
+        description: 'Custom bots to automate moderation, engagement, and utility for your Discord or Telegram community.',
+        offerings: ['Moderation Bots', 'Welcome & Role Bots', 'API Integration for Tools', 'Engagement Systems'],
       },
       {
         icon: <PenTool className="h-6 w-6 text-accent" />,
@@ -34,41 +40,35 @@ const serviceCategories = [
         description: 'Automate your content creation pipeline from generation to editing.',
         offerings: ['Auto-blogging & Scripts', 'AI-assisted Video Editing', 'Thumbnail Generation', 'Content Summarization'],
       },
-      {
-        icon: <BarChart className="h-6 w-6 text-accent" />,
-        title: 'Data Analytics & Visualization',
-        description: 'Turn complex data into actionable insights with AI-powered analytics.',
-        offerings: ['Predictive Modeling', 'Insight Generation', 'Interactive Dashboards', 'Trend Analysis'],
-      },
     ]
   },
   {
     category: 'Development & Tech',
     icon: <Code className="h-8 w-8" />,
     services: [
-      {
+       {
         icon: <Briefcase className="h-6 w-6 text-accent" />,
         title: 'SaaS Development',
         description: 'End-to-end development of scalable Software-as-a-Service platforms.',
         offerings: ['MVP for Startups', 'Multi-tenant Architecture', 'Subscription Billing', 'Full-Stack Development'],
       },
       {
+        icon: <School className="h-6 w-6 text-accent" />,
+        title: 'School & Institute ERPs',
+        description: 'Comprehensive ERP systems to manage school operations, from admissions to analytics.',
+        offerings: ['Student Information System', 'Fee Management', 'Academic Tracking', 'Parent Portals'],
+      },
+      {
+        icon: <Receipt className="h-6 w-6 text-accent" />,
+        title: 'Custom Billing Systems',
+        description: 'Develop bespoke billing and invoicing software tailored to your business model.',
+        offerings: ['Subscription Management', 'Usage-based Billing', 'Payment Gateway Integration', 'Financial Reporting'],
+      },
+      {
         icon: <Puzzle className="h-6 w-6 text-accent" />,
         title: 'API Development & Integration',
         description: 'Build robust APIs and integrate third-party services seamlessly.',
         offerings: ['REST & GraphQL APIs', 'Microservices', 'Payment Gateway Integration', 'Third-party API Sync'],
-      },
-      {
-        icon: <Globe className="h-6 w-6 text-accent" />,
-        title: 'Blockchain & Web3 Solutions',
-        description: 'Decentralized applications, smart contracts, and crypto integrations.',
-        offerings: ['Smart Contract Dev', 'Crypto Wallets', 'dApp Development', 'NFT Marketplaces'],
-      },
-      {
-        icon: <Network className="h-6 w-6 text-accent" />,
-        title: 'IoT Projects',
-        description: 'Connecting hardware to the cloud with intelligent AI-driven solutions.',
-        offerings: ['Hardware + AI Integration', 'Sensor Data Processing', 'IoT Dashboards', 'Remote Device Control'],
       },
     ]
   },
