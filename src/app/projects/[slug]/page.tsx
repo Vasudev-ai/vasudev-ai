@@ -9,7 +9,6 @@ import { Button } from '@/components/ui/button';
 import { ArrowLeft, CheckCircle, ExternalLink, FileText, Github, Zap } from 'lucide-react';
 import './project-case-study.css';
 import { cn } from '@/lib/utils';
-import { BreadcrumbJsonLd, ArticleJsonLd } from 'next-seo';
 
 type Props = {
   params: { slug: string };
@@ -72,38 +71,65 @@ export default function ProjectCaseStudyPage({ params }: Props) {
 
   const url = `https://www.vasudev.ai/projects/${project.slug}`;
 
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': url,
+    },
+    headline: project.title,
+    description: project.tagline,
+    image: project.coverImage,
+    author: {
+      '@type': 'Organization',
+      name: 'Vasudev AI',
+      url: 'https://www.vasudev.ai',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Vasudev AI',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://www.vasudev.ai/vasudev-ai-hero.webp',
+      },
+    },
+    datePublished: new Date().toISOString(),
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://www.vasudev.ai',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Projects',
+        item: 'https://www.vasudev.ai/projects',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: project.title,
+      },
+    ],
+  };
+
   return (
     <>
-      <ArticleJsonLd
-        useAppDir={true}
-        url={url}
-        title={project.title}
-        images={[project.coverImage]}
-        datePublished={new Date().toISOString()}
-        authorName="Vasudev AI"
-        publisherName="Vasudev AI"
-        publisherLogo="https://www.vasudev.ai/vasudev-ai-hero.webp"
-        description={project.tagline}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
       />
-      <BreadcrumbJsonLd
-        useAppDir={true}
-        itemListElements={[
-          {
-            position: 1,
-            name: 'Home',
-            item: 'https://www.vasudev.ai',
-          },
-          {
-            position: 2,
-            name: 'Projects',
-            item: 'https://www.vasudev.ai/projects',
-          },
-          {
-            position: 3,
-            name: project.title,
-            item: url,
-          },
-        ]}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <div className="case-study-page pb-20">
         <header className="relative w-full h-[40vh] min-h-[300px] flex items-center justify-center text-center p-4 overflow-hidden">
