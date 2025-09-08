@@ -20,7 +20,7 @@
   position: relative;
   z-index: 2;
   min-height: 400px;
-  align-items: flex-start; /* Changed from stretch to flex-start */
+  align-items: stretch;
   padding: 1.5rem;
 }
 
@@ -39,9 +39,7 @@
   position: relative;
   width: 40%;
   height: auto;
-  align-self: flex-end; /* This aligns image to the bottom of the flex container */
-  flex-grow: 1; /* Allow image container to grow */
-  display: flex; /* Use flex to align image at the bottom */
+  display: flex;
   align-items: flex-end;
 }
 
