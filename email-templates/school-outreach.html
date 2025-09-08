@@ -1,160 +1,95 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Digital ERP & Website Solutions for Your School</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Space+Grotesk:wght@700&display=swap');
-        body {
-            margin: 0;
-            padding: 0;
-            width: 100% !important;
-            -webkit-text-size-adjust: 100%;
-            -ms-text-size-adjust: 100%;
-            background-color: #0D0F1A;
-            color: #E0E0E0;
-            font-family: 'Inter', Arial, sans-serif;
-        }
-        .container {
-            width: 100%;
-            max-width: 600px;
-            margin: 0 auto;
-            border-spacing: 0;
-            border-collapse: collapse;
-        }
-        .main-content {
-            background-color: #111420;
-            border-radius: 12px;
-            padding: 40px;
-            border: 1px solid #2a2f4c;
-        }
-        .headline {
-            font-family: 'Space Grotesk', 'Arial Black', sans-serif;
-            font-size: 28px;
-            font-weight: 700;
-            color: #FFFFFF;
-            line-height: 1.3;
-            margin: 0 0 25px;
-        }
-        .text {
-            font-size: 16px;
-            line-height: 1.6;
-            color: #A8B2D1;
-            margin: 0 0 15px;
-        }
-        .benefits-list {
-            margin: 0 0 30px;
-            padding: 0;
-            list-style-type: none;
-        }
-        .benefits-list li {
-            padding-left: 20px;
-            font-size: 16px;
-            color: #A8B2D1;
-            position: relative;
-            margin-bottom: 15px;
-        }
-        .benefits-list li::before {
-            content: '•';
-            position: absolute;
-            left: 0;
-            color: #00E5FF;
-            font-size: 20px;
-            line-height: 1.6;
-        }
-        .cta-button {
-            display: inline-block;
-            background-color: #00E5FF;
-            color: #0D0F1A;
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 18px;
-            font-weight: 700;
-            text-decoration: none;
-            padding: 15px 30px;
-            border-radius: 8px;
-            margin: 10px 0;
-            text-align: center;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0px 4px 20px rgba(0, 229, 255, 0.3);
-        }
-        .footer-text {
-            padding: 20px 0;
-            text-align: center;
-            font-size: 14px;
-            color: #8892B0;
-        }
-        .footer-text a {
-            color: #00E5FF;
-            text-decoration: none;
-        }
-        .signature {
-            text-align: right;
-            font-size: 16px;
-            color: #A8B2D1;
-            margin-top: 30px;
-        }
-        .bold-white {
-            color: #FFFFFF;
-            font-weight: bold;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vasudev AI — School Cold Email</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Space+Grotesk:wght@700&display=swap');
+    :root{
+      --vasudev-primary: #00E5FF;
+      --bg-dark: #0D0F1A;
+      --card-dark: #111420;
+      --muted: #a0aec0;
+      --border-color: rgba(0, 229, 255, 0.2);
+    }
+    body{
+      background: var(--bg-dark); 
+      padding:32px; 
+      color:#E0E0E0;
+      font-family: 'Inter', system-ui, Arial, sans-serif;
+    }
+    .container{max-width:720px;margin:0 auto}
+    .card{background:var(--card-dark);border-radius:14px;padding:32px;box-shadow:0 8px 24px rgba(0,0,0,0.6);border:1px solid var(--border-color)}
+    .header{text-align:center;margin-bottom:20px}
+    .logo-img{width:60px;height:auto;margin-bottom:16px}
+    h1{margin:0;font-size:26px;color:#fff;font-family:'Space Grotesk', sans-serif;line-height:1.3;}
+    ul{margin:16px 0 24px;padding-left:18px;color:#E0E0E0}
+    li{margin:10px 0; padding-left: 8px;}
+    li::marker {
+      color: var(--vasudev-primary);
+      font-size: 1.2em;
+    }
+    .cta{
+      display:inline-block;
+      margin-top:14px;
+      padding:14px 28px;
+      border-radius:8px;
+      background:var(--vasudev-primary);
+      color: var(--bg-dark);
+      text-decoration:none;
+      font-weight:700;
+      font-family:'Space Grotesk', sans-serif;
+      box-shadow:0 4px 20px rgba(0, 229, 255, 0.3);
+      border: none;
+    }
+    .footer{margin-top:26px;border-top:1px solid rgba(0, 229, 255, 0.1);padding-top:20px;color:var(--muted);font-size:14px;display:flex;justify-content:space-between;align-items:center}
+    .muted{color:var(--muted)}
+    @media (max-width:520px){
+        body{padding:16px;}
+        .card{padding:24px}
+        .logo-img{width:50px}
+        h1{font-size: 22px;}
+        .footer{flex-direction: column; gap: 16px; text-align: center;}
+        .footer > div {width: 100%; text-align: center;}
+    }
+  </style>
 </head>
-<body style="margin: 0; padding: 0; background-color: #0D0F1A; color: #E0E0E0; font-family: 'Inter', Arial, sans-serif;">
-    <table role="presentation" class="container" style="width: 100%; max-width: 600px; margin: 0 auto; border-spacing: 0; border-collapse: collapse;">
-        <tr>
-            <td style="padding: 40px 0;">
-                <table role="presentation" class="main-content" style="width: 100%; background-color: #111420; border-radius: 12px; padding: 40px; border: 1px solid #2a2f4c; border-spacing: 0; border-collapse: collapse;">
-                    <tr>
-                        <td style="text-align: center; padding-bottom: 30px;">
-                            <img src="https://www.vasudev.ai/vasudev-ai-hero.png" alt="Vasudev AI Logo" style="width: 60px; height: auto;">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: center;">
-                            <h1 class="headline" style="font-family: 'Space Grotesk', 'Arial Black', sans-serif; font-size: 28px; font-weight: 700; color: #FFFFFF; line-height: 1.3; margin: 0 0 25px;">Digital ERP & Website Solutions for {{SchoolName}}</h1>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p class="text" style="font-size: 16px; line-height: 1.6; color: #A8B2D1; margin: 0 0 15px;">Dear {{Principal/Management Team}},</p>
-                            <p class="text" style="font-size: 16px; line-height: 1.6; color: #A8B2D1; margin: 0 0 25px;">I am Surya Pratap Singh, Founder of Vasudev AI. We build digital solutions that help schools become efficient and future-ready — including websites, school ERP systems, creative assets, and AI-powered automation.</p>
-                            
-                            <p class="text" style="font-size: 16px; line-height: 1.6; color: #FFFFFF; margin: 0 0 15px; font-weight: bold;">Key benefits for your school:</p>
-                            <ul class="benefits-list" style="margin: 0 0 30px; padding: 0; list-style-type: none;">
-                                <li style="padding-left: 20px; font-size: 16px; color: #A8B2D1; position: relative; margin-bottom: 15px;"><span class="bold-white">Professional Website</span> — admissions, notices, and student engagement made easy.</li>
-                                <li style="padding-left: 20px; font-size: 16px; color: #A8B2D1; position: relative; margin-bottom: 15px;"><span class="bold-white">Smart ERP</span> — attendance, fees, exams, and communication in a single dashboard.</li>
-                                <li style="padding-left: 20px; font-size: 16px; color: #A8B2D1; position: relative; margin-bottom: 15px;"><span class="bold-white">Creative Designs</span> — brochures, posters, and social media-ready content.</li>
-                                <li style="padding-left: 20px; font-size: 16px; color: #A8B2D1; position: relative; margin-bottom: 15px;"><span class="bold-white">AI Tools</span> — automated replies, smart notifications, and parent communication.</li>
-                            </ul>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="header">
+        <img class="logo-img" src="https://www.vasudev.ai/vasudev-ai-hero.png" alt="Vasudev AI Logo" />
+        <h1>Digital ERP & Website Solutions for <span style="color:var(--vasudev-primary);">{{SchoolName}}</span></h1>
+      </div>
 
-                            <p class="text" style="font-size: 16px; line-height: 1.6; color: #A8B2D1; margin: 0 0 25px;">Our approach is simple: reduce manual work, increase transparency, and improve parent–school communication. I would love to show how this works for {{SchoolName}} in a quick 15‑minute demo.</p>
+      <div>
+        <p style="margin-top:12px;line-height:1.6;color:#e2e8f0">Dear <strong>{{Principal/Management Team}}</strong>,</p>
 
-                            <table role="presentation" style="width: 100%; border-spacing: 0; border-collapse: collapse;">
-                                <tr>
-                                    <td style="text-align: center;">
-                                        <a href="https://calendly.com/sgsurya" target="_blank" class="cta-button" style="display: inline-block; background-color: #00E5FF; color: #0D0F1A; font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 700; text-decoration: none; padding: 15px 30px; border-radius: 8px; margin: 10px 0; text-align: center; border: none; cursor: pointer; box-shadow: 0px 4px 20px rgba(0, 229, 255, 0.3);">
-                                            Request a Free 15-Minute Demo
-                                        </a>
-                                    </td>
-                                </tr>
-                            </table>
+        <p style="line-height:1.6;color:#e2e8f0">I am <strong>Surya Pratap Singh</strong>, Founder of <strong>Vasudev AI</strong>. We build digital solutions that help schools become efficient and future-ready — including <strong>websites, school ERP systems, creative assets</strong>, and <strong>AI-powered automation</strong>.</p>
 
-                             <p class="footer-text" style="padding: 20px 0; text-align: center; font-size: 14px; color: #8892B0; margin:0;">
-                                Or reply to this email / WhatsApp: <a href="https://wa.me/919719205268" style="color: #00E5FF; text-decoration: none;">+91 9719205268</a>
-                            </p>
+        <p style="margin-top:16px;font-weight:600;color:#fff">Key benefits for your school:</p>
+        <ul>
+          <li><strong>Professional Website</strong> — admissions, notices, and student engagement made easy.</li>
+          <li><strong>Smart ERP</strong> — attendance, fees, exams, and communication in a single dashboard.</li>
+          <li><strong>Creative Designs</strong> — brochures, posters, and social media-ready content.</li>
+          <li><strong>AI Tools</strong> — automated replies, smart notifications, and parent communication.</li>
+        </ul>
 
-                            <div class="signature" style="text-align: right; font-size: 16px; color: #A8B2D1; margin-top: 30px;">
-                                <p style="margin: 0 0 5px;">Surya Pratap Singh</p>
-                                <p style="margin: 0;" class="bold-white">Founder — Vasudev AI</p>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-    </table>
+        <p style="line-height:1.6;color:#e2e8f0">Our approach is simple: <em>reduce manual work, increase transparency, and improve parent–school communication</em>. I would love to show how this works for <strong>{{SchoolName}}</strong> in a quick 15-minute demo.</p>
+
+        <a class="cta" href="https://calendly.com/sgsurya" target="_blank">Request a Free 15-Minute Demo</a>
+
+        <div class="footer">
+          <div class="muted">Or reply to this email / WhatsApp: <a href="https://wa.me/919719205268" style="color: var(--vasudev-primary); text-decoration: none; font-weight: 600;">+91 9719205268</a></div>
+          <div style="text-align:right">
+            <div style="font-weight:700;color:#fff">Surya Pratap Singh</div>
+            <div style="font-size:12px;color:var(--muted)">Founder — Vasudev AI</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
 </body>
 </html>
