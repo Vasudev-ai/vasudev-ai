@@ -131,7 +131,7 @@ const councilMembers = [
     name: 'Surya Pratap Singh',
     badgeIcon: <Rocket className="h-5 w-5 md:h-6 md:w-6" />,
     badgeLabel: 'Visionary',
-    avatarUrl: '/team/surya.webp',
+    avatarUrl: '/team/surya.png',
     avatarHint: 'glowing sun star',
     glowColor: 'hsl(var(--accent))',
   },
@@ -139,7 +139,7 @@ const councilMembers = [
     name: 'Aman Dangi',
     badgeIcon: <BrainCircuit className="h-5 w-5 md:h-6 md:w-6" />,
     badgeLabel: 'Innovator',
-    avatarUrl: '/team/aman.webp',
+    avatarUrl: '/team/aman.png',
     avatarHint: 'cyan planet rings',
     glowColor: 'hsl(var(--secondary))',
   },
@@ -147,7 +147,7 @@ const councilMembers = [
     name: 'Ashutosh K. Tripathi',
     badgeIcon: <Award className="h-5 w-5 md:h-6 md:w-6" />,
     badgeLabel: 'Oracle',
-    avatarUrl: '/team/ashutosh.webp',
+    avatarUrl: '/team/ashutosh.png',
     avatarHint: 'golden nebula',
     glowColor: '#39FF14',
   },
@@ -155,7 +155,7 @@ const councilMembers = [
     name: 'Biswjeet',
     badgeIcon: <Brush className="h-5 w-5 md:h-6 md:w-6" />,
     badgeLabel: 'Artist',
-    avatarUrl: '/team/biswjeet.webp',
+    avatarUrl: '/team/biswjeet.png',
     avatarHint: 'holographic sphere',
     glowColor: '#FF00FF',
   },
@@ -328,5 +328,7 @@ export default function CommunityPage() {
     </div>
   );
 }
+
+    
 
     
