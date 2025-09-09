@@ -10,6 +10,8 @@ const FormSchema = z.object({
   mobile: z.string().min(10, 'A valid mobile number is required.'),
   location: z.string().min(2, 'Location is required.'),
   portfolio: z.string().url().optional().or(z.literal('')),
+  github: z.string().url().optional().or(z.literal('')),
+  linkedin: z.string().url().optional().or(z.literal('')),
   resumeLink: z.string().url().optional().or(z.literal('')),
   role: z.string().min(1, 'Please select a role.'),
   skills: z.string().min(10, 'Please list some of your skills.'),
@@ -36,6 +38,8 @@ export async function submitApplication(prevState: FormState, formData: FormData
         mobile: formData.get('mobile'),
         location: formData.get('location'),
         portfolio: formData.get('portfolio'),
+        github: formData.get('github'),
+        linkedin: formData.get('linkedin'),
         resumeLink: formData.get('resumeLink'),
         role: formData.get('role'),
         skills: formData.get('skills'),
@@ -74,5 +78,3 @@ export async function submitApplication(prevState: FormState, formData: FormData
     };
   }
 }
-
-    

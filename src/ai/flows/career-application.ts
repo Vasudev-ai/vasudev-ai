@@ -17,7 +17,9 @@ const CareerApplicationInputSchema = z.object({
   email: z.string().email().describe("The applicant's email address."),
   mobile: z.string().describe("The applicant's mobile number."),
   location: z.string().describe("The applicant's location (City, State)."),
-  portfolio: z.string().url().optional().describe("A link to the applicant's portfolio, GitHub, or LinkedIn."),
+  portfolio: z.string().url().optional().describe("A link to the applicant's portfolio."),
+  github: z.string().url().optional().describe("A link to the applicant's GitHub profile."),
+  linkedin: z.string().url().optional().describe("A link to the applicant's LinkedIn profile."),
   resumeLink: z.string().url().optional().describe("A link to the applicant's resume (e.g., Google Drive)."),
   role: z.string().describe('The role the applicant is applying for.'),
   skills: z.string().describe("The applicant's listed skills."),
@@ -53,6 +55,8 @@ An applicant named {{{name}}} has applied for the {{{role}}} role.
 - Mobile: {{{mobile}}}
 - Location: {{{location}}}
 - Portfolio: {{{portfolio}}}
+- GitHub: {{{github}}}
+- LinkedIn: {{{linkedin}}}
 - Resume: {{{resumeLink}}}
 
 **Skills & Experience:**
@@ -94,5 +98,3 @@ const careerApplicationFlow = ai.defineFlow(
     return output!;
   }
 );
-
-    

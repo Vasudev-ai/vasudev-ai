@@ -98,9 +98,17 @@ export default function ApplyForm() {
                             <Label htmlFor="location">Location (City, State)</Label>
                             <Input id="location" name="location" placeholder="e.g., New Delhi, Delhi" className="bg-background/50 border-primary/30 h-12 text-base" required/>
                         </div>
-                         <div className="space-y-3 md:col-span-2">
-                            <Label htmlFor="portfolio">Portfolio / GitHub / LinkedIn</Label>
+                         <div className="space-y-3">
+                            <Label htmlFor="portfolio">Portfolio</Label>
                             <Input id="portfolio" name="portfolio" type="url" placeholder="https://your-portfolio.com (Optional)" className="bg-background/50 border-primary/30 h-12 text-base"/>
+                        </div>
+                         <div className="space-y-3">
+                            <Label htmlFor="github">GitHub</Label>
+                            <Input id="github" name="github" type="url" placeholder="https://github.com/username (Optional)" className="bg-background/50 border-primary/30 h-12 text-base"/>
+                        </div>
+                         <div className="space-y-3 md:col-span-2">
+                            <Label htmlFor="linkedin">LinkedIn</Label>
+                            <Input id="linkedin" name="linkedin" type="url" placeholder="https://linkedin.com/in/username (Optional)" className="bg-background/50 border-primary/30 h-12 text-base"/>
                         </div>
                          <div className="space-y-3 md:col-span-2">
                             <Label htmlFor="resumeLink">Resume Link (e.g., Google Drive)</Label>
@@ -243,5 +251,3 @@ export default function ApplyForm() {
     </Card>
   );
 }
-
-    
