@@ -1,9 +1,8 @@
-
 import type { Metadata } from 'next';
 import React from 'react';
 
 export const metadata: Metadata = {
-  title: 'Apply for an Internship',
+  title: 'Apply for an Internship at Utsavy',
   description: 'Apply for an internship at Utsavy through Vasudev AI. Join our team and gain hands-on experience in a fast-paced, innovative environment.',
   keywords: ['internship application', 'apply for internship', 'Utsavy careers', 'AI internships', 'developer internships', 'marketing internships'],
   openGraph: {
