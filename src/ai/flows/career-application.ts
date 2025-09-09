@@ -13,11 +13,22 @@ import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 
 const CareerApplicationInputSchema = z.object({
-  name: z.string().describe('The name of the applicant.'),
-  email: z.string().email().describe('The email of the applicant.'),
-  portfolio: z.string().url().describe('A link to the applicant\'s portfolio or resume.'),
+  name: z.string().describe("The applicant's full name."),
+  email: z.string().email().describe("The applicant's email address."),
+  mobile: z.string().describe("The applicant's mobile number."),
+  location: z.string().describe("The applicant's location (City, State)."),
+  portfolio: z.string().url().optional().describe("A link to the applicant's portfolio, GitHub, or LinkedIn."),
+  resumeLink: z.string().url().optional().describe("A link to the applicant's resume (e.g., Google Drive)."),
   role: z.string().describe('The role the applicant is applying for.'),
-  coverLetter: z.string().describe('The applicant\'s cover letter or reason for applying.'),
+  skills: z.string().describe("The applicant's listed skills."),
+  experience: z.string().describe("The applicant's description of previous projects or experience."),
+  availability: z.string().describe("If the applicant is available for 2 months, 4-5 hours daily."),
+  startDate: z.string().describe("The applicant's preferred start date."),
+  motivation: z.string().describe("The applicant's reason for wanting to join Utsavy."),
+  startupExcitement: z.string().describe("What excites the applicant about working with a startup and AI tools."),
+  careerGoal: z.string().describe("The applicant's career goal in the next 1-2 years."),
+  isUnpaidOk: z.string().describe("If the applicant agrees that some roles are unpaid."),
+  isRemoteOk: z.string().describe("If the applicant is okay with a remote work environment."),
 });
 export type CareerApplicationInput = z.infer<typeof CareerApplicationInputSchema>;
 
@@ -34,13 +45,32 @@ const prompt = ai.definePrompt({
   name: 'careerApplicationPrompt',
   input: {schema: CareerApplicationInputSchema},
   output: {schema: CareerApplicationOutputSchema},
-  prompt: `You are a hiring manager for Vasudev AI.
-An applicant named {{{name}}} (email: {{{email}}}) has applied for the {{{role}}} role.
+  prompt: `You are a hiring manager for Vasudev AI, reviewing an internship application for a partner startup, Utsavy.
+An applicant named {{{name}}} has applied for the {{{role}}} role.
 
-Portfolio: {{{portfolio}}}
-Cover Letter: "{{{coverLetter}}}"
+**Candidate Details:**
+- Email: {{{email}}}
+- Mobile: {{{mobile}}}
+- Location: {{{location}}}
+- Portfolio: {{{portfolio}}}
+- Resume: {{{resumeLink}}}
 
-Your task is to generate a short, encouraging confirmation message.
+**Skills & Experience:**
+- Skills: {{{skills}}}
+- Experience: "{{{experience}}}"
+
+**Availability & Motivation:**
+- Available for 2 months (4-5 hours/day): {{{availability}}}
+- Preferred Start Date: {{{startDate}}}
+- Motivation to join Utsavy: "{{{motivation}}}"
+- Excitement for startups/AI: "{{{startupExcitement}}}"
+- Career Goal (1-2 years): "{{{careerGoal}}}"
+
+**Agreements:**
+- Agrees some roles are unpaid: {{{isUnpaidOk}}}
+- OK with remote work: {{{isRemoteOk}}}
+
+Your task is to generate a short, encouraging confirmation message for the applicant.
 Acknowledge their application for the specific role and let them know the team will review it.
 Keep it on-brand, friendly, and professional.
 For example: "Thank you for your application for the {{{role}}} role, {{{name}}}. The council will review your transmission. We'll be in touch if your skills align with our cosmic journey."
@@ -55,10 +85,10 @@ const careerApplicationFlow = ai.defineFlow(
   },
   async input => {
     // In a real application, you would add logic here to:
-    // 1. Send an email notification to the hiring team.
+    // 1. Send an email notification to the hiring team with all the details.
     // 2. Save the application to a database (e.g., Firestore).
     // For now, we'll just log it to the console.
-    console.log('New Career Application Received:', input);
+    console.log('New Career Application Received:', JSON.stringify(input, null, 2));
     
     const {output} = await prompt(input);
     return output!;
