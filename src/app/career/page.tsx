@@ -5,6 +5,7 @@ import PageHeader from '@/components/page-header';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Briefcase } from 'lucide-react';
+import Link from 'next/link';
 import React from 'react';
 
 export default function CareerPage() {
@@ -29,7 +30,7 @@ export default function CareerPage() {
                     </p>
                     <div className="pt-4">
                          <Button asChild size="lg" className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-bold text-lg py-6 rounded-full shadow-lg shadow-accent/30 hover:shadow-accent/50 transition-all">
-                            <a href="mailto:info@vasudev.online?subject=Internship Application">Apply</a>
+                            <Link href="/career/apply">Apply</Link>
                         </Button>
                     </div>
                 </CardContent>
