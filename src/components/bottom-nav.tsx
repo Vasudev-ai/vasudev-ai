@@ -3,14 +3,14 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, Users, Rocket, Shield, Mail, Briefcase } from 'lucide-react';
+import { Home, Users, Rocket, Shield, Mail, Briefcase, Award } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const navLinks = [
   { href: '/', label: 'Home', icon: <Home className="h-5 w-5" /> },
   { href: '/community', label: 'Community', icon: <Users className="h-5 w-5" /> },
   { href: '/projects', label: 'Projects', icon: <Rocket className="h-5 w-5" /> },
-  { href: '/services', label: 'Services', icon: <Briefcase className="h-5 w-5" /> },
+  { href: '/career', label: 'Career', icon: <Award className="h-5 w-5" /> },
   { href: '/team', label: 'Team', icon: <Shield className="h-5 w-5" /> },
   { href: '/contact', label: 'Contact', icon: <Mail className="h-5 w-5" /> },
 ];
