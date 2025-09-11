@@ -56,8 +56,6 @@ export default function ApplyForm() {
   useEffect(() => {
     if (state.message) {
       if (state.error) {
-        // The validation error is now handled by the Alert component below
-        // We only toast for unexpected errors that are not validation-related
         if (!state.message.startsWith('Please correct')) {
             toast({
               variant: 'destructive',
@@ -254,7 +252,7 @@ export default function ApplyForm() {
                     <Alert variant="destructive">
                         <AlertTitle>Validation Error</AlertTitle>
                         <AlertDescription>
-                        {state.message}
+                            <div className="whitespace-pre-line">{state.message}</div>
                         </AlertDescription>
                     </Alert>
                 )}

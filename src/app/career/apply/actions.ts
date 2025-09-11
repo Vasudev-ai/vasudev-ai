@@ -9,10 +9,10 @@ const FormSchema = z.object({
   email: z.string().email('Invalid email address.'),
   mobile: z.string().min(10, 'A valid mobile number is required.'),
   location: z.string().min(2, 'Location is required.'),
-  portfolio: z.string().url().optional().or(z.literal('')),
-  github: z.string().url().optional().or(z.literal('')),
-  linkedin: z.string().url().optional().or(z.literal('')),
-  resumeLink: z.string().url().optional().or(z.literal('')),
+  portfolio: z.string().url('Invalid URL.').optional().or(z.literal('')),
+  github: z.string().url('Invalid URL.').optional().or(z.literal('')),
+  linkedin: z.string().url('Invalid URL.').optional().or(z.literal('')),
+  resumeLink: z.string().url('Invalid URL.').optional().or(z.literal('')),
   role: z.string().min(1, 'Please select a role.'),
   skills: z.string().min(10, 'Please list some of your skills.'),
   experience: z.string().min(10, 'Please describe your experience.'),
@@ -54,10 +54,9 @@ export async function submitApplication(prevState: FormState, formData: FormData
     });
 
     if (!validatedFields.success) {
-      const errorMessages = validatedFields.error.issues.map(issue => `${issue.path[0]}: ${issue.message}`).join(', ');
-      console.log('Validation Errors:', validatedFields.error.issues);
+      const errorList = validatedFields.error.issues.map(issue => `• ${issue.path.join('.')} - ${issue.message}`);
       return {
-        message: `Please correct the following: ${errorMessages}.`,
+        message: `Please correct the following errors:\n${errorList.join('\n')}`,
         error: true,
       };
     }
