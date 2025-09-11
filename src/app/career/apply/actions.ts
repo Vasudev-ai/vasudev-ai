@@ -5,24 +5,24 @@ import { handleCareerApplication } from "@/ai/flows/career-application";
 import { z } from "zod";
 
 const FormSchema = z.object({
-  name: z.string(),
-  email: z.string(),
-  mobile: z.string(),
-  location: z.string(),
-  portfolio: z.string().optional(),
-  github: z.string().optional(),
-  linkedin: z.string().optional(),
-  resumeLink: z.string().optional(),
-  role: z.string(),
-  skills: z.string(),
-  experience: z.string(),
-  availability: z.string(),
-  startDate: z.string(),
-  motivation: z.string(),
-  startupExcitement: z.string(),
-  careerGoal: z.string(),
-  isUnpaidOk: z.string(),
-  isRemoteOk: z.string(),
+  name: z.string().min(1, 'Name is required.'),
+  email: z.string().email('A valid email is required.'),
+  mobile: z.string().min(1, 'Mobile number is required.'),
+  location: z.string().min(1, 'Location is required.'),
+  portfolio: z.string().url().or(z.literal('')).optional(),
+  github: z.string().url().or(z.literal('')).optional(),
+  linkedin: z.string().url().or(z.literal('')).optional(),
+  resumeLink: z.string().url().or(z.literal('')).optional(),
+  role: z.string().min(1, 'Please select a role.'),
+  skills: z.string().min(1, 'Please list some of your skills.'),
+  experience: z.string().min(1, 'Please describe your experience.'),
+  availability: z.string({ required_error: 'Please confirm your availability.' }),
+  startDate: z.string().min(1, 'Please select a start date.'),
+  motivation: z.string().min(1, 'Please share your motivation.'),
+  startupExcitement: z.string().min(1, 'This field is required.'),
+  careerGoal: z.string().min(1, 'Please share your career goal.'),
+  isUnpaidOk: z.string({ required_error: 'Please confirm your agreement.' }),
+  isRemoteOk: z.string({ required_error: 'Please confirm your preference.' }),
 });
 
 export type FormState = {
@@ -31,30 +31,40 @@ export type FormState = {
 }
 
 export async function submitApplication(prevState: FormState, formData: FormData): Promise<FormState> {
-  try {
-    const data = {
-        name: formData.get('name'),
-        email: formData.get('email'),
-        mobile: formData.get('mobile'),
-        location: formData.get('location'),
-        portfolio: formData.get('portfolio'),
-        github: formData.get('github'),
-        linkedin: formData.get('linkedin'),
-        resumeLink: formData.get('resumeLink'),
-        role: formData.get('role'),
-        skills: formData.get('skills'),
-        experience: formData.get('experience'),
-        availability: formData.get('availability'),
-        startDate: formData.get('startDate'),
-        motivation: formData.get('motivation'),
-        startupExcitement: formData.get('startupExcitement'),
-        careerGoal: formData.get('careerGoal'),
-        isUnpaidOk: formData.get('isUnpaidOk'),
-        isRemoteOk: formData.get('isRemoteOk'),
-    };
+  const data = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      mobile: formData.get('mobile'),
+      location: formData.get('location'),
+      portfolio: formData.get('portfolio'),
+      github: formData.get('github'),
+      linkedin: formData.get('linkedin'),
+      resumeLink: formData.get('resumeLink'),
+      role: formData.get('role'),
+      skills: formData.get('skills'),
+      experience: formData.get('experience'),
+      availability: formData.get('availability'),
+      startDate: formData.get('startDate'),
+      motivation: formData.get('motivation'),
+      startupExcitement: formData.get('startupExcitement'),
+      careerGoal: formData.get('careerGoal'),
+      isUnpaidOk: formData.get('isUnpaidOk'),
+      isRemoteOk: formData.get('isRemoteOk'),
+  };
 
-    // Temporarily disable strict validation to make testing easier
-    const result = await handleCareerApplication(data as any);
+  const validatedFields = FormSchema.safeParse(data);
+
+  if (!validatedFields.success) {
+    const errorMessage = "Please correct the following errors:\n" +
+      validatedFields.error.errors.map(e => `- ${e.path.join('.')}: ${e.message}`).join('\n');
+    return {
+      message: errorMessage,
+      error: true,
+    }
+  }
+  
+  try {
+    const result = await handleCareerApplication(validatedFields.data);
     
     return {
       message: result.reply,
