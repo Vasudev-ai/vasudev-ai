@@ -9,12 +9,12 @@ const FormSchema = z.object({
   email: z.string().email('A valid email is required.'),
   mobile: z.string().min(1, 'Mobile number is required.'),
   location: z.string().min(1, 'Location is required.'),
-  portfolio: z.union([z.string().url(), z.literal('')]).optional(),
-  github: z.union([z.string().url(), z.literal('')]).optional(),
-  linkedin: z.union([z.string().url(), z.literal('')]).optional(),
-  resumeLink: z.union([z.string().url(), z.literal('')]).optional(),
+  portfolio: z.union([z.string().url().optional(), z.literal('')]),
+  github: z.union([z.string().url().optional(), z.literal('')]),
+  linkedin: z.union([z.string().url().optional(), z.literal('')]),
+  resumeLink: z.union([z.string().url().optional(), z.literal('')]),
   role: z.string().min(1, 'Please select a role.'),
-  skills: z.string().min(1, 'Please list some of your skills.'),
+  skills: z.string().min(1, 'Please list your skills.'),
   experience: z.string().min(1, 'Please describe your experience.'),
   availability: z.string({ required_error: 'Please confirm your availability.' }),
   startDate: z.string().min(1, 'Please select a start date.'),
@@ -36,10 +36,10 @@ export async function submitApplication(prevState: FormState, formData: FormData
       email: formData.get('email'),
       mobile: formData.get('mobile'),
       location: formData.get('location'),
-      portfolio: formData.get('portfolio'),
-      github: formData.get('github'),
-      linkedin: formData.get('linkedin'),
-      resumeLink: formData.get('resumeLink'),
+      portfolio: formData.get('portfolio') || '',
+      github: formData.get('github') || '',
+      linkedin: formData.get('linkedin') || '',
+      resumeLink: formData.get('resumeLink') || '',
       role: formData.get('role'),
       skills: formData.get('skills'),
       experience: formData.get('experience'),
@@ -55,8 +55,8 @@ export async function submitApplication(prevState: FormState, formData: FormData
   const validatedFields = FormSchema.safeParse(data);
 
   if (!validatedFields.success) {
-    const errorMessage = "Please correct the following errors:\n" +
-      validatedFields.error.errors.map(e => `- ${e.path.join('.')}: ${e.message}`).join('\n');
+    const errorList = validatedFields.error.errors.map(e => `- ${e.path.join('.')}: ${e.message}`).join('\n');
+    const errorMessage = `Please correct the following errors:\n${errorList}`;
     return {
       message: errorMessage,
       error: true,
@@ -74,7 +74,7 @@ export async function submitApplication(prevState: FormState, formData: FormData
     console.error("Error submitting application:", error);
     const errorMessage = error instanceof Error ? error.message : 'An unexpected error occurred.';
     return {
-      message: `An unexpected error occurred: ${errorMessage}`,
+      message: `An unexpected server error occurred: ${errorMessage}`,
       error: true,
     };
   }

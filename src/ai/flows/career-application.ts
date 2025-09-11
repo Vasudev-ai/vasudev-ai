@@ -37,7 +37,9 @@ export async function handleCareerApplication(input: CareerApplicationInput): Pr
   const sheetName = 'Internship Applications';
 
   if (!spreadsheetId) {
-    throw new Error('GOOGLE_SHEET_ID is not configured in environment variables.');
+    const errorMessage = 'GOOGLE_SHEET_ID is not configured in environment variables.';
+    console.error(errorMessage);
+    return { success: false, message: errorMessage };
   }
 
   try {
@@ -52,9 +54,7 @@ export async function handleCareerApplication(input: CareerApplicationInput): Pr
     };
   } catch (error) {
     console.error('Failed to save application to Google Sheet:', error);
-    if (error instanceof Error) {
-        return { success: false, message: `An error occurred while saving your application: ${error.message}` };
-    }
-    return { success: false, message: 'An unknown error occurred while saving your application.' };
+    const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred while saving your application.';
+    return { success: false, message: `Application submission failed: ${errorMessage}` };
   }
 }
