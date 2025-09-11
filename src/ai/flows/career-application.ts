@@ -11,7 +11,7 @@
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
-import { appendToSheet } from '@/services/google-sheets';
+// import { appendToSheet } from '@/services/google-sheets';
 
 const CareerApplicationInputSchema = z.object({
   name: z.string().describe("The applicant's full name."),
@@ -89,48 +89,8 @@ const careerApplicationFlow = ai.defineFlow(
     outputSchema: CareerApplicationOutputSchema,
   },
   async input => {
-    // Save the application to Google Sheets if configured
-    if (process.env.GOOGLE_SHEET_ID) {
-      try {
-        const sheetName = 'Applications'; // You can customize this
-        const headers = [
-          'Timestamp', 'Name', 'Email', 'Mobile', 'Location', 'Role', 
-          'Portfolio', 'GitHub', 'LinkedIn', 'Resume', 
-          'Skills', 'Experience', 'Availability', 'Start Date', 
-          'Motivation', 'Startup Excitement', 'Career Goal', 
-          'Unpaid OK', 'Remote OK'
-        ];
-        const values = [
-          new Date().toISOString(),
-          input.name,
-          input.email,
-          input.mobile,
-          input.location,
-          input.role,
-          input.portfolio || '',
-          input.github || '',
-          input.linkedin || '',
-          input.resumeLink || '',
-          input.skills,
-          input.experience,
-          input.availability,
-          input.startDate,
-          input.motivation,
-          input.startupExcitement,
-          input.careerGoal,
-          input.isUnpaidOk,
-          input.isRemoteOk
-        ];
-        await appendToSheet(process.env.GOOGLE_SHEET_ID, sheetName, headers, [values]);
-        console.log('Successfully saved application to Google Sheets.');
-      } catch (error) {
-        console.error('Failed to save application to Google Sheets:', error);
-        // We won't block the user response if this fails, just log the error.
-      }
-    } else {
-        console.log('Google Sheet ID not configured. Skipping save to sheets.');
-        console.log('New Career Application Received:', JSON.stringify(input, null, 2));
-    }
+    // For now, just log the data to the console to confirm submission.
+    console.log('New Career Application Received:', JSON.stringify(input, null, 2));
     
     const {output} = await prompt(input);
     return output!;
