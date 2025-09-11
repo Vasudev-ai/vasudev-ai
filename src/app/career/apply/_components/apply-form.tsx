@@ -17,6 +17,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { Calendar } from '@/components/ui/calendar';
 import { format } from 'date-fns';
 import { cn } from '@/lib/utils';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 const initialState: FormState = {
   message: '',
@@ -55,11 +56,15 @@ export default function ApplyForm() {
   useEffect(() => {
     if (state.message) {
       if (state.error) {
-        toast({
-          variant: 'destructive',
-          title: 'Application Failed',
-          description: state.message,
-        });
+        // The validation error is now handled by the Alert component below
+        // We only toast for unexpected errors that are not validation-related
+        if (!state.message.startsWith('Please correct')) {
+            toast({
+              variant: 'destructive',
+              title: 'Application Failed',
+              description: state.message,
+            });
+        }
       } else {
         toast({
           title: 'Application Received!',
@@ -244,6 +249,15 @@ export default function ApplyForm() {
                         </RadioGroup>
                     </div>
                 </div>
+
+                {state.error && state.message.startsWith('Please correct') && (
+                    <Alert variant="destructive">
+                        <AlertTitle>Validation Error</AlertTitle>
+                        <AlertDescription>
+                        {state.message}
+                        </AlertDescription>
+                    </Alert>
+                )}
 
                 <SubmitButton />
             </form>

@@ -54,10 +54,10 @@ export async function submitApplication(prevState: FormState, formData: FormData
     });
 
     if (!validatedFields.success) {
-      const errorMessages = validatedFields.error.issues.map(issue => `${issue.path[0]}: ${issue.message}`).join(' ');
+      const errorMessages = validatedFields.error.issues.map(issue => `${issue.path[0]}: ${issue.message}`).join(', ');
       console.log('Validation Errors:', validatedFields.error.issues);
       return {
-        message: `Validation failed. Please check the following fields: ${errorMessages}`,
+        message: `Please correct the following: ${errorMessages}.`,
         error: true,
       };
     }
