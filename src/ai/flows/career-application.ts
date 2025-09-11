@@ -1,17 +1,14 @@
-
 'use server';
 
 /**
- * @fileOverview A Genkit flow to handle career application form submissions.
+ * @fileOverview A flow to handle career application form submissions and save them to Google Sheets.
  *
  * - handleCareerApplication - A function that processes the career application.
  * - CareerApplicationInput - The input type for the handleCareerApplication function.
- * - CareerApplicationOutput - The return type for the handleCareerApplication function.
  */
 
-import {ai} from '@/ai/genkit';
-import {z} from 'genkit';
-// import { appendToSheet } from '@/services/google-sheets';
+import { z } from 'genkit';
+import { appendToSheet } from '@/services/google-sheets';
 
 const CareerApplicationInputSchema = z.object({
   name: z.string().describe("The applicant's full name."),
@@ -35,64 +32,29 @@ const CareerApplicationInputSchema = z.object({
 });
 export type CareerApplicationInput = z.infer<typeof CareerApplicationInputSchema>;
 
-const CareerApplicationOutputSchema = z.object({
-  reply: z.string().describe('A confirmation reply to be shown to the applicant.'),
-});
-export type CareerApplicationOutput = z.infer<typeof CareerApplicationOutputSchema>;
+export async function handleCareerApplication(input: CareerApplicationInput): Promise<{ success: boolean; message: string }> {
+  const spreadsheetId = process.env.GOOGLE_SHEET_ID;
+  const sheetName = 'Internship Applications';
 
-export async function handleCareerApplication(input: CareerApplicationInput): Promise<CareerApplicationOutput> {
-  return careerApplicationFlow(input);
-}
-
-const prompt = ai.definePrompt({
-  name: 'careerApplicationPrompt',
-  input: {schema: CareerApplicationInputSchema},
-  output: {schema: CareerApplicationOutputSchema},
-  prompt: `You are a hiring manager for Vasudev AI, reviewing an internship application for a partner startup, Utsavy.
-An applicant named {{{name}}} has applied for the {{{role}}} role.
-
-**Candidate Details:**
-- Email: {{{email}}}
-- Mobile: {{{mobile}}}
-- Location: {{{location}}}
-- Portfolio: {{{portfolio}}}
-- GitHub: {{{github}}}
-- LinkedIn: {{{linkedin}}}
-- Resume: {{{resumeLink}}}
-
-**Skills & Experience:**
-- Skills: {{{skills}}}
-- Experience: "{{{experience}}}"
-
-**Availability & Motivation:**
-- Available for 2 months (4-5 hours/day): {{{availability}}}
-- Preferred Start Date: {{{startDate}}}
-- Motivation to join Utsavy: "{{{motivation}}}"
-- Excitement for startups/AI: "{{{startupExcitement}}}"
-- Career Goal (1-2 years): "{{{careerGoal}}}"
-
-**Agreements:**
-- Agrees some roles are unpaid: {{{isUnpaidOk}}}
-- OK with remote work: {{{isRemoteOk}}}
-
-Your task is to generate a short, encouraging confirmation message for the applicant.
-Acknowledge their application for the specific role and let them know the team will review it.
-Keep it on-brand, friendly, and professional.
-For example: "Thank you for your application for the {{{role}}} role, {{{name}}}. The council will review your transmission. We'll be in touch if your skills align with our cosmic journey."
-`,
-});
-
-const careerApplicationFlow = ai.defineFlow(
-  {
-    name: 'careerApplicationFlow',
-    inputSchema: CareerApplicationInputSchema,
-    outputSchema: CareerApplicationOutputSchema,
-  },
-  async input => {
-    // For now, just log the data to the console to confirm submission.
-    console.log('New Career Application Received:', JSON.stringify(input, null, 2));
-    
-    const {output} = await prompt(input);
-    return output!;
+  if (!spreadsheetId) {
+    throw new Error('GOOGLE_SHEET_ID is not configured in environment variables.');
   }
-);
+
+  try {
+    const headers = Object.keys(input);
+    const rows = [Object.values(input)];
+
+    await appendToSheet(spreadsheetId, sheetName, headers, rows);
+    
+    return {
+      success: true,
+      message: "Thank you for your application! We have received your submission and the council will be in touch if your skills align with our journey.",
+    };
+  } catch (error) {
+    console.error('Failed to save application to Google Sheet:', error);
+    if (error instanceof Error) {
+        return { success: false, message: `An error occurred while saving your application: ${error.message}` };
+    }
+    return { success: false, message: 'An unknown error occurred while saving your application.' };
+  }
+}

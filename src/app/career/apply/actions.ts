@@ -9,10 +9,10 @@ const FormSchema = z.object({
   email: z.string().email('A valid email is required.'),
   mobile: z.string().min(1, 'Mobile number is required.'),
   location: z.string().min(1, 'Location is required.'),
-  portfolio: z.string().url().or(z.literal('')).optional(),
-  github: z.string().url().or(z.literal('')).optional(),
-  linkedin: z.string().url().or(z.literal('')).optional(),
-  resumeLink: z.string().url().or(z.literal('')).optional(),
+  portfolio: z.union([z.string().url(), z.literal('')]).optional(),
+  github: z.union([z.string().url(), z.literal('')]).optional(),
+  linkedin: z.union([z.string().url(), z.literal('')]).optional(),
+  resumeLink: z.union([z.string().url(), z.literal('')]).optional(),
   role: z.string().min(1, 'Please select a role.'),
   skills: z.string().min(1, 'Please list some of your skills.'),
   experience: z.string().min(1, 'Please describe your experience.'),
@@ -67,8 +67,8 @@ export async function submitApplication(prevState: FormState, formData: FormData
     const result = await handleCareerApplication(validatedFields.data);
     
     return {
-      message: result.reply,
-      error: false,
+      message: result.message,
+      error: !result.success,
     };
   } catch (error) {
     console.error("Error submitting application:", error);
