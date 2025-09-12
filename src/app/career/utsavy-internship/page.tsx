@@ -46,10 +46,13 @@ export default function UtsavyInternshipPage() {
                   We are thrilled to announce internship openings at <strong className="text-accent">Utsavy</strong>, in collaboration with Vasudev AI. This is an amazing opportunity to gain hands-on experience, work closely with a startup founding team, and explore cutting-edge AI tools.
                 </p>
                 <div className="rounded-lg border border-primary/30 bg-card/50 backdrop-blur-sm p-4 mt-6 shadow-[0_0_15px_hsl(var(--primary)/0.2)]">
-                  <p className="!m-0 text-primary-foreground/90 flex items-start gap-3">
+                  <div className="flex items-start gap-3">
                     <Zap className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
-                    <span><strong className="font-semibold text-primary">Note:</strong> Applications and initial interviews will be conducted by Vasudev AI, but the internship positions will be offered directly by Utsavy.</span>
-                  </p>
+                    <p className="!m-0 text-base">
+                      <strong className="font-semibold text-primary">Note:</strong>
+                      <span className="text-gray-300"> Applications and initial interviews will be conducted by Vasudev AI, but the internship positions will be offered directly by Utsavy.</span>
+                    </p>
+                  </div>
                 </div>
               </div>
 
