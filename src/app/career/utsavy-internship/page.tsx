@@ -3,9 +3,10 @@ import PageHeader from '@/components/page-header';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { CheckCircle, Clock, Calendar, Zap } from 'lucide-react';
+import { CheckCircle, Clock, Calendar, Zap, X } from 'lucide-react';
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import Logo from '@/components/logo';
 
 export const metadata: Metadata = {
   title: 'Internship at Utsavy | Vasudev AI',
@@ -29,13 +30,33 @@ const benefits = [
   'Opportunity for future openings with Utsavy',
 ];
 
+const UtsavyLogo = () => (
+    <div className="flex flex-row items-center justify-center gap-2">
+         <span className="text-xl font-bold font-headline bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
+        UTSAVY
+      </span>
+    </div>
+)
+
 export default function UtsavyInternshipPage() {
   return (
     <div className="pb-20">
-      <PageHeader
-        title="Internship Applications — Utsavy"
-        subtitle="via Vasudev AI (Hiring Partner)"
-      />
+      <section className="w-full py-16 md:py-20 text-center bg-card/30">
+        <div className="container mx-auto px-4">
+            <div className="flex items-center justify-center gap-4 mb-6">
+                <Logo />
+                <X className="h-6 w-6 text-primary/50" />
+                <UtsavyLogo />
+            </div>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-headline font-bold text-center bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-400">
+            Internship Applications
+            </h1>
+            <p className="mt-4 text-base md:text-xl text-primary max-w-3xl mx-auto">
+            via Vasudev AI (Hiring Partner)
+            </p>
+        </div>
+        </section>
+
       <div className="container mx-auto px-4 mt-12 md:mt-16">
         <div className="max-w-4xl mx-auto">
           <Card className="bg-card/70 border-primary/20 backdrop-blur-sm shadow-lg">
@@ -49,8 +70,8 @@ export default function UtsavyInternshipPage() {
                   <div className="flex items-start gap-3">
                     <Zap className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
                     <p className="!m-0 text-base">
-                      <strong className="font-semibold text-primary">Note:</strong>
-                      <span className="text-gray-300"> Applications and initial interviews will be conducted by Vasudev AI, but the internship positions will be offered directly by Utsavy.</span>
+                      <strong className="font-semibold text-primary">Note: </strong>
+                      <span className="text-gray-300">Applications and initial interviews will be conducted by Vasudev AI, but the internship positions will be offered directly by Utsavy.</span>
                     </p>
                   </div>
                 </div>
