@@ -59,7 +59,7 @@ const BusinessCard: React.FC<Pick<BusinessCardModalProps, 'member' | 'details'> 
                 <Image 
                     src={member.avatar} 
                     alt={member.name} 
-                    layout="fill"
+                    fill
                     objectFit="contain"
                     objectPosition="bottom right"
                     className="drop-shadow-[0_10px_15px_rgba(0,0,0,0.4)]"
@@ -84,20 +84,18 @@ const BusinessCard: React.FC<Pick<BusinessCardModalProps, 'member' | 'details'> 
 
         <div className="my-auto grid grid-cols-2 gap-x-4 gap-y-3 text-sm">
             <a href={`tel:${details.phone}`} className="flex items-center gap-2 transition-colors hover:text-primary"><Phone size={14} /><span>{details.phone}</span></a>
-            <a href={`mailto:${details.email}`} className="flex items-center gap-2 transition-colors hover:text-primary"><Mail size={14} /><span>{details.email}</span></a>
-            <a href={details.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 transition-colors hover:text-primary"><Globe size={14} /><span>{details.website.replace('https://', '')}</span></a>
+             <a href={`mailto:${details.email}`} className="flex items-center gap-2 transition-colors hover:text-primary"><Mail size={14} /><span>{details.email}</span></a>
+            <a href={details.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 transition-colors hover:text-primary"><Globe size={14} /><span>{details.website.replace('https://www.', '')}</span></a>
             <a href={member.socials.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 transition-colors hover:text-primary"><Linkedin size={14} /><span>{details.linkedin}</span></a>
+            <a href="https://discord.gg/e5uPQDXSSk" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 transition-colors hover:text-primary col-span-2"><Disc size={14} /><span>{details.discord}</span></a>
         </div>
         
         <div className="mt-auto flex items-end justify-between">
           <div className="text-left">
-            <div className="flex items-center gap-2 text-xs text-gray-400">
-                <Disc size={14} /> <span>{details.discord}</span>
-            </div>
-            <p className="font-headline text-lg bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">Vasudev AI</p>
+            <span className="text-xl font-bold font-headline bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">Vasudev AI</span>
           </div>
-          <div className="rounded-lg bg-white p-1.5">
-            <QRCode value={details.qrLink} size={70} bgColor="#FFFFFF" fgColor="#0D0F1A" />
+          <div className="relative">
+            <QRCode value={details.qrLink} size={80} bgColor="transparent" fgColor="hsl(var(--primary))" />
           </div>
         </div>
       </div>
@@ -171,10 +169,10 @@ const BusinessCardModal: React.FC<BusinessCardModalProps> = ({ member, details, 
                 animate={{ rotateY: isFlipped ? 180 : 0 }}
                 transition={{ duration: 0.6 }}
             >
-                <div style={{ backfaceVisibility: 'hidden' }}>
+                <div style={{ backfaceVisibility: 'hidden' }} className="absolute inset-0">
                     <BusinessCard member={member} details={details} side="front" />
                 </div>
-                <div style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)', position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}>
+                <div style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }} className="absolute inset-0">
                     <BusinessCard member={member} details={details} side="back" />
                 </div>
             </motion.div>
@@ -207,3 +205,5 @@ const BusinessCardModal: React.FC<BusinessCardModalProps> = ({ member, details, 
 };
 
 export default BusinessCardModal;
+
+    
