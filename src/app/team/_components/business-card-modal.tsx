@@ -53,19 +53,19 @@ const BusinessCard: React.FC<Pick<BusinessCardModalProps, 'member' | 'details'> 
         </div>
         
         <div className="z-10 flex items-end justify-between gap-4">
-             <div className="relative w-48 h-56 -mb-6 -ml-6">
+            <div className='text-left'>
+               <p className="font-headline text-lg bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">Vasudev AI</p>
+               <p className="text-xs text-gray-400">Where Intelligence Meets Innovation.</p>
+            </div>
+             <div className="relative w-48 h-56 -mb-6 -mr-6">
                 <Image 
                     src={member.avatar} 
                     alt={member.name} 
                     layout="fill"
                     objectFit="contain"
-                    objectPosition="bottom left"
+                    objectPosition="bottom right"
                     className="drop-shadow-[0_10px_15px_rgba(0,0,0,0.4)]"
                 />
-            </div>
-            <div className='text-right'>
-               <p className="font-headline text-lg bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">Vasudev AI</p>
-               <p className="text-xs text-gray-400">Where Intelligence Meets Innovation.</p>
             </div>
         </div>
       </div>
