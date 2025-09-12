@@ -40,24 +40,22 @@ const BusinessCard: React.FC<Pick<BusinessCardModalProps, 'member' | 'details'> 
 
   if (side === 'front') {
     return (
-      <div className="card-face absolute inset-0 flex flex-col justify-between rounded-2xl p-6 text-white shadow-2xl" style={cardStyle}>
+      <div className="card-face absolute inset-0 flex flex-row justify-between rounded-2xl p-6 text-white shadow-2xl overflow-hidden" style={cardStyle}>
         <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
+        <div className="absolute -right-20 -top-20 w-80 h-80 bg-[radial-gradient(circle,var(--accent-glow)_0%,transparent_60%)] opacity-30"></div>
         <div className="absolute inset-0 rounded-2xl border border-primary/20"></div>
         
-        <div className="z-10 flex justify-between items-start">
+        <div className="z-10 flex flex-col justify-between h-full w-[55%] py-2">
              <Logo />
              <div>
-                 <h3 className="text-2xl font-headline font-bold text-right" style={{ color: 'var(--accent-glow)' }}>{member.name}</h3>
-                <p className="font-medium text-gray-300 text-right">{details.role}</p>
+                 <h3 className="text-3xl font-headline font-bold" style={{ color: 'var(--accent-glow)' }}>{member.name}</h3>
+                <p className="font-medium text-gray-300 text-lg">{details.role}</p>
             </div>
+            <p className="text-xs text-gray-400">Where Intelligence Meets Innovation.</p>
         </div>
         
-        <div className="z-10 flex items-end justify-between gap-4">
-            <div className='text-left'>
-               <p className="font-headline text-lg bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">Vasudev AI</p>
-               <p className="text-xs text-gray-400">Where Intelligence Meets Innovation.</p>
-            </div>
-             <div className="relative w-48 h-56 -mb-6 -mr-6">
+        <div className="z-10 relative w-[45%] h-full">
+             <div className="absolute bottom-0 right-0 w-[140%] h-[110%]">
                 <Image 
                     src={member.avatar} 
                     alt={member.name} 
