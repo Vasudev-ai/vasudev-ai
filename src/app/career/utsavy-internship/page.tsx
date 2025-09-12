@@ -139,7 +139,7 @@ export default function UtsavyInternshipPage() {
                         
                         <div className="pt-4">
                             <Button asChild size="lg" className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-bold text-lg py-6 rounded-full shadow-lg shadow-accent/30 hover:shadow-accent/50 transition-all animate-pulse">
-                            <Link href="https://docs.google.com/forms/d/e/1FAIpQLSeThr6grTHpOk0u3-gVU1wMVM5G3-SimErVw0n1AFTuRW3EQg/viewform?usp=sf_link" target="_blank" rel="noopener noreferrer">Apply Now</Link>
+                            <Link href="https://forms.gle/tqkiAg8PXhnvnb2c6" target="_blank" rel="noopener noreferrer">Apply Now</Link>
                             </Button>
                         </div>
                     </CardContent>
