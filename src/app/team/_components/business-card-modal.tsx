@@ -45,8 +45,8 @@ const BusinessCard: React.FC<Pick<BusinessCardModalProps, 'member' | 'details'> 
         <div className="absolute inset-0 rounded-2xl border border-primary/20"></div>
         
         <div className="z-10 flex justify-between items-start">
-            <Logo />
-            <div>
+             <Logo />
+             <div>
                  <h3 className="text-2xl font-headline font-bold text-right" style={{ color: 'var(--accent-glow)' }}>{member.name}</h3>
                 <p className="font-medium text-gray-300 text-right">{details.role}</p>
             </div>
