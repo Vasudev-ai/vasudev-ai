@@ -3,7 +3,7 @@ import PageHeader from '@/components/page-header';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { CheckCircle, Clock, Calendar, Zap, X, Rocket, Award, Brain, Brush, Users, Code } from 'lucide-react';
+import { CheckCircle, Clock, Calendar, Zap, X, Rocket, Award, Brain, Brush, Users, Code, Globe, Mail, MessageCircle } from 'lucide-react';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import Logo from '@/components/logo';
@@ -25,10 +25,16 @@ const roles = [
 const benefits = [
   'Certificate of Completion',
   'Performance-based bonus',
-  'Direct mentorship from the Utsavy founding team',
+  'Direct mentorship from the Vasudev AI & Utsavy founding team',
   'Hands-on exposure to AI tools & startup ecosystem',
-  'Opportunity for future openings with Utsavy',
+  'Opportunity for future openings with Vasudev AI & Utsavy',
 ];
+
+const contact_details = [
+    { icon: <Globe className="h-5 w-5 text-accent" />, text: 'Website', value: 'www.vasudev.online', href: 'https://www.vasudev.online' },
+    { icon: <Mail className="h-5 w-5 text-accent" />, text: 'Email', value: 'info@vasudev.online', href: 'mailto:info@vasudev.online' },
+    { icon: <MessageCircle className="h-5 w-5 text-accent" />, text: 'Discord', value: 'Join our server', href: 'https://discord.gg/zkDM4psr' }
+]
 
 const UtsavyLogo = () => (
     <div className="flex flex-row items-center justify-center gap-2">
@@ -49,10 +55,10 @@ export default function UtsavyInternshipPage() {
                 <UtsavyLogo />
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-headline font-bold text-center bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-400">
-            Internship Applications
+            🚀 Internship Applications
             </h1>
             <p className="mt-4 text-base md:text-xl text-primary max-w-3xl mx-auto">
-            via Vasudev AI (Hiring Partner)
+             Utsavy via Vasudev AI (Hiring Partner & Contributor)
             </p>
         </div>
       </section>
@@ -63,15 +69,26 @@ export default function UtsavyInternshipPage() {
             <div className="lg:col-span-2 space-y-12">
                 <section>
                     <p className="text-gray-300 text-lg leading-relaxed">
-                        We are thrilled to announce internship openings at <strong className="text-accent">Utsavy</strong>, in collaboration with Vasudev AI. This is an amazing opportunity to gain hands-on experience, work closely with a startup founding team, and explore cutting-edge AI tools.
+                       We are thrilled to announce internship openings at <strong className="text-accent">Utsavy</strong>, in collaboration with Vasudev AI. This is an amazing opportunity to gain hands-on experience, work closely with a startup founding team, and explore cutting-edge AI tools.
                     </p>
-                    <div className="rounded-lg border border-primary/30 bg-card/50 backdrop-blur-sm p-4 mt-6 shadow-[0_0_15px_hsl(var(--primary)/0.2)]">
-                        <div className="flex items-start gap-3">
-                            <Zap className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
-                            <p className="text-base">
-                                <strong className="font-semibold text-primary">Note: </strong>
-                                <span className="text-gray-300">Applications and initial interviews will be conducted by Vasudev AI, but the internship positions will be offered directly by Utsavy.</span>
-                            </p>
+                    <div className="mt-6 space-y-3">
+                        <div className="rounded-lg border border-primary/30 bg-card/50 backdrop-blur-sm p-4 shadow-[0_0_15px_hsl(var(--primary)/0.2)]">
+                            <div className="flex items-start gap-3">
+                                <Zap className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
+                                <p className="text-base">
+                                    <strong className="font-semibold text-primary">Note: </strong> 
+                                    <span className="text-gray-300">Applications and initial interviews will be conducted by Vasudev AI, but the internship positions will be offered directly by Utsavy.</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div className="rounded-lg border border-primary/30 bg-card/50 backdrop-blur-sm p-4 shadow-[0_0_15px_hsl(var(--primary)/0.2)]">
+                            <div className="flex items-start gap-3">
+                                <Zap className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
+                                <p className="text-base">
+                                     <strong className="font-semibold text-primary">Note: </strong> 
+                                     <span className="text-gray-300">Final selection & internship onboarding will be handled by Utsavy.</span>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -118,8 +135,8 @@ export default function UtsavyInternshipPage() {
                                 <div className="flex items-center gap-3">
                                     <Clock className="h-5 w-5 text-accent" />
                                     <div>
-                                    <p className="text-gray-400 text-sm">Commitment</p>
-                                    <p className="text-white font-medium">4–5 hours daily (flexible)</p>
+                                    <p className="text-gray-400 text-sm">Time Commitment</p>
+                                    <p className="text-white font-medium">4–5 hours daily (flexible & collaborative)</p>
                                     </div>
                                 </div>
                             </div>
@@ -137,6 +154,21 @@ export default function UtsavyInternshipPage() {
                             </ul>
                         </div>
                         
+                         <div>
+                            <h3 className="text-lg font-semibold text-primary mb-4">Contact</h3>
+                            <div className="space-y-4">
+                            {contact_details.map(detail => (
+                                <Link key={detail.text} href={detail.href} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 group">
+                                {detail.icon}
+                                <div>
+                                    <p className="text-gray-400 text-sm group-hover:text-accent">{detail.text}</p>
+                                    <p className="text-white font-medium group-hover:text-accent">{detail.value}</p>
+                                </div>
+                                </Link>
+                            ))}
+                            </div>
+                        </div>
+
                         <div className="pt-4">
                             <Button asChild size="lg" className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-bold text-lg py-6 rounded-full shadow-lg shadow-accent/30 hover:shadow-accent/50 transition-all animate-pulse">
                             <Link href="https://forms.gle/tqkiAg8PXhnvnb2c6" target="_blank" rel="noopener noreferrer">Apply Now</Link>
