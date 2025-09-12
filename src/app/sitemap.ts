@@ -1,4 +1,3 @@
-
 import { MetadataRoute } from 'next'
 import { projects } from '@/lib/projects-data';
  
@@ -16,7 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/services',
     '/team',
     '/career',
-    '/career/apply',
+    '/career/utsavy-internship',
   ];
 
   const sitemapEntries: MetadataRoute.Sitemap = staticPages.map((path) => ({

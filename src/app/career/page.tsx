@@ -3,7 +3,7 @@
 import PageHeader from '@/components/page-header';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Briefcase } from 'lucide-react';
+import { Briefcase, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react';
 
@@ -25,11 +25,11 @@ export default function CareerPage() {
                 </CardHeader>
                 <CardContent className="space-y-6">
                     <p className="text-gray-300 md:text-lg">
-                        We are excited to announce internship openings at Utsavy and would love to onboard passionate and skilled interns from your community. This is a great opportunity to gain hands-on experience, work closely with the founding team, and explore cutting-edge AI tools.
+                        We are thrilled to announce internship openings at Utsavy, in collaboration with Vasudev AI. This is an amazing opportunity to gain hands-on experience and work with a startup founding team.
                     </p>
                     <div className="pt-4">
                          <Button asChild size="lg" className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-bold text-lg py-6 rounded-full shadow-lg shadow-accent/30 hover:shadow-accent/50 transition-all">
-                            <Link href="/career/apply">Apply</Link>
+                            <Link href="/career/utsavy-internship">Know More <ArrowRight className="ml-2 h-5 w-5" /></Link>
                         </Button>
                     </div>
                 </CardContent>
