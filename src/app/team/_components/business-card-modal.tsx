@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useRef, useState } from 'react';
@@ -39,21 +40,32 @@ const BusinessCard: React.FC<Pick<BusinessCardModalProps, 'member' | 'details'> 
 
   if (side === 'front') {
     return (
-      <div className="card-face absolute inset-0 flex flex-col justify-between rounded-2xl p-8 text-white shadow-2xl" style={cardStyle}>
+      <div className="card-face absolute inset-0 flex flex-col justify-between rounded-2xl p-6 text-white shadow-2xl" style={cardStyle}>
         <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
         <div className="absolute inset-0 rounded-2xl border border-primary/20"></div>
         
-        <div className="z-10 self-start">
-          <Logo />
+        <div className="z-10 flex justify-between items-start">
+            <Logo />
+            <div>
+                 <h3 className="text-2xl font-headline font-bold text-right" style={{ color: 'var(--accent-glow)' }}>{member.name}</h3>
+                <p className="font-medium text-gray-300 text-right">{details.role}</p>
+            </div>
         </div>
         
         <div className="z-10 flex items-end justify-between gap-4">
-            <div className='text-left'>
-                <h3 className="text-3xl font-headline font-bold" style={{ color: 'var(--accent-glow)' }}>{member.name}</h3>
-                <p className="font-medium text-gray-300">{details.role}</p>
+             <div className="relative w-48 h-56 -mb-6 -ml-6">
+                <Image 
+                    src={member.avatar} 
+                    alt={member.name} 
+                    layout="fill"
+                    objectFit="contain"
+                    objectPosition="bottom left"
+                    className="drop-shadow-[0_10px_15px_rgba(0,0,0,0.4)]"
+                />
             </div>
-            <div className="w-24 h-24 rounded-full relative border-2 border-primary/50 overflow-hidden shadow-[0_0_20px_var(--accent-glow)]">
-                <Image src={member.avatar} alt={member.name} layout="fill" objectFit="cover" />
+            <div className='text-right'>
+               <p className="font-headline text-lg bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">Vasudev AI</p>
+               <p className="text-xs text-gray-400">Where Intelligence Meets Innovation.</p>
             </div>
         </div>
       </div>
