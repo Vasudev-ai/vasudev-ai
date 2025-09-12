@@ -178,17 +178,17 @@ export default function TeamPage() {
                       <p className="bio-full">{member.bio}</p>
                       <div className="social-links">
                           {member.socials.github && member.socials.github !== '#' && (
-                              <Link href={member.socials.github} target="_blank" rel="noopener noreferrer" className="social-link" aria-label={`${member.name}'s Github Profile`}>
+                              <Link href={member.socials.github} target="_blank" rel="noopener noreferrer" className="social-link" onClick={(e) => e.stopPropagation()} aria-label={`${member.name}'s Github Profile`}>
                                   <Github size={20} />
                               </Link>
                           )}
                           {member.socials.linkedin && member.socials.linkedin !== '#' && (
-                              <Link href={member.socials.linkedin} target="_blank" rel="noopener noreferrer" className="social-link" aria-label={`${member.name}'s LinkedIn Profile`}>
+                              <Link href={member.socials.linkedin} target="_blank" rel="noopener noreferrer" className="social-link" onClick={(e) => e.stopPropagation()} aria-label={`${member.name}'s LinkedIn Profile`}>
                                   <Linkedin size={20} />
                               </Link>
                           )}
                           {member.socials.youtube && member.socials.youtube !== '#' && (
-                              <Link href={member.socials.youtube} target="_blank" rel="noopener noreferrer" className="social-link" aria-label={`${member.name}'s YouTube Channel`}>
+                              <Link href={member.socials.youtube} target="_blank" rel="noopener noreferrer" className="social-link" onClick={(e) => e.stopPropagation()} aria-label={`${member.name}'s YouTube Channel`}>
                                   <Youtube size={20} />
                               </Link>
                           )}
