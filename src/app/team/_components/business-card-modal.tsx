@@ -4,12 +4,11 @@
 import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { toPng } from 'html-to-image';
-import QRCode from 'react-qr-code';
 import { X, Download, RotateCw, Mail, Globe, Phone, Linkedin, Disc } from 'lucide-react';
 import Image from 'next/image';
-
 import { Button } from '@/components/ui/button';
-import Logo from '@/components/logo';
+import { QRCode } from 'react-qr-code';
+
 
 interface BusinessCardModalProps {
   member: {
@@ -60,18 +59,8 @@ const BusinessCard: React.FC<Pick<BusinessCardModalProps, 'member' | 'details'> 
       <div className="absolute inset-0 rounded-2xl border border-primary/20"></div>
       
       <div className="relative z-10 flex h-full w-full">
-         <div className="w-2/5 relative h-full flex items-end">
-            <Image 
-                src={member.avatar} 
-                alt={member.name} 
-                fill
-                objectFit="contain"
-                objectPosition="bottom left"
-                className="drop-shadow-[0_10px_15px_rgba(0,0,0,0.4)]"
-            />
-         </div>
-         <div className="w-3/5 flex flex-col pl-4">
-            <div className="text-right">
+         <div className="w-3/5 flex flex-col pr-4">
+            <div className="text-left">
                 <h3 className="text-2xl font-headline font-bold" style={{ color: 'var(--accent-glow)' }}>{member.name}</h3>
                 <p className="font-medium text-gray-300">{details.role}</p>
             </div>
@@ -83,13 +72,23 @@ const BusinessCard: React.FC<Pick<BusinessCardModalProps, 'member' | 'details'> 
                 <a href="https://discord.gg/e5uPQDXSSk" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 transition-colors hover:text-primary"><Disc size={14} /><span>{details.discord}</span></a>
             </div>
              <div className="mt-auto flex items-end justify-between">
-                <div className="text-left">
-                    <span className="text-xl font-bold font-headline bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">Vasudev AI</span>
-                </div>
                 <div className="relative bg-white/90 p-1 rounded-md">
                     <QRCode value={details.qrLink} size={60} bgColor="transparent" fgColor="#0D0F1A" />
                 </div>
+                <div className="text-right">
+                    <span className="text-xl font-bold font-headline bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">Vasudev AI</span>
+                </div>
             </div>
+         </div>
+         <div className="w-2/5 relative h-full flex items-end">
+            <Image 
+                src={member.avatar} 
+                alt={member.name} 
+                fill
+                objectFit="contain"
+                objectPosition="bottom right"
+                className="drop-shadow-[0_10px_15px_rgba(0,0,0,0.4)]"
+            />
          </div>
       </div>
     </div>
@@ -198,3 +197,5 @@ const BusinessCardModal: React.FC<BusinessCardModalProps> = ({ member, details, 
 };
 
 export default BusinessCardModal;
+
+    
