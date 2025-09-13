@@ -40,31 +40,14 @@ const BusinessCard: React.FC<Pick<BusinessCardModalProps, 'member' | 'details'> 
 
   if (side === 'front') {
     return (
-      <div className="card-face absolute inset-0 flex flex-row justify-between rounded-2xl p-6 text-white shadow-2xl overflow-hidden" style={cardStyle}>
+      <div className="card-face absolute inset-0 flex flex-col items-center justify-center rounded-2xl p-6 text-white shadow-2xl overflow-hidden" style={cardStyle}>
         <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
         <div className="absolute -right-20 -top-20 w-80 h-80 bg-[radial-gradient(circle,var(--accent-glow)_0%,transparent_60%)] opacity-30"></div>
         <div className="absolute inset-0 rounded-2xl border border-primary/20"></div>
         
-        <div className="z-10 flex flex-col justify-between h-full w-[55%] py-2">
-             <Logo />
-             <div>
-                 <h3 className="text-3xl font-headline font-bold" style={{ color: 'var(--accent-glow)' }}>{member.name}</h3>
-                <p className="font-medium text-gray-300 text-lg">{details.role}</p>
-            </div>
-            <p className="text-xs text-gray-400">Where Intelligence Meets Innovation.</p>
-        </div>
-        
-        <div className="z-10 relative w-[45%] h-full">
-             <div className="absolute bottom-0 right-0 w-[140%] h-[110%]">
-                <Image 
-                    src={member.avatar} 
-                    alt={member.name} 
-                    fill
-                    objectFit="contain"
-                    objectPosition="bottom right"
-                    className="drop-shadow-[0_10px_15px_rgba(0,0,0,0.4)]"
-                />
-            </div>
+        <div className="z-10 text-center">
+            <h2 className="text-5xl font-headline font-bold" style={{ color: 'var(--accent-glow)' }}>Vasudev AI</h2>
+            <p className="font-medium text-gray-300 text-lg mt-2">Where Intelligence Meets Innovation.</p>
         </div>
       </div>
     );
@@ -72,32 +55,42 @@ const BusinessCard: React.FC<Pick<BusinessCardModalProps, 'member' | 'details'> 
 
   // Back side
   return (
-    <div className="card-face card-back absolute inset-0 flex flex-col rounded-2xl p-6 text-white shadow-2xl" style={cardStyle}>
+    <div className="card-face card-back absolute inset-0 flex flex-row rounded-2xl p-6 text-white shadow-2xl overflow-hidden" style={cardStyle}>
       <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
       <div className="absolute inset-0 rounded-2xl border border-primary/20"></div>
       
-      <div className="relative z-10 flex h-full flex-col">
-        <div className="text-right">
-            <h3 className="text-2xl font-headline font-bold" style={{ color: 'var(--accent-glow)' }}>{member.name}</h3>
-            <p className="font-medium text-gray-300">{details.role}</p>
-        </div>
-
-        <div className="my-auto grid grid-cols-2 gap-x-4 gap-y-3 text-sm">
-            <a href={`tel:${details.phone}`} className="flex items-center gap-2 transition-colors hover:text-primary"><Phone size={14} /><span>{details.phone}</span></a>
-             <a href={`mailto:${details.email}`} className="flex items-center gap-2 transition-colors hover:text-primary"><Mail size={14} /><span>{details.email}</span></a>
-            <a href={details.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 transition-colors hover:text-primary"><Globe size={14} /><span>{details.website.replace('https://www.', '')}</span></a>
-            <a href={member.socials.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 transition-colors hover:text-primary"><Linkedin size={14} /><span>{details.linkedin}</span></a>
-            <a href="https://discord.gg/e5uPQDXSSk" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 transition-colors hover:text-primary col-span-2"><Disc size={14} /><span>{details.discord}</span></a>
-        </div>
-        
-        <div className="mt-auto flex items-end justify-between">
-          <div className="text-left">
-            <span className="text-xl font-bold font-headline bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">Vasudev AI</span>
-          </div>
-          <div className="relative">
-            <QRCode value={details.qrLink} size={80} bgColor="transparent" fgColor="hsl(var(--primary))" />
-          </div>
-        </div>
+      <div className="relative z-10 flex h-full w-full">
+         <div className="w-2/5 relative h-full flex items-end">
+            <Image 
+                src={member.avatar} 
+                alt={member.name} 
+                fill
+                objectFit="contain"
+                objectPosition="bottom left"
+                className="drop-shadow-[0_10px_15px_rgba(0,0,0,0.4)]"
+            />
+         </div>
+         <div className="w-3/5 flex flex-col pl-4">
+            <div className="text-right">
+                <h3 className="text-2xl font-headline font-bold" style={{ color: 'var(--accent-glow)' }}>{member.name}</h3>
+                <p className="font-medium text-gray-300">{details.role}</p>
+            </div>
+            <div className="my-auto space-y-2 text-xs">
+                 <a href={`tel:${details.phone}`} className="flex items-center gap-2 transition-colors hover:text-primary"><Phone size={14} /><span>{details.phone}</span></a>
+                 <a href={`mailto:${details.email}`} className="flex items-center gap-2 transition-colors hover:text-primary"><Mail size={14} /><span>{details.email}</span></a>
+                <a href={details.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 transition-colors hover:text-primary"><Globe size={14} /><span>{details.website.replace('https://www.', '')}</span></a>
+                <a href={member.socials.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 transition-colors hover:text-primary"><Linkedin size={14} /><span>{details.linkedin}</span></a>
+                <a href="https://discord.gg/e5uPQDXSSk" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 transition-colors hover:text-primary"><Disc size={14} /><span>{details.discord}</span></a>
+            </div>
+             <div className="mt-auto flex items-end justify-between">
+                <div className="text-left">
+                    <span className="text-xl font-bold font-headline bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">Vasudev AI</span>
+                </div>
+                <div className="relative bg-white/90 p-1 rounded-md">
+                    <QRCode value={details.qrLink} size={60} bgColor="transparent" fgColor="#0D0F1A" />
+                </div>
+            </div>
+         </div>
       </div>
     </div>
   );
@@ -205,5 +198,3 @@ const BusinessCardModal: React.FC<BusinessCardModalProps> = ({ member, details, 
 };
 
 export default BusinessCardModal;
-
-    
