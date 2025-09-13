@@ -8,6 +8,7 @@ import { X, Download, RotateCw, Mail, Globe, Phone, Linkedin, Disc } from 'lucid
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { QRCode } from 'react-qr-code';
+import Logo from '@/components/logo';
 
 
 interface BusinessCardModalProps {
@@ -80,14 +81,13 @@ const BusinessCard: React.FC<Pick<BusinessCardModalProps, 'member' | 'details'> 
                 </div>
             </div>
          </div>
-         <div className="w-2/5 relative h-full flex items-end">
+         <div className="w-2/5 relative h-full flex items-end justify-center">
             <Image 
                 src={member.avatar} 
                 alt={member.name} 
-                fill
-                objectFit="contain"
-                objectPosition="bottom right"
-                className="drop-shadow-[0_10px_15px_rgba(0,0,0,0.4)]"
+                height={300}
+                width={200}
+                className="relative h-full w-auto drop-shadow-[0_10px_15px_rgba(0,0,0,0.4)]"
             />
          </div>
       </div>
@@ -197,5 +197,3 @@ const BusinessCardModal: React.FC<BusinessCardModalProps> = ({ member, details, 
 };
 
 export default BusinessCardModal;
-
-    
