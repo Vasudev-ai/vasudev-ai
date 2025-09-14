@@ -77,7 +77,7 @@ const BusinessCard: React.FC<Pick<BusinessCardModalProps, 'member' | 'details'> 
                 <div className="w-full text-right">
                     <Logo />
                 </div>
-                <div className="flex flex-col items-center justify-center pb-4">
+                <div className="flex flex-col items-center justify-center">
                    <div className="relative p-1.5 rounded-lg bg-white/10 border border-white/20">
                       <QRCode
                           value={details.qrLink}
@@ -96,7 +96,7 @@ const BusinessCard: React.FC<Pick<BusinessCardModalProps, 'member' | 'details'> 
 // A new component specifically for exporting, which will be hidden from the view
 const ExportableCard: React.FC<Pick<BusinessCardModalProps, 'member' | 'details'>> = ({ member, details }) => {
   return (
-    <div className="space-y-2">
+    <div className="flex flex-col space-y-2">
       <BusinessCard member={member} details={details} side="front" />
       <BusinessCard member={member} details={details} side="back" />
     </div>
@@ -143,7 +143,7 @@ const BusinessCardModal: React.FC<BusinessCardModalProps> = ({ member, details, 
       />
 
       {/* Hidden component for export */}
-      <div className="absolute top-0 left-0 opacity-0 pointer-events-none" ref={exportRef}>
+      <div className="absolute top-0 left-0 -z-10 transform -translate-x-full" ref={exportRef}>
         <ExportableCard member={member} details={details} />
       </div>
 
