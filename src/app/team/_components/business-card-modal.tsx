@@ -8,6 +8,7 @@ import { X, Download, RotateCw, Mail, Globe, Phone, Linkedin, Disc } from 'lucid
 import { Button } from '@/components/ui/button';
 import { QRCode } from 'react-qr-code';
 import Logo from '@/components/logo';
+import Image from 'next/image';
 
 
 interface BusinessCardModalProps {
@@ -65,9 +66,6 @@ const BusinessCard: React.FC<Pick<BusinessCardModalProps, 'member' | 'details'> 
                 <h3 className="text-2xl font-headline font-bold" style={{ color: 'var(--accent-glow)' }}>{member.name}</h3>
                 <p className="font-medium text-gray-300">{details.role}</p>
             </div>
-            <div className="flex-shrink-0">
-                <Logo />
-            </div>
         </header>
 
         <main className="grid grid-cols-2 gap-x-8 gap-y-4 text-sm flex-grow">
@@ -78,9 +76,12 @@ const BusinessCard: React.FC<Pick<BusinessCardModalProps, 'member' | 'details'> 
             <a href="https://discord.gg/e5uPQDXSSk" target="_blank" rel="noopener noreferrer" className="col-span-2 flex items-center gap-2 transition-colors hover:text-primary"><Disc size={14} /><span>{details.discord}</span></a>
         </main>
         
-        <footer className="flex justify-center items-end mt-auto">
+        <footer className="flex justify-between items-end mt-auto">
             <div className="relative bg-white/90 p-1.5 rounded-md">
                 <QRCode value={details.qrLink} size={64} bgColor="transparent" fgColor="#0D0F1A" />
+            </div>
+            <div className="flex-shrink-0">
+                <Logo />
             </div>
         </footer>
       </div>
