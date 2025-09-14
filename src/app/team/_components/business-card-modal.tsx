@@ -54,15 +54,15 @@ const BusinessCard: React.FC<Pick<BusinessCardModalProps, 'member' | 'details'> 
 
   // Back side
   return (
-    <div className="card-face card-back absolute inset-0 flex items-stretch rounded-2xl p-8 text-white shadow-2xl overflow-hidden" style={cardStyle}>
+    <div className="card-face card-back absolute inset-0 flex items-stretch rounded-2xl text-white shadow-2xl overflow-hidden" style={cardStyle}>
       <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
       <div className="absolute inset-0 rounded-2xl border border-primary/20"></div>
       
-      <div className="relative z-10 grid grid-cols-5 gap-6 w-full">
+      <div className="relative z-10 grid grid-cols-5 w-full">
         {/* Left Side: Details */}
-        <div className="col-span-3 flex flex-col">
+        <div className="col-span-3 flex flex-col p-6">
             <header className="mb-6">
-                <h3 className="text-2xl font-bold text-white" style={{ fontFamily: 'var(--font-inter)' }}>{member.name}</h3>
+                <h3 className="text-2xl font-bold text-white">{member.name}</h3>
                 <p className="font-medium text-primary">{details.role}</p>
             </header>
 
@@ -70,17 +70,17 @@ const BusinessCard: React.FC<Pick<BusinessCardModalProps, 'member' | 'details'> 
                 <a href={`tel:${details.phone}`} className="flex items-center gap-3 transition-colors hover:text-primary"><Phone size={14} /><span>{details.phone}</span></a>
                 <a href={`mailto:${details.email}`} className="flex items-center gap-3 transition-colors hover:text-primary"><Mail size={14} /><span>{details.email}</span></a>
                 <a href={details.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 transition-colors hover:text-primary"><Globe size={14} /><span>{details.website.replace('https://www.', '')}</span></a>
-                <a href={`https://linkedin.com/in/${details.linkedin}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 transition-colors hover:text-primary"><Linkedin size={14} /><span>in/{details.linkedin}</span></a>
+                <a href={`https://linkedin.com/in/${details.linkedin}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 transition-colors hover:text-primary"><Linkedin size={14} /><span>{`in/${details.linkedin}`}</span></a>
                 <a href="https://discord.gg/e5uPQDXSSk" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 transition-colors hover:text-primary"><Disc size={14} /><span>{details.discord}</span></a>
             </main>
         </div>
         
         {/* Right Side: QR and Logo */}
-        <div className="col-span-2 flex flex-col items-center justify-center gap-4 border-l border-primary/20 pl-6">
+        <div className="col-span-2 flex flex-col items-center justify-between gap-4 border-l border-primary/20 p-6">
+            <Logo />
             <div className="relative bg-white/90 p-2 rounded-lg">
                 <QRCode value={details.qrLink} size={90} bgColor="transparent" fgColor="#0D0F1A" />
             </div>
-            <Logo />
         </div>
       </div>
     </div>
