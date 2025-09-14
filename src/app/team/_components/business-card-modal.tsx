@@ -5,7 +5,6 @@ import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { toPng } from 'html-to-image';
 import { X, Download, RotateCw, Mail, Globe, Phone, Linkedin, Disc } from 'lucide-react';
-import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { QRCode } from 'react-qr-code';
 import Logo from '@/components/logo';
@@ -55,34 +54,35 @@ const BusinessCard: React.FC<Pick<BusinessCardModalProps, 'member' | 'details'> 
 
   // Back side
   return (
-    <div className="card-face card-back absolute inset-0 flex flex-col items-center justify-center rounded-2xl p-6 text-white shadow-2xl overflow-hidden" style={cardStyle}>
+    <div className="card-face card-back absolute inset-0 flex flex-col rounded-2xl p-8 text-white shadow-2xl overflow-hidden" style={cardStyle}>
       <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
       <div className="absolute inset-0 rounded-2xl border border-primary/20"></div>
+      <div className="absolute left-1/2 top-1/4 h-1/2 w-px bg-gradient-to-b from-transparent via-primary/50 to-transparent"></div>
       
-      <div className="relative z-10 flex h-full w-full">
-         <div className="w-full flex flex-col p-6 justify-between">
-            <div className="w-full flex justify-between items-start">
-              <div className="text-left">
-                  <h3 className="text-2xl font-headline font-bold" style={{ color: 'var(--accent-glow)' }}>{member.name}</h3>
-                  <p className="font-medium text-gray-300">{details.role}</p>
-              </div>
-              <div className="text-right">
-                  <span className="text-xl font-bold font-headline bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">Vasudev AI</span>
-              </div>
+      <div className="relative z-10 flex flex-col h-full w-full">
+        <header className="flex justify-between items-start mb-8">
+            <div className="text-left">
+                <h3 className="text-2xl font-headline font-bold" style={{ color: 'var(--accent-glow)' }}>{member.name}</h3>
+                <p className="font-medium text-gray-300">{details.role}</p>
             </div>
-            <div className="w-full my-auto space-y-2 text-sm grid grid-cols-2 gap-x-4 gap-y-2">
-                 <a href={`tel:${details.phone}`} className="flex items-center gap-2 transition-colors hover:text-primary"><Phone size={14} /><span>{details.phone}</span></a>
-                 <a href={`mailto:${details.email}`} className="flex items-center gap-2 transition-colors hover:text-primary"><Mail size={14} /><span>{details.email}</span></a>
-                <a href={details.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 transition-colors hover:text-primary"><Globe size={14} /><span>{details.website.replace('https://www.', '')}</span></a>
-                <a href={member.socials.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 transition-colors hover:text-primary"><Linkedin size={14} /><span>{details.linkedin}</span></a>
-                <a href="https://discord.gg/e5uPQDXSSk" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 transition-colors hover:text-primary col-span-2"><Disc size={14} /><span>{details.discord}</span></a>
+            <div className="flex-shrink-0">
+                <Logo />
             </div>
-             <div className="mt-auto flex items-end justify-end">
-                <div className="relative bg-white/90 p-1 rounded-md">
-                    <QRCode value={details.qrLink} size={60} bgColor="transparent" fgColor="#0D0F1A" />
-                </div>
+        </header>
+
+        <main className="grid grid-cols-2 gap-x-8 gap-y-4 text-sm flex-grow">
+            <a href={`tel:${details.phone}`} className="flex items-center gap-2 transition-colors hover:text-primary"><Phone size={14} /><span>{details.phone}</span></a>
+            <a href={`mailto:${details.email}`} className="flex items-center gap-2 transition-colors hover:text-primary"><Mail size={14} /><span>{details.email}</span></a>
+            <a href={details.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 transition-colors hover:text-primary"><Globe size={14} /><span>{details.website.replace('https://www.', '')}</span></a>
+            <a href={member.socials.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 transition-colors hover:text-primary"><Linkedin size={14} /><span>{details.linkedin}</span></a>
+            <a href="https://discord.gg/e5uPQDXSSk" target="_blank" rel="noopener noreferrer" className="col-span-2 flex items-center gap-2 transition-colors hover:text-primary"><Disc size={14} /><span>{details.discord}</span></a>
+        </main>
+        
+        <footer className="flex justify-center items-end mt-auto">
+            <div className="relative bg-white/90 p-1.5 rounded-md">
+                <QRCode value={details.qrLink} size={64} bgColor="transparent" fgColor="#0D0F1A" />
             </div>
-         </div>
+        </footer>
       </div>
     </div>
   );
@@ -98,7 +98,6 @@ const BusinessCardModal: React.FC<BusinessCardModalProps> = ({ member, details, 
     const element = cardRef.current;
     if (!element) return;
 
-    // Temporarily flip to the desired side for export without animation
     const sideToExport = isFlipped ? 'back' : 'front';
     const flipper = element.querySelector('.flipper');
     if (flipper) {
@@ -108,13 +107,12 @@ const BusinessCardModal: React.FC<BusinessCardModalProps> = ({ member, details, 
 
     setIsExporting(true);
     try {
-      // Delay to ensure the card has visually flipped before capturing
       await new Promise(resolve => setTimeout(resolve, 100));
 
       const dataUrl = await toPng(element, { 
           cacheBust: true, 
           quality: 1.0,
-          pixelRatio: 2, // For higher resolution
+          pixelRatio: 2,
       });
       const link = document.createElement('a');
       link.download = `vasudev-ai_${member.id}_${sideToExport}.png`;
@@ -125,7 +123,7 @@ const BusinessCardModal: React.FC<BusinessCardModalProps> = ({ member, details, 
     } finally {
       if (flipper) {
         flipper.classList.remove('no-transition');
-         flipper.style.transform = ''; // Reset style
+         flipper.style.transform = '';
       }
       setIsExporting(false);
     }
