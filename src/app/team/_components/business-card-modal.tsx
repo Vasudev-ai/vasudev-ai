@@ -61,9 +61,14 @@ const BusinessCard: React.FC<Pick<BusinessCardModalProps, 'member' | 'details'> 
       
       <div className="relative z-10 flex h-full w-full">
          <div className="w-3/5 flex flex-col pr-4">
-            <div className="text-left">
-                <h3 className="text-2xl font-headline font-bold" style={{ color: 'var(--accent-glow)' }}>{member.name}</h3>
-                <p className="font-medium text-gray-300">{details.role}</p>
+            <div className="flex justify-between items-start">
+              <div className="text-left">
+                  <h3 className="text-2xl font-headline font-bold" style={{ color: 'var(--accent-glow)' }}>{member.name}</h3>
+                  <p className="font-medium text-gray-300">{details.role}</p>
+              </div>
+              <div className="text-right">
+                  <span className="text-xl font-bold font-headline bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">Vasudev AI</span>
+              </div>
             </div>
             <div className="my-auto space-y-2 text-xs">
                  <a href={`tel:${details.phone}`} className="flex items-center gap-2 transition-colors hover:text-primary"><Phone size={14} /><span>{details.phone}</span></a>
@@ -76,9 +81,6 @@ const BusinessCard: React.FC<Pick<BusinessCardModalProps, 'member' | 'details'> 
                 <div className="relative bg-white/90 p-1 rounded-md">
                     <QRCode value={details.qrLink} size={60} bgColor="transparent" fgColor="#0D0F1A" />
                 </div>
-                <div className="text-right">
-                    <span className="text-xl font-bold font-headline bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">Vasudev AI</span>
-                </div>
             </div>
          </div>
          <div className="w-2/5 relative h-full flex items-end justify-center">
@@ -87,7 +89,7 @@ const BusinessCard: React.FC<Pick<BusinessCardModalProps, 'member' | 'details'> 
                 alt={member.name} 
                 height={300}
                 width={200}
-                className="relative h-full w-auto drop-shadow-[0_10px_15px_rgba(0,0,0,0.4)]"
+                className="relative h-full w-auto drop-shadow-[0_10px_15px_rgba(0,0,0,0.4)] object-contain"
             />
          </div>
       </div>
