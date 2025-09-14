@@ -53,14 +53,14 @@ const BusinessCard: React.FC<Pick<BusinessCardModalProps, 'member' | 'details'> 
 
   // Back side
   return (
-    <div className="card-face card-back absolute inset-0 flex items-stretch rounded-2xl text-white shadow-2xl overflow-hidden" style={cardStyle}>
+    <div className="card-face card-back absolute inset-0 flex items-stretch rounded-2xl p-8 text-white shadow-2xl overflow-hidden" style={cardStyle}>
         <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
         <div className="absolute inset-0 rounded-2xl border border-primary/20"></div>
 
-        <div className="relative z-10 grid grid-cols-5 w-full p-8 gap-6">
-            <div className="col-span-3 flex flex-col gap-8">
+        <div className="relative z-10 grid grid-cols-5 w-full gap-6">
+            <div className="col-span-3 flex flex-col gap-4">
                 <header>
-                    <h3 className="text-3xl font-bold text-white leading-tight" style={{ fontFamily: "var(--font-body)" }}>{member.name}</h3>
+                    <h3 className="text-3xl font-bold text-white leading-tight">{member.name}</h3>
                     <p className="font-medium mt-1" style={{ color: 'var(--accent-glow)' }}>{details.role}</p>
                 </header>
 
@@ -73,23 +73,23 @@ const BusinessCard: React.FC<Pick<BusinessCardModalProps, 'member' | 'details'> 
                 </main>
             </div>
             
-            <div className="col-span-2 flex flex-col items-center justify-between p-4 pl-6 text-center border-l border-primary/20">
-              <div className="w-full text-right">
-                <Logo />
-              </div>
-              <div className="flex flex-col items-center justify-center pb-4">
-                 <div 
-                    className="relative p-2 rounded-lg bg-white/10 border"
-                    style={{ borderColor: 'var(--accent-glow)' }}
-                  >
-                    <QRCode
-                      value={details.qrLink}
-                      size={90}
-                      bgColor="transparent"
-                      fgColor={member.theme['--accent-glow']}
-                    />
-                  </div>
-              </div>
+             <div className="col-span-2 flex flex-col items-center justify-between p-4 pl-6 border-l border-primary/20">
+                <div className="w-full text-right">
+                    <Logo />
+                </div>
+                <div className="flex flex-col items-center justify-center pb-4">
+                    <div 
+                        className="relative p-2 rounded-lg bg-white/10 border"
+                        style={{ borderColor: 'var(--accent-glow)' }}
+                    >
+                        <QRCode
+                            value={details.qrLink}
+                            size={90}
+                            bgColor="transparent"
+                            fgColor={member.theme['--accent-glow']}
+                        />
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -190,6 +190,7 @@ const BusinessCardModal: React.FC<BusinessCardModalProps> = ({ member, details, 
             transition: none !important;
         }
       `}</style>
+      </motion.div>
     </div>
   );
 };
