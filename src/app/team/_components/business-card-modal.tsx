@@ -58,18 +58,18 @@ const BusinessCard: React.FC<Pick<BusinessCardModalProps, 'member' | 'details'> 
         <div className="absolute inset-0 rounded-2xl border border-primary/20"></div>
 
         <div className="relative z-10 grid grid-cols-5 w-full gap-6">
-            <div className="col-span-3 flex flex-col gap-4">
+            <div className="col-span-3 flex flex-col justify-between">
                 <header>
-                    <h3 className="text-3xl font-headline font-bold text-white leading-tight">{member.name}</h3>
-                    <p className="font-medium mt-1" style={{ color: 'var(--accent-glow)' }}>{details.role}</p>
+                    <h3 className="text-2xl lg:text-3xl font-headline font-bold text-white leading-tight">{member.name}</h3>
+                    <p className="font-medium mt-1 text-sm lg:text-base" style={{ color: 'var(--accent-glow)' }}>{details.role}</p>
                 </header>
 
-                <main className="grid grid-cols-1 gap-3 text-sm">
-                    <a href={`tel:${details.phone}`} className="flex items-center gap-3 transition-colors hover:text-[var(--accent-glow)]"><Phone size={14} /><span>{details.phone}</span></a>
-                    <a href={`mailto:${details.email}`} className="flex items-center gap-3 transition-colors hover:text-[var(--accent-glow)]"><Mail size={14} /><span>{details.email}</span></a>
-                    <a href={details.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 transition-colors hover:text-[var(--accent-glow)]"><Globe size={14} /><span>{details.website.replace('https://www.', '')}</span></a>
-                    <a href={`https://linkedin.com/in/${details.linkedin}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 transition-colors hover:text-[var(--accent-glow)]"><Linkedin size={14} /><span>{`in/${details.linkedin}`}</span></a>
-                    <a href="https://discord.gg/e5uPQDXSSk" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 transition-colors hover:text-[var(--accent-glow)]"><Disc size={14} /><span>{details.discord}</span></a>
+                <main className="grid grid-cols-1 gap-2 text-xs lg:text-sm">
+                    <a href={`tel:${details.phone}`} className="flex items-center gap-3 transition-colors hover:text-[var(--accent-glow)] truncate"><Phone size={14} /><span>{details.phone}</span></a>
+                    <a href={`mailto:${details.email}`} className="flex items-center gap-3 transition-colors hover:text-[var(--accent-glow)] truncate"><Mail size={14} /><span>{details.email}</span></a>
+                    <a href={details.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 transition-colors hover:text-[var(--accent-glow)] truncate"><Globe size={14} /><span>{details.website.replace('https://www.', '')}</span></a>
+                    <a href={`https://linkedin.com/in/${details.linkedin}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 transition-colors hover:text-[var(--accent-glow)] truncate"><Linkedin size={14} /><span>{`in/${details.linkedin}`}</span></a>
+                    <a href="https://discord.gg/e5uPQDXSSk" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 transition-colors hover:text-[var(--accent-glow)] truncate"><Disc size={14} /><span>{details.discord}</span></a>
                 </main>
             </div>
             
@@ -77,13 +77,11 @@ const BusinessCard: React.FC<Pick<BusinessCardModalProps, 'member' | 'details'> 
                 <div className="w-full text-right">
                     <Logo />
                 </div>
-                <div className="flex flex-col items-center justify-center pb-4">
-                    <div 
-                        className="relative p-2 rounded-lg bg-white/10"
-                    >
-                         <QRCode
+                <div className="flex flex-col items-center justify-center">
+                    <div className="relative p-1.5 rounded-lg bg-white/10 border border-white/20">
+                        <QRCode
                             value={details.qrLink}
-                            size={90}
+                            size={80}
                             bgColor="transparent"
                             fgColor={member.theme['--accent-glow']}
                         />
