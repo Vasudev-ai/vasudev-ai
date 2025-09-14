@@ -8,6 +8,7 @@ import { X, Download, RotateCw, Mail, Globe, Phone, Linkedin, Disc } from 'lucid
 import { Button } from '@/components/ui/button';
 import { QRCode } from 'react-qr-code';
 import Logo from '@/components/logo';
+import Image from 'next/image';
 
 interface BusinessCardModalProps {
   member: {
@@ -57,26 +58,30 @@ const BusinessCard: React.FC<Pick<BusinessCardModalProps, 'member' | 'details'> 
       <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
       <div className="absolute inset-0 rounded-2xl border border-primary/20"></div>
       
-      <div className="relative z-10 flex flex-col w-3/5 pr-6">
-        <header className="mb-8">
-            <h3 className="text-2xl font-headline font-bold" style={{ color: 'var(--accent-glow)' }}>{member.name}</h3>
-            <p className="font-medium text-gray-300">{details.role}</p>
-        </header>
+      <div className="relative z-10 grid grid-cols-5 gap-6 w-full">
+        {/* Left Side: Details */}
+        <div className="col-span-3 flex flex-col">
+            <header className="mb-6">
+                <h3 className="text-2xl font-bold text-white" style={{ fontFamily: 'var(--font-inter)' }}>{member.name}</h3>
+                <p className="font-medium text-primary">{details.role}</p>
+            </header>
 
-        <main className="grid grid-cols-1 gap-4 text-sm flex-grow">
-            <a href={`tel:${details.phone}`} className="flex items-center gap-3 transition-colors hover:text-primary"><Phone size={14} /><span>{details.phone}</span></a>
-            <a href={`mailto:${details.email}`} className="flex items-center gap-3 transition-colors hover:text-primary"><Mail size={14} /><span>{details.email}</span></a>
-            <a href={details.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 transition-colors hover:text-primary"><Globe size={14} /><span>{details.website.replace('https://www.', '')}</span></a>
-            <a href={`https://linkedin.com/in/${details.linkedin}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 transition-colors hover:text-primary"><Linkedin size={14} /><span>{details.linkedin}</span></a>
-            <a href="https://discord.gg/e5uPQDXSSk" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 transition-colors hover:text-primary"><Disc size={14} /><span>{details.discord}</span></a>
-        </main>
-      </div>
-      
-      <div className="relative z-10 w-2/5 flex items-center justify-center gap-4 pl-6 border-l border-primary/20">
-          <div className="relative bg-white/90 p-2 rounded-lg">
-              <QRCode value={details.qrLink} size={80} bgColor="transparent" fgColor="#0D0F1A" />
-          </div>
-          <Logo />
+            <main className="grid grid-cols-1 gap-3 text-sm flex-grow">
+                <a href={`tel:${details.phone}`} className="flex items-center gap-3 transition-colors hover:text-primary"><Phone size={14} /><span>{details.phone}</span></a>
+                <a href={`mailto:${details.email}`} className="flex items-center gap-3 transition-colors hover:text-primary"><Mail size={14} /><span>{details.email}</span></a>
+                <a href={details.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 transition-colors hover:text-primary"><Globe size={14} /><span>{details.website.replace('https://www.', '')}</span></a>
+                <a href={`https://linkedin.com/in/${details.linkedin}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 transition-colors hover:text-primary"><Linkedin size={14} /><span>in/{details.linkedin}</span></a>
+                <a href="https://discord.gg/e5uPQDXSSk" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 transition-colors hover:text-primary"><Disc size={14} /><span>{details.discord}</span></a>
+            </main>
+        </div>
+        
+        {/* Right Side: QR and Logo */}
+        <div className="col-span-2 flex flex-col items-center justify-center gap-4 border-l border-primary/20 pl-6">
+            <div className="relative bg-white/90 p-2 rounded-lg">
+                <QRCode value={details.qrLink} size={90} bgColor="transparent" fgColor="#0D0F1A" />
+            </div>
+            <Logo />
+        </div>
       </div>
     </div>
   );
