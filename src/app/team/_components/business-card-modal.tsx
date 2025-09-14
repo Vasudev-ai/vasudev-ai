@@ -55,13 +55,13 @@ const BusinessCard: React.FC<Pick<BusinessCardModalProps, 'member' | 'details'> 
 
   // Back side
   return (
-    <div className="card-face card-back absolute inset-0 flex flex-row rounded-2xl p-6 text-white shadow-2xl overflow-hidden" style={cardStyle}>
+    <div className="card-face card-back absolute inset-0 flex flex-col items-center justify-center rounded-2xl p-6 text-white shadow-2xl overflow-hidden" style={cardStyle}>
       <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
       <div className="absolute inset-0 rounded-2xl border border-primary/20"></div>
       
       <div className="relative z-10 flex h-full w-full">
-         <div className="w-3/5 flex flex-col pr-4">
-            <div className="flex justify-between items-start">
+         <div className="w-full flex flex-col p-6 justify-between">
+            <div className="w-full flex justify-between items-start">
               <div className="text-left">
                   <h3 className="text-2xl font-headline font-bold" style={{ color: 'var(--accent-glow)' }}>{member.name}</h3>
                   <p className="font-medium text-gray-300">{details.role}</p>
@@ -70,27 +70,18 @@ const BusinessCard: React.FC<Pick<BusinessCardModalProps, 'member' | 'details'> 
                   <span className="text-xl font-bold font-headline bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">Vasudev AI</span>
               </div>
             </div>
-            <div className="my-auto space-y-2 text-xs">
+            <div className="w-full my-auto space-y-2 text-sm grid grid-cols-2 gap-x-4 gap-y-2">
                  <a href={`tel:${details.phone}`} className="flex items-center gap-2 transition-colors hover:text-primary"><Phone size={14} /><span>{details.phone}</span></a>
                  <a href={`mailto:${details.email}`} className="flex items-center gap-2 transition-colors hover:text-primary"><Mail size={14} /><span>{details.email}</span></a>
                 <a href={details.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 transition-colors hover:text-primary"><Globe size={14} /><span>{details.website.replace('https://www.', '')}</span></a>
                 <a href={member.socials.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 transition-colors hover:text-primary"><Linkedin size={14} /><span>{details.linkedin}</span></a>
-                <a href="https://discord.gg/e5uPQDXSSk" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 transition-colors hover:text-primary"><Disc size={14} /><span>{details.discord}</span></a>
+                <a href="https://discord.gg/e5uPQDXSSk" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 transition-colors hover:text-primary col-span-2"><Disc size={14} /><span>{details.discord}</span></a>
             </div>
-             <div className="mt-auto flex items-end justify-between">
+             <div className="mt-auto flex items-end justify-end">
                 <div className="relative bg-white/90 p-1 rounded-md">
                     <QRCode value={details.qrLink} size={60} bgColor="transparent" fgColor="#0D0F1A" />
                 </div>
             </div>
-         </div>
-         <div className="w-2/5 relative h-full flex items-end justify-center">
-            <Image 
-                src={member.avatar} 
-                alt={member.name} 
-                height={300}
-                width={200}
-                className="relative h-full w-auto drop-shadow-[0_10px_15px_rgba(0,0,0,0.4)] object-contain"
-            />
          </div>
       </div>
     </div>
