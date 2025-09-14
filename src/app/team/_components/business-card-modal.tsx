@@ -38,7 +38,7 @@ const BusinessCard: React.FC<Pick<BusinessCardModalProps, 'member' | 'details'> 
 
   if (side === 'front') {
     return (
-      <div className="card-face absolute inset-0 flex flex-col items-center justify-center rounded-2xl p-6 text-white shadow-2xl overflow-hidden" style={cardStyle}>
+      <div className="card-face relative w-[500px] h-[300px] flex flex-col items-center justify-center rounded-2xl p-6 text-white shadow-2xl overflow-hidden" style={cardStyle}>
         <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
         <div className="absolute -right-20 -top-20 w-80 h-80 bg-[radial-gradient(circle,var(--accent-glow)_0%,transparent_60%)] opacity-30"></div>
         <div className="absolute inset-0 rounded-2xl border border-primary/20"></div>
@@ -53,7 +53,7 @@ const BusinessCard: React.FC<Pick<BusinessCardModalProps, 'member' | 'details'> 
 
   // Back side
   return (
-    <div className="card-face card-back absolute inset-0 flex items-stretch rounded-2xl p-8 text-white shadow-2xl overflow-hidden" style={cardStyle}>
+    <div className="card-face card-back relative w-[500px] h-[300px] flex items-stretch rounded-2xl p-8 text-white shadow-2xl overflow-hidden" style={cardStyle}>
         <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
         <div className="absolute inset-0 rounded-2xl border border-primary/20"></div>
 
@@ -78,13 +78,13 @@ const BusinessCard: React.FC<Pick<BusinessCardModalProps, 'member' | 'details'> 
                     <Logo />
                 </div>
                 <div className="flex flex-col items-center justify-center">
-                    <div className="relative p-1.5 rounded-lg bg-white/10 border border-white/20">
-                        <QRCode
-                            value={details.qrLink}
-                            size={80}
-                            bgColor="transparent"
-                            fgColor={member.theme['--accent-glow']}
-                        />
+                   <div className="relative p-1.5 rounded-lg bg-white/10 border border-white/20">
+                      <QRCode
+                          value={details.qrLink}
+                          size={80}
+                          bgColor="transparent"
+                          fgColor={member.theme['--accent-glow']}
+                      />
                     </div>
                 </div>
             </div>
@@ -93,43 +93,41 @@ const BusinessCard: React.FC<Pick<BusinessCardModalProps, 'member' | 'details'> 
   );
 };
 
+// A new component specifically for exporting, which will be hidden from the view
+const ExportableCard: React.FC<Pick<BusinessCardModalProps, 'member' | 'details'>> = ({ member, details }) => {
+  return (
+    <div className="space-y-2">
+      <BusinessCard member={member} details={details} side="front" />
+      <BusinessCard member={member} details={details} side="back" />
+    </div>
+  );
+};
+
 
 const BusinessCardModal: React.FC<BusinessCardModalProps> = ({ member, details, onClose }) => {
   const [isFlipped, setIsFlipped] = useState(false);
   const [isExporting, setIsExporting] = useState(false);
-  const cardRef = useRef<HTMLDivElement>(null);
+  const exportRef = useRef<HTMLDivElement>(null);
   
   const handleExport = async () => {
-    const element = cardRef.current;
+    const element = exportRef.current;
     if (!element) return;
-
-    const sideToExport = isFlipped ? 'back' : 'front';
-    const flipper = element.querySelector('.flipper');
-    if (flipper) {
-        (flipper as HTMLElement).classList.add('no-transition');
-        (flipper as HTMLElement).style.transform = sideToExport === 'back' ? 'rotateY(180deg)' : 'rotateY(0deg)';
-    }
 
     setIsExporting(true);
     try {
-      await new Promise(resolve => setTimeout(resolve, 100));
-
       const dataUrl = await toPng(element, { 
           cacheBust: true, 
           quality: 1.0,
           pixelRatio: 2,
+          backgroundColor: 'transparent',
       });
       const link = document.createElement('a');
-      link.download = `vasudev-ai_${member.id}_${sideToExport}.png`;
+      link.download = `vasudev-ai_card_${member.id}.png`;
       link.href = dataUrl;
       link.click();
     } catch (err) {
       console.error('Failed to export card', err);
     } finally {
-      if (flipper) {
-        (flipper as HTMLElement).classList.remove('no-transition');
-         (flipper as HTMLElement).style.transform = '';
-      }
       setIsExporting(false);
     }
   };
@@ -143,6 +141,12 @@ const BusinessCardModal: React.FC<BusinessCardModalProps> = ({ member, details, 
         exit={{ opacity: 0 }}
         onClick={onClose}
       />
+
+      {/* Hidden component for export */}
+      <div className="fixed -left-[9999px] top-0" ref={exportRef}>
+        <ExportableCard member={member} details={details} />
+      </div>
+
       <motion.div
         className="relative z-10 flex w-full max-w-xl flex-col items-center gap-6"
         initial={{ scale: 0.9, opacity: 0 }}
@@ -150,7 +154,7 @@ const BusinessCardModal: React.FC<BusinessCardModalProps> = ({ member, details, 
         exit={{ scale: 0.9, opacity: 0 }}
         transition={{ type: 'spring', duration: 0.5 }}
       >
-        <div ref={cardRef} className="w-[500px] max-w-full aspect-[10/6]" style={{ perspective: '1000px' }}>
+        <div className="w-[500px] max-w-full aspect-[10/6]" style={{ perspective: '1000px' }}>
             <motion.div
                 className="flipper relative w-full h-full"
                 style={{ transformStyle: 'preserve-3d' }}
@@ -165,7 +169,6 @@ const BusinessCardModal: React.FC<BusinessCardModalProps> = ({ member, details, 
                 </div>
             </motion.div>
         </div>
-
 
         <div className="flex items-center justify-center gap-3">
           <Button variant="outline" size="sm" onClick={() => setIsFlipped(!isFlipped)}>
@@ -183,8 +186,8 @@ const BusinessCardModal: React.FC<BusinessCardModalProps> = ({ member, details, 
           background-image: linear-gradient(hsl(var(--primary) / 0.1) 1px, transparent 1px), linear-gradient(to right, hsl(var(--primary) / 0.1) 1px, transparent 1px);
           background-size: 2rem 2rem;
         }
-        .flipper.no-transition {
-            transition: none !important;
+        .flipper {
+          transition: transform 0.6s;
         }
       `}</style>
       </motion.div>
