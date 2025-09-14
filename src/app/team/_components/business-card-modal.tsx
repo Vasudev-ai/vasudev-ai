@@ -59,25 +59,25 @@ const BusinessCard: React.FC<Pick<BusinessCardModalProps, 'member' | 'details'> 
         <div className="absolute inset-0 rounded-2xl border border-primary/20"></div>
         
         <div className="relative z-10 grid grid-cols-12 w-full p-6">
-            {/* Left Side: Details */}
-            <div className="col-span-7 flex flex-col">
-                <header className="mb-6">
-                    <h3 className="text-2xl font-bold text-white leading-tight">{member.name}</h3>
+            <div className="col-span-7 flex flex-col justify-between">
+                <header>
+                    <h3 className="text-2xl font-bold text-white leading-tight font-headline">{member.name}</h3>
                     <p className="font-medium text-primary">{details.role}</p>
                 </header>
 
-                <main className="grid grid-cols-1 gap-3 text-sm flex-grow">
+                <main className="grid grid-cols-1 gap-3 text-sm">
                     <a href={`tel:${details.phone}`} className="flex items-center gap-3 transition-colors hover:text-primary"><Phone size={14} /><span>{details.phone}</span></a>
                     <a href={`mailto:${details.email}`} className="flex items-center gap-3 transition-colors hover:text-primary"><Mail size={14} /><span>{details.email}</span></a>
                     <a href={details.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 transition-colors hover:text-primary"><Globe size={14} /><span>{details.website.replace('https://www.', '')}</span></a>
                     <a href={`https://linkedin.com/in/${details.linkedin}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 transition-colors hover:text-primary"><Linkedin size={14} /><span>{`in/${details.linkedin}`}</span></a>
                     <a href="https://discord.gg/e5uPQDXSSk" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 transition-colors hover:text-primary"><Disc size={14} /><span>{details.discord}</span></a>
                 </main>
+
+                <div />
             </div>
             
-            {/* Right Side: QR and Logo */}
             <div className="col-span-5 flex flex-col items-center justify-between gap-4 border-l border-primary/20 pl-6">
-                <Logo />
+              <Logo />
                 <div className="relative p-2 rounded-lg bg-white/10 border border-primary/20 shadow-lg shadow-primary/20">
                     <QRCode
                         value={details.qrLink}
@@ -178,7 +178,7 @@ const BusinessCardModal: React.FC<BusinessCardModalProps> = ({ member, details, 
             <X />
           </Button>
         </div>
-      </div>
+      </motion.div>
       <style jsx>{`
         .bg-grid-pattern {
           background-image: linear-gradient(hsl(var(--primary) / 0.1) 1px, transparent 1px), linear-gradient(to right, hsl(var(--primary) / 0.1) 1px, transparent 1px);
