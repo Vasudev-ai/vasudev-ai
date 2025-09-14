@@ -55,48 +55,40 @@ const BusinessCard: React.FC<Pick<BusinessCardModalProps, 'member' | 'details'> 
   // Back side
   return (
     <div className="card-face card-back absolute inset-0 flex items-stretch rounded-2xl text-white shadow-2xl overflow-hidden" style={cardStyle}>
-      <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
-      <div className="absolute inset-0 rounded-2xl border border-primary/20"></div>
-      
-       <div className="relative z-10 grid grid-cols-12 w-full">
-        {/* Left Side: Details */}
-        <div className="col-span-7 flex flex-col p-6">
-            <header className="mb-6">
-                <h3 className="text-2xl font-bold text-white">{member.name}</h3>
-                <p className="font-medium text-primary">{details.role}</p>
-            </header>
-
-            <main className="grid grid-cols-1 gap-3 text-sm flex-grow">
-                <a href={`tel:${details.phone}`} className="flex items-center gap-3 transition-colors hover:text-primary"><Phone size={14} /><span>{details.phone}</span></a>
-                <a href={`mailto:${details.email}`} className="flex items-center gap-3 transition-colors hover:text-primary"><Mail size={14} /><span>{details.email}</span></a>
-                <a href={details.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 transition-colors hover:text-primary"><Globe size={14} /><span>{details.website.replace('https://www.', '')}</span></a>
-                <a href={`https://linkedin.com/in/${details.linkedin}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 transition-colors hover:text-primary"><Linkedin size={14} /><span>{`in/${details.linkedin}`}</span></a>
-                <a href="https://discord.gg/e5uPQDXSSk" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 transition-colors hover:text-primary"><Disc size={14} /><span>{details.discord}</span></a>
-            </main>
-        </div>
+        <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
+        <div className="absolute inset-0 rounded-2xl border border-primary/20"></div>
         
-        {/* Right Side: QR and Logo */}
-        <div className="col-span-5 flex flex-col items-center justify-between gap-4 border-l border-primary/20 p-6">
-             <Logo />
-             <div className="relative p-2 rounded-lg bg-white/10 border border-primary/20 shadow-lg shadow-primary/20">
-                <svg width="0" height="0">
-                  <defs>
-                    <linearGradient id="qrGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" style={{ stopColor: 'hsl(var(--primary))', stopOpacity: 1 }} />
-                      <stop offset="100%" style={{ stopColor: 'hsl(var(--secondary))', stopOpacity: 1 }} />
-                    </linearGradient>
-                  </defs>
-                </svg>
-                <QRCode
-                    value={details.qrLink}
-                    size={90}
-                    bgColor="transparent"
-                    fgColor="url(#qrGradient)"
-                    style={{ filter: 'drop-shadow(0 0 5px hsl(var(--primary)/0.7))' }}
-                />
+        <div className="relative z-10 grid grid-cols-12 w-full p-6">
+            {/* Left Side: Details */}
+            <div className="col-span-7 flex flex-col">
+                <header className="mb-6">
+                    <h3 className="text-2xl font-bold text-white leading-tight">{member.name}</h3>
+                    <p className="font-medium text-primary">{details.role}</p>
+                </header>
+
+                <main className="grid grid-cols-1 gap-3 text-sm flex-grow">
+                    <a href={`tel:${details.phone}`} className="flex items-center gap-3 transition-colors hover:text-primary"><Phone size={14} /><span>{details.phone}</span></a>
+                    <a href={`mailto:${details.email}`} className="flex items-center gap-3 transition-colors hover:text-primary"><Mail size={14} /><span>{details.email}</span></a>
+                    <a href={details.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 transition-colors hover:text-primary"><Globe size={14} /><span>{details.website.replace('https://www.', '')}</span></a>
+                    <a href={`https://linkedin.com/in/${details.linkedin}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 transition-colors hover:text-primary"><Linkedin size={14} /><span>{`in/${details.linkedin}`}</span></a>
+                    <a href="https://discord.gg/e5uPQDXSSk" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 transition-colors hover:text-primary"><Disc size={14} /><span>{details.discord}</span></a>
+                </main>
+            </div>
+            
+            {/* Right Side: QR and Logo */}
+            <div className="col-span-5 flex flex-col items-center justify-between gap-4 border-l border-primary/20 pl-6">
+                <Logo />
+                <div className="relative p-2 rounded-lg bg-white/10 border border-primary/20 shadow-lg shadow-primary/20">
+                    <QRCode
+                        value={details.qrLink}
+                        size={90}
+                        bgColor="transparent"
+                        fgColor="#00E5FF"
+                        style={{ filter: 'drop-shadow(0 0 5px hsl(var(--primary)/0.7))' }}
+                    />
+                </div>
             </div>
         </div>
-      </div>
     </div>
   );
 };
@@ -186,7 +178,7 @@ const BusinessCardModal: React.FC<BusinessCardModalProps> = ({ member, details, 
             <X />
           </Button>
         </div>
-      </motion.div>
+      </div>
       <style jsx>{`
         .bg-grid-pattern {
           background-image: linear-gradient(hsl(var(--primary) / 0.1) 1px, transparent 1px), linear-gradient(to right, hsl(var(--primary) / 0.1) 1px, transparent 1px);
