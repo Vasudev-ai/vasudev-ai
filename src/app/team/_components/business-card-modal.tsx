@@ -77,7 +77,7 @@ const BusinessCard: React.FC<Pick<BusinessCardModalProps, 'member' | 'details'> 
                 <div className="w-full text-right">
                     <Logo />
                 </div>
-                <div className="flex flex-col items-center justify-center">
+                <div className="flex flex-col items-center justify-center pb-4">
                    <div className="relative p-1.5 rounded-lg bg-white/10 border border-white/20">
                       <QRCode
                           value={details.qrLink}
@@ -119,7 +119,7 @@ const BusinessCardModal: React.FC<BusinessCardModalProps> = ({ member, details, 
           cacheBust: true, 
           quality: 1.0,
           pixelRatio: 2,
-          backgroundColor: 'transparent',
+          backgroundColor: '#0D0F1A',
       });
       const link = document.createElement('a');
       link.download = `vasudev-ai_card_${member.id}.png`;
@@ -143,7 +143,7 @@ const BusinessCardModal: React.FC<BusinessCardModalProps> = ({ member, details, 
       />
 
       {/* Hidden component for export */}
-      <div className="fixed -left-[9999px] top-0" ref={exportRef}>
+      <div className="absolute top-0 left-0 opacity-0 pointer-events-none" ref={exportRef}>
         <ExportableCard member={member} details={details} />
       </div>
 
