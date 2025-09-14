@@ -57,32 +57,29 @@ const BusinessCard: React.FC<Pick<BusinessCardModalProps, 'member' | 'details'> 
         <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
         <div className="absolute inset-0 rounded-2xl border border-primary/20"></div>
         
-        <div className="relative z-10 grid grid-cols-12 w-full p-6 gap-6">
-            <div className="col-span-7 flex flex-col justify-between">
+         <div className="relative z-10 grid grid-cols-12 w-full p-6 gap-6">
+            <div className="col-span-7 flex flex-col">
                 <header>
-                    <h3 className="text-2xl font-bold text-white leading-tight font-headline">{member.name}</h3>
-                    <p className="font-medium" style={{ color: 'var(--accent-glow)' }}>{details.role}</p>
+                    <h3 className="text-3xl font-bold text-white leading-tight" style={{fontFamily: 'var(--font-inter)'}}>{member.name}</h3>
+                    <p className="font-medium mt-1" style={{ color: 'var(--accent-glow)' }}>{details.role}</p>
                 </header>
 
-                <main className="grid grid-cols-1 gap-3 text-sm">
+                <main className="grid grid-cols-1 gap-3 text-sm mt-8">
                     <a href={`tel:${details.phone}`} className="flex items-center gap-3 transition-colors hover:text-[var(--accent-glow)]"><Phone size={14} /><span>{details.phone}</span></a>
                     <a href={`mailto:${details.email}`} className="flex items-center gap-3 transition-colors hover:text-[var(--accent-glow)]"><Mail size={14} /><span>{details.email}</span></a>
                     <a href={details.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 transition-colors hover:text-[var(--accent-glow)]"><Globe size={14} /><span>{details.website.replace('https://www.', '')}</span></a>
                     <a href={`https://linkedin.com/in/${details.linkedin}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 transition-colors hover:text-[var(--accent-glow)]"><Linkedin size={14} /><span>{`in/${details.linkedin}`}</span></a>
                     <a href="https://discord.gg/e5uPQDXSSk" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 transition-colors hover:text-[var(--accent-glow)]"><Disc size={14} /><span>{details.discord}</span></a>
                 </main>
-
-                <div />
             </div>
             
-            <div className="col-span-5 flex flex-col items-center justify-between gap-4 border-l border-primary/20 pl-6">
-              <div className="w-full">
+            <div className="col-span-5 flex flex-col justify-between items-center gap-4 border-l border-primary/20 pl-6 text-center">
+              <div className="w-full text-right">
                 <Logo />
               </div>
               <div 
-                className="relative p-2 rounded-lg bg-white/10 border border-primary/20"
+                className="relative p-2 rounded-lg bg-white/10 border"
                 style={{
-                    boxShadow: '0 0 15px var(--accent-glow)',
                     borderColor: 'var(--accent-glow)'
                 }}
               >
@@ -91,7 +88,6 @@ const BusinessCard: React.FC<Pick<BusinessCardModalProps, 'member' | 'details'> 
                     size={90}
                     bgColor="transparent"
                     fgColor={member.theme['--accent-glow']}
-                    style={{ filter: 'drop-shadow(0 0 5px var(--accent-glow))' }}
                 />
               </div>
             </div>
