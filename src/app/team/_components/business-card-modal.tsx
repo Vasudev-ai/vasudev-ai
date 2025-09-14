@@ -56,15 +56,15 @@ const BusinessCard: React.FC<Pick<BusinessCardModalProps, 'member' | 'details'> 
     <div className="card-face card-back absolute inset-0 flex items-stretch rounded-2xl text-white shadow-2xl overflow-hidden" style={cardStyle}>
         <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
         <div className="absolute inset-0 rounded-2xl border border-primary/20"></div>
-        
-         <div className="relative z-10 grid grid-cols-12 w-full p-6 gap-6">
-            <div className="col-span-7 flex flex-col">
+
+        <div className="relative z-10 grid grid-cols-5 w-full p-8 gap-6">
+            <div className="col-span-3 flex flex-col gap-8">
                 <header>
-                    <h3 className="text-3xl font-bold text-white leading-tight" style={{fontFamily: 'var(--font-inter)'}}>{member.name}</h3>
+                    <h3 className="text-3xl font-bold text-white leading-tight" style={{ fontFamily: "var(--font-body)" }}>{member.name}</h3>
                     <p className="font-medium mt-1" style={{ color: 'var(--accent-glow)' }}>{details.role}</p>
                 </header>
 
-                <main className="grid grid-cols-1 gap-3 text-sm mt-8">
+                <main className="grid grid-cols-1 gap-3 text-sm">
                     <a href={`tel:${details.phone}`} className="flex items-center gap-3 transition-colors hover:text-[var(--accent-glow)]"><Phone size={14} /><span>{details.phone}</span></a>
                     <a href={`mailto:${details.email}`} className="flex items-center gap-3 transition-colors hover:text-[var(--accent-glow)]"><Mail size={14} /><span>{details.email}</span></a>
                     <a href={details.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 transition-colors hover:text-[var(--accent-glow)]"><Globe size={14} /><span>{details.website.replace('https://www.', '')}</span></a>
@@ -73,22 +73,22 @@ const BusinessCard: React.FC<Pick<BusinessCardModalProps, 'member' | 'details'> 
                 </main>
             </div>
             
-            <div className="col-span-5 flex flex-col justify-between items-center gap-4 border-l border-primary/20 pl-6 text-center">
+            <div className="col-span-2 flex flex-col items-center justify-between p-4 pl-6 text-center border-l border-primary/20">
               <div className="w-full text-right">
                 <Logo />
               </div>
-              <div 
-                className="relative p-2 rounded-lg bg-white/10 border"
-                style={{
-                    borderColor: 'var(--accent-glow)'
-                }}
-              >
-                <QRCode
-                    value={details.qrLink}
-                    size={90}
-                    bgColor="transparent"
-                    fgColor={member.theme['--accent-glow']}
-                />
+              <div className="flex flex-col items-center justify-center pb-4">
+                 <div 
+                    className="relative p-2 rounded-lg bg-white/10 border"
+                    style={{ borderColor: 'var(--accent-glow)' }}
+                  >
+                    <QRCode
+                      value={details.qrLink}
+                      size={90}
+                      bgColor="transparent"
+                      fgColor={member.theme['--accent-glow']}
+                    />
+                  </div>
               </div>
             </div>
         </div>
@@ -181,8 +181,7 @@ const BusinessCardModal: React.FC<BusinessCardModalProps> = ({ member, details, 
             <X />
           </Button>
         </div>
-      </motion.div>
-      <style jsx>{`
+        <style jsx>{`
         .bg-grid-pattern {
           background-image: linear-gradient(hsl(var(--primary) / 0.1) 1px, transparent 1px), linear-gradient(to right, hsl(var(--primary) / 0.1) 1px, transparent 1px);
           background-size: 2rem 2rem;
