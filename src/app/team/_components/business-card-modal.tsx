@@ -72,14 +72,12 @@ const BusinessCard: React.FC<Pick<BusinessCardModalProps, 'member' | 'details'> 
         </main>
       </div>
       
-      <div className="relative z-10 w-2/5 flex flex-col items-center justify-between pl-6 border-l border-primary/20">
-          <Logo />
+      <div className="relative z-10 w-2/5 flex items-center justify-center gap-4 pl-6 border-l border-primary/20">
           <div className="relative bg-white/90 p-2 rounded-lg">
-              <QRCode value={details.qrLink} size={100} bgColor="transparent" fgColor="#0D0F1A" />
+              <QRCode value={details.qrLink} size={80} bgColor="transparent" fgColor="#0D0F1A" />
           </div>
-          <div className="w-px h-8"></div>
+          <Logo />
       </div>
-
     </div>
   );
 };
