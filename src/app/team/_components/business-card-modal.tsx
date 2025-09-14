@@ -8,8 +8,6 @@ import { X, Download, RotateCw, Mail, Globe, Phone, Linkedin, Disc } from 'lucid
 import { Button } from '@/components/ui/button';
 import { QRCode } from 'react-qr-code';
 import Logo from '@/components/logo';
-import Image from 'next/image';
-
 
 interface BusinessCardModalProps {
   member: {
@@ -55,36 +53,33 @@ const BusinessCard: React.FC<Pick<BusinessCardModalProps, 'member' | 'details'> 
 
   // Back side
   return (
-    <div className="card-face card-back absolute inset-0 flex flex-col rounded-2xl p-8 text-white shadow-2xl overflow-hidden" style={cardStyle}>
+    <div className="card-face card-back absolute inset-0 flex items-stretch rounded-2xl p-8 text-white shadow-2xl overflow-hidden" style={cardStyle}>
       <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
       <div className="absolute inset-0 rounded-2xl border border-primary/20"></div>
-      <div className="absolute left-1/2 top-1/4 h-1/2 w-px bg-gradient-to-b from-transparent via-primary/50 to-transparent"></div>
       
-      <div className="relative z-10 flex flex-col h-full w-full">
-        <header className="flex justify-between items-start mb-8">
-            <div className="text-left">
-                <h3 className="text-2xl font-headline font-bold" style={{ color: 'var(--accent-glow)' }}>{member.name}</h3>
-                <p className="font-medium text-gray-300">{details.role}</p>
-            </div>
+      <div className="relative z-10 flex flex-col w-3/5 pr-6">
+        <header className="mb-8">
+            <h3 className="text-2xl font-headline font-bold" style={{ color: 'var(--accent-glow)' }}>{member.name}</h3>
+            <p className="font-medium text-gray-300">{details.role}</p>
         </header>
 
-        <main className="grid grid-cols-2 gap-x-8 gap-y-4 text-sm flex-grow">
-            <a href={`tel:${details.phone}`} className="flex items-center gap-2 transition-colors hover:text-primary"><Phone size={14} /><span>{details.phone}</span></a>
-            <a href={`mailto:${details.email}`} className="flex items-center gap-2 transition-colors hover:text-primary"><Mail size={14} /><span>{details.email}</span></a>
-            <a href={details.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 transition-colors hover:text-primary"><Globe size={14} /><span>{details.website.replace('https://www.', '')}</span></a>
-            <a href={member.socials.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 transition-colors hover:text-primary"><Linkedin size={14} /><span>{details.linkedin}</span></a>
-            <a href="https://discord.gg/e5uPQDXSSk" target="_blank" rel="noopener noreferrer" className="col-span-2 flex items-center gap-2 transition-colors hover:text-primary"><Disc size={14} /><span>{details.discord}</span></a>
+        <main className="grid grid-cols-1 gap-4 text-sm flex-grow">
+            <a href={`tel:${details.phone}`} className="flex items-center gap-3 transition-colors hover:text-primary"><Phone size={14} /><span>{details.phone}</span></a>
+            <a href={`mailto:${details.email}`} className="flex items-center gap-3 transition-colors hover:text-primary"><Mail size={14} /><span>{details.email}</span></a>
+            <a href={details.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 transition-colors hover:text-primary"><Globe size={14} /><span>{details.website.replace('https://www.', '')}</span></a>
+            <a href={`https://linkedin.com/in/${details.linkedin}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 transition-colors hover:text-primary"><Linkedin size={14} /><span>{details.linkedin}</span></a>
+            <a href="https://discord.gg/e5uPQDXSSk" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 transition-colors hover:text-primary"><Disc size={14} /><span>{details.discord}</span></a>
         </main>
-        
-        <footer className="flex justify-between items-end mt-auto">
-            <div className="relative bg-white/90 p-1.5 rounded-md">
-                <QRCode value={details.qrLink} size={64} bgColor="transparent" fgColor="#0D0F1A" />
-            </div>
-            <div className="flex-shrink-0">
-                <Logo />
-            </div>
-        </footer>
       </div>
+      
+      <div className="relative z-10 w-2/5 flex flex-col items-center justify-between pl-6 border-l border-primary/20">
+          <Logo />
+          <div className="relative bg-white/90 p-2 rounded-lg">
+              <QRCode value={details.qrLink} size={100} bgColor="transparent" fgColor="#0D0F1A" />
+          </div>
+          <div className="w-px h-8"></div>
+      </div>
+
     </div>
   );
 };

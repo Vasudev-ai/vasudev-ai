@@ -36,7 +36,7 @@ const teamMembers = [
       website: 'https://www.vasudev.online',
       discord: 'Join on Discord',
       linkedin: 'in/sgsurya',
-      qrLink: 'https://www.vasudev.ai',
+      qrLink: 'https://www.linkedin.com/in/sgsurya/',
     },
   },
   {
@@ -59,7 +59,7 @@ const teamMembers = [
       website: 'www.vasudev.ai',
       discord: 'Join on Discord',
       linkedin: 'in/aman-dangi-085443246',
-      qrLink: 'https://www.vasudev.ai',
+      qrLink: 'https://www.linkedin.com/in/aman-dangi-085443246/',
     },
   },
   {
@@ -82,7 +82,7 @@ const teamMembers = [
       website: 'www.vasudev.ai',
       discord: 'Join on Discord',
       linkedin: 'in/ashutosh-kumar-tripathi-926308237',
-      qrLink: 'https://www.vasudev.ai',
+      qrLink: 'https://www.linkedin.com/in/ashutosh-kumar-tripathi-926308237/',
     },
   },
   {
