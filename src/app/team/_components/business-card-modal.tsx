@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import { toPng } from 'html-to-image';
 import { X, Download, RotateCw, Mail, Globe, Phone, Linkedin, Disc } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { QRCode } from 'react-qr-code';
+import QRCode from 'react-qr-code';
 import Logo from '@/components/logo';
 import Image from 'next/image';
 
@@ -58,9 +58,9 @@ const BusinessCard: React.FC<Pick<BusinessCardModalProps, 'member' | 'details'> 
       <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
       <div className="absolute inset-0 rounded-2xl border border-primary/20"></div>
       
-      <div className="relative z-10 grid grid-cols-5 w-full">
+       <div className="relative z-10 grid grid-cols-12 w-full">
         {/* Left Side: Details */}
-        <div className="col-span-3 flex flex-col p-6">
+        <div className="col-span-7 flex flex-col p-6">
             <header className="mb-6">
                 <h3 className="text-2xl font-bold text-white">{member.name}</h3>
                 <p className="font-medium text-primary">{details.role}</p>
@@ -76,10 +76,24 @@ const BusinessCard: React.FC<Pick<BusinessCardModalProps, 'member' | 'details'> 
         </div>
         
         {/* Right Side: QR and Logo */}
-        <div className="col-span-2 flex flex-col items-center justify-between gap-4 border-l border-primary/20 p-6">
-            <Logo />
-            <div className="relative bg-white/90 p-2 rounded-lg">
-                <QRCode value={details.qrLink} size={90} bgColor="transparent" fgColor="#0D0F1A" />
+        <div className="col-span-5 flex flex-col items-center justify-between gap-4 border-l border-primary/20 p-6">
+             <Logo />
+             <div className="relative p-2 rounded-lg bg-white/10 border border-primary/20 shadow-lg shadow-primary/20">
+                <svg width="0" height="0">
+                  <defs>
+                    <linearGradient id="qrGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" style={{ stopColor: 'hsl(var(--primary))', stopOpacity: 1 }} />
+                      <stop offset="100%" style={{ stopColor: 'hsl(var(--secondary))', stopOpacity: 1 }} />
+                    </linearGradient>
+                  </defs>
+                </svg>
+                <QRCode
+                    value={details.qrLink}
+                    size={90}
+                    bgColor="transparent"
+                    fgColor="url(#qrGradient)"
+                    style={{ filter: 'drop-shadow(0 0 5px hsl(var(--primary)/0.7))' }}
+                />
             </div>
         </div>
       </div>
