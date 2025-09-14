@@ -60,7 +60,7 @@ const BusinessCard: React.FC<Pick<BusinessCardModalProps, 'member' | 'details'> 
         <div className="relative z-10 grid grid-cols-5 w-full gap-6">
             <div className="col-span-3 flex flex-col gap-4">
                 <header>
-                    <h3 className="text-3xl font-bold text-white leading-tight">{member.name}</h3>
+                    <h3 className="text-3xl font-headline font-bold text-white leading-tight">{member.name}</h3>
                     <p className="font-medium mt-1" style={{ color: 'var(--accent-glow)' }}>{details.role}</p>
                 </header>
 
@@ -79,10 +79,9 @@ const BusinessCard: React.FC<Pick<BusinessCardModalProps, 'member' | 'details'> 
                 </div>
                 <div className="flex flex-col items-center justify-center pb-4">
                     <div 
-                        className="relative p-2 rounded-lg bg-white/10 border"
-                        style={{ borderColor: 'var(--accent-glow)' }}
+                        className="relative p-2 rounded-lg bg-white/10"
                     >
-                        <QRCode
+                         <QRCode
                             value={details.qrLink}
                             size={90}
                             bgColor="transparent"
