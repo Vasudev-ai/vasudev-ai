@@ -1,27 +1,26 @@
-
 <div align="center">
-  <br />
-  <h1 align="center">Vasudev AI </h1>
+  <img src="public/vasudev-ai-og.jpg" alt="Vasudev AI Banner" width="800"/>
+  <h1 align="center">Vasudev AI</h1>
   <p align="center">
     <strong>Where Intelligence Meets Innovation.</strong>
   </p>
   <p align="center">
     A community-driven initiative to build the future of divine intelligence, blending cutting-edge technology with spiritual harmony.
   </p>
+
+  <!-- Badges -->
   <p align="center">
-    <a href="https://github.com/Vasudev-ai/vasudev-ai/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/Vasudev-ai/vasudev-ai/issues">Request Feature</a>
-  </p>
-  <p align="center">
-    <a href="https://discord.gg/e5uPQDXSSk">
-        <img src="https://img.shields.io/discord/123456789?color=7289DA&label=Discord&logo=discord&logoColor=white&style=for-the-badge" alt="Discord">
+    <a href="https://github.com/Vasudev-ai/vasudev-ai/blob/main/LICENSE">
+      <img src="https://img.shields.io/github/license/Vasudev-ai/vasudev-ai?style=for-the-badge&color=00E5FF" alt="License">
+    </a>
+    <a href="https://github.com/Vasudev-ai/vasudev-ai/issues">
+      <img src="https://img.shields.io/github/issues/Vasudev-ai/vasudev-ai?style=for-the-badge&color=FFD700" alt="Issues">
+    </a>
+     <a href="https://discord.gg/e5uPQDXSSk">
+        <img src="https://img.shields.io/discord/11 Vasudev-AI?color=7289DA&label=Discord&logo=discord&logoColor=white&style=for-the-badge" alt="Discord">
     </a>
     <a href="https://x.com/VashudevAi">
         <img src="https://img.shields.io/twitter/follow/VashudevAi?style=for-the-badge&logo=x" alt="Twitter">
-    </a>
-     <a href="https://www.linkedin.com/company/108165965/">
-        <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn">
     </a>
   </p>
 </div>
@@ -34,13 +33,40 @@
 
 This repository contains the source code for our main website, the central hub for our community, projects, and vision. It's built to be a reflection of our identity: **divine, futuristic, and deeply interconnected.**
 
-### ✨ Key Features:
+---
 
-*   **Immersive User Experience:** A dark, cinematic UI with a "divine + futuristic" aesthetic, featuring animated backgrounds, interactive elements, and a custom cursor.
-*   **Community-Centric:** A dedicated space to showcase our "Celestial Council," highlight community events, and invite new members to our cause.
-*   **Project Showcase:** A "Cosmic Hub" of our innovations, from the Vasudev Core LLM to the Vasudev Browser, all presented with a holographic, futuristic design.
-*   **AI-Powered:** Integrated with **Genkit** to power features like the AI Content Optimizer, with plans for a full-fledged AI chat assistant.
-*   **Built for Performance:** Leverages Next.js App Router, Server Components, and image optimization to ensure a fast, responsive experience.
+## ✨ Key Features
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://lucide.dev/icons/sparkles.svg" width="48" height="48">
+      <br>
+      <strong>Immersive UI/UX</strong>
+      <p>Dark, cinematic UI with a "divine + futuristic" aesthetic, featuring animated backgrounds and interactive elements.</p>
+    </td>
+    <td align="center">
+      <img src="https://lucide.dev/icons/users.svg" width="48" height="48">
+      <br>
+      <strong>Community-Centric Hub</strong>
+      <p>A dedicated space to showcase our "Celestial Council," highlight events, and invite new members.</p>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="https://lucide.dev/icons/rocket.svg" width="48" height="48">
+      <br>
+      <strong>Project Showcase</strong>
+      <p>A "Cosmic Hub" of our innovations, from the Vasudev Core LLM to the Vasudev Browser.</p>
+    </td>
+    <td align="center">
+      <img src="https://lucide.dev/icons/brain-circuit.svg" width="48" height="48">
+      <br>
+      <strong>AI-Powered Features</strong>
+      <p>Integrated with <strong>Genkit</strong> for features like the AI Content Optimizer and a future AI chat assistant.</p>
+    </td>
+  </tr>
+</table>
 
 ---
 
@@ -82,7 +108,7 @@ You need to have **Node.js** (version 18 or later) and **npm** installed on your
     npm install
     ```
 4.  **Set up environment variables:**
-    Create a `.env.local` file in the root of the project and add your Firebase and Genkit API keys.
+    Create a `.env.local` file in the root of the project and add your Google AI API key.
     ```env
     # Your Genkit/Google AI API Key
     GEMINI_API_KEY=YOUR_API_KEY_HERE
