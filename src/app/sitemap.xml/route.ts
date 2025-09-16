@@ -1,14 +1,11 @@
+
 import { MetadataRoute } from 'next';
 import { projects } from '@/lib/projects-data';
 
-// These pages will be excluded from the sitemap
-const EXCLUDED_PATHS = ['/api', '/template', '/layout'];
-
-export default function sitemap(): MetadataRoute.Sitemap {
+export function GET(): Response {
   const baseUrl = 'https://www.vasudev.ai';
-  const lastModified = new Date(); // Use a consistent date for the build
+  const lastModified = new Date();
 
-  // Core static pages with defined priorities
   const staticPages: MetadataRoute.Sitemap = [
     { url: `${baseUrl}/`, priority: 1.0, changeFrequency: 'weekly' },
     { url: `${baseUrl}/about`, priority: 0.8, changeFrequency: 'monthly' },
@@ -25,8 +22,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified,
   }));
 
-
-  // Dynamic project pages
   const projectEntries: MetadataRoute.Sitemap = projects.map(project => ({
     url: `${baseUrl}/projects/${project.slug}`,
     lastModified,
@@ -34,13 +29,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
  
-  // Combine all entries
   const allEntries = [
     ...staticPages, 
     ...projectEntries
   ];
 
-  // Remove duplicates and return
   const uniqueUrls = new Set(allEntries.map(entry => entry.url));
-  return Array.from(uniqueUrls).map(url => allEntries.find(entry => entry.url === url)!);
+  const sitemapEntries = Array.from(uniqueUrls).map(url => allEntries.find(entry => entry.url === url)!);
+
+  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  ${sitemapEntries
+    .map((entry) => `
+    <url>
+      <loc>${entry.url}</loc>
+      <lastmod>${entry.lastModified?.toISOString()}</lastmod>
+      <changefreq>${entry.changeFrequency}</changefreq>
+      <priority>${entry.priority}</priority>
+    </url>
+  `)
+    .join('')}
+</urlset>`;
+
+  return new Response(sitemap, {
+    headers: {
+      'Content-Type': 'application/xml',
+    },
+  });
 }
