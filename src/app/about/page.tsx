@@ -5,17 +5,17 @@ import { Eye, Rocket } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'About Vasudev AI',
-  description: 'Learn about the Vasudev AI movement. Our vision is to merge divine wisdom with artificial intelligence, and our mission is to empower creators with divine-tech solutions.',
-  keywords: ['About Vasudev AI', 'divine tech', 'AI vision', 'AI mission', 'open source AI', 'AI community'],
+  title: 'About Vasudev AI | Our Vision & Mission',
+  description: 'Learn about the Vasudev AI movement. Our vision is to merge divine wisdom with open-source artificial intelligence, and our mission is to empower creators with divine-tech solutions.',
+  keywords: ['About Vasudev AI', 'divine tech', 'AI vision', 'AI mission', 'open source AI', 'AI community', 'offline-first AI'],
   openGraph: {
-    title: 'About Vasudev AI',
-    description: 'Learn about our vision to merge divine wisdom with AI and our mission to empower creators.',
+    title: 'About Vasudev AI | Our Vision & Mission',
+    description: 'Learn about our vision to merge divine wisdom with AI and our mission to empower creators with open-source, divine-tech solutions.',
     url: 'https://www.vasudev.ai/about',
   },
   twitter: {
-    title: 'About Vasudev AI',
-    description: 'Learn about our vision to merge divine wisdom with AI and our mission to empower creators.',
+    title: 'About Vasudev AI | Our Vision & Mission',
+    description: 'Learn about our vision to merge divine wisdom with AI and our mission to empower creators with open-source, divine-tech solutions.',
   },
 };
 

@@ -9,9 +9,9 @@ import type { Metadata } from 'next';
 import Logo from '@/components/logo';
 
 export const metadata: Metadata = {
-  title: 'Internship at Utsavy | Vasudev AI',
-  description: 'Apply for paid and unpaid internship roles at Utsavy, including Full Stack, Backend, Frontend, and Marketing. Gain hands-on experience in a startup environment.',
-  keywords: ['internship', 'Utsavy', 'Vasudev AI', 'full stack developer internship', 'backend internship', 'marketing internship', 'paid internship'],
+  title: 'Paid & Unpaid Internships at Utsavy (via Vasudev AI)',
+  description: 'Apply for paid and unpaid internship roles at Utsavy, including Full Stack, Backend, Frontend, and Marketing. Gain hands-on experience in a startup environment and work with the Vasudev AI team.',
+  keywords: ['internship', 'Utsavy', 'Vasudev AI', 'full stack developer internship', 'backend internship', 'marketing internship', 'paid internship', 'remote internship', 'tech startup jobs'],
 };
 
 const roles = [
