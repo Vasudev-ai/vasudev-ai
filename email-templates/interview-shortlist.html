@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vasudev AI — Interview Shortlist</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Space+Grotesk:wght@700&display=swap');
+    :root{
+      --vasudev-primary: #00E5FF;
+      --bg-dark: #0D0F1A;
+      --card-dark: #111420;
+      --muted: #a0aec0;
+      --border-color: rgba(0, 229, 255, 0.2);
+    }
+    body{
+      background: var(--bg-dark); 
+      padding:32px; 
+      color:#E0E0E0;
+      font-family: 'Inter', system-ui, Arial, sans-serif;
+      line-height: 1.6;
+    }
+    .container{max-width:720px;margin:0 auto}
+    .card{background:var(--card-dark);border-radius:14px;padding:32px;box-shadow:0 8px 24px rgba(0,0,0,0.6);border:1px solid var(--border-color)}
+    .header{text-align:center;margin-bottom:24px; border-bottom: 1px solid var(--border-color); padding-bottom: 24px;}
+    .logo-text {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 4px;
+    }
+    .logo-text span {
+      background: linear-gradient(to right, var(--vasudev-primary), #A076F9);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .tagline {
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+        color: var(--muted);
+        margin-top: -8px;
+        margin-bottom: 24px;
+    }
+    h1{margin:0;font-size:26px;color:#fff;font-family:'Space Grotesk', sans-serif;line-height:1.3;}
+    .cta{
+      display:inline-block;
+      margin:16px auto;
+      padding:14px 28px;
+      border-radius:8px;
+      background:var(--vasudev-primary);
+      color: var(--bg-dark);
+      text-decoration:none;
+      font-weight:700;
+      font-family:'Space Grotesk', sans-serif;
+      box-shadow:0 4px 20px rgba(0, 229, 255, 0.3);
+      border: none;
+    }
+    .interview-details {
+      background: rgba(0,0,0,0.2);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 20px;
+      margin: 24px 0;
+      text-align: center;
+    }
+    .interview-details h2 {
+      margin-top: 0;
+      font-family: 'Space Grotesk', sans-serif;
+      color: var(--vasudev-primary);
+      font-size: 18px;
+    }
+    .interview-details p { margin: 8px 0; color: #fff;}
+    .footer{margin-top:26px;border-top:1px solid rgba(0, 229, 255, 0.1);padding-top:20px;color:var(--muted);font-size:14px;text-align:center;}
+    .muted{color:var(--muted)}
+    @media (max-width:520px){
+        body{padding:16px;}
+        .card{padding:24px}
+        .logo-text{font-size: 24px;}
+        h1{font-size: 22px;}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="header">
+        <div class="logo-text"><span>Vasudev AI</span></div>
+        <p class="tagline" style="margin-bottom:0;">Where Intelligence Meets Innovation.</p>
+      </div>
+
+      <div style="padding: 0 16px;">
+        <h1 style="font-size:22px; text-align:center; margin-bottom: 20px;">Interview Shortlist Notification</h1>
+
+        <p>Dear <strong>{{CandidateName}}</strong>,</p>
+
+        <p>We are delighted to inform you that your application for the **Utsavy Internship Program** (in collaboration with Vasudev AI) has been **shortlisted for the interview round**.</p>
+        
+        <div class="interview-details">
+            <h2>Interview Details</h2>
+            <p><strong>Date:</strong> Sunday, 21st September 2025</p>
+            <p><strong>Time:</strong> 01:00 PM IST</p>
+            <p><strong>Mode:</strong> Online (Google Meet/Zoom link will be shared via email before the interview)</p>
+        </div>
+
+        <p>This interview is your chance to showcase your skills, interests, and enthusiasm for working with a dynamic startup team.</p>
+
+        <hr style="border:none; border-top: 1px solid var(--border-color); margin: 24px 0;">
+
+        <h3 style="font-family:'Space Grotesk', sans-serif; color: white;">✅ Next Steps:</h3>
+        <ul style="padding-left: 20px; color:#e0e8f0; margin-top: 10px;">
+          <li style="margin-bottom: 10px;">Please <strong>confirm your availability</strong> for the interview by replying to this email at the earliest.</li>
+          <li style="margin-bottom: 10px;">Keep your <strong>updated resume and portfolio</strong> (if applicable) ready.</li>
+          <li style="margin-bottom: 10px;">Be prepared to discuss your skills, prior projects, and motivation for joining the Utsavy internship.</li>
+          <li style="margin-bottom: 10px;">Join our official <strong>Discord community</strong> for updates, resources, and networking with fellow candidates.</li>
+        </ul>
+
+        <a class="cta" href="https://discord.gg/e5uPQDXSSk" target="_blank">Join Discord</a>
+
+        <p>We truly appreciate the effort you’ve put into your application and look forward to connecting with you during the interview.</p>
+
+        <p style="margin-top: 24px;">Best Regards, <br>
+        <strong style="color: white;">Team Vasudev AI</strong>
+        </p>
+
+        <div class="footer">
+          <p style="margin:0; font-size: 12px;">
+            <a href="mailto:info@vasudev.online" style="color: var(--muted); text-decoration: none;">info@vasudev.online</a> | 
+            <a href="https://www.vasudev.online" target="_blank" style="color: var(--muted); text-decoration: none;">www.vasudev.online</a>
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>
