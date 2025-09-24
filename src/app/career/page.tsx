@@ -1,3 +1,4 @@
+
 'use client';
 
 import PageHeader from '@/components/page-header';
@@ -20,7 +21,7 @@ export default function CareerPage() {
                 <CardHeader>
                     <div className="flex items-center gap-4">
                         <Briefcase className="h-8 w-8 text-accent"/>
-                        <CardTitle className="text-2xl md:text-3xl font-headline text-white">Past Internship Drives</CardTitle>
+                        <CardTitle className="text-2xl md:text-3xl font-headline text-white">Utsavy Internship Drive (Completed)</CardTitle>
                     </div>
                 </CardHeader>
                 <CardContent className="space-y-6">
