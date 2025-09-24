@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import PageHeader from '@/components/page-header';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { Github, Linkedin, Youtube } from 'lucide-react';
+import { Github, Linkedin, Youtube, Wrench } from 'lucide-react';
 import './team.css';
 import Image from 'next/image';
 import { AnimatePresence } from 'framer-motion';
@@ -105,6 +105,29 @@ const teamMembers = [
       website: 'www.vasudev.ai',
       discord: 'Join on Discord',
       linkedin: 'n/a',
+      qrLink: 'https://www.vasudev.ai',
+    },
+  },
+    {
+    id: 'aum',
+    name: 'Aum Mehta',
+    role: 'Contributor',
+    bio: 'A dedicated contributor focused on bridging the gap between complex AI capabilities and practical, real-world applications for the community.',
+    avatar: '/team/aum.png',
+    avatarHint: 'blue digital cube',
+    socials: { github: '#', linkedin: '#' },
+    theme: {
+      '--accent-glow': '#4D96FF', // Light Blue
+      '--bg-gradient-start': 'rgba(77, 150, 255, 0.2)',
+      '--bg-gradient-end': 'hsl(var(--background) / 0.1)',
+    },
+     details: {
+      role: 'Contributor',
+      phone: '+91 XXXXX XXXXX',
+      email: 'aum.m@vasudev.ai',
+      website: 'www.vasudev.ai',
+      discord: 'Join on Discord',
+      linkedin: '#',
       qrLink: 'https://www.vasudev.ai',
     },
   },
@@ -228,3 +251,5 @@ export default function TeamPage() {
     </>
   );
 }
+
+    

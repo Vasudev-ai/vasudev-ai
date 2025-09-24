@@ -159,6 +159,14 @@ const councilMembers = [
     avatarHint: 'holographic sphere',
     glowColor: '#FF00FF',
   },
+  {
+    name: 'Aum Mehta',
+    badgeIcon: <Wrench className="h-5 w-5 md:h-6 md:w-6" />,
+    badgeLabel: 'Contributor',
+    avatarUrl: '/team/aum.png',
+    avatarHint: 'blue digital cube',
+    glowColor: '#4D96FF',
+  },
 ];
 
 
@@ -175,7 +183,7 @@ export default function CommunityPage() {
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-headline font-bold text-center mb-6">The Celestial Council</h2>
           <p className="text-base md:text-lg text-gray-400 text-center max-w-3xl mx-auto mb-12">Meet the guardians of our community—members recognized for their outstanding contributions, vision, and guidance.</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {councilMembers.map((member) => (
               <MemberCard
                 key={member.name}
@@ -328,7 +336,5 @@ export default function CommunityPage() {
     </div>
   );
 }
-
-    
 
     
