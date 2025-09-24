@@ -55,7 +55,7 @@ export default function UtsavyInternshipPage() {
                 <UtsavyLogo />
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-headline font-bold text-center bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-400">
-            🚀 Internship Applications
+            🚀 Internship Drive (Completed)
             </h1>
             <p className="mt-4 text-base md:text-xl text-primary max-w-3xl mx-auto">
              Utsavy via Vasudev AI (Hiring Partner & Contributor)
@@ -170,8 +170,9 @@ export default function UtsavyInternshipPage() {
                         </div>
 
                         <div className="pt-4">
-                            <Button asChild size="lg" className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-bold text-lg py-6 rounded-full shadow-lg shadow-accent/30 hover:shadow-accent/50 transition-all animate-pulse">
-                            <Link href="https://forms.gle/tqkiAg8PXhnvnb2c6" target="_blank" rel="noopener noreferrer">Apply Now</Link>
+                            <Badge className="w-full justify-center mb-4 text-base py-2 bg-yellow-500/20 text-yellow-400 border-yellow-500/50">Drive Completed</Badge>
+                            <Button asChild size="lg" className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-bold text-lg py-6 rounded-full shadow-lg shadow-accent/30 hover:shadow-accent/50 transition-all">
+                            <Link href="/career/utsavy-internship/closed">Check Status</Link>
                             </Button>
                         </div>
                     </CardContent>

@@ -20,16 +20,16 @@ export default function CareerPage() {
                 <CardHeader>
                     <div className="flex items-center gap-4">
                         <Briefcase className="h-8 w-8 text-accent"/>
-                        <CardTitle className="text-2xl md:text-3xl font-headline text-white">Internship Openings at Utsavy</CardTitle>
+                        <CardTitle className="text-2xl md:text-3xl font-headline text-white">Past Internship Drives</CardTitle>
                     </div>
                 </CardHeader>
                 <CardContent className="space-y-6">
                     <p className="text-gray-300 md:text-lg">
-                        We are thrilled to announce internship openings at Utsavy, in collaboration with Vasudev AI. This is an amazing opportunity to gain hands-on experience and work with a startup founding team.
+                       We successfully conducted our first internship drive in collaboration with Utsavy, providing a hands-on startup experience to aspiring students. Stay tuned for future opportunities.
                     </p>
                     <div className="pt-4">
                          <Button asChild size="lg" className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-bold text-lg py-6 rounded-full shadow-lg shadow-accent/30 hover:shadow-accent/50 transition-all">
-                            <Link href="/career/utsavy-internship">Know More <ArrowRight className="ml-2 h-5 w-5" /></Link>
+                            <Link href="/career/utsavy-internship">View Details <ArrowRight className="ml-2 h-5 w-5" /></Link>
                         </Button>
                     </div>
                 </CardContent>
