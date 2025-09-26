@@ -90,10 +90,9 @@ const BusinessCardFront: React.FC<Pick<BusinessCardModalProps, 'member'>> = ({ m
         <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
         <div className="absolute inset-0 rounded-2xl border border-primary/20"></div>
         <div className="relative z-10 flex flex-col items-center justify-center text-center">
-            <div className="w-24 h-24 rounded-full mb-4 relative border-2 border-primary/50" style={{boxShadow: '0 0 20px var(--accent-glow)'}}>
-                <Image src={member.avatar} alt={member.name} layout="fill" className="rounded-full object-cover"/>
-            </div>
-            <Logo />
+            <h1 className="text-6xl font-headline font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent" style={{ textShadow: '0 0 20px hsl(var(--primary) / 0.5)'}}>
+                Vasudev AI
+            </h1>
         </div>
       </div>
     );
