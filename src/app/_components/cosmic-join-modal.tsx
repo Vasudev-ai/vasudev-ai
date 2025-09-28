@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { Bot, Disc, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { FaWhatsapp } from 'react-icons/fa';
+import { FaWhatsapp } from 'react-icons/fa6';
 
 const CosmicJoinModal = ({ onClose }: { onClose: () => void }) => {
   const [status, setStatus] = useState('signature'); // signature -> options

@@ -12,7 +12,7 @@ import MemberCard from './_components/member-card';
 import { AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import CosmicJoinModal from '../_components/cosmic-join-modal';
-import { FaWhatsapp } from 'react-icons/fa';
+import { FaWhatsapp } from 'react-icons/fa6';
 
 const cinzel = Cinzel_Decorative({
   subsets: ['latin'],
