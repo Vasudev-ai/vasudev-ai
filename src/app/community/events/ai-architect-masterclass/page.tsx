@@ -3,53 +3,63 @@ import PageHeader from '@/components/page-header';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { CheckCircle, User, Calendar, Clock, BookOpen, BrainCircuit, GraduationCap, Code } from 'lucide-react';
+import { CheckCircle, User, Calendar, Clock, BookOpen, BrainCircuit, GraduationCap, Code, Award } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
 const curriculum = [
   {
-    day: 'Day 1: The Foundations of Intelligence',
+    day: 'Day 1: Foundations of AI & Prompt Engineering',
     topics: [
-      'Understanding the LLM Landscape (Gemini, GPT, etc.)',
-      'Introduction to Genkit: The Future of AI Apps',
-      'Crafting the Perfect Prompt: Engineering & Optimization',
-      'Building your First AI Flow with Genkit',
+      'Introduction to LLMs: GPT, LLaMA, Phi, Gemini',
+      'How AI thinks: Tokens, Parameters, and Model Logic',
+      'Fundamentals of Prompt Engineering',
+      'Hands-on: Create your first AI flow',
     ],
+    task: 'Build a simple chatbot responding to basic queries'
   },
   {
     day: 'Day 2: Architecting Advanced AI Systems',
     topics: [
-      'Structured Outputs: Using Zod for Reliable AI',
-      'Function Calling & Tool Use: Giving your AI Superpowers',
-      'Building AI Agents that Reason and Act',
-      'Integrating with External APIs and Services',
+      'Structured Outputs & Reliable Responses using Zod',
+      'Function calling & Tool integration',
+      'Designing AI agents that reason, act, and execute tasks',
+      'Connecting AI with APIs and external services',
     ],
+    task: 'Enhance your chatbot with multi-step reasoning & API calls'
   },
   {
-    day: 'Day 3: Deployment & The Divine Touch',
+    day: 'Day 3: Deployment & Showcasing AI Mastery',
     topics: [
-      'Deploying Genkit Flows with Firebase',
-      'Building a Frontend with Next.js & React Server Components',
-      'Ethical AI: The Vasudev AI Philosophy',
-      'Showcase: Building a complete AI-powered app from scratch',
+      'Deploy AI flows on Firebase / Localhost',
+      'Build a frontend using Next.js & React Server Components',
+      'Ethical AI Practices: The Vasudev AI philosophy',
+      'Showcase: Build a full AI-powered application from scratch',
     ],
+    task: 'Deploy your AI app and present a working demo'
   },
 ];
 
 const whoShouldAttend = [
-    'Aspiring AI Developers eager to build real-world applications.',
-    'Full-stack engineers looking to integrate intelligence into their projects.',
-    'Students and hobbyists passionate about the future of technology.',
-    'Entrepreneurs wanting to prototype AI-powered products.',
+    'Aspiring AI developers and enthusiasts',
+    'Full-stack engineers wanting AI integration',
+    'Students, hobbyists, and tech innovators',
+    'Entrepreneurs looking to prototype AI products',
+];
+
+const deliverables = [
+    'Hands-on AI flows and deployed apps',
+    'Digital Certificate of Completion',
+    'Exclusive Vasudev AI Resource E-book',
+    'Access to Vasudev AI community'
 ];
 
 export default function WorkshopPage() {
   return (
     <div className="pb-20">
       <PageHeader
-        title="The AI Architect"
-        subtitle="A 3-Day LLM Masterclass"
+        title="The AI Architect: 3-Day LLM Masterclass"
+        subtitle="Build, Architect, and Deploy Your Own AI Applications – Guided by Vasudev AI Founder"
       />
       <div className="container mx-auto px-4 -mt-16">
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12">
@@ -57,14 +67,19 @@ export default function WorkshopPage() {
                  <Card className="bg-card/70 border-primary/20 backdrop-blur-sm shadow-lg">
                     <CardContent className="p-6 md:p-8">
                         <p className="text-lg text-gray-300 leading-relaxed">
-                            Join us for an immersive, 3-day journey into building production-ready applications with Large Language Models. Hosted by the founder of Vasudev AI, this masterclass will take you from the fundamentals of prompt engineering to deploying complex, multi-step AI agents. You won't just learn theory—you'll build, architect, and deploy.
+                            Step into an immersive 3-day journey where you will learn to design, build, and deploy real-world AI applications using Large Language Models (LLMs).
                         </p>
+                         <ul className="mt-4 space-y-2 text-gray-400">
+                            <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-400 flex-shrink-0 mt-1" /><span>Hands-on experience: Build AI flows, agents, and complete apps</span></li>
+                            <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-400 flex-shrink-0 mt-1" /><span>Learn ethical, production-ready practices</span></li>
+                            <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-400 flex-shrink-0 mt-1" /><span>Take home working code, resources, and a certificate</span></li>
+                        </ul>
                     </CardContent>
                 </Card>
 
                 <section>
                     <h2 className="text-3xl font-headline text-primary mb-8 flex items-center gap-3">
-                        <BookOpen /> What You'll Master
+                        <BookOpen /> Day-wise Learning Path
                     </h2>
                      <div className="space-y-6">
                         {curriculum.map((day, index) => (
@@ -81,6 +96,12 @@ export default function WorkshopPage() {
                                     </li>
                                 ))}
                                 </ul>
+                                <div className="mt-4 pt-4 border-t border-primary/20">
+                                    <p className="text-sm text-primary font-semibold flex items-center gap-2">
+                                        <Badge variant="secondary" className="bg-primary/10 text-primary">{index === 2 ? 'Final Task' : 'Mini Task'}</Badge>
+                                        <span className="text-gray-300">{day.task}</span>
+                                    </p>
+                                </div>
                             </CardContent>
                         </Card>
                         ))}
@@ -101,7 +122,25 @@ export default function WorkshopPage() {
                                     </li>
                                 ))}
                             </ul>
-                            <p className="text-primary mt-6 text-sm flex items-center gap-2"><Code className="h-4 w-4"/> Basic understanding of JavaScript/TypeScript is recommended.</p>
+                            <p className="text-primary mt-6 text-sm flex items-center gap-2"><Code className="h-4 w-4"/> Basic knowledge of JavaScript / TypeScript recommended.</p>
+                        </CardContent>
+                    </Card>
+                </section>
+                
+                <section>
+                    <h2 className="text-3xl font-headline text-primary mb-8 flex items-center gap-3">
+                        <Award /> Workshop Deliverables
+                    </h2>
+                     <Card className="bg-card/50 border-primary/10 backdrop-blur-sm">
+                        <CardContent className="p-6 md:p-8">
+                             <ul className="space-y-4">
+                                {deliverables.map((item, i) => (
+                                    <li key={i} className="flex items-start gap-3 text-lg">
+                                        <CheckCircle className="h-6 w-6 text-green-400 flex-shrink-0 mt-1" />
+                                        <span className="text-gray-300">{item}</span>
+                                    </li>
+                                ))}
+                            </ul>
                         </CardContent>
                     </Card>
                 </section>
@@ -168,5 +207,3 @@ export default function WorkshopPage() {
     </div>
   );
 }
-
-    
