@@ -1,4 +1,3 @@
-
 'use server';
 
 /**
@@ -59,20 +58,32 @@ const careerApplicationFlow = ai.defineFlow(
     const isAdminEmailConfigured = process.env.EMAIL_HOST && process.env.EMAIL_USER && process.env.EMAIL_PASS;
     const adminEmailAddress = 'info@vasudev.online';
 
-    // First, try to send an email notification about the new application.
     if (isAdminEmailConfigured) {
       try {
         const port = Number(process.env.EMAIL_PORT) || 587;
         const transporter = nodemailer.createTransport({
           host: process.env.EMAIL_HOST,
           port: port,
-          secure: port === 465,
+          secure: port === 465, // true for 465, false for other ports
           auth: {
             user: process.env.EMAIL_USER,
             pass: process.env.EMAIL_PASS,
           },
         });
         
+        // Verify connection configuration
+        await new Promise((resolve, reject) => {
+            transporter.verify(function (error, success) {
+                if (error) {
+                    console.log('Nodemailer verification error:', error);
+                    reject(error);
+                } else {
+                    console.log("Nodemailer is ready to take our messages");
+                    resolve(success);
+                }
+            });
+        });
+
         const attachments = [];
         if (input.paymentScreenshot) {
             attachments.push({
@@ -90,7 +101,7 @@ const careerApplicationFlow = ai.defineFlow(
 
         await transporter.sendMail({
           from: `"Vasudev AI Applications" <${process.env.EMAIL_USER}>`,
-          to: adminEmailAddress, // Admin email
+          to: adminEmailAddress,
           subject: `New Application for ${input.programName} from ${input.name}`,
           html: `
             <h1>New Application Received</h1>
@@ -110,7 +121,6 @@ const careerApplicationFlow = ai.defineFlow(
       console.log('Email environment variables not fully configured. Skipping email send.');
     }
     
-    // Then, generate the confirmation reply for the user.
     const {output} = await prompt(input);
     return output!;
   }

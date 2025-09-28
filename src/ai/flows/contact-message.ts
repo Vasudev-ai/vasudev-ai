@@ -1,4 +1,3 @@
-
 'use server';
 
 /**
@@ -50,19 +49,30 @@ const contactMessageFlow = ai.defineFlow(
     outputSchema: ContactMessageOutputSchema,
   },
   async input => {
-    // First, try to send the email notification.
-    // This will only proceed if all required environment variables for email are set.
     if (process.env.EMAIL_HOST && process.env.EMAIL_USER && process.env.EMAIL_PASS) {
       try {
         const port = Number(process.env.EMAIL_PORT) || 587;
         const transporter = nodemailer.createTransport({
           host: process.env.EMAIL_HOST,
           port: port,
-          secure: port === 465, // Use SSL for port 465
+          secure: port === 465, // true for 465, false for other ports
           auth: {
             user: process.env.EMAIL_USER,
             pass: process.env.EMAIL_PASS,
           },
+        });
+
+        // Verify connection configuration
+        await new Promise((resolve, reject) => {
+            transporter.verify(function (error, success) {
+                if (error) {
+                    console.log('Nodemailer verification error:', error);
+                    reject(error);
+                } else {
+                    console.log("Nodemailer is ready to take our messages");
+                    resolve(success);
+                }
+            });
         });
 
         await transporter.sendMail({
@@ -79,17 +89,13 @@ const contactMessageFlow = ai.defineFlow(
           `,
         });
       } catch (error) {
-        console.error('Failed to send email:', error);
-        // Even if email fails, we don't want to block the user.
-        // We'll log the error and proceed to generate the confirmation.
+        console.error('Failed to send contact form email:', error);
       }
     } else {
       console.log('Email environment variables not fully configured. Skipping email send.');
     }
     
-    // Then, generate the confirmation reply for the user.
     const {output} = await prompt(input);
     return output!;
   }
 );
-
