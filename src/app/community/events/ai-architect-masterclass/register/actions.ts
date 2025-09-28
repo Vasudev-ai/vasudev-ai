@@ -9,9 +9,7 @@ const FormSchema = z.object({
   email: z.string().email('Invalid email address.'),
   phone: z.string().min(10, 'Please enter a valid phone number.'),
   upiId: z.string().min(1, 'UPI Transaction ID is required.'),
-  proofSent: z.string().refine(val => val === 'on', {
-    message: 'You must confirm that you will send the payment proof.'
-  }),
+  paymentScreenshot: z.string().min(1, 'Payment screenshot is required.'),
 });
 
 export type FormState = {
@@ -27,7 +25,7 @@ export async function submitRegistrationForm(prevState: FormState, formData: For
         email: formData.get('email'),
         phone: formData.get('phone'),
         upiId: formData.get('upiId'),
-        proofSent: formData.get('proofSent'),
+        paymentScreenshot: formData.get('paymentScreenshot'),
     });
 
     if (!validatedFields.success) {
@@ -39,7 +37,7 @@ export async function submitRegistrationForm(prevState: FormState, formData: For
       };
     }
 
-    const { name, email, phone, upiId } = validatedFields.data;
+    const { name, email, phone, upiId, paymentScreenshot } = validatedFields.data;
 
     const result = await handleCareerApplication({
       programName: 'AI Architect Masterclass',
@@ -47,6 +45,7 @@ export async function submitRegistrationForm(prevState: FormState, formData: For
       email,
       phone,
       upiId,
+      paymentScreenshot,
     });
     
     return {

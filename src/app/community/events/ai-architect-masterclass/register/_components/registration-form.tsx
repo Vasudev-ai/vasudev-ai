@@ -7,13 +7,12 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Loader2, Send, ArrowRight, User, Mail, Phone, CheckCircle, MailCheck } from 'lucide-react';
+import { Loader2, Send, ArrowRight, User, Mail, Phone, CheckCircle, Upload, Image as ImageIcon } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import QRCode from 'react-qr-code';
 import { useToast } from '@/hooks/use-toast';
 import { submitRegistrationForm, type FormState } from '../actions';
 import Image from 'next/image';
-import { Checkbox } from '@/components/ui/checkbox';
 
 const initialState: FormState = {
   message: '',
@@ -45,9 +44,11 @@ function SubmitButton() {
 export default function RegistrationForm() {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({ name: '', email: '', phone: '' });
+  const [screenshotDataUri, setScreenshotDataUri] = useState<string>('');
   const [state, formAction] = useActionState(submitRegistrationForm, initialState);
   const { toast } = useToast();
   const formRef = useRef<HTMLFormElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (state.message && !state.isSuccess) { // Only show toast on error, success has its own page
@@ -69,6 +70,17 @@ export default function RegistrationForm() {
       form.reportValidity();
     }
   };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (loadEvent) => {
+        setScreenshotDataUri(loadEvent.target?.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
   
   if (state.isSuccess) {
     return (
@@ -84,8 +96,8 @@ export default function RegistrationForm() {
                    {state.message} Your spot is reserved pending payment confirmation.
                 </p>
                 <div className="p-4 rounded-lg bg-background/50 border border-primary/20">
-                  <p className="font-semibold text-primary">Final Step:</p>
-                  <p className="text-gray-300">Please email your payment screenshot to <strong className="text-accent">{ADMIN_EMAIL}</strong> to confirm your registration. Event details will be sent after confirmation.</p>
+                  <p className="font-semibold text-primary">Next Steps:</p>
+                  <p className="text-gray-300">Our team will review your payment. Event details will be sent to your email after confirmation.</p>
                 </div>
                 <p className="text-accent font-semibold">Welcome to the future, Architect!</p>
             </CardContent>
@@ -139,6 +151,7 @@ export default function RegistrationForm() {
                 <input type="hidden" name="name" value={formData.name} />
                 <input type="hidden" name="email" value={formData.email} />
                 <input type="hidden" name="phone" value={formData.phone} />
+                <input type="hidden" name="paymentScreenshot" value={screenshotDataUri} />
                 
                 <div className="text-center space-y-4 p-4 rounded-lg bg-background/50 border border-primary/20">
                     <p className="text-gray-300">1. Scan the QR code below using any UPI app to pay <strong className="text-accent font-bold">₹99</strong>.</p>
@@ -155,21 +168,15 @@ export default function RegistrationForm() {
                 </div>
 
                 <div className="space-y-3">
-                  <Label className="text-primary flex items-center gap-2">3. Confirm Payment Proof</Label>
-                  <div className="items-top flex space-x-2 rounded-lg bg-background/50 p-4 border border-primary/20">
-                    <Checkbox id="proof-sent" name="proofSent" required />
-                    <div className="grid gap-1.5 leading-none">
-                      <label
-                        htmlFor="proof-sent"
-                        className="text-sm font-medium leading-none text-gray-300 peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                      >
-                        I will email the payment screenshot to <strong className="text-accent">{ADMIN_EMAIL}</strong>
-                      </label>
-                      <p className="text-xs text-muted-foreground">
-                        This is required to confirm your seat.
-                      </p>
-                    </div>
-                  </div>
+                  <Label htmlFor="payment-screenshot" className="text-primary flex items-center gap-2">3. Upload Payment Screenshot</Label>
+                  <Input id="payment-screenshot" ref={fileInputRef} type="file" accept="image/*" required className="bg-background/50" onChange={handleFileChange} />
+                  {screenshotDataUri && (
+                     <div className="mt-2 p-2 border border-primary/20 rounded-md bg-background/50 flex items-center gap-2">
+                        <ImageIcon className="h-5 w-5 text-green-400" />
+                        <span className="text-sm text-green-400">Image selected:</span>
+                        <Image src={screenshotDataUri} alt="Screenshot preview" width={40} height={40} className="rounded object-cover h-10 w-auto" />
+                     </div>
+                  )}
                 </div>
 
 

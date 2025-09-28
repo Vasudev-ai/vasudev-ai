@@ -19,6 +19,7 @@ const CareerApplicationInputSchema = z.object({
   phone: z.string().optional().describe('The phone number of the applicant.'),
   programName: z.string().describe('The name of the program they are applying for (e.g., Utsavy Internship, AI Architect Masterclass).'),
   upiId: z.string().optional().describe('The UPI Transaction ID for paid programs.'),
+  paymentScreenshot: z.string().optional().describe("A data URI of the payment screenshot. Expected format: 'data:image/...;base64,...'"),
 });
 export type CareerApplicationInput = z.infer<typeof CareerApplicationInputSchema>;
 
@@ -39,11 +40,11 @@ const prompt = ai.definePrompt({
 A user named {{{name}}} (email: {{{email}}}) has just registered for the "{{programName}}".
 
 Your task is to generate a short, friendly, on-brand confirmation message.
-If it's a paid program (like a masterclass), the message should confirm their registration is PENDING and tell them to email the payment proof to confirm their spot.
+If it's a paid program (like a masterclass), the message should confirm their registration is PENDING and tell them their payment is under review.
 Otherwise, for free applications, just acknowledge their application and mention that next steps will be sent to their email.
 
 Make it personal and inspiring.
-Example for paid: "Signal received, {{{name}}}. Your registration for the {{programName}} is now in the cosmos."
+Example for paid: "Signal received, {{{name}}}. Your registration for the {{programName}} is now in the cosmos and your payment proof is under review."
 Example for free: "Application from {{{name}}} received. Keep an eye on your inbox for the next transmission."
 `,
 });
@@ -71,12 +72,19 @@ const careerApplicationFlow = ai.defineFlow(
             pass: process.env.EMAIL_PASS,
           },
         });
+        
+        const attachments = [];
+        if (input.paymentScreenshot) {
+            attachments.push({
+                filename: 'payment-screenshot.png',
+                path: input.paymentScreenshot
+            });
+        }
 
-        // Add a note about payment proof for paid programs
         const paymentInfoHtml = input.upiId 
           ? `
             <p><strong>UPI Transaction ID:</strong> ${input.upiId}</p>
-            <p style="color: #FFD700;"><strong>Action Required:</strong> Applicant has confirmed they will email the payment screenshot to ${adminEmailAddress}.</p>
+            ${input.paymentScreenshot ? `<p style="color: #39FF14;"><strong>Payment Screenshot is attached.</strong></p>` : ''}
             ` 
           : '';
 
@@ -93,6 +101,7 @@ const careerApplicationFlow = ai.defineFlow(
             ${input.phone ? `<p><strong>Phone:</strong> ${input.phone}</p>` : ''}
             ${paymentInfoHtml}
           `,
+          attachments: attachments,
         });
       } catch (error) {
         console.error('Failed to send application notification email:', error);
