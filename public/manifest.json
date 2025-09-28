@@ -1,21 +1,33 @@
 {
   "name": "Vasudev AI",
   "short_name": "Vasudev AI",
-  "description": "Vasudev AI is a community-driven initiative to build the future of divine intelligence, blending cutting-edge technology with spiritual harmony.",
+  "description": "Where Intelligence Meets Innovation. Join our community of AI creators, thinkers, and dreamers shaping the future together.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0D0F1A",
-  "theme_color": "#00E5FF",
+  "theme_color": "#0D0F1A",
   "icons": [
     {
-      "src": "/vasudev-ai-hero.png",
+      "src": "/icons/icon-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/vasudev-ai-hero.png",
+      "src": "/icons/icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-maskable-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icons/icon-maskable-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ]
 }

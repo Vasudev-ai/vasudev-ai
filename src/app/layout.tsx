@@ -81,6 +81,15 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
        <head>
+        <meta name="application-name" content="Vasudev AI" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content="Vasudev AI" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="theme-color" content="#0D0F1A" />
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
@@ -113,5 +122,3 @@ export default function RootLayout({
     </html>
   );
 }
-
-    
