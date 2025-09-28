@@ -17,6 +17,7 @@ const navLinks = [
     { href: '/services', label: 'Services' },
     { href: '/team', label: 'Team' },
     { href: '/career', label: 'Career' },
+    { href: '/downloads', label: 'Downloads' },
     { href: '/contact', label: 'Contact' },
 ];
 
@@ -116,7 +117,6 @@ export default function Header() {
                 </SheetContent>
             </Sheet>
         </div>
-
       </div>
     </header>
   );
