@@ -12,7 +12,6 @@
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 import nodemailer from 'nodemailer';
-import { appendToGoogleSheet } from './google-sheets-append';
 
 const CareerApplicationInputSchema = z.object({
   name: z.string().describe('The name of the applicant.'),
@@ -111,26 +110,6 @@ const careerApplicationFlow = ai.defineFlow(
       console.log('Email environment variables not fully configured. Skipping email send.');
     }
     
-    // Second, append the data to Google Sheets if configured.
-    if (process.env.GOOGLE_SHEET_ID && process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL && process.env.GOOGLE_PRIVATE_KEY) {
-      try {
-        const sheetData = {
-          Timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
-          Name: input.name,
-          Email: input.email,
-          Phone: input.phone || '',
-          Program: input.programName,
-          'UPI ID': input.upiId || '',
-        };
-        await appendToGoogleSheet(sheetData);
-      } catch (error) {
-        console.error('Failed to append data to Google Sheet:', error);
-        // We won't block the user if this fails, just log it.
-      }
-    } else {
-        console.log('Google Sheets environment variables not configured. Skipping sheet append.');
-    }
-
     // Then, generate the confirmation reply for the user.
     const {output} = await prompt(input);
     return output!;
