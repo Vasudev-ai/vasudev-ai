@@ -73,3 +73,7 @@ export default function DownloadsPage() {
             </Card>
           ))}
         </div>
+      </div>
+    </div>
+  );
+}
