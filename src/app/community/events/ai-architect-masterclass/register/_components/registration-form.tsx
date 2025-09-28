@@ -9,7 +9,6 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Loader2, Send, ArrowRight, User, Mail, Phone, CheckCircle, Upload, Image as ImageIcon } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import QRCode from 'react-qr-code';
 import { useToast } from '@/hooks/use-toast';
 import { submitRegistrationForm, type FormState } from '../actions';
 import Image from 'next/image';
@@ -20,10 +19,9 @@ const initialState: FormState = {
   isSuccess: false,
 };
 
-const UPI_ID = "suryapratap83-1@okaxis";
+const UPI_ID = "9719205268@naviaxis";
 const AMOUNT = "99";
 const RECIPIENT_NAME = "Surya Pratap Singh";
-const ADMIN_EMAIL = "info@vasudev.online";
 const upiUri = `upi://pay?pa=${UPI_ID}&pn=${encodeURIComponent(RECIPIENT_NAME)}&am=${AMOUNT}&cu=INR&tn=AI Architect Masterclass`;
 
 function SubmitButton() {
@@ -155,8 +153,8 @@ export default function RegistrationForm() {
                 
                 <div className="text-center space-y-4 p-4 rounded-lg bg-background/50 border border-primary/20">
                     <p className="text-gray-300">1. Scan the QR code below using any UPI app to pay <strong className="text-accent font-bold">₹99</strong>.</p>
-                     <div className="p-4 bg-white rounded-lg inline-block border-4 border-accent shadow-2xl shadow-accent/30">
-                        <QRCode value={upiUri} size={160} />
+                     <div className="p-2 bg-white rounded-lg inline-block border-4 border-accent shadow-2xl shadow-accent/30">
+                        <Image src="/pramotion/qrcode.png" alt="UPI QR Code for payment" width={160} height={160} />
                      </div>
                      <p className="text-sm text-gray-400">Or pay to UPI ID: <strong className="text-primary select-all">{UPI_ID}</strong></p>
                 </div>
