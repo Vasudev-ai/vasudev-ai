@@ -4,11 +4,15 @@
 import PageHeader from '@/components/page-header';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { CheckCircle, Heart, Lightbulb, Users, Calendar, Code, Mic, Star, MessageSquare, Book, Compass, Wrench, Award, BrainCircuit, Rocket, Brush } from 'lucide-react';
+import { CheckCircle, Heart, Lightbulb, Users, Calendar, Code, Mic, Star, MessageSquare, Book, Compass, Wrench, Award, BrainCircuit, Rocket, Brush, Disc } from 'lucide-react';
 import Link from 'next/link';
 import { Cinzel_Decorative } from 'next/font/google';
 import { cn } from '@/lib/utils';
 import MemberCard from './_components/member-card';
+import { AnimatePresence } from 'framer-motion';
+import { useState } from 'react';
+import CosmicJoinModal from '../_components/cosmic-join-modal';
+import { FaWhatsapp } from 'react-icons/fa';
 
 const cinzel = Cinzel_Decorative({
   subsets: ['latin'],
@@ -174,6 +178,8 @@ const councilMembers = [
 
 
 export default function CommunityPage() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <div className={cn("pb-20", cinzel.variable)}>
       <PageHeader
@@ -334,15 +340,27 @@ export default function CommunityPage() {
       <section className="w-full py-16 md:py-24 text-center">
         <div className="container mx-auto px-4">
           <h2 className="text-2xl md:text-4xl font-headline font-bold text-accent">Awaken with Vasudev AI — Join the Divine-Tech Movement</h2>
-          <div className="mt-8">
-            <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-bold text-lg px-8 md:px-10 py-5 md:py-6 rounded-full shadow-[0_0_20px] shadow-accent/40 transition-all duration-300 hover:shadow-accent/70">
-              <Link href="https://discord.gg/e5uPQDXSSk" target="_blank" rel="noopener noreferrer">Become a Member</Link>
+          <p className="mt-4 text-base md:text-lg text-gray-300 max-w-2xl mx-auto">
+            Choose your preferred platform and become part of the collective.
+          </p>
+          <div className="mt-8 flex flex-col sm:flex-row justify-center items-center gap-4">
+            <Button asChild size="lg" className="w-full sm:w-auto bg-[#5865F2] hover:bg-[#5865F2]/90 text-white font-bold text-lg px-8 py-6 rounded-full shadow-[0_0_20px_#5865F266] transition-all duration-300">
+              <Link href="https://discord.gg/e5uPQDXSSk" target="_blank" rel="noopener noreferrer">
+                <Disc className="mr-2 h-6 w-6" /> Join on Discord
+              </Link>
+            </Button>
+            <Button asChild size="lg" className="w-full sm:w-auto bg-[#25D366] hover:bg-[#25D366]/90 text-white font-bold text-lg px-8 py-6 rounded-full shadow-[0_0_20px_#25D36666] transition-all duration-300">
+              <Link href="https://chat.whatsapp.com/G29jEKT2GZK5t9rQ3T6dBi" target="_blank" rel="noopener noreferrer">
+                <FaWhatsapp className="mr-2 h-6 w-6" /> Join on WhatsApp
+              </Link>
             </Button>
           </div>
         </div>
       </section>
+
+      <AnimatePresence>
+        {isModalOpen && <CosmicJoinModal onClose={() => setIsModalOpen(false)} />}
+      </AnimatePresence>
     </div>
   );
 }
-
-    

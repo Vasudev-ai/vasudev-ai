@@ -3,26 +3,20 @@
 
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import { Loader2 } from 'lucide-react';
+import { Bot, Disc, MessageCircle } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+import { FaWhatsapp } from 'react-icons/fa';
 
 const CosmicJoinModal = ({ onClose }: { onClose: () => void }) => {
-  const [status, setStatus] = useState('signature'); // signature -> connecting
+  const [status, setStatus] = useState('signature'); // signature -> options
 
   useEffect(() => {
-    // Start the connection process after a short delay
-    const connectTimer = setTimeout(() => {
-      setStatus('connecting');
-    }, 1500);
+    const timer = setTimeout(() => {
+      setStatus('options');
+    }, 1500); // Time for the "signature" text to display
 
-    // Redirect after the "connecting" message has been shown
-    const redirectTimer = setTimeout(() => {
-      window.open('https://discord.gg/e5uPQDXSSk', '_self');
-    }, 3500);
-
-    return () => {
-      clearTimeout(connectTimer);
-      clearTimeout(redirectTimer);
-    };
+    return () => clearTimeout(timer);
   }, []);
 
   return (
@@ -36,6 +30,7 @@ const CosmicJoinModal = ({ onClose }: { onClose: () => void }) => {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.5 }}
+        onClick={onClose}
       />
       <motion.div
         className="relative z-10 w-full max-w-lg text-center text-white"
@@ -43,6 +38,7 @@ const CosmicJoinModal = ({ onClose }: { onClose: () => void }) => {
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.9, opacity: 0 }}
         transition={{ duration: 0.5, type: 'spring' }}
+        onClick={(e) => e.stopPropagation()} // Prevent closing modal when clicking inside
       >
         {status === 'signature' && (
            <motion.div
@@ -54,21 +50,31 @@ const CosmicJoinModal = ({ onClose }: { onClose: () => void }) => {
               Leave Your Cosmic Signature
             </h2>
             <p className="text-lg text-gray-400 mt-2">
-              Making your mark on the universe...
+              Connecting to the community gateways...
             </p>
            </motion.div>
         )}
         
-        {status === 'connecting' && (
+        {status === 'options' && (
            <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
+            className="space-y-6"
            >
-            <div className="flex items-center justify-center gap-4">
-                <Loader2 className="h-10 w-10 text-primary animate-spin" />
-                <h2 className="text-4xl font-headline text-primary">
-                  Connecting to the cosmos...
-                </h2>
+            <h2 className="text-4xl font-headline text-primary">
+              Choose Your Gateway
+            </h2>
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <Button asChild size="lg" className="w-full sm:w-auto bg-[#5865F2] hover:bg-[#5865F2]/90 text-white font-bold text-lg px-8 py-6 rounded-full shadow-[0_0_20px_#5865F266] transition-all duration-300">
+                    <Link href="https://discord.gg/e5uPQDXSSk" target="_blank" rel="noopener noreferrer">
+                        <Disc className="mr-2 h-6 w-6" /> Join on Discord
+                    </Link>
+                </Button>
+                <Button asChild size="lg" className="w-full sm:w-auto bg-[#25D366] hover:bg-[#25D366]/90 text-white font-bold text-lg px-8 py-6 rounded-full shadow-[0_0_20px_#25D36666] transition-all duration-300">
+                    <Link href="https://chat.whatsapp.com/G29jEKT2GZK5t9rQ3T6dBi" target="_blank" rel="noopener noreferrer">
+                        <FaWhatsapp className="mr-2 h-6 w-6" /> Join on WhatsApp
+                    </Link>
+                </Button>
             </div>
            </motion.div>
         )}

@@ -41,7 +41,7 @@ const PortalButton = ({ children, className, onActivate }: {children: React.Reac
     setTimeout(() => {
       onActivate();
       setIsActivating(false);
-    }, 2000); // Duration of activation animation
+    }, 1200); // Duration of activation animation
   };
 
   return (
