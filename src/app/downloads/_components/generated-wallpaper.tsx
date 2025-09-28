@@ -1,4 +1,6 @@
 
+'use client';
+
 import { cn } from '@/lib/utils';
 import { BrainCircuit } from 'lucide-react';
 import React from 'react';
