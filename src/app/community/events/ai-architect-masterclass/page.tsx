@@ -193,10 +193,10 @@ export default function WorkshopPage() {
                         </div>
 
                         <div className="pt-6 border-t border-primary/20">
-                            <p className="text-center text-4xl font-headline text-white mb-2">Free</p>
-                            <p className="text-center text-gray-400 text-sm mb-4">This masterclass is free for all Vasudev AI community members.</p>
+                            <p className="text-center text-4xl font-headline text-white mb-2">₹99</p>
+                            <p className="text-center text-gray-400 text-sm mb-4">A small fee to ensure genuine participation.</p>
                             <Button asChild size="lg" className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-bold text-lg py-6 rounded-full shadow-lg shadow-accent/30 hover:shadow-accent/50 transition-all">
-                                <Link href="https://discord.gg/e5uPQDXSSk" target="_blank" rel="noopener noreferrer">Register via Discord</Link>
+                                <Link href="/community/events/ai-architect-masterclass/register">Register Now for ₹99</Link>
                             </Button>
                         </div>
                     </CardContent>
