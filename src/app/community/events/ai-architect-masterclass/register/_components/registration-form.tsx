@@ -7,12 +7,13 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Loader2, Send, ArrowRight, User, Mail, Phone, CheckCircle } from 'lucide-react';
+import { Loader2, Send, ArrowRight, User, Mail, Phone, CheckCircle, MailCheck } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import QRCode from 'react-qr-code';
 import { useToast } from '@/hooks/use-toast';
 import { submitRegistrationForm, type FormState } from '../actions';
 import Image from 'next/image';
+import { Checkbox } from '@/components/ui/checkbox';
 
 const initialState: FormState = {
   message: '',
@@ -23,6 +24,7 @@ const initialState: FormState = {
 const UPI_ID = "suryapratap83-1@okaxis";
 const AMOUNT = "99";
 const RECIPIENT_NAME = "Surya Pratap Singh";
+const ADMIN_EMAIL = "info@vasudev.online";
 const upiUri = `upi://pay?pa=${UPI_ID}&pn=${encodeURIComponent(RECIPIENT_NAME)}&am=${AMOUNT}&cu=INR&tn=AI Architect Masterclass`;
 
 function SubmitButton() {
@@ -48,14 +50,12 @@ export default function RegistrationForm() {
   const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
-    if (state.message) {
-      if (state.error) {
-        toast({
-          variant: 'destructive',
-          title: 'Registration Failed',
-          description: state.message,
-        });
-      }
+    if (state.message && !state.isSuccess) { // Only show toast on error, success has its own page
+      toast({
+        variant: 'destructive',
+        title: 'Registration Failed',
+        description: state.message,
+      });
     }
   }, [state, toast]);
 
@@ -78,11 +78,15 @@ export default function RegistrationForm() {
                     <CheckCircle className="h-10 w-10 text-green-400" />
                 </div>
                 <h1 className="text-3xl md:text-4xl font-headline font-bold text-center bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-400">
-                    Registration Confirmed!
+                    Registration Submitted!
                 </h1>
                 <p className="text-base md:text-lg text-gray-300">
-                   {state.message} Further details and the event link will be sent to your registered email address shortly.
+                   {state.message} Your spot is reserved pending payment confirmation.
                 </p>
+                <div className="p-4 rounded-lg bg-background/50 border border-primary/20">
+                  <p className="font-semibold text-primary">Final Step:</p>
+                  <p className="text-gray-300">Please email your payment screenshot to <strong className="text-accent">{ADMIN_EMAIL}</strong> to confirm your registration. Event details will be sent after confirmation.</p>
+                </div>
                 <p className="text-accent font-semibold">Welcome to the future, Architect!</p>
             </CardContent>
         </Card>
@@ -94,7 +98,7 @@ export default function RegistrationForm() {
       <CardHeader className="p-6 bg-card/50 border-b border-primary/20">
         <div className="flex justify-between items-center">
              <CardTitle className="text-2xl font-headline text-accent">
-                {step === 1 ? 'Step 1: Your Details' : 'Step 2: Payment'}
+                {step === 1 ? 'Step 1: Your Details' : 'Step 2: Payment & Confirmation'}
             </CardTitle>
             <div className="flex items-center gap-2 text-sm font-medium text-gray-400">
                 <div className={`w-8 h-2 rounded-full ${step === 1 ? 'bg-accent' : 'bg-muted'}`}></div>
@@ -106,7 +110,7 @@ export default function RegistrationForm() {
         <AnimatePresence mode="wait">
           <motion.div
             key={step}
-            initial={{ x: 300, opacity: 0 }}
+            initial={{ x: step === 1 ? 0 : 300, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: -300, opacity: 0 }}
             transition={{ duration: 0.3 }}
@@ -136,19 +140,38 @@ export default function RegistrationForm() {
                 <input type="hidden" name="email" value={formData.email} />
                 <input type="hidden" name="phone" value={formData.phone} />
                 
-                <div className="text-center space-y-4">
-                    <p className="text-gray-300">Scan the QR code below using any UPI app to pay the registration fee of <strong className="text-accent font-bold">₹99</strong>.</p>
+                <div className="text-center space-y-4 p-4 rounded-lg bg-background/50 border border-primary/20">
+                    <p className="text-gray-300">1. Scan the QR code below using any UPI app to pay <strong className="text-accent font-bold">₹99</strong>.</p>
                      <div className="p-4 bg-white rounded-lg inline-block border-4 border-accent shadow-2xl shadow-accent/30">
                         <QRCode value={upiUri} size={160} />
                      </div>
                      <p className="text-sm text-gray-400">Or pay to UPI ID: <strong className="text-primary select-all">{UPI_ID}</strong></p>
                 </div>
                 
-                <div className="space-y-2 pt-4">
-                  <Label htmlFor="upiId" className="text-primary">UPI Transaction ID</Label>
+                <div className="space-y-3">
+                  <Label htmlFor="upiId" className="text-primary flex items-center gap-2">2. Enter UPI Transaction ID</Label>
                   <Input id="upiId" name="upiId" placeholder="Enter the 12-digit transaction ID" required className="bg-background/50 h-12"/>
                    <p className="text-xs text-gray-500">After payment, you will find a 12-digit UPI reference/transaction ID in your app's history.</p>
                 </div>
+
+                <div className="space-y-3">
+                  <Label className="text-primary flex items-center gap-2">3. Confirm Payment Proof</Label>
+                  <div className="items-top flex space-x-2 rounded-lg bg-background/50 p-4 border border-primary/20">
+                    <Checkbox id="proof-sent" name="proofSent" required />
+                    <div className="grid gap-1.5 leading-none">
+                      <label
+                        htmlFor="proof-sent"
+                        className="text-sm font-medium leading-none text-gray-300 peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                      >
+                        I will email the payment screenshot to <strong className="text-accent">{ADMIN_EMAIL}</strong>
+                      </label>
+                      <p className="text-xs text-muted-foreground">
+                        This is required to confirm your seat.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
 
                 <SubmitButton />
                  <Button type="button" variant="outline" size="sm" className="w-full" onClick={() => setStep(1)}>

@@ -36,12 +36,15 @@ const prompt = ai.definePrompt({
   input: {schema: CareerApplicationInputSchema},
   output: {schema: CareerApplicationOutputSchema},
   prompt: `You are a communications director for Vasudev AI.
-A user named {{{name}}} (email: {{{email}}}) has just applied for the "{{programName}}".
+A user named {{{name}}} (email: {{{email}}}) has just registered for the "{{programName}}".
 
 Your task is to generate a short, friendly, on-brand confirmation message.
-The message should acknowledge their application for the specific program and mention that next steps or a confirmation will be sent to their email.
+If it's a paid program (like a masterclass), the message should confirm their registration is PENDING and tell them to email the payment proof to confirm their spot.
+Otherwise, for free applications, just acknowledge their application and mention that next steps will be sent to their email.
+
 Make it personal and inspiring.
-For example: "Signal received, {{{name}}}. Your application for the {{programName}} is now part of the cosmos. Keep an eye on your inbox for the next transmission."
+Example for paid: "Signal received, {{{name}}}. Your registration for the {{programName}} is now in the cosmos."
+Example for free: "Application from {{{name}}} received. Keep an eye on your inbox for the next transmission."
 `,
 });
 
@@ -52,8 +55,11 @@ const careerApplicationFlow = ai.defineFlow(
     outputSchema: CareerApplicationOutputSchema,
   },
   async input => {
+    const isAdminEmailConfigured = process.env.EMAIL_HOST && process.env.EMAIL_USER && process.env.EMAIL_PASS;
+    const adminEmailAddress = 'info@vasudev.online';
+
     // First, try to send an email notification about the new application.
-    if (process.env.EMAIL_HOST && process.env.EMAIL_USER && process.env.EMAIL_PASS) {
+    if (isAdminEmailConfigured) {
       try {
         const port = Number(process.env.EMAIL_PORT) || 587;
         const transporter = nodemailer.createTransport({
@@ -66,9 +72,17 @@ const careerApplicationFlow = ai.defineFlow(
           },
         });
 
+        // Add a note about payment proof for paid programs
+        const paymentInfoHtml = input.upiId 
+          ? `
+            <p><strong>UPI Transaction ID:</strong> ${input.upiId}</p>
+            <p style="color: #FFD700;"><strong>Action Required:</strong> Applicant has confirmed they will email the payment screenshot to ${adminEmailAddress}.</p>
+            ` 
+          : '';
+
         await transporter.sendMail({
           from: `"Vasudev AI Applications" <${process.env.EMAIL_USER}>`,
-          to: 'info@vasudev.online', // Admin email
+          to: adminEmailAddress, // Admin email
           subject: `New Application for ${input.programName} from ${input.name}`,
           html: `
             <h1>New Application Received</h1>
@@ -77,7 +91,7 @@ const careerApplicationFlow = ai.defineFlow(
             <p><strong>Name:</strong> ${input.name}</p>
             <p><strong>Email:</strong> ${input.email}</p>
             ${input.phone ? `<p><strong>Phone:</strong> ${input.phone}</p>` : ''}
-            ${input.upiId ? `<p><strong>UPI Transaction ID:</strong> ${input.upiId}</p>` : ''}
+            ${paymentInfoHtml}
           `,
         });
       } catch (error) {
