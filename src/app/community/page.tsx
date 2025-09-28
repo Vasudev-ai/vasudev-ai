@@ -241,23 +241,6 @@ export default function CommunityPage() {
             </div>
         </div>
       </section>
-      
-      <section className="w-full py-16 md:py-20 text-center">
-        <div className="container mx-auto px-4">
-          <div className="bg-card/30 border border-accent/20 rounded-2xl p-8 md:p-10 backdrop-blur-sm shadow-lg">
-            <div className="w-20 h-20 mx-auto bg-primary/10 rounded-full flex items-center justify-center border-2 border-primary/30 mb-4">
-              <Palette className="h-10 w-10 text-primary" />
-            </div>
-            <h2 className="text-2xl md:text-4xl font-headline font-bold mb-4 text-accent">
-              AI Wallpaper Studio
-            </h2>
-            <p className="text-base md:text-lg text-gray-400 mb-8 max-w-2xl mx-auto">Generate your own divine & futuristic wallpapers for mobile and desktop with the power of Vasudev AI.</p>
-            <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-bold text-base md:text-lg px-8 md:px-10 py-5 md:py-6 rounded-full shadow-[0_0_25px] shadow-accent/50 transition-all duration-300 hover:shadow-accent/80 hover:scale-105">
-              <Link href="/wallpaper">Enter the Studio</Link>
-            </Button>
-          </div>
-        </div>
-      </section>
 
       <section className="w-full py-16 md:py-20 bg-card/50">
         <div className="container mx-auto px-4">
