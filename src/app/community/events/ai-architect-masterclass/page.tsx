@@ -97,10 +97,10 @@ export default function WorkshopPage() {
                                 ))}
                                 </ul>
                                 <div className="mt-4 pt-4 border-t border-primary/20">
-                                    <p className="text-sm text-primary font-semibold flex items-center gap-2">
+                                    <div className="text-sm text-primary font-semibold flex items-center gap-2">
                                         <Badge variant="secondary" className="bg-primary/10 text-primary">{index === 2 ? 'Final Task' : 'Mini Task'}</Badge>
                                         <span className="text-gray-300">{day.task}</span>
-                                    </p>
+                                    </div>
                                 </div>
                             </CardContent>
                         </Card>
