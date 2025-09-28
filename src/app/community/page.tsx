@@ -45,23 +45,26 @@ const features = [
 
 const upcomingEvents = [
     {
+        icon: <BrainCircuit className="h-8 w-8 text-accent"/>,
+        title: "The AI Architect: A 3-Day LLM Masterclass",
+        date: "Date: TBA (3 Days, 2-3 hours/day)",
+        desc: "An immersive journey into building with Large Language Models. From theory to deployment, become an AI architect.",
+        href: "https://discord.gg/e5uPQDXSSk"
+    },
+    {
         icon: <Calendar className="h-8 w-8 text-accent"/>,
         title: "Weekly Community Sync",
         date: "Every Friday, 9 PM IST",
-        desc: "Catch up on project progress, share ideas, and plan for the future."
+        desc: "Catch up on project progress, share ideas, and plan for the future.",
+        href: "https://discord.gg/e5uPQDXSSk"
     },
     {
         icon: <Code className="h-8 w-8 text-accent"/>,
         title: "Vasudev Browser Hackathon",
         date: "Coming Soon",
-        desc: "Contribute to our open-source browser and add innovative features."
+        desc: "Contribute to our open-source browser and add innovative features.",
+        href: "https://discord.gg/e5uPQDXSSk"
     },
-    {
-        icon: <Mic className="h-8 w-8 text-accent"/>,
-        title: "Tech Talk Tuesdays",
-        date: "Monthly",
-        desc: "Listen to experts discuss the latest trends in AI and divine-tech."
-    }
 ];
 
 const communitySpotlights = [
@@ -238,16 +241,21 @@ export default function CommunityPage() {
           <h2 className="text-3xl md:text-4xl font-headline font-bold text-center mb-12">Upcoming Events</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {upcomingEvents.map((event) => (
-              <Card key={event.title} className="bg-card/70 border-primary/20 backdrop-blur-sm p-6 hover:border-primary hover:-translate-y-2 transition-all duration-300 shadow-lg hover:shadow-primary/30">
-                <CardHeader className="flex flex-col sm:flex-row items-start gap-4">
+              <Card key={event.title} className="bg-card/70 border-primary/20 backdrop-blur-sm p-6 hover:border-primary hover:-translate-y-2 transition-all duration-300 shadow-lg hover:shadow-primary/30 flex flex-col">
+                <CardHeader className="flex-row items-start gap-4">
                    <div className="p-3 bg-primary/10 rounded-full">{event.icon}</div>
                    <div>
                     <CardTitle className="text-xl md:text-2xl font-headline text-white">{event.title}</CardTitle>
-                    <p className="text-accent text-sm font-semibold">{event.date}</p>
+                    <p className="text-accent text-sm font-semibold mt-1">{event.date}</p>
                    </div>
                 </CardHeader>
-                <CardContent>
-                  <p className="text-gray-400">{event.desc}</p>
+                <CardContent className="flex-grow flex flex-col">
+                  <p className="text-gray-400 flex-grow">{event.desc}</p>
+                   <div className="mt-6">
+                     <Button asChild className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold rounded-full">
+                       <Link href={event.href} target="_blank" rel="noopener noreferrer">Register Now</Link>
+                     </Button>
+                   </div>
                 </CardContent>
               </Card>
             ))}
@@ -336,5 +344,7 @@ export default function CommunityPage() {
     </div>
   );
 }
+
+    
 
     
