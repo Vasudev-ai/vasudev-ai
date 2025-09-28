@@ -49,7 +49,7 @@ const upcomingEvents = [
         title: "The AI Architect: A 3-Day LLM Masterclass",
         date: "Date: TBA (3 Days, 2-3 hours/day)",
         desc: "An immersive journey into building with Large Language Models. From theory to deployment, become an AI architect.",
-        href: "https://discord.gg/e5uPQDXSSk"
+        href: "/community/events/ai-architect-masterclass"
     },
     {
         icon: <Calendar className="h-8 w-8 text-accent"/>,
@@ -253,7 +253,7 @@ export default function CommunityPage() {
                   <p className="text-gray-400 flex-grow">{event.desc}</p>
                    <div className="mt-6">
                      <Button asChild className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold rounded-full">
-                       <Link href={event.href} target="_blank" rel="noopener noreferrer">Register Now</Link>
+                       <Link href={event.href} target={event.href.startsWith('http') ? '_blank' : '_self'} rel="noopener noreferrer">Register Now</Link>
                      </Button>
                    </div>
                 </CardContent>
@@ -344,7 +344,5 @@ export default function CommunityPage() {
     </div>
   );
 }
-
-    
 
     
