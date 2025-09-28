@@ -4,7 +4,7 @@
 import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { toPng } from 'html-to-image';
-import { X, Download, Loader2, AspectRatio } from 'lucide-react';
+import { X, Download, Loader2, Frame } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Label } from '@/components/ui/label';
@@ -96,7 +96,7 @@ const DownloadOptionsModal: React.FC<DownloadOptionsModalProps> = ({ onClose }) 
             <h2 className="text-2xl font-headline text-accent">Customize & Download</h2>
             
             <div className="space-y-2">
-              <Label htmlFor="resolution-select" className="flex items-center gap-2 text-primary"><AspectRatio size={16}/> Resolution</Label>
+              <Label htmlFor="resolution-select" className="flex items-center gap-2 text-primary"><Frame size={16}/> Resolution</Label>
               <Select onValueChange={handleResolutionChange} defaultValue={selectedRes.id}>
                 <SelectTrigger id="resolution-select" className="w-full bg-background/50">
                   <SelectValue placeholder="Select a resolution" />
