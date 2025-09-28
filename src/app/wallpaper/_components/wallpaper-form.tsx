@@ -1,7 +1,8 @@
 
 'use client';
 
-import { useActionState, useFormStatus } from 'react';
+import { useActionState } from 'react';
+import { useFormStatus } from 'react-dom';
 import { handleGenerateWallpaper } from '../actions';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -17,11 +18,11 @@ const initialState = {
   error: null,
 };
 
-function WallpaperFormContent() {
+function FormContent() {
   const { pending } = useFormStatus();
 
   return (
-    <>
+    <div className="space-y-6">
        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
                 <Label htmlFor="prompt" className="text-lg text-primary">Your Creative Idea</Label>
@@ -59,7 +60,7 @@ function WallpaperFormContent() {
           {pending ? <Loader2 className="mr-2 h-6 w-6 animate-spin" /> : <Sparkles className="mr-2 h-6 w-6" />}
           {pending ? 'Generating Cosmos...' : 'Generate Wallpaper'}
         </Button>
-    </>
+    </div>
   );
 }
 
@@ -71,8 +72,8 @@ export default function WallpaperForm() {
     <div className="space-y-8">
       <Card className="bg-card/70 border-primary/20 backdrop-blur-sm shadow-lg hover:shadow-primary/30 transition-shadow duration-300">
         <CardContent className="p-8">
-          <form action={formAction} className="space-y-6">
-            <WallpaperFormContent />
+          <form action={formAction}>
+            <FormContent />
           </form>
         </CardContent>
       </Card>
