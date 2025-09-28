@@ -1,7 +1,8 @@
+
 'use server';
 
 /**
- * @fileOverview A Genkit flow to handle contact form submissions and send an email notification.
+ * @fileOverview A Genkit flow to handle contact form submissions and send an email notification using Resend.
  *
  * - handleContactMessage - A function that processes the contact message.
  * - ContactMessageInput - The input type for the handleContactMessage function.
@@ -10,7 +11,8 @@
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
+
 
 const ContactMessageInputSchema = z.object({
   name: z.string().describe('The name of the person sending the message.'),
@@ -49,36 +51,14 @@ const contactMessageFlow = ai.defineFlow(
     outputSchema: ContactMessageOutputSchema,
   },
   async input => {
-    if (process.env.EMAIL_HOST && process.env.EMAIL_USER && process.env.EMAIL_PASS) {
+    if (process.env.RESEND_API_KEY) {
+       const resend = new Resend(process.env.RESEND_API_KEY);
       try {
-        const port = Number(process.env.EMAIL_PORT) || 587;
-        const transporter = nodemailer.createTransport({
-          host: process.env.EMAIL_HOST,
-          port: port,
-          secure: port === 465, // true for 465, false for other ports
-          auth: {
-            user: process.env.EMAIL_USER,
-            pass: process.env.EMAIL_PASS,
-          },
-        });
-
-        // Verify connection configuration
-        await new Promise((resolve, reject) => {
-            transporter.verify(function (error, success) {
-                if (error) {
-                    console.log('Nodemailer verification error:', error);
-                    reject(error);
-                } else {
-                    console.log("Nodemailer is ready to take our messages");
-                    resolve(success);
-                }
-            });
-        });
-
-        await transporter.sendMail({
-          from: `"${input.name}" <${process.env.EMAIL_USER}>`,
+        await resend.emails.send({
+          from: `Vasudev AI Contact <contact@vasudev.online>`,
           to: 'info@vasudev.online',
           subject: `New Contact Message from ${input.name}`,
+          reply_to: input.email,
           html: `
             <h1>New Message from Vasudev AI Contact Form</h1>
             <p><strong>Name:</strong> ${input.name}</p>
@@ -89,10 +69,10 @@ const contactMessageFlow = ai.defineFlow(
           `,
         });
       } catch (error) {
-        console.error('Failed to send contact form email:', error);
+        console.error('Resend failed to send contact form email:', error);
       }
     } else {
-      console.log('Email environment variables not fully configured. Skipping email send.');
+      console.log('RESEND_API_KEY environment variable not configured. Skipping email send.');
     }
     
     const {output} = await prompt(input);

@@ -1,7 +1,8 @@
+
 'use server';
 
 /**
- * @fileOverview A Genkit flow to handle career application submissions (internships, workshops) and send an email notification.
+ * @fileOverview A Genkit flow to handle career application submissions and send an email notification using Resend.
  *
  * - handleCareerApplication - Processes the application.
  * - CareerApplicationInput - The input type for the handleCareerApplication function.
@@ -10,7 +11,7 @@
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
 
 const CareerApplicationInputSchema = z.object({
   name: z.string().describe('The name of the applicant.'),
@@ -55,43 +56,20 @@ const careerApplicationFlow = ai.defineFlow(
     outputSchema: CareerApplicationOutputSchema,
   },
   async input => {
-    const isAdminEmailConfigured = process.env.EMAIL_HOST && process.env.EMAIL_USER && process.env.EMAIL_PASS;
-    const adminEmailAddress = 'info@vasudev.online';
+    if (process.env.RESEND_API_KEY) {
+      const resend = new Resend(process.env.RESEND_API_KEY);
+      const adminEmailAddress = 'info@vasudev.online';
 
-    if (isAdminEmailConfigured) {
       try {
-        const port = Number(process.env.EMAIL_PORT) || 587;
-        const transporter = nodemailer.createTransport({
-          host: process.env.EMAIL_HOST,
-          port: port,
-          secure: port === 465, // true for 465, false for other ports
-          auth: {
-            user: process.env.EMAIL_USER,
-            pass: process.env.EMAIL_PASS,
-          },
-        });
-        
-        // Verify connection configuration
-        await new Promise((resolve, reject) => {
-            transporter.verify(function (error, success) {
-                if (error) {
-                    console.log('Nodemailer verification error:', error);
-                    reject(error);
-                } else {
-                    console.log("Nodemailer is ready to take our messages");
-                    resolve(success);
-                }
-            });
-        });
-
         const attachments = [];
         if (input.paymentScreenshot) {
+            const buffer = Buffer.from(input.paymentScreenshot.split('base64,')[1], 'base64');
             attachments.push({
                 filename: 'payment-screenshot.png',
-                path: input.paymentScreenshot
+                content: buffer,
             });
         }
-
+        
         const paymentInfoHtml = input.upiId 
           ? `
             <p><strong>UPI Transaction ID:</strong> ${input.upiId}</p>
@@ -99,8 +77,8 @@ const careerApplicationFlow = ai.defineFlow(
             ` 
           : '';
 
-        await transporter.sendMail({
-          from: `"Vasudev AI Applications" <${process.env.EMAIL_USER}>`,
+        await resend.emails.send({
+          from: `Vasudev AI Applications <applications@vasudev.online>`,
           to: adminEmailAddress,
           subject: `New Application for ${input.programName} from ${input.name}`,
           html: `
@@ -115,10 +93,12 @@ const careerApplicationFlow = ai.defineFlow(
           attachments: attachments,
         });
       } catch (error) {
-        console.error('Failed to send application notification email:', error);
+        console.error('Resend failed to send application notification email:', error);
+        // We don't throw an error here to avoid failing the whole flow if email fails.
+        // The primary action is to get the AI reply.
       }
     } else {
-      console.log('Email environment variables not fully configured. Skipping email send.');
+      console.log('RESEND_API_KEY environment variable not configured. Skipping email send.');
     }
     
     const {output} = await prompt(input);
