@@ -10,13 +10,13 @@ interface GeneratedWallpaperProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const GeneratedWallpaper = React.forwardRef<HTMLDivElement, GeneratedWallpaperProps>(
-  ({ aspect, className, ...props }, ref) => {
+  ({ aspect, className, style, ...props }, ref) => {
     return (
       <div
         ref={ref}
+        style={style}
         className={cn(
-          'relative w-full overflow-hidden bg-background isolate',
-          aspect === 'portrait' ? 'aspect-[9/19.5]' : 'aspect-video',
+          'relative w-full h-full overflow-hidden bg-background isolate',
           className
         )}
         {...props}
@@ -56,10 +56,16 @@ const GeneratedWallpaper = React.forwardRef<HTMLDivElement, GeneratedWallpaperPr
                  <div className="h-48 w-48 md:h-56 md:w-56 rounded-full border border-dashed border-primary/20 animate-spin" style={{ animationDuration: '40s' }}/>
             </div>
           </div>
-          <h1 className="text-4xl md:text-5xl font-headline font-bold bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-400 leading-tight">
+          <h1 className={cn(
+              "font-headline font-bold bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-400 leading-tight",
+              aspect === 'portrait' ? "text-5xl" : "text-4xl md:text-5xl"
+            )}>
             Vasudev AI
           </h1>
-          <p className="mt-2 text-md md:text-lg text-primary">
+          <p className={cn(
+              "mt-2 text-primary",
+              aspect === 'portrait' ? "text-lg" : "text-md md:text-lg"
+            )}>
             Awakening Intelligence
           </p>
         </div>
