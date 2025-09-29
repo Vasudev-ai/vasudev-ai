@@ -2,7 +2,6 @@
 'use client';
 
 import { cn } from '@/lib/utils';
-import { BrainCircuit } from 'lucide-react';
 import React from 'react';
 
 interface GeneratedWallpaperProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -47,7 +46,6 @@ const GeneratedWallpaper = React.forwardRef<HTMLDivElement, GeneratedWallpaperPr
 
         {/* Central Logo and Text */}
         <div className="flex h-full w-full flex-col items-center justify-center text-center p-8">
-          <BrainCircuit className="h-16 w-16 md:h-24 md:w-24 text-primary opacity-80 mb-6" />
           <h1 className={cn(
               "font-headline font-bold bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-400 leading-tight",
               aspect === 'portrait' ? "text-5xl" : "text-4xl md:text-5xl"
