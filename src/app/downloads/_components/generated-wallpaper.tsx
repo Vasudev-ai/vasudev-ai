@@ -48,13 +48,13 @@ const GeneratedWallpaper = React.forwardRef<HTMLDivElement, GeneratedWallpaperPr
         <div className="flex h-full w-full flex-col items-center justify-center text-center p-8">
           <h1 className={cn(
               "font-headline font-bold bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-400 leading-tight",
-              aspect === 'portrait' ? "text-5xl" : "text-4xl md:text-5xl"
+              aspect === 'portrait' ? "text-8xl" : "text-6xl md:text-8xl"
             )}>
             Vasudev AI
           </h1>
           <p className={cn(
-              "mt-2 text-primary",
-              aspect === 'portrait' ? "text-lg" : "text-md md:text-lg"
+              "mt-4 text-primary",
+              aspect === 'portrait' ? "text-3xl" : "text-2xl md:text-3xl"
             )}>
             Awakening Intelligence
           </p>
