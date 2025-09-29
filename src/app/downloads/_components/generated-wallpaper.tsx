@@ -47,15 +47,7 @@ const GeneratedWallpaper = React.forwardRef<HTMLDivElement, GeneratedWallpaperPr
 
         {/* Central Logo and Text */}
         <div className="flex h-full w-full flex-col items-center justify-center text-center p-8">
-          <div className="relative mb-6">
-            <BrainCircuit className="h-20 w-20 md:h-28 md:w-28 text-primary opacity-30" />
-             <div className="absolute inset-0 flex items-center justify-center">
-                 <div className="h-32 w-32 md:h-40 md:w-40 rounded-full bg-primary/10 animate-pulse" style={{ animationDuration: '3s' }}/>
-            </div>
-             <div className="absolute inset-0 flex items-center justify-center">
-                 <div className="h-48 w-48 md:h-56 md:w-56 rounded-full border border-dashed border-primary/20 animate-spin" style={{ animationDuration: '40s' }}/>
-            </div>
-          </div>
+          <BrainCircuit className="h-16 w-16 md:h-24 md:w-24 text-primary opacity-80 mb-6" />
           <h1 className={cn(
               "font-headline font-bold bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-400 leading-tight",
               aspect === 'portrait' ? "text-5xl" : "text-4xl md:text-5xl"
