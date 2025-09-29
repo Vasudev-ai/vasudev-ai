@@ -1,23 +1,18 @@
 
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import PageHeader from '@/components/page-header';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Expand } from 'lucide-react';
 import GeneratedWallpaper from './_components/generated-wallpaper';
-import DownloadOptionsModal from './_components/download-options-modal';
-import { AnimatePresence } from 'framer-motion';
-
-const wallpaper = {
-  id: 'awakening-intelligence',
-  title: 'Awakening Intelligence',
-  description: 'The official Vasudev AI brand wallpaper. A dynamic, code-generated design capturing our divine-tech aesthetic. Customize the resolution for your device.',
-};
+import { wallpapers } from '@/lib/wallpapers-data';
+import Link from 'next/link';
 
 export default function DownloadsPage() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const wallpaper = wallpapers[0]; // For now, only one wallpaper
 
   return (
     <>
@@ -37,12 +32,14 @@ export default function DownloadsPage() {
                   <GeneratedWallpaper aspect="landscape" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                      <Button
-                        onClick={() => setIsModalOpen(true)}
+                        asChild
                         size="lg"
                         className="bg-background/80 text-white font-bold rounded-full backdrop-blur-sm border border-primary/50 hover:bg-primary hover:text-primary-foreground"
                       >
-                       <Expand className="mr-2 h-5 w-5" />
-                       Customize & Download
+                       <Link href={`/downloads/${wallpaper.slug}`}>
+                         <Expand className="mr-2 h-5 w-5" />
+                         Customize & Download
+                       </Link>
                     </Button>
                   </div>
                 </div>
@@ -51,25 +48,20 @@ export default function DownloadsPage() {
                   <p className="text-gray-400 text-sm mb-6">{wallpaper.description}</p>
                 </div>
                  <Button
-                    onClick={() => setIsModalOpen(true)}
+                    asChild
                     size="lg"
                     className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold rounded-full mt-auto md:hidden"
                   >
-                   <Expand className="mr-2 h-5 w-5" />
-                   Customize & Download
+                   <Link href={`/downloads/${wallpaper.slug}`}>
+                     <Expand className="mr-2 h-5 w-5" />
+                     Customize & Download
+                   </Link>
                 </Button>
               </CardContent>
             </Card>
           </div>
         </div>
       </div>
-      <AnimatePresence>
-        {isModalOpen && (
-          <DownloadOptionsModal
-            onClose={() => setIsModalOpen(false)}
-          />
-        )}
-      </AnimatePresence>
     </>
   );
 }
