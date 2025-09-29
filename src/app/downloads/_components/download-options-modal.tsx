@@ -71,11 +71,14 @@ const DownloadOptionsModal: React.FC<DownloadOptionsModalProps> = ({ onClose }) 
         exit={{ scale: 0.95, opacity: 0 }}
         transition={{ type: 'spring', duration: 0.5 }}
       >
-        <div className="bg-card/70 border border-primary/20 backdrop-blur-sm rounded-xl shadow-2xl shadow-primary/20 flex flex-col lg:flex-row overflow-hidden">
+        <div className="bg-card/70 border border-primary/20 backdrop-blur-sm rounded-xl shadow-2xl shadow-primary/20 flex flex-col lg:flex-row max-h-[90vh] overflow-hidden">
           {/* Preview Panel */}
-          <div className="flex-grow p-6 flex items-center justify-center bg-background/30">
+          <div className="flex-grow p-4 sm:p-6 flex items-center justify-center bg-background/30 overflow-auto">
             <div
-              className={cn("shadow-2xl shadow-black/50 border-2 border-primary/20 rounded-lg overflow-hidden transition-all duration-300", isPortrait ? "w-48" : "w-full max-w-lg")}
+              className={cn(
+                "shadow-2xl shadow-black/50 border-2 border-primary/20 rounded-lg overflow-hidden transition-all duration-300",
+                isPortrait ? "w-40 sm:w-48" : "w-full max-w-md"
+              )}
               style={{ aspectRatio: previewAspectRatio }}
             >
               <GeneratedWallpaper
@@ -93,7 +96,7 @@ const DownloadOptionsModal: React.FC<DownloadOptionsModalProps> = ({ onClose }) 
           
           {/* Controls Panel */}
           <div className="w-full lg:w-80 flex-shrink-0 p-6 space-y-6 bg-card/80 border-t lg:border-t-0 lg:border-l border-primary/20">
-            <h2 className="text-2xl font-headline text-accent">Customize & Download</h2>
+            <h2 className="text-xl sm:text-2xl font-headline text-accent">Customize & Download</h2>
             
             <div className="space-y-2">
               <Label htmlFor="resolution-select" className="flex items-center gap-2 text-primary"><Frame size={16}/> Resolution</Label>
