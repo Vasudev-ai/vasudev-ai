@@ -173,6 +173,7 @@ const communityContributors = [
     {
         name: 'Aum Mehta',
         role: 'Frontend Dev',
+        contribution: 'Contributed to Vasudev Browser',
         avatarUrl: '/team/aum.png',
         avatarHint: 'blue digital cube',
         glowColor: '#4D96FF',
@@ -221,6 +222,7 @@ export default function CommunityPage() {
                         key={contributor.name}
                         name={contributor.name}
                         role={contributor.role}
+                        contribution={contributor.contribution}
                         avatarUrl={contributor.avatarUrl}
                         glowColor={contributor.glowColor}
                     />
@@ -385,3 +387,5 @@ export default function CommunityPage() {
     </div>
   );
 }
+
+    
