@@ -6,7 +6,6 @@
 
 .member-card:hover {
   transform: perspective(1000px) rotateY(var(--rotate-y, 0)) rotateX(var(--rotate-x, 0)) scale3d(1.05, 1.05, 1.05);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), 0 0 20px var(--glow-color);
 }
 
 .member-card-inner {
@@ -15,5 +14,34 @@
     justify-content: space-between;
     gap: 1rem;
     padding: 1.5rem;
-    transform: translateZ(20px);
+    transform: translateZ(40px); /* Lift the content */
+}
+
+.member-card-glow {
+    position: absolute;
+    top: var(--mouse-y);
+    left: var(--mouse-x);
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle farthest-side at center center, var(--glow-color) 0%, transparent 100%);
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s linear;
+    pointer-events: none;
+}
+
+.member-card:hover .member-card-glow {
+    opacity: 0.2;
+}
+
+.member-card-border {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    border: 1px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.member-card:hover .member-card-border {
+    border-color: var(--glow-color);
 }
