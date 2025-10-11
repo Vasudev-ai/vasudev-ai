@@ -93,6 +93,11 @@ const communitySpotlights = [
         role: "UI/UX Designer",
         quote: "“Design is the bridge between divinity and technology. I love creating experiences that feel both futuristic and deeply human.”",
     },
+    {
+        name: "Aum Mehta",
+        role: "Frontend Developer",
+        quote: "“Crafting the interface for the Vasudev Browser is about more than just code; it’s about building a seamless portal to a smarter web.”",
+    },
 ];
 
 const discussionHighlights = [
