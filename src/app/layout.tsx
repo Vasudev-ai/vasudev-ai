@@ -1,18 +1,10 @@
-
-'use client';
-
+import type { Metadata, Viewport } from 'next';
 import { Inter, Cinzel_Decorative } from 'next/font/google';
 import './globals.css';
-import { Toaster } from '@/components/ui/toaster';
-import Header from '@/components/header';
-import Footer from '@/components/footer';
-import AnimatedBackground from '@/components/animated-background';
-import IntroAnimation from '@/components/intro-animation';
-import { useState, useEffect } from 'react';
-import BottomNav from '@/components/bottom-nav';
+import LayoutWrapper from '@/components/layout-wrapper';
 
-const inter = Inter({ 
-  subsets: ['latin'], 
+const inter = Inter({
+  subsets: ['latin'],
   variable: '--font-inter',
 });
 const cinzel = Cinzel_Decorative({
@@ -38,7 +30,7 @@ const organizationSchema = {
     '@type': 'ContactPoint',
     contactType: 'customer support',
     email: 'info@vasudev.online',
-    url: 'https://www.vasudev.ai/contact'
+    url: 'https://www.vasudev.ai/contact',
   },
 };
 
@@ -53,43 +45,37 @@ const websiteSchema = {
   },
 };
 
+export const viewport: Viewport = {
+  themeColor: '#0D0F1A',
+};
+
+export const metadata: Metadata = {
+  applicationName: 'Vasudev AI',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'default',
+    title: 'Vasudev AI',
+  },
+  formatDetection: {
+    telephone: false,
+  },
+  manifest: '/manifest.json',
+  icons: {
+    apple: '/icons/icon-192x192.png',
+  },
+  other: {
+    'mobile-web-app-capable': 'yes',
+  },
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const hasAnimationPlayed = sessionStorage.getItem('vasudevAnimationPlayed');
-
-    if (hasAnimationPlayed) {
-      setLoading(false);
-      return;
-    }
-
-    const timer = setTimeout(() => {
-      setLoading(false);
-      sessionStorage.setItem('vasudevAnimationPlayed', 'true');
-    }, 4000); // Animation duration
-
-    return () => clearTimeout(timer);
-  }, []);
-
-
   return (
     <html lang="en" className="dark">
-       <head>
-        <meta name="application-name" content="Vasudev AI" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-title" content="Vasudev AI" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="theme-color" content="#0D0F1A" />
-        <link rel="manifest" href="/manifest.json" />
-        <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
+      <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
@@ -102,22 +88,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${cinzel.variable} font-body antialiased`}
       >
-        {loading ? (
-          <IntroAnimation />
-        ) : (
-          <>
-            <div className="relative min-h-screen">
-              <AnimatedBackground />
-              <div className="relative z-10 flex flex-col min-h-screen">
-                <Header />
-                <main className="flex-grow pb-20 md:pb-0">{children}</main>
-                <Footer />
-              </div>
-            </div>
-            <Toaster />
-            <BottomNav />
-          </>
-        )}
+        <LayoutWrapper>{children}</LayoutWrapper>
       </body>
     </html>
   );
