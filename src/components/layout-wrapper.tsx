@@ -16,7 +16,7 @@ export default function LayoutWrapper({
 }) {
     const [loading, setLoading] = useState(true);
     const pathname = usePathname();
-    const isEventPage = pathname === '/event';
+    const isEventPage = pathname?.startsWith('/event');
 
     useEffect(() => {
         const hasAnimationPlayed = sessionStorage.getItem('vasudevAnimationPlayed');

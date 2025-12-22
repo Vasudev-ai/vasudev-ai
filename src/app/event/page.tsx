@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 
 export default function EventPage() {
     return (
-        <div className="flex-1 w-full h-full bg-background">
+        <div className="flex-1 w-full h-full bg-background select-none">
             <iframe
                 src="https://30-hour-learn-build-sprint.vercel.app/"
                 className="w-full h-full border-none"
