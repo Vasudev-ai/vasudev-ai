@@ -1,5 +1,5 @@
 import React from 'react';
-import { Cpu, Waves, Hand, MessageSquare, ToyBrick, Sprout, Music } from 'lucide-react';
+import { Cpu, Waves, MessageSquare, ToyBrick, Sprout, Music, GraduationCap } from 'lucide-react';
 
 export interface Project {
   icon: React.ReactNode;
@@ -15,9 +15,46 @@ export interface Project {
   githubUrl: string;
   liveUrl?: string;
   coverImage: string;
+  isFlagship?: boolean;
+  isExternal?: boolean;
 }
 
 export const projects: Project[] = [
+  {
+    icon: <GraduationCap className="h-8 w-8 md:h-10 md:w-10 text-accent" />,
+    title: "Learnivo AI",
+    slug: "learnivo-ai",
+    tagline: "Our flagship AI-powered learning platform — personalized education for India and beyond.",
+    status: 'Live',
+    isFlagship: true,
+    isExternal: true,
+    liveUrl: "https://learnivo.app",
+    features: [
+      "AI Personalization",
+      "Adaptive Learning",
+      "Multi-language Support",
+      "Lesson Planning (CBSE / ICSE)",
+      "AI Quiz & Assessment Generator",
+      "Parent Communication in Native Language",
+    ],
+    problemStatement: "Teachers in India face immense pressure. They spend countless hours on administrative tasks, lesson planning, creating assessments, and differentiating materials for diverse classrooms. This administrative burden limits their time for direct student interaction and professional development, often leading to burnout. Existing digital tools are often generic, not tailored to the specific curriculum and cultural context of Indian schools. Traditional online platforms also offer a one-size-fits-all approach that doesn't adapt to each learner's unique pace, style, or knowledge gaps — leading to disengagement and poor learning outcomes.",
+    solution: "Learnivo AI is the evolved, production-ready successor to Sahayak AI — a comprehensive, web-based platform designed specifically for the modern Indian educator and learner. It acts as an intelligent assistant, leveraging generative AI to automate and streamline a wide range of teaching tasks. From planning lessons that align with Indian school boards (CBSE, ICSE, etc.) to generating hyper-local content and communicating with parents in their native language, Learnivo AI empowers teachers to save time, reduce stress, and create more engaging learning experiences. For learners, it creates fully personalized journeys — adapting content in real-time, identifying knowledge gaps, generating custom quizzes, and providing intelligent coaching to make world-class education accessible to everyone.",
+    techStack: [
+      "Next.js",
+      "TypeScript",
+      "React",
+      "ShadCN UI",
+      "Tailwind CSS",
+      "Framer Motion",
+      "Google's Genkit",
+      "Gemini",
+      "Firebase",
+      "Firebase App Hosting",
+    ],
+    architecture: "Learnivo AI is built on a modern, server-centric web architecture. The frontend uses Next.js with the App Router, enabling a fast, interactive user experience with Server Components for performance. The UI is built with the highly customizable ShadCN component library and styled with Tailwind CSS. Firebase serves as the core backend, handling user authentication (Email, Google) and data persistence with Firestore, which stores user profiles, library books, and generated content within workspaces. All generative AI features are powered by Genkit — server-side AI 'flows' are defined for each tool (e.g., Lesson Planner, Quiz Generator, Adaptive Learning Engine). These flows interact with Google's Gemini models to generate text, images, and audio. This server-side approach keeps the frontend light and API keys secure. Custom API routes handle server-side tasks like PDF generation and proxying requests to external services, ensuring security and control.",
+    githubUrl: "#",
+    coverImage: "https://picsum.photos/seed/learnivo/1200/600",
+  },
   {
     icon: <Cpu className="h-8 w-8 md:h-10 md:w-10 text-accent" />,
     title: "Vasudev Core LLM",
@@ -46,31 +83,6 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/Vasudev-ai/Vasudev-Browser",
     liveUrl: "https://github.com/Vasudev-ai/Vasudev-Browser/releases",
     coverImage: "https://picsum.photos/seed/browser/1200/600",
-  },
-  {
-    icon: <Hand className="h-8 w-8 md:h-10 md:w-10 text-accent" />,
-    title: "Sahayak AI",
-    slug: "sahayak-ai",
-    tagline: "Your AI-powered teaching assistant, always by your side.",
-    status: 'In Development',
-    features: ["Cross-OS Control", "Voice & Text Automation", "App & Script Integration"],
-    problemStatement: "Teachers in India face immense pressure. They spend countless hours on administrative tasks, lesson planning, creating assessments, and differentiating materials for diverse classrooms. This administrative burden limits their time for direct student interaction and professional development, often leading to burnout. Existing digital tools are often generic, not tailored to the specific curriculum and cultural context of Indian schools.",
-    solution: "Sahayak AI is a comprehensive, web-based platform designed specifically for the modern Indian educator. It acts as an intelligent assistant, leveraging generative AI to automate and streamline a wide range of teaching tasks. From planning lessons that align with Indian school boards (CBSE, ICSE, etc.) to generating hyper-local content and communicating with parents in their native language, Sahayak AI empowers teachers to save time, reduce stress, and create more engaging learning experiences.",
-    techStack: [
-      "Next.js",
-      "TypeScript",
-      "React",
-      "ShadCN UI",
-      "Tailwind CSS",
-      "Framer Motion",
-      "Google's Genkit",
-      "Gemini",
-      "Firebase",
-      "Firebase App Hosting"
-    ],
-    architecture: "Sahayak AI is built on a modern, server-centric web architecture. The frontend uses Next.js with the App Router, enabling a fast, interactive user experience with Server Components for performance. The UI is built with the highly customizable ShadCN component library and styled with Tailwind CSS. Firebase serves as the core backend, handling user authentication (Email, Google) and data persistence with Firestore, which stores user profiles, library books, and generated content within workspaces. All generative AI features are powered by Genkit. Server-side AI 'flows' are defined for each tool (e.g., Lesson Planner, Quiz Generator). These flows interact with Google's Gemini models to generate text, images, and audio. This server-side approach keeps the frontend light and API keys secure. Custom API routes built within Next.js handle server-side tasks like PDF generation and proxying requests to external services, ensuring security and control.",
-    githubUrl: "#",
-    coverImage: "https://picsum.photos/seed/sahayak/1200/600",
   },
   {
     icon: <Music className="h-8 w-8 md:h-10 md:w-10 text-accent" />,
