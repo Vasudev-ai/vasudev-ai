@@ -197,31 +197,34 @@ export default function HomeClientPage() {
           <div className="absolute inset-0">
             {/* Top-center smooth gradient lighting */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-1/2 bg-gradient-to-b from-primary/[0.03] to-transparent" />
-            <div className="absolute -top-40 left-1/4 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[150px]" />
-            <div className="absolute -bottom-40 right-1/4 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[120px]" />
-            <div className="absolute top-1/2 right-1/3 w-[400px] h-[400px] bg-primary/[0.03] rounded-full blur-[100px]" />
-            {/* Stronger cyan ambient glow behind logo area */}
-            <div className="absolute top-[30%] left-1/2 -translate-x-1/2 w-72 h-72 bg-primary/[0.07] rounded-full blur-[100px]" />
-            {/* Controlled particles — clustered near center */}
-            {[
-              [50, 30], [70, 45], [30, 55], [65, 25], [40, 70],
-              [55, 15], [25, 40], [75, 60], [45, 80], [60, 50],
-              [35, 20], [80, 35],
-            ].map(([x, y], i) => (
-              <div
-                key={i}
-                className="absolute rounded-full bg-white pointer-events-none"
-                style={{
-                  width: (i % 3 === 0 ? 2 : 1) + 'px',
-                  height: (i % 3 === 0 ? 2 : 1) + 'px',
-                  top: y + '%',
-                  left: x + '%',
-                  opacity: i % 2 === 0 ? 0.25 : 0.12,
-                  animation: `float ${5 + (i % 3) * 2}s ease-in-out infinite`,
-                  animationDelay: (i * 0.4) + 's',
-                }}
-              />
-            ))}
+            <div className="hidden md:block absolute -top-40 left-1/4 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[150px]" />
+            <div className="hidden md:block absolute -bottom-40 right-1/4 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[120px]" />
+            <div className="hidden md:block absolute top-1/2 right-1/3 w-[400px] h-[400px] bg-primary/[0.03] rounded-full blur-[100px]" />
+            {/* Massive cyan glow behind logo — stronger on mobile */}
+            <div className="absolute top-[25%] left-1/2 -translate-x-1/2 w-[90vw] h-[50vh] bg-primary/[0.08] rounded-full blur-[120px] md:w-72 md:h-72 md:top-[30%] md:bg-primary/[0.07] md:blur-[100px]" />
+            {/* Particles — near center on mobile */}
+            <div className="md:hidden">
+              {[
+                [50, 27], [53, 31], [47, 34], [51, 39], [49, 24],
+                [58, 29], [42, 27], [50, 44], [44, 48], [56, 46],
+                [37, 40], [63, 36], [32, 52], [68, 48],
+              ].map(([x, y], i) => (
+                <div
+                  key={i}
+                  className="absolute rounded-full pointer-events-none"
+                  style={{
+                    width: i % 5 === 0 ? '3px' : i % 3 === 0 ? '2px' : '1px',
+                    height: i % 5 === 0 ? '3px' : i % 3 === 0 ? '2px' : '1px',
+                    top: y + '%',
+                    left: x + '%',
+                    background: i % 2 === 0 ? 'hsl(var(--primary))' : 'rgba(255,255,255,0.6)',
+                    boxShadow: i % 4 === 0 ? '0 0 4px hsl(var(--primary) / 0.4)' : 'none',
+                    opacity: i % 3 === 0 ? 0.35 : 0.18,
+                    animation: `float ${3.5 + (i % 5) * 1.2}s ease-in-out ${i * 0.3}s infinite`,
+                  }}
+                />
+              ))}
+            </div>
             {/* Subtle animated wave line */}
             <div
               className="absolute bottom-0 left-0 right-0 h-32 opacity-[0.03] pointer-events-none"
@@ -327,32 +330,24 @@ export default function HomeClientPage() {
 
           {/* ── MOBILE LAYOUT ── */}
           <div className="md:hidden flex-1 container mx-auto px-6 flex flex-col">
-            <div className="flex flex-col items-center justify-center pt-12">
+            <div className="flex flex-col items-center justify-center flex-1 pt-8">
               <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
+                initial={{ opacity: 0, scale: 0.7 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.9, ease: 'easeOut' }}
-                className="mb-3"
+                transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                className="mb-5"
               >
-                <div className="w-44 h-44 sm:w-48 sm:h-48">
+                <div className="w-52 h-52 sm:w-56 sm:h-56">
                   <HeroOrb />
                 </div>
               </motion.div>
 
-              <motion.span
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2, ease: 'easeOut' }}
-                className="text-[10px] font-semibold uppercase tracking-[0.18em] text-primary/70 mb-1.5"
-              >
-                AI Community &amp; Innovation Hub
-              </motion.span>
-
               <motion.h1
-                initial={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3, ease: 'easeOut' }}
-                className="text-3xl sm:text-4xl font-headline font-bold bg-clip-text text-transparent bg-gradient-to-b from-white via-gray-100 to-gray-400 tracking-tight text-center leading-tight"
+                transition={{ duration: 0.7, delay: 0.25, ease: 'easeOut' }}
+                className="text-4xl sm:text-5xl font-headline font-bold bg-clip-text text-transparent bg-gradient-to-b from-white via-gray-100 to-gray-400 tracking-tight text-center leading-none"
+                style={{ filter: 'drop-shadow(0 0 30px hsl(var(--primary)/0.2))' }}
               >
                 VASUDEV AI
               </motion.h1>
@@ -360,27 +355,25 @@ export default function HomeClientPage() {
               <motion.p
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4, ease: 'easeOut' }}
-                className="mt-1.5 text-sm text-accent/90 font-light tracking-tight text-center max-w-[260px]"
+                transition={{ duration: 0.6, delay: 0.35, ease: 'easeOut' }}
+                className="mt-3 text-sm text-accent/80 font-light tracking-tight text-center"
               >
                 Where Intelligence Meets Innovation.
               </motion.p>
-            </div>
 
-            <div className="flex-1 flex flex-col justify-end pb-28">
               <motion.div
-                initial={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.5, ease: 'easeOut' }}
-                className="flex flex-col gap-2.5 w-full"
+                className="mt-10 flex flex-col gap-3 w-full max-w-xs"
               >
                 <PortalButton
                   onActivate={() => setIsModalOpen(true)}
-                  className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-sm px-6 py-3 rounded-full shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_0_25px_hsl(var(--primary)/0.4)] transition-all duration-300 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_0_45px_hsl(var(--primary)/0.6)] cursor-pointer w-full text-center"
+                  className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-sm px-6 py-3.5 rounded-full shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_0_30px_hsl(var(--primary)/0.5)] transition-all duration-300 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_0_50px_hsl(var(--primary)/0.7)] cursor-pointer w-full text-center"
                 >
                   Join Community
                 </PortalButton>
-                <Button asChild size="default" variant="outline" className="border-primary/30 text-primary/80 hover:text-primary hover:border-primary font-bold text-sm px-6 py-3 rounded-full transition-all duration-300 w-full">
+                <Button asChild size="default" variant="outline" className="border-primary/30 text-primary/80 hover:text-primary hover:border-primary font-bold text-sm px-6 py-3.5 rounded-full transition-all duration-300 w-full">
                   <Link href="/projects">Explore Projects</Link>
                 </Button>
               </motion.div>
