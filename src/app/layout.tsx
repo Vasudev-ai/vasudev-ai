@@ -87,6 +87,7 @@ export default function RootLayout({
       </head>
       <body
         className={`${inter.variable} ${cinzel.variable} font-body antialiased`}
+        suppressHydrationWarning
       >
         <LayoutWrapper>{children}</LayoutWrapper>
       </body>

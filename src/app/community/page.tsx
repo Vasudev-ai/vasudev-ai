@@ -9,6 +9,7 @@ import Link from 'next/link';
 import { Cinzel_Decorative } from 'next/font/google';
 import { cn } from '@/lib/utils';
 import MemberCard from './_components/member-card';
+import InternCard from './_components/intern-card';
 import { AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import CosmicJoinModal from '../_components/cosmic-join-modal';
@@ -174,6 +175,35 @@ const councilMembers = [
   },
 ];
 
+const interns = [
+  {
+    name: 'Gunjan Khushwaha',
+    role: 'Full Stack & Marketing Intern',
+    avatarUrl: 'https://media.licdn.com/dms/image/v2/D5603AQHa9ChEmj4v5w/profile-displayphoto-scale_200_200/B56Z1kLeNoKAAc-/0/1775502224772?e=1780531200&v=beta&t=H7KOhw3bCfSKBjspo20DKEqYQBQ_zXCyzP9Ml2Lou-Q',
+    specialties: ['Full Stack', 'Marketing', 'Community'],
+    linkedinUrl: 'https://www.linkedin.com/in/gunjan-kushwaha-78149b311/',
+  },
+  {
+    name: 'Ankar',
+    role: 'Development Intern',
+    avatarUrl: '/vasudev-ai-hero.png',
+    specialties: ['Development', 'Problem Solving'],
+  },
+  {
+    name: 'Manvendra',
+    role: 'Marketing Intern',
+    avatarUrl: '/vasudev-ai-hero.png',
+    specialties: ['Marketing', 'Content', 'Strategy'],
+  },
+  {
+    name: 'Arnay Tiwari',
+    role: 'Frontend Intern',
+    avatarUrl: 'https://media.licdn.com/dms/image/v2/D4D03AQF5dTnfC8Ubzg/profile-displayphoto-scale_200_200/B4DZe7mCiTGgAY-/0/1751199001649?e=1780531200&v=beta&t=R32FPrecmVGodNq0cmdfPG158WGysEHDAvb52V1XPI8',
+    specialties: ['Frontend', 'React', 'UI'],
+    linkedinUrl: 'https://www.linkedin.com/in/arnay-tiwari/',
+  },
+];
+
 const communityContributors = [
     {
         name: 'Aum Mehta',
@@ -212,6 +242,24 @@ export default function CommunityPage() {
                 avatarHint={member.avatarHint}
                 glowColor={member.glowColor}
               />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="w-full py-16 md:py-20 bg-gradient-to-b from-transparent via-accent/[0.02] to-transparent">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-14">
+            <h2 className="text-3xl md:text-4xl font-headline font-bold text-white mb-4">
+              Our <span className="text-accent">Interns</span>
+            </h2>
+            <p className="text-base md:text-lg text-gray-400 max-w-2xl mx-auto">
+              Fresh talent shaping the future — our interns bring energy, ideas, and innovation to everything we build.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+            {interns.map((intern, i) => (
+              <InternCard key={intern.name} {...intern} index={i} />
             ))}
           </div>
         </div>

@@ -12,7 +12,7 @@ import { motion } from 'framer-motion';
 
 const navLinks = [
   { href: '/', label: 'Home' },
-  { href: '/event', label: 'Event' },
+
   { href: '/community', label: 'Community' },
   { href: '/projects', label: 'Projects' },
   { href: '/services', label: 'Services' },
