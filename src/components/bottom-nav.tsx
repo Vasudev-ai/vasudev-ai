@@ -23,7 +23,7 @@ export default function BottomNav() {
   }
 
   return (
-    <nav className="md:hidden fixed bottom-4 inset-x-4 z-50 bg-background/80 backdrop-blur-lg border border-primary/20 rounded-[30px] p-[2px] shadow-2xl shadow-primary/30">
+    <nav className="md:hidden fixed bottom-4 inset-x-4 z-50 bg-background/30 backdrop-blur-2xl border border-white/10 rounded-[30px] p-[2px] shadow-2xl shadow-black/50">
       <div className="flex justify-around items-center h-16">
         {navLinks.map((link) => {
           const isActive = pathname === link.href;
@@ -31,18 +31,22 @@ export default function BottomNav() {
             <Link
               key={link.href}
               href={link.href}
-              className={cn(
-                'flex flex-col items-center justify-center text-xs font-medium transition-colors w-1/6 pt-1 h-full rounded-[28px]',
-                isActive ? 'text-primary bg-primary/10' : 'text-gray-400 hover:text-primary'
-              )}
-            >
-              <div className="relative">
-                {link.icon}
-                {isActive && (
-                    <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-primary animate-pulse"></span>
+                className={cn(
+                  'flex flex-col items-center justify-center text-xs font-medium transition-all duration-300 w-1/6 pt-1 h-full rounded-[28px]',
+                  isActive
+                    ? 'text-primary drop-shadow-[0_0_8px_hsl(var(--primary)/0.6)]'
+                    : 'text-gray-500/70 hover:text-gray-300'
                 )}
-              </div>
-              <span className="mt-1 truncate">{link.label}</span>
+              >
+                <div className="relative flex flex-col items-center">
+                  <span className={isActive ? 'drop-shadow-[0_0_6px_hsl(var(--primary)/0.4)]' : ''}>
+                    {link.icon}
+                  </span>
+                  {isActive && (
+                    <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-primary shadow-[0_0_8px_hsl(var(--primary))]" />
+                  )}
+                </div>
+                <span className="mt-1 truncate text-[10px]">{link.label}</span>
             </Link>
           );
         })}
