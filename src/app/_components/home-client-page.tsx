@@ -16,6 +16,24 @@ import HeroOrb from '@/components/hero-orb';
 import './portal-button.css';
 import CosmicJoinModal from './cosmic-join-modal';
 
+function staggerVariants(delay = 0.1) {
+  return {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: delay, delayChildren: 0.15 },
+    },
+  };
+}
+
+function itemVariant(direction: 'up' | 'down' | 'left' | 'right' = 'up') {
+  const offsets = { up: { y: 30 }, down: { y: -30 }, left: { x: -30 }, right: { x: 30 } };
+  return {
+    hidden: { opacity: 0, ...offsets[direction] },
+    visible: { opacity: 1, x: 0, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+  };
+}
+
 const vibeCards = [
   {
     icon: <Rocket className="h-7 w-7" />,
@@ -136,14 +154,6 @@ const testimonials = [
   },
 ];
 
-function SectionDivider() {
-  return (
-    <div className="w-full flex justify-center py-2">
-      <div className="w-24 h-[1px] bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-    </div>
-  );
-}
-
 const PortalButton = ({ children, className, onActivate }: { children: React.ReactNode, className?: string, onActivate: () => void }) => {
   const [isActivating, setIsActivating] = useState(false);
 
@@ -178,12 +188,10 @@ const PortalButton = ({ children, className, onActivate }: { children: React.Rea
   );
 };
 
-// Icon components for projects
 function GraduationCap(props: { className?: string }) { return <svg className={props?.className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 3.741-1.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" /></svg>; }
 function Cpu(props: { className?: string }) { return <svg className={props?.className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 0 0 2.25-2.25V6.75a2.25 2.25 0 0 0-2.25-2.25H6.75A2.25 2.25 0 0 0 4.5 6.75v10.5a2.25 2.25 0 0 0 2.25 2.25Zm.75-12h9v9h-9v-9Z" /></svg>; }
 function Waves(props: { className?: string }) { return <svg className={props?.className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 0 0 8.472-6H12V3.047A9.004 9.004 0 0 0 3.063 15H12v6Z" /></svg>; }
 function Music(props: { className?: string }) { return <svg className={props?.className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 1 1-.99-3.467l2.31-.66a2.25 2.25 0 0 0 1.632-2.163Zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 0 1-.99-3.467l2.31-.66A2.25 2.25 0 0 0 9 15.553Z" /></svg>; }
-
 function Sprout(props: { className?: string }) { return <svg className={props?.className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h6a2.25 2.25 0 0 0 2.25-2.25v-6a2.25 2.25 0 0 0-2.25-2.25H4.5" /></svg>; }
 
 export default function HomeClientPage() {
@@ -192,17 +200,13 @@ export default function HomeClientPage() {
   return (
     <>
       <div className="flex flex-col items-center text-white overflow-x-hidden">
-        {/* ── HERO ── */}
         <section className="relative w-full min-h-screen flex flex-col overflow-hidden bg-gradient-to-br from-[#080c18] via-[#0a0f1a] to-black">
           <div className="absolute inset-0">
-            {/* Top-center smooth gradient lighting */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-1/2 bg-gradient-to-b from-primary/[0.03] to-transparent" />
             <div className="hidden md:block absolute -top-40 left-1/4 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[150px]" />
             <div className="hidden md:block absolute -bottom-40 right-1/4 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[120px]" />
             <div className="hidden md:block absolute top-1/2 right-1/3 w-[400px] h-[400px] bg-primary/[0.03] rounded-full blur-[100px]" />
-            {/* Massive cyan glow behind logo — stronger on mobile */}
             <div className="absolute top-[25%] left-1/2 -translate-x-1/2 w-[90vw] h-[50vh] bg-primary/[0.08] rounded-full blur-[120px] md:w-72 md:h-72 md:top-[30%] md:bg-primary/[0.07] md:blur-[100px]" />
-            {/* Particles — near center on mobile */}
             <div className="md:hidden">
               {[
                 [50, 27], [53, 31], [47, 34], [51, 39], [49, 24],
@@ -225,7 +229,6 @@ export default function HomeClientPage() {
                 />
               ))}
             </div>
-            {/* Subtle animated wave line */}
             <div
               className="absolute bottom-0 left-0 right-0 h-32 opacity-[0.03] pointer-events-none"
               style={{
@@ -235,7 +238,6 @@ export default function HomeClientPage() {
             />
           </div>
 
-          {/* ── DESKTOP LAYOUT ── */}
           <div className="hidden md:flex flex-1 container mx-auto px-4 items-center gap-16 lg:gap-24">
             <div className="flex-1 max-w-xl space-y-6">
               <motion.div
@@ -289,32 +291,6 @@ export default function HomeClientPage() {
                   <Link href="/projects">Explore Projects</Link>
                 </Button>
               </motion.div>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.7, ease: 'easeOut' }}
-                className="pt-4 w-full max-w-lg"
-              >
-                <div className="rounded-2xl bg-card/30 backdrop-blur-md border border-white/5 py-4 px-4 shadow-lg">
-                  <div className="flex items-center justify-center gap-0">
-                    {[
-                      { icon: <UsersRound className="h-4 w-4" />, value: '200+', label: 'AI Enthusiasts' },
-                      { icon: <GitFork className="h-4 w-4" />, value: '150+', label: 'Projects Built' },
-                      { icon: <Globe className="h-4 w-4" />, value: '50+', label: 'Countries' },
-                      { icon: <Infinity className="h-4 w-4" />, value: '∞', label: 'Infinite Possibilities' },
-                    ].map((stat, i) => (
-                      <React.Fragment key={stat.label}>
-                        <div className="flex flex-col items-center gap-0.5 flex-1 justify-center">
-                          <div className="text-primary/60 mb-0.5">{stat.icon}</div>
-                          <span className="text-base font-headline font-bold text-white leading-tight">{stat.value}</span>
-                          <span className="text-[10px] text-gray-400 whitespace-nowrap">{stat.label}</span>
-                        </div>
-                        {i < 3 && <div className="w-px h-8 bg-white/5 self-center" />}
-                      </React.Fragment>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
             </div>
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
@@ -328,7 +304,6 @@ export default function HomeClientPage() {
             </motion.div>
           </div>
 
-          {/* ── MOBILE LAYOUT ── */}
           <div className="md:hidden flex-1 container mx-auto px-6 flex flex-col">
             <div className="flex flex-col items-center justify-center flex-1 pt-8">
               <motion.div
@@ -341,7 +316,6 @@ export default function HomeClientPage() {
                   <HeroOrb />
                 </div>
               </motion.div>
-
               <motion.h1
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -351,7 +325,6 @@ export default function HomeClientPage() {
               >
                 VASUDEV AI
               </motion.h1>
-
               <motion.p
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -360,7 +333,6 @@ export default function HomeClientPage() {
               >
                 Where Intelligence Meets Innovation.
               </motion.p>
-
               <motion.div
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -391,18 +363,23 @@ export default function HomeClientPage() {
           </motion.div>
         </section>
 
-        <SectionDivider />
-
-        {/* ── STATS SECTION ── */}
-        <motion.section
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.6 }}
-          className="w-full py-8 md:py-12"
-        >
-          <div className="container mx-auto px-4">
-            <div className="rounded-2xl bg-card/30 backdrop-blur-md border border-white/5 py-4 md:py-5 px-3 md:px-5 shadow-lg max-w-2xl mx-auto">
+        <section className="relative w-full py-8 md:py-10 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/[0.02] to-transparent pointer-events-none" />
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: 1 }}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-primary/[0.04] rounded-full blur-[120px] pointer-events-none"
+          />
+          <motion.div
+            variants={staggerVariants(0.08)}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-50px' }}
+            className="container mx-auto px-4"
+          >
+            <motion.div variants={itemVariant()} className="rounded-2xl bg-card/30 backdrop-blur-md border border-white/5 py-4 md:py-5 px-3 md:px-5 shadow-lg max-w-2xl mx-auto">
               <div className="flex items-center justify-center gap-0">
                 {[
                   { icon: <UsersRound className="h-4 w-4 md:h-5 md:w-5" />, value: '200+', label: 'AI Enthusiasts' },
@@ -420,30 +397,34 @@ export default function HomeClientPage() {
                   </React.Fragment>
                 ))}
               </div>
-            </div>
-          </div>
-        </motion.section>
+            </motion.div>
+          </motion.div>
+        </section>
 
-        <SectionDivider />
-
-        {/* ── THE VIBE ── */}
-        <motion.section
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.7 }}
-          className="w-full py-16 md:py-20 relative"
-        >
+        <section className="relative w-full py-12 md:py-16 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-accent/[0.02] via-transparent to-accent/[0.02] pointer-events-none" />
-          <div className="container mx-auto px-4 relative">
-            <div className="text-center mb-14">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: '-100px' }}
+            transition={{ duration: 1.2 }}
+            className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-accent/[0.03] rounded-full blur-[120px] pointer-events-none"
+          />
+          <motion.div
+            variants={staggerVariants(0.12)}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-100px' }}
+            className="container mx-auto px-4 relative"
+          >
+            <motion.div variants={itemVariant()} className="text-center mb-14">
               <h2 className="text-3xl md:text-5xl font-headline font-bold text-white mb-4">
                 This is <span className="bg-clip-text text-transparent bg-gradient-to-r from-accent to-primary">the Vibe</span>
               </h2>
               <p className="text-base md:text-lg text-gray-400 max-w-2xl mx-auto">
                 Not a corporation. Not an agency. A community that actually builds.
               </p>
-            </div>
+            </motion.div>
             <div className="flex flex-col lg:flex-row gap-5 lg:gap-6">
               {vibeCards.map((card, i) => (
                 <motion.div
@@ -455,18 +436,12 @@ export default function HomeClientPage() {
                   className={`group flex-1 ${i === 1 ? 'lg:translate-y-6' : ''}`}
                 >
                   <Card className="relative bg-card/30 border border-white/5 backdrop-blur-sm p-0 overflow-hidden h-full hover:border-accent/20 transition-all duration-500 shadow-lg hover:shadow-[0_0_40px_-10px_hsl(var(--accent)/0.15)]">
-                    {/* Top gradient bar */}
                     <div className={`h-1.5 w-full bg-gradient-to-r ${card.color}`} />
-
                     <div className="p-7 md:p-8 relative">
-                      {/* Step number */}
                       <span className={`absolute top-7 right-7 text-5xl md:text-6xl font-headline font-bold ${card.iconColor}/10 select-none`}>
                         {String(i + 1).padStart(2, '0')}
                       </span>
-
-                      {/* Background glow on hover */}
                       <div className={`absolute -top-20 -right-20 w-48 h-48 rounded-full blur-3xl ${card.iconBg} opacity-0 group-hover:opacity-60 transition-all duration-700`} />
-
                       <CardContent className="relative z-10 p-0">
                         <div className={`${card.iconBg} ${card.iconColor} rounded-xl p-3.5 inline-flex mb-5 border border-white/5 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-current/20 transition-all duration-500`}>
                           {card.icon}
@@ -481,139 +456,130 @@ export default function HomeClientPage() {
                 </motion.div>
               ))}
             </div>
-          </div>
-        </motion.section>
+          </motion.div>
+        </section>
 
-        <SectionDivider />
-
-        {/* ── WHAT WE'RE BUILDING ── */}
-        <motion.section
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.7 }}
-          className="w-full py-16 md:py-20 bg-card/30"
-        >
+        <section className="relative w-full py-12 md:py-16 overflow-hidden">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: '-100px' }}
+            transition={{ duration: 1.2 }}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-primary/[0.04] rounded-full blur-[120px] pointer-events-none"
+          />
           <div className="container mx-auto px-4">
-            <div className="text-center mb-14">
-              <h2 className="text-3xl md:text-5xl font-headline font-bold text-white mb-4">
-                What <span className="bg-clip-text text-transparent bg-gradient-to-r from-accent to-primary">We&apos;re Building</span>
-              </h2>
-              <p className="text-base md:text-lg text-gray-400 max-w-2xl mx-auto">
-                Every project here was built by community members like you.
-              </p>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
-              {communityProjects.map((proj) => (
-                <Link key={proj.title} href={proj.href} target={proj.href.startsWith('http') ? '_blank' : '_self'} rel="noopener noreferrer" className="group block">
-                  <Card className="bg-card/40 border-primary/10 backdrop-blur-sm p-5 hover:border-accent/30 transition-all duration-500 shadow-lg hover:shadow-[0_0_25px_-5px_hsl(var(--accent)/0.12)] h-full">
-                    <CardContent className="p-0">
-                      <div className="flex items-start justify-between mb-4">
-                        <div className="p-2.5 bg-primary/10 rounded-xl border border-primary/10 group-hover:bg-accent/10 group-hover:border-accent/20 transition-all duration-500">
-                          <span className="text-accent/70 group-hover:text-accent transition-colors duration-500">{proj.icon}</span>
-                        </div>
-                        <span className={`text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full border ${proj.statusColor}`}>
-                          {proj.status}
-                        </span>
-                      </div>
-                      <h3 className="text-base font-headline font-bold text-white mb-1.5 group-hover:text-accent transition-colors duration-300">{proj.title}</h3>
-                      <p className="text-sm text-gray-400 leading-relaxed">{proj.desc}</p>
-                    </CardContent>
-                  </Card>
-                </Link>
-              ))}
-            </div>
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="text-center mt-10"
+              variants={staggerVariants(0.1)}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-100px' }}
             >
-              <Button asChild variant="outline" className="border-primary/40 text-primary hover:bg-primary/10 hover:text-primary font-semibold rounded-full px-8 py-6">
-                <Link href="/projects">
-                  View All Projects <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
+              <motion.div variants={itemVariant()} className="text-center mb-14">
+                <h2 className="text-3xl md:text-5xl font-headline font-bold text-white mb-4">
+                  What <span className="bg-clip-text text-transparent bg-gradient-to-r from-accent to-primary">We&apos;re Building</span>
+                </h2>
+                <p className="text-base md:text-lg text-gray-400 max-w-2xl mx-auto">
+                  Every project here was built by community members like you.
+                </p>
+              </motion.div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+                {communityProjects.map((proj) => (
+                  <Link key={proj.title} href={proj.href} target={proj.href.startsWith('http') ? '_blank' : '_self'} rel="noopener noreferrer" className="group block">
+                    <Card className="bg-card/40 border-primary/10 backdrop-blur-sm p-5 hover:border-accent/30 transition-all duration-500 shadow-lg hover:shadow-[0_0_25px_-5px_hsl(var(--accent)/0.12)] h-full">
+                      <CardContent className="p-0">
+                        <div className="flex items-start justify-between mb-4">
+                          <div className="p-2.5 bg-primary/10 rounded-xl border border-primary/10 group-hover:bg-accent/10 group-hover:border-accent/20 transition-all duration-500">
+                            <span className="text-accent/70 group-hover:text-accent transition-colors duration-500">{proj.icon}</span>
+                          </div>
+                          <span className={`text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full border ${proj.statusColor}`}>
+                            {proj.status}
+                          </span>
+                        </div>
+                        <h3 className="text-base font-headline font-bold text-white mb-1.5 group-hover:text-accent transition-colors duration-300">{proj.title}</h3>
+                        <p className="text-sm text-gray-400 leading-relaxed">{proj.desc}</p>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                ))}
+              </div>
+              <motion.div variants={itemVariant()} className="text-center mt-10">
+                <Button asChild variant="outline" className="border-primary/40 text-primary hover:bg-primary/10 hover:text-primary font-semibold rounded-full px-8 py-6">
+                  <Link href="/projects">
+                    View All Projects <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </motion.div>
             </motion.div>
           </div>
-        </motion.section>
+        </section>
 
-        <SectionDivider />
-
-        {/* ── FRESH FROM THE COMMUNITY ── */}
-        <motion.section
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.7 }}
-          className="w-full py-16 md:py-20"
-        >
+        <section className="relative w-full py-12 md:py-16 overflow-hidden">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: '-100px' }}
+            transition={{ duration: 1.2 }}
+            className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[550px] h-[550px] bg-accent/[0.03] rounded-full blur-[120px] pointer-events-none"
+          />
           <div className="container mx-auto px-4">
-            <div className="text-center mb-14">
-              <h2 className="text-3xl md:text-5xl font-headline font-bold text-white mb-4">
-                Fresh from <span className="bg-clip-text text-transparent bg-gradient-to-r from-accent to-primary">the Community</span>
-              </h2>
-              <p className="text-base md:text-lg text-gray-400 max-w-2xl mx-auto">
-                What&apos;s happening right now in our world.
-              </p>
-            </div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
-              {/* Events */}
-              <div className="space-y-4">
-                <h3 className="text-lg font-headline font-bold text-white/80 mb-5 flex items-center gap-2">
-                  <Calendar className="h-4 w-4 text-accent" /> Upcoming Events
-                </h3>
-                {communityEvents.map((evt) => (
-                  <div key={evt.title} className="group flex items-start gap-4 p-4 rounded-xl bg-card/30 border border-primary/5 hover:border-accent/20 hover:bg-card/50 transition-all duration-500">
-                    <div className="p-2.5 bg-accent/10 rounded-xl border border-accent/10 shrink-0">
-                      <span className="text-accent">{evt.icon}</span>
+            <motion.div
+              variants={staggerVariants(0.1)}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-100px' }}
+            >
+              <motion.div variants={itemVariant()} className="text-center mb-14">
+                <h2 className="text-3xl md:text-5xl font-headline font-bold text-white mb-4">
+                  Fresh from <span className="bg-clip-text text-transparent bg-gradient-to-r from-accent to-primary">the Community</span>
+                </h2>
+                <p className="text-base md:text-lg text-gray-400 max-w-2xl mx-auto">
+                  What&apos;s happening right now in our world.
+                </p>
+              </motion.div>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
+                <div className="space-y-4">
+                  <h3 className="text-lg font-headline font-bold text-white/80 mb-5 flex items-center gap-2">
+                    <Calendar className="h-4 w-4 text-accent" /> Upcoming Events
+                  </h3>
+                  {communityEvents.map((evt) => (
+                    <div key={evt.title} className="group flex items-start gap-4 p-4 rounded-xl bg-card/30 border border-primary/5 hover:border-accent/20 hover:bg-card/50 transition-all duration-500">
+                      <div className="p-2.5 bg-accent/10 rounded-xl border border-accent/10 shrink-0">
+                        <span className="text-accent">{evt.icon}</span>
+                      </div>
+                      <div className="min-w-0">
+                        <h4 className="text-sm font-headline font-bold text-white group-hover:text-accent transition-colors duration-300">{evt.title}</h4>
+                        <p className="text-[11px] text-accent font-semibold mt-0.5">{evt.date}</p>
+                        <p className="text-xs text-gray-400 mt-1.5">{evt.desc}</p>
+                      </div>
                     </div>
-                    <div className="min-w-0">
-                      <h4 className="text-sm font-headline font-bold text-white group-hover:text-accent transition-colors duration-300">{evt.title}</h4>
-                      <p className="text-[11px] text-accent font-semibold mt-0.5">{evt.date}</p>
-                      <p className="text-xs text-gray-400 mt-1.5">{evt.desc}</p>
+                  ))}
+                </div>
+                <div className="space-y-4">
+                  <h3 className="text-lg font-headline font-bold text-white/80 mb-5 flex items-center gap-2">
+                    <Quote className="h-4 w-4 text-accent" /> Voices
+                  </h3>
+                  {testimonials.map((t) => (
+                    <div key={t.name} className="group p-5 rounded-xl bg-card/30 border border-primary/5 hover:border-accent/20 hover:bg-card/50 transition-all duration-500">
+                      <blockquote className="text-sm text-gray-300 italic leading-relaxed border-l-2 border-accent/40 pl-4 mb-3">
+                        {t.quote}
+                      </blockquote>
+                      <div className="text-right">
+                        <p className="text-sm font-headline font-bold text-white">{t.name}</p>
+                        <p className="text-xs text-accent">{t.role}</p>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-
-              {/* Testimonial spotlight */}
-              <div className="space-y-4">
-                <h3 className="text-lg font-headline font-bold text-white/80 mb-5 flex items-center gap-2">
-                  <Quote className="h-4 w-4 text-accent" /> Voices
-                </h3>
-                {testimonials.map((t) => (
-                  <div key={t.name} className="group p-5 rounded-xl bg-card/30 border border-primary/5 hover:border-accent/20 hover:bg-card/50 transition-all duration-500">
-                    <blockquote className="text-sm text-gray-300 italic leading-relaxed border-l-2 border-accent/40 pl-4 mb-3">
-                      {t.quote}
-                    </blockquote>
-                    <div className="text-right">
-                      <p className="text-sm font-headline font-bold text-white">{t.name}</p>
-                      <p className="text-xs text-accent">{t.role}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+            </motion.div>
           </div>
-        </motion.section>
+        </section>
 
-        <SectionDivider />
-
-        {/* ── COMMUNITY BUILT: LEARNIVO ── */}
-        <motion.section
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.7 }}
-          className="w-full py-20 md:py-28 relative overflow-hidden"
-        >
+        <section className="relative w-full py-16 md:py-20 overflow-hidden">
           <div className="absolute inset-0 pointer-events-none">
             <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full bg-accent/5 blur-3xl" />
             <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full bg-primary/5 blur-3xl" />
           </div>
-
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-5xl mx-auto">
               <div className="flex justify-center mb-6">
@@ -622,10 +588,8 @@ export default function HomeClientPage() {
                   Built by the Community
                 </span>
               </div>
-
               <div className="rounded-3xl border border-accent/30 bg-card/40 backdrop-blur-md p-8 md:p-12 shadow-2xl shadow-accent/10 relative overflow-hidden group hover:border-accent/50 transition-all duration-500">
                 <div className="absolute top-0 right-0 w-72 h-72 bg-accent/8 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none group-hover:bg-accent/15 transition-all duration-700" />
-
                 <div className="flex flex-col lg:flex-row items-start lg:items-center gap-10">
                   <div className="flex-1 space-y-6">
                     <div className="flex items-center gap-4">
@@ -641,13 +605,11 @@ export default function HomeClientPage() {
                         <p className="text-sm text-gray-400 mt-0.5">by Vasudev AI Community</p>
                       </div>
                     </div>
-
                     <p className="text-gray-300 text-lg leading-relaxed max-w-xl">
                       Our flagship AI-powered learning platform. Built by community members, 
                       Learnivo delivers <span className="text-accent font-semibold">personalized education</span> 
                       that adapts to every learner&apos;s pace, style, and goals.
                     </p>
-
                     <div className="flex flex-wrap gap-2">
                       {['AI Personalization', 'Adaptive Learning', 'Multi-language', 'Smart Quizzes', 'Progress Analytics'].map(f => (
                         <span key={f} className="text-xs font-medium px-3 py-1.5 rounded-full border border-accent/25 bg-accent/8 text-accent/80 group-hover:border-accent/40 transition-all duration-300">
@@ -656,27 +618,19 @@ export default function HomeClientPage() {
                       ))}
                     </div>
                   </div>
-
                   <div className="w-full lg:w-auto lg:min-w-[300px]">
                     <div className="rounded-2xl border border-accent/20 bg-black/30 p-6 text-center space-y-4 backdrop-blur-sm hover:border-accent/40 transition-all duration-500">
                       <div className="inline-flex items-center gap-2 bg-green-500/15 border border-green-500/30 rounded-full px-3 py-1 text-xs font-semibold text-green-400">
                         <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
                         Waitlist Open — Early Access
                       </div>
-
                       <h3 className="text-white font-bold text-lg leading-snug">
                         Try what the community built
                       </h3>
                       <p className="text-gray-400 text-sm">
                         Get early access to Learnivo AI before the public launch.
                       </p>
-
-                      <Link
-                        href="https://learnivo.app"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block w-full"
-                      >
+                      <Link href="https://learnivo.app" target="_blank" rel="noopener noreferrer" className="block w-full">
                         <button className="w-full py-3.5 px-6 rounded-full font-bold text-sm uppercase tracking-wider text-black bg-gradient-to-r from-accent to-cyan-400 hover:from-cyan-400 hover:to-accent transition-all duration-300 shadow-lg shadow-accent/30 hover:shadow-accent/50 hover:scale-105 active:scale-95">
                           Try Learnivo →
                         </button>
@@ -687,15 +641,11 @@ export default function HomeClientPage() {
               </div>
             </div>
           </div>
-        </motion.section>
+        </section>
 
-        <SectionDivider />
-
-        {/* ── HOW TO JOIN ── */}
-        <section className="relative w-full py-20 md:py-28 text-center overflow-hidden">
+        <section className="relative w-full py-16 md:py-20 text-center overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-accent/[0.03] to-transparent" />
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/5 rounded-full blur-[120px]" />
-
           <div className="container mx-auto px-4 relative z-10">
             <motion.h2
               initial={{ opacity: 0, y: 30 }}
