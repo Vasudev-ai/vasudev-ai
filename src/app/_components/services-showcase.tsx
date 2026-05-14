@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { memo } from 'react';
 import { motion } from 'framer-motion';
 import { Bot, Briefcase, Palette, Book, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -52,7 +52,7 @@ const itemVariants = {
   },
 };
 
-export default function ServicesShowcase() {
+const ServicesShowcaseComponent = function ServicesShowcase() {
   return (
     <section className="w-full py-20 bg-background">
       <div className="container mx-auto px-4">
@@ -103,3 +103,5 @@ export default function ServicesShowcase() {
     </section>
   );
 }
+
+export default memo(ServicesShowcaseComponent);

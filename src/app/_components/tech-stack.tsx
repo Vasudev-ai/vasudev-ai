@@ -1,7 +1,7 @@
 
 'use client';
 
-import React from 'react';
+import React, { memo } from 'react';
 import { motion } from 'framer-motion';
 
 const techItems = [
@@ -37,7 +37,7 @@ const itemVariants = {
   },
 };
 
-export default function TechStack() {
+const TechStackComponent = function TechStack() {
   return (
     <section className="w-full py-20">
       <div className="container mx-auto px-4">
@@ -92,4 +92,6 @@ function FirebaseIcon() {
 function VercelIcon() {
   return <svg className="w-8 h-8" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" clipRule="evenodd" d="M64 128C99.3462 128 128 99.3462 128 64C128 28.6538 99.3462 0 64 0C28.6538 0 0 28.6538 0 64C0 99.3462 28.6538 128 64 128ZM64 114.667C91.9838 114.667 114.667 91.9838 114.667 64C114.667 36.0162 91.9838 13.3333 64 13.3333C36.0162 13.3333 13.3333 36.0162 13.3333 64C13.3333 91.9838 36.0162 114.667 64 114.667ZM98 42.6667L64 98L30 42.6667H98Z" fill="white"></path></svg>;
 }
+
+export default memo(TechStackComponent);
 

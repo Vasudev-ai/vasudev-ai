@@ -1,18 +1,31 @@
 
 'use client';
 
+import { useState } from 'react';
+import dynamic from 'next/dynamic';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { BrainCircuit, Sparkles, Users } from 'lucide-react';
+import { AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-import TechStack from './tech-stack';
-import Roadmap from './roadmap';
-import { useState } from 'react';
 import './portal-button.css';
-import { AnimatePresence } from 'framer-motion';
 import CosmicJoinModal from './cosmic-join-modal';
-import ServicesShowcase from './services-showcase';
+
+const TechStack = dynamic(() => import('./tech-stack'), { loading: () => <SectionLoader /> });
+const Roadmap = dynamic(() => import('./roadmap'), { loading: () => <SectionLoader /> });
+const ServicesShowcase = dynamic(() => import('./services-showcase'), { loading: () => <SectionLoader /> });
+
+function SectionLoader() {
+  return (
+    <div className="w-full py-20 flex items-center justify-center">
+      <div className="flex flex-col items-center gap-4">
+        <div className="w-12 h-12 border-4 border-primary/30 border-t-primary rounded-full animate-spin" />
+        <p className="text-gray-400 text-sm animate-pulse">Loading...</p>
+      </div>
+    </div>
+  );
+}
 
 const pillars = [
   {
@@ -131,7 +144,7 @@ export default function HomeClientPage() {
           </div>
         </section>
 
-        <ServicesShowcase />
+<ServicesShowcase />
 
         {/* ── Learnivo AI – Flagship Project ── */}
         <section className="w-full py-20 md:py-28 relative overflow-hidden">
@@ -224,7 +237,7 @@ export default function HomeClientPage() {
           </div>
         </section>
 
-        <TechStack />
+<TechStack />
 
 
         <Roadmap />

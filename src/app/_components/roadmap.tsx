@@ -1,6 +1,6 @@
 
 'use client';
-import React from 'react';
+import React, { memo } from 'react';
 import './roadmap.css';
 import { motion } from 'framer-motion';
 import { Check, Rocket, Flag } from 'lucide-react';
@@ -58,7 +58,7 @@ const cardVariants = {
 };
 
 
-export default function Roadmap() {
+const RoadmapComponent = function Roadmap() {
   return (
     <section className="w-full py-20 bg-card/20 overflow-hidden">
         <div className="container mx-auto px-4">
@@ -104,3 +104,5 @@ export default function Roadmap() {
     </section>
   );
 }
+
+export default memo(RoadmapComponent);
