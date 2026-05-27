@@ -200,166 +200,159 @@ export default function HomeClientPage() {
   return (
     <>
       <div className="flex flex-col items-center text-white overflow-x-hidden">
-        <section className="relative w-full min-h-screen flex flex-col overflow-hidden bg-gradient-to-br from-[#080c18] via-[#0a0f1a] to-black">
+        <section className="relative w-full h-dvh flex flex-col overflow-hidden bg-[#05080f]">
+          {/* --- Background Layer --- */}
           <div className="absolute inset-0">
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-1/2 bg-gradient-to-b from-primary/[0.03] to-transparent" />
-            <div className="hidden md:block absolute -top-40 left-1/4 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[150px]" />
-            <div className="hidden md:block absolute -bottom-40 right-1/4 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[120px]" />
-            <div className="hidden md:block absolute top-1/2 right-1/3 w-[400px] h-[400px] bg-primary/[0.03] rounded-full blur-[100px]" />
-            <div className="absolute top-[25%] left-1/2 -translate-x-1/2 w-[90vw] h-[50vh] bg-primary/[0.08] rounded-full blur-[120px] md:w-72 md:h-72 md:top-[30%] md:bg-primary/[0.07] md:blur-[100px]" />
-            <div className="md:hidden">
-              {[
-                [50, 27], [53, 31], [47, 34], [51, 39], [49, 24],
-                [58, 29], [42, 27], [50, 44], [44, 48], [56, 46],
-                [37, 40], [63, 36], [32, 52], [68, 48],
-              ].map(([x, y], i) => (
-                <div
-                  key={i}
-                  className="absolute rounded-full pointer-events-none"
-                  style={{
-                    width: i % 5 === 0 ? '3px' : i % 3 === 0 ? '2px' : '1px',
-                    height: i % 5 === 0 ? '3px' : i % 3 === 0 ? '2px' : '1px',
-                    top: y + '%',
-                    left: x + '%',
-                    background: i % 2 === 0 ? 'hsl(var(--primary))' : 'rgba(255,255,255,0.6)',
-                    boxShadow: i % 4 === 0 ? '0 0 4px hsl(var(--primary) / 0.4)' : 'none',
-                    opacity: i % 3 === 0 ? 0.35 : 0.18,
-                    animation: `float ${3.5 + (i % 5) * 1.2}s ease-in-out ${i * 0.3}s infinite`,
-                  }}
-                />
-              ))}
-            </div>
-            <div
-              className="absolute bottom-0 left-0 right-0 h-32 opacity-[0.03] pointer-events-none"
-              style={{
-                background: 'repeating-linear-gradient(90deg, transparent, transparent 40px, hsl(var(--primary) / 0.3) 40px, hsl(var(--primary) / 0.3) 41px, transparent 41px)',
-                animation: 'meshDrift 6s linear infinite',
-              }}
-            />
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-2/3 bg-gradient-to-b from-primary/[0.04] via-primary/[0.02] to-transparent" />
+            <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[200px]" />
+            <div className="absolute bottom-1/4 right-0 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[180px]" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[50vh] bg-primary/[0.06] rounded-full blur-[150px]" />
           </div>
 
-          <div className="hidden md:flex flex-1 container mx-auto px-4 items-center gap-16 lg:gap-24">
-            <div className="flex-1 max-w-xl space-y-6">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, ease: 'easeOut' }}
-                className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.2em] text-primary border border-primary/30 rounded-full px-4 py-1.5 bg-primary/10 backdrop-blur-sm"
+          {/* --- Scanlines Overlay --- */}
+          <div
+            className="absolute inset-0 pointer-events-none opacity-[0.04]"
+            style={{
+              background: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,229,255,0.15) 2px, rgba(0,229,255,0.15) 3px)',
+            }}
+          />
+
+          {/* --- Vignette Overlay --- */}
+          <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-black/50 via-transparent to-black/50" />
+
+          {/* ===== Desktop Hero (md+) ===== */}
+          <div className="hidden md:flex flex-1 flex-col items-center justify-center container mx-auto px-4 relative z-10 gap-3">
+            {/* --- HeroOrb (Circular Portal Image) --- */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, ease: 'easeOut' }}
+            >
+              <div className="relative w-36 h-36">
+                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/20 via-accent/10 to-transparent blur-3xl animate-pulse" />
+                <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-accent/10 via-transparent to-primary/10 blur-2xl" />
+                <HeroOrb />
+              </div>
+            </motion.div>
+
+            {/* --- Content Stack --- */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3, ease: 'easeOut' }}
+              className="text-center space-y-3"
+            >
+              {/* --- Title --- */}
+              <h1 className="text-5xl font-headline font-bold bg-clip-text text-transparent bg-gradient-to-b from-white via-gray-100 to-gray-400 tracking-tight leading-none"
+                style={{ filter: 'drop-shadow(0 0 40px hsl(var(--primary)/0.2))' }}
               >
-                <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-                AI Community &amp; Innovation Hub
-              </motion.div>
-              <motion.h1
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.15, ease: 'easeOut' }}
-                className="text-7xl lg:text-8xl font-headline font-bold bg-clip-text text-transparent bg-gradient-to-b from-white via-gray-100 to-gray-500 tracking-tight leading-none"
-                style={{ filter: 'drop-shadow(0 0 30px hsl(var(--primary)/0.15))' }}
-              >
-                VASUDEV AI
-              </motion.h1>
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
-                className="text-xl text-accent font-light"
-              >
-                Where Intelligence Meets Innovation.
-              </motion.p>
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4, ease: 'easeOut' }}
-                className="text-sm text-gray-400 leading-relaxed max-w-md"
-              >
-                A global community of AI creators, dreamers, and builders collaborating on open-source projects,
-                free workshops, and futuristic technology — no corporate walls, just pure innovation.
-              </motion.p>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.55, ease: 'easeOut' }}
-                className="flex gap-3 pt-2"
-              >
+                Vasudev AI
+              </h1>
+
+              {/* --- Tagline --- */}
+              <div className="flex items-center justify-center">
+                <p className="text-lg text-accent/80 font-light tracking-wide">
+                  Where Intelligence Meets Innovation.
+                </p>
+              </div>
+
+              {/* --- Description --- */}
+              <p className="text-base text-gray-400 max-w-md mx-auto leading-relaxed">
+                Join our community of AI creators, thinkers, and dreamers shaping the future together.
+              </p>
+
+              {/* --- CTA Buttons --- */}
+              <div className="flex gap-4 justify-center pt-3">
                 <PortalButton
                   onActivate={() => setIsModalOpen(true)}
-                  className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-base px-8 py-5 rounded-full shadow-[0_0_25px] shadow-primary/40 transition-all duration-300 hover:shadow-[0_0_45px] hover:shadow-primary/60 cursor-pointer"
+                  className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-base px-8 py-3.5 rounded-full shadow-[0_0_30px] shadow-primary/30 transition-all duration-300 hover:shadow-[0_0_60px] hover:shadow-primary/50 cursor-pointer"
                 >
                   Join Community
                 </PortalButton>
-                <Button asChild size="lg" variant="outline" className="border-primary/40 text-primary hover:bg-primary/10 hover:text-primary hover:border-primary font-bold text-base px-8 py-5 rounded-full transition-all duration-300">
+                <Button asChild size="lg" variant="outline" className="border-primary/30 text-primary/80 hover:text-primary hover:border-primary font-bold text-base px-8 py-3.5 rounded-full transition-all duration-300">
                   <Link href="/projects">Explore Projects</Link>
                 </Button>
-              </motion.div>
-            </div>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, delay: 0.2, ease: 'easeOut' }}
-              className="flex-1 flex justify-center"
-            >
-              <div className="w-[28rem] h-[28rem] lg:w-[32rem] lg:h-[32rem]">
-                <HeroOrb />
               </div>
             </motion.div>
           </div>
 
+          {/* ===== Mobile Hero (<md) ===== */}
           <div className="md:hidden flex-1 container mx-auto px-6 flex flex-col">
-            <div className="flex flex-col items-center justify-center flex-1 pt-8">
+            <div className="flex flex-col items-center justify-center flex-1 gap-1 pt-4">
+              {/* --- HeroOrb (Circular Portal Image) --- */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.7 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                className="mb-5"
               >
-                <div className="w-52 h-52 sm:w-56 sm:h-56">
+                <div className="w-32 h-32">
                   <HeroOrb />
                 </div>
               </motion.div>
+
+              {/* --- Title --- */}
               <motion.h1
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.25, ease: 'easeOut' }}
-                className="text-4xl sm:text-5xl font-headline font-bold bg-clip-text text-transparent bg-gradient-to-b from-white via-gray-100 to-gray-400 tracking-tight text-center leading-none"
+                className="text-3xl font-headline font-bold bg-clip-text text-transparent bg-gradient-to-b from-white via-gray-100 to-gray-400 tracking-tight text-center leading-none"
                 style={{ filter: 'drop-shadow(0 0 30px hsl(var(--primary)/0.2))' }}
               >
-                VASUDEV AI
+                Vasudev AI
               </motion.h1>
+
+              {/* --- Tagline --- */}
               <motion.p
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.35, ease: 'easeOut' }}
-                className="mt-3 text-sm text-accent/80 font-light tracking-tight text-center"
+                className="text-sm text-accent/80 font-light tracking-tight text-center"
               >
                 Where Intelligence Meets Innovation.
               </motion.p>
+
+              {/* --- Description --- */}
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4, ease: 'easeOut' }}
+                className="text-[13px] text-gray-400 text-center max-w-[280px] leading-relaxed"
+              >
+                Join our community of AI creators, thinkers, and dreamers shaping the future together.
+              </motion.p>
+
+              {/* --- CTA Buttons --- */}
               <motion.div
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.5, ease: 'easeOut' }}
-                className="mt-10 flex flex-col gap-3 w-full max-w-xs"
+                className="mt-5 flex flex-col gap-2 w-full max-w-[220px]"
               >
                 <PortalButton
                   onActivate={() => setIsModalOpen(true)}
-                  className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-sm px-6 py-3.5 rounded-full shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_0_30px_hsl(var(--primary)/0.5)] transition-all duration-300 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_0_50px_hsl(var(--primary)/0.7)] cursor-pointer w-full text-center"
+                  className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-sm px-5 py-3 rounded-full shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_0_30px_hsl(var(--primary)/0.5)] transition-all duration-300 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_0_50px_hsl(var(--primary)/0.7)] cursor-pointer w-full text-center"
                 >
                   Join Community
                 </PortalButton>
-                <Button asChild size="default" variant="outline" className="border-primary/30 text-primary/80 hover:text-primary hover:border-primary font-bold text-sm px-6 py-3.5 rounded-full transition-all duration-300 w-full">
+                <Button asChild size="default" variant="outline" className="border-primary/30 text-primary/80 hover:text-primary hover:border-primary font-bold text-sm px-5 py-3 rounded-full transition-all duration-300 w-full">
                   <Link href="/projects">Explore Projects</Link>
                 </Button>
               </motion.div>
             </div>
           </div>
 
+          {/* --- Bottom HUD Accent --- */}
+          <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+
+          {/* --- Scroll Indicator --- */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 2.5, duration: 1 }}
-            className="absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2 hidden md:flex"
+            className="absolute bottom-4 left-1/2 -translate-x-1/2 flex-col items-center gap-1 hidden md:flex"
           >
             <span className="text-[10px] text-gray-500 tracking-[0.2em] uppercase">Scroll</span>
-            <ChevronDown className="h-3.5 w-3.5 text-gray-500 animate-bounce" />
+            <ChevronDown className="h-3 w-3 text-gray-500 animate-bounce" />
           </motion.div>
         </section>
 
