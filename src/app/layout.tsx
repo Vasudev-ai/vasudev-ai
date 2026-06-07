@@ -17,8 +17,8 @@ const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: 'Vasudev AI',
-  url: 'https://www.vasudev.ai',
-  logo: 'https://www.vasudev.ai/vasudev-ai-hero.webp',
+  url: 'https://www.vasudevai.in',
+  logo: 'https://www.vasudevai.in/vasudev-ai-hero.webp',
   sameAs: [
     'https://github.com/Vasudev-ai',
     'https://x.com/VashudevAi',
@@ -29,18 +29,18 @@ const organizationSchema = {
   contactPoint: {
     '@type': 'ContactPoint',
     contactType: 'customer support',
-    email: 'info@vasudev.online',
-    url: 'https://www.vasudev.ai/contact',
+    email: 'info@vasudevai.in',
+    url: 'https://www.vasudevai.in/contact',
   },
 };
 
 const websiteSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
-  url: 'https://www.vasudev.ai',
+  url: 'https://www.vasudevai.in',
   potentialAction: {
     '@type': 'SearchAction',
-    target: 'https://www.vasudev.ai/search?q={search_term_string}',
+    target: 'https://www.vasudevai.in/search?q={search_term_string}',
     'query-input': 'required name=search_term_string',
   },
 };

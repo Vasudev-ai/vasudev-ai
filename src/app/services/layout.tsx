@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'AI Services & SaaS Development | Vasudev AI',
     description: 'Comprehensive solutions in AI, SaaS development, creative design, and education to power your vision. Contact us for a consultation.',
-    url: 'https://www.vasudev.ai/services',
+    url: 'https://www.vasudevai.in/services',
   },
   twitter: {
     title: 'AI Services & SaaS Development | Vasudev AI',

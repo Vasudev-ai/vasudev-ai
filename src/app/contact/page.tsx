@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     openGraph: {
         title: 'Contact Vasudev AI | Let\'s Collaborate',
         description: 'Open a channel to the Vasudev AI collective. Let\'s collaborate and build the future of open-source, divine AI.',
-        url: 'https://www.vasudev.ai/contact',
+        url: 'https://www.vasudevai.in/contact',
     },
     twitter: {
         title: 'Contact Vasudev AI | Let\'s Collaborate',

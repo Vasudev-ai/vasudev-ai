@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Meet the Vasudev AI Team',
     description: 'A galaxy of creators, innovators, and visionaries shaping the future of divine intelligence.',
-    url: 'https://www.vasudev.ai/team',
+    url: 'https://www.vasudevai.in/team',
   },
   twitter: {
     title: 'Meet the Vasudev AI Team',

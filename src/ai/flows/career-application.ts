@@ -58,7 +58,7 @@ const careerApplicationFlow = ai.defineFlow(
   async input => {
     if (process.env.RESEND_API_KEY) {
       const resend = new Resend(process.env.RESEND_API_KEY);
-      const adminEmailAddress = 'info@vasudev.online';
+      const adminEmailAddress = 'info@vasudevai.in';
 
       try {
         const attachments = [];
@@ -78,7 +78,7 @@ const careerApplicationFlow = ai.defineFlow(
           : '';
 
         await resend.emails.send({
-          from: `Vasudev AI Applications <applications@vasudev.online>`,
+          from: `Vasudev AI Applications <applications@vasudevai.in>`,
           to: adminEmailAddress,
           subject: `New Application for ${input.programName} from ${input.name}`,
           html: `

@@ -31,8 +31,8 @@ const benefits = [
 ];
 
 const contact_details = [
-    { icon: <Globe className="h-5 w-5 text-accent" />, text: 'Website', value: 'www.vasudev.online', href: 'https://www.vasudev.online' },
-    { icon: <Mail className="h-5 w-5 text-accent" />, text: 'Email', value: 'info@vasudev.online', href: 'mailto:info@vasudev.online' },
+    { icon: <Globe className="h-5 w-5 text-accent" />, text: 'Website', value: 'www.vasudevai.in', href: 'https://www.vasudevai.in' },
+    { icon: <Mail className="h-5 w-5 text-accent" />, text: 'Email', value: 'info@vasudevai.in', href: 'mailto:info@vasudevai.in' },
     { icon: <MessageCircle className="h-5 w-5 text-accent" />, text: 'Discord', value: 'Join our server', href: 'https://discord.gg/zkDM4psr' }
 ]
 

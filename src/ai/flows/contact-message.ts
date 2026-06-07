@@ -55,8 +55,8 @@ const contactMessageFlow = ai.defineFlow(
        const resend = new Resend(process.env.RESEND_API_KEY);
       try {
         await resend.emails.send({
-          from: `Vasudev AI Contact <contact@vasudev.online>`,
-          to: 'info@vasudev.online',
+          from: `Vasudev AI Contact <contact@vasudevai.in>`,
+          to: 'info@vasudevai.in',
           subject: `New Contact Message from ${input.name}`,
           reply_to: input.email,
           html: `

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'About Vasudev AI | Our Vision & Mission',
     description: 'Learn about our vision to merge divine wisdom with AI and our mission to empower creators with open-source, divine-tech solutions.',
-    url: 'https://www.vasudev.ai/about',
+    url: 'https://www.vasudevai.in/about',
   },
   twitter: {
     title: 'About Vasudev AI | Our Vision & Mission',

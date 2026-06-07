@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
-  const url = `https://www.vasudev.ai/projects/${project.slug}`;
+  const url = `https://www.vasudevai.in/projects/${project.slug}`;
 
   return {
     title: `${project.title} | Project Case Study`,
@@ -69,7 +69,7 @@ export default function ProjectCaseStudyPage({ params }: Props) {
     notFound();
   }
 
-  const url = `https://www.vasudev.ai/projects/${project.slug}`;
+  const url = `https://www.vasudevai.in/projects/${project.slug}`;
 
   const articleSchema = {
     '@context': 'https://schema.org',
@@ -84,14 +84,14 @@ export default function ProjectCaseStudyPage({ params }: Props) {
     author: {
       '@type': 'Organization',
       name: 'Vasudev AI',
-      url: 'https://www.vasudev.ai',
+      url: 'https://www.vasudevai.in',
     },
     publisher: {
       '@type': 'Organization',
       name: 'Vasudev AI',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://www.vasudev.ai/vasudev-ai-hero.webp',
+        url: 'https://www.vasudevai.in/vasudev-ai-hero.webp',
       },
     },
     datePublished: new Date().toISOString(),
@@ -105,13 +105,13 @@ export default function ProjectCaseStudyPage({ params }: Props) {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://www.vasudev.ai',
+        item: 'https://www.vasudevai.in',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Projects',
-        item: 'https://www.vasudev.ai/projects',
+        item: 'https://www.vasudevai.in/projects',
       },
       {
         '@type': 'ListItem',

@@ -32,8 +32,8 @@ const teamMembers = [
      details: {
       role: 'Founder & Visionary',
       phone: '+91 9719205268',
-      email: 'info@vasudev.online',
-      website: 'https://www.vasudev.online',
+      email: 'info@vasudevai.in',
+      website: 'https://www.vasudevai.in',
       discord: 'Join on Discord',
       linkedin: 'in/sgsurya',
       qrLink: 'https://www.linkedin.com/in/sgsurya/',
@@ -55,8 +55,8 @@ const teamMembers = [
     details: {
       role: 'Co-Builder & Innovator',
       phone: '+91 XXXXX XXXXX',
-      email: 'aman.d@vasudev.ai',
-      website: 'www.vasudev.ai',
+      email: 'aman.d@vasudevai.in',
+      website: 'www.vasudevai.in',
       discord: 'Join on Discord',
       linkedin: 'in/aman-dangi-085443246',
       qrLink: 'https://www.linkedin.com/in/aman-dangi-085443246/',
@@ -78,8 +78,8 @@ const teamMembers = [
      details: {
       role: 'AI Engineer',
       phone: '+91 XXXXX XXXXX',
-      email: 'ashutosh.t@vasudev.ai',
-      website: 'www.vasudev.ai',
+      email: 'ashutosh.t@vasudevai.in',
+      website: 'www.vasudevai.in',
       discord: 'Join on Discord',
       linkedin: 'in/ashutosh-kumar-tripathi-926308237',
       qrLink: 'https://www.linkedin.com/in/ashutosh-kumar-tripathi-926308237/',
@@ -101,11 +101,11 @@ const teamMembers = [
      details: {
       role: 'UI/UX Designer',
       phone: '+91 XXXXX XXXXX',
-      email: 'biswjeet@vasudev.ai',
-      website: 'www.vasudev.ai',
+      email: 'biswjeet@vasudevai.in',
+      website: 'www.vasudevai.in',
       discord: 'Join on Discord',
       linkedin: 'n/a',
-      qrLink: 'https://www.vasudev.ai',
+      qrLink: 'https://www.vasudevai.in',
     },
   },
 ];
@@ -117,8 +117,8 @@ const generatePersonSchema = (member: typeof teamMembers[0]) => {
     name: member.name,
     jobTitle: member.role,
     description: member.bio,
-    image: `https://www.vasudev.ai${member.avatar}`,
-    url: `https://www.vasudev.ai/team#${member.id}`,
+    image: `https://www.vasudevai.in${member.avatar}`,
+    url: `https://www.vasudevai.in/team#${member.id}`,
     sameAs: Object.values(member.socials).filter(s => s !== '#'),
     worksFor: {
       '@type': 'Organization',

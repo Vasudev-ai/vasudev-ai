@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'AI Careers & Internships | Join Vasudev AI',
     description: 'Explore internship and full-time opportunities and join our mission to build the future of divine intelligence.',
-    url: 'https://www.vasudev.ai/career',
+    url: 'https://www.vasudevai.in/career',
   },
   twitter: {
     title: 'AI Careers & Internships | Join Vasudev AI',

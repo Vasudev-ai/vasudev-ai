@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'The Vasudev AI Community | A Divine-Tech Collective',
     description: 'A divine network of AI creators, thinkers, and dreamers. Join us to collaborate, learn, and innovate on open-source, offline-first AI.',
-    url: 'https://www.vasudev.ai/community',
+    url: 'https://www.vasudevai.in/community',
   },
   twitter: {
     title: 'The Vasudev AI Community | A Divine-Tech Collective',

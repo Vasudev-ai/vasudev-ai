@@ -3,7 +3,7 @@ import { MetadataRoute } from 'next';
 import { projects } from '@/lib/projects-data';
 
 export function GET(): Response {
-  const baseUrl = 'https://www.vasudev.online';
+  const baseUrl = 'https://www.vasudevai.in';
   const lastModified = new Date();
 
   const staticPages: MetadataRoute.Sitemap = [

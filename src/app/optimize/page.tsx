@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Free AI Content Optimizer Tool by Vasudev AI',
     description: 'Instantly get keyword and placement suggestions to improve your content\'s SEO and engagement with our free AI-powered tool.',
-    url: 'https://www.vasudev.ai/optimize',
+    url: 'https://www.vasudevai.in/optimize',
   },
   twitter: {
     title: 'Free AI Content Optimizer Tool by Vasudev AI',

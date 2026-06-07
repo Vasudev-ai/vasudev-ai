@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Vasudev AI: Where Intelligence Meets Innovation',
     description: 'A community-driven initiative to build the future of divine intelligence, blending cutting-edge technology with spiritual harmony.',
-    url: 'https://www.vasudev.ai',
+    url: 'https://www.vasudevai.in',
     siteName: 'Vasudev AI',
     images: [
       {

@@ -65,7 +65,7 @@ const socialLinks = [
     },
     {
         name: 'Email',
-        url: 'mailto:info@vasudev.online',
+        url: 'mailto:info@vasudevai.in',
         icon: Mail,
         description: 'Contact us directly for inquiries and support.',
         detailedInfo: 'Have a specific question or partnership proposal? Reach out to us directly. Our team is ready to assist with enterprise inquiries, support requests, and press opportunities.',

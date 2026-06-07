@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'The AI Architect: A 3-Day LLM Masterclass | Vasudev AI',
     description: 'An immersive journey into building with Large Language Models. From theory to deployment, become an AI Architect.',
-    url: 'https://www.vasudev.ai/community/events/ai-architect-masterclass',
+    url: 'https://www.vasudevai.in/community/events/ai-architect-masterclass',
   },
 };
 
