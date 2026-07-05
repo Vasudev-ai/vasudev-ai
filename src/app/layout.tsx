@@ -93,6 +93,11 @@ gtag('config', 'G-ZEJHFDQ372');`,
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7714504173248093"
+          crossOrigin="anonymous"
+        />
       </head>
       <body
         className={`${inter.variable} ${cinzel.variable} font-body antialiased`}
