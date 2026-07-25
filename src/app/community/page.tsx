@@ -281,7 +281,7 @@ export default function CommunityPage() {
         <div className="container mx-auto px-4">
             <h2 className="text-3xl md:text-4xl font-headline font-bold text-center mb-6">Global Community Contributors</h2>
             <p className="text-base md:text-lg text-gray-400 text-center max-w-3xl mx-auto mb-12">The brilliant minds building, creating, and innovating within our ecosystem.</p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
                 {communityContributors.map(contributor => (
                     <ContributorCard 
                         key={contributor.name}
