@@ -59,6 +59,14 @@ export default function Footer() {
         </div>
         <div className="mt-8 pt-8 border-t border-primary/10 text-center text-sm text-gray-500">
           <p>© 2025 Vasudev AI. All rights reserved.</p>
+          <button
+            onClick={() => {
+              window.googlefc?.showRevocationMessage?.();
+            }}
+            className="mt-2 underline underline-offset-2 hover:text-primary transition-colors"
+          >
+            Privacy &amp; cookie settings
+          </button>
         </div>
       </div>
     </footer>

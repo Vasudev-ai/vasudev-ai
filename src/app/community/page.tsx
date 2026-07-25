@@ -212,6 +212,18 @@ const communityContributors = [
         avatarUrl: '/team/aum.png',
         avatarHint: 'blue digital cube',
         glowColor: '#4D96FF',
+        country: 'India',
+        countryFlag: '🇮🇳',
+    },
+    {
+        name: 'Abul (OMAR ALI)',
+        role: 'UI/UX Designer',
+        contribution: 'Global Contributor',
+        avatarUrl: '/team/abul.png',
+        avatarHint: 'design palette',
+        glowColor: '#00FF88',
+        country: 'Bangladesh',
+        countryFlag: '🇧🇩',
     }
 ]
 
@@ -267,7 +279,7 @@ export default function CommunityPage() {
 
       <section className="w-full pt-8 pb-16 md:pt-12 md:pb-20">
         <div className="container mx-auto px-4">
-            <h2 className="text-3xl md:text-4xl font-headline font-bold text-center mb-6">Community Contributors</h2>
+            <h2 className="text-3xl md:text-4xl font-headline font-bold text-center mb-6">Global Community Contributors</h2>
             <p className="text-base md:text-lg text-gray-400 text-center max-w-3xl mx-auto mb-12">The brilliant minds building, creating, and innovating within our ecosystem.</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {communityContributors.map(contributor => (
@@ -278,6 +290,8 @@ export default function CommunityPage() {
                         contribution={contributor.contribution}
                         avatarUrl={contributor.avatarUrl}
                         glowColor={contributor.glowColor}
+                        country={contributor.country}
+                        countryFlag={contributor.countryFlag}
                     />
                 ))}
             </div>

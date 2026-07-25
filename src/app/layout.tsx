@@ -1,7 +1,9 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter, Cinzel_Decorative } from 'next/font/google';
+import Script from 'next/script';
 import './globals.css';
 import LayoutWrapper from '@/components/layout-wrapper';
+import ConsentBanner from '@/components/consent-banner';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -76,14 +78,26 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <head>
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZEJHFDQ372" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-ZEJHFDQ372');`,
-          }}
+        <Script id="google-consent-default" strategy="beforeInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('consent', 'default', {
+              ad_storage: 'denied',
+              ad_user_data: 'denied',
+              ad_personalization: 'denied',
+              analytics_storage: 'denied',
+              wait_for_update: 500,
+              region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR',
+                       'HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK',
+                       'SI','ES','SE','IS','LI','NO','GB','CH']
+            });
+          `}
+        </Script>
+        <Script
+          id="google-ump"
+          strategy="beforeInteractive"
+          src="https://fundingchoicesmessages.google.com/i/pub-7714504173248093"
         />
         <script
           type="application/ld+json"
@@ -93,17 +107,14 @@ gtag('config', 'G-ZEJHFDQ372');`,
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7714504173248093"
-          crossOrigin="anonymous"
-        />
       </head>
       <body
         className={`${inter.variable} ${cinzel.variable} font-body antialiased`}
         suppressHydrationWarning
       >
-        <LayoutWrapper>{children}</LayoutWrapper>
+        <ConsentBanner>
+          <LayoutWrapper>{children}</LayoutWrapper>
+        </ConsentBanner>
       </body>
     </html>
   );
