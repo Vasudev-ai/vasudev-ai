@@ -212,8 +212,6 @@ const communityContributors = [
         avatarUrl: '/team/aum.png',
         avatarHint: 'blue digital cube',
         glowColor: '#4D96FF',
-        country: 'India',
-        countryFlag: '🇮🇳',
     },
     {
         name: 'Abul (OMAR ALI)',

@@ -10,6 +10,7 @@ const footerLinks = [
   { href: '/services', label: 'Services' },
   { href: '/team', label: 'Team' },
   { href: '/downloads', label: 'Downloads' },
+  { href: '/verify', label: 'Verify Certificate' },
   { href: '/connect', label: 'Connect' },
   { href: 'https://discord.gg/e5uPQDXSSk', label: 'Join' },
 ];

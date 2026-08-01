@@ -3,7 +3,7 @@ import PageHeader from '@/components/page-header';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { CheckCircle, Clock, Calendar, Zap, X, Rocket, Award, Brain, Brush, Users, Code, Globe, Mail, MessageCircle } from 'lucide-react';
+import { CheckCircle, Clock, Calendar, Zap, X, Rocket, Award, Brain, Brush, Users, Code, Globe, Mail, MessageCircle, ShieldCheck } from 'lucide-react';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import Logo from '@/components/logo';
@@ -173,6 +173,9 @@ export default function UtsavyInternshipPage() {
                             <Badge className="w-full justify-center mb-4 text-base py-2 bg-yellow-500/20 text-yellow-400 border-yellow-500/50">Drive Completed</Badge>
                             <Button asChild size="lg" className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-bold text-lg py-6 rounded-full shadow-lg shadow-accent/30 hover:shadow-accent/50 transition-all">
                             <Link href="/career/utsavy-internship/closed">Check Status</Link>
+                            </Button>
+                            <Button asChild size="lg" variant="outline" className="w-full mt-3 border-primary/30 hover:border-primary text-primary hover:text-white font-semibold text-base py-5 rounded-full transition-all">
+                            <Link href="/verify"><ShieldCheck className="mr-2 h-5 w-5" /> Verify Your Certificate</Link>
                             </Button>
                         </div>
                     </CardContent>

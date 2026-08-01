@@ -4,7 +4,7 @@
 import PageHeader from '@/components/page-header';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Briefcase, ArrowRight } from 'lucide-react';
+import { Briefcase, ArrowRight, ShieldCheck } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react';
 
@@ -31,6 +31,11 @@ export default function CareerPage() {
                     <div className="pt-4">
                          <Button asChild size="lg" className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-bold text-lg py-6 rounded-full shadow-lg shadow-accent/30 hover:shadow-accent/50 transition-all">
                             <Link href="/career/utsavy-internship">View Details <ArrowRight className="ml-2 h-5 w-5" /></Link>
+                        </Button>
+                    </div>
+                    <div className="pt-2">
+                        <Button asChild size="lg" variant="outline" className="w-full border-primary/30 hover:border-primary text-primary hover:text-white font-semibold text-base py-5 rounded-full transition-all">
+                            <Link href="/verify"><ShieldCheck className="mr-2 h-5 w-5" /> Verify Your Certificate</Link>
                         </Button>
                     </div>
                 </CardContent>
