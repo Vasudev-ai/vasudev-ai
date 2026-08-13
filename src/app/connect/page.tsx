@@ -85,7 +85,7 @@ const socialLinks = [
     },
     {
         name: 'Instagram',
-        url: 'https://www.instagram.com/vasudev_ai/',
+        url: 'https://www.instagram.com/vasudev.ai_/',
         icon: FaInstagram,
         description: 'Follow us for visual updates and behind-the-scenes content.',
         detailedInfo: 'Get a glimpse into our creative process, team highlights, and project sneak peeks. We share engaging stories, reels, and posts that showcase the intersection of AI and divinity.',

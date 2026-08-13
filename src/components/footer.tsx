@@ -21,7 +21,7 @@ const socialLinks = [
   { name: 'Discord', icon: <Disc />, href: 'https://discord.gg/e5uPQDXSSk' },
   { name: 'Twitter', icon: <Twitter />, href: 'https://x.com/VashudevAi' },
   { name: 'YouTube', icon: <Youtube />, href: 'https://www.youtube.com/@CodeCraftwithSurya' },
-  { name: 'Instagram', icon: <Instagram />, href: 'https://www.instagram.com/vasudev_ai/' },
+  { name: 'Instagram', icon: <Instagram />, href: 'https://www.instagram.com/vasudev.ai_/' },
 ];
 
 export default function Footer() {

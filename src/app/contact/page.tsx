@@ -26,7 +26,7 @@ const socialLinks = [
     { name: 'Discord', icon: <Disc size={28} />, href: 'https://discord.gg/e5uPQDXSSk', handle: 'Join the Collective' },
     { name: 'Twitter', icon: <Twitter size={28} />, href: 'https://x.com/VashudevAi', handle: '@VashudevAi' },
     { name: 'LinkedIn', icon: <Linkedin size={28} />, href: 'https://www.linkedin.com/company/108165965/', handle: 'Vasudev AI' },
-    { name: 'Instagram', icon: <Instagram size={28} />, href: 'https://www.instagram.com/vasudev_ai/', handle: '@vasudev_ai' },
+    { name: 'Instagram', icon: <Instagram size={28} />, href: 'https://www.instagram.com/vasudev.ai_/', handle: '@vasudev.ai_' },
 ];
 
 export default function ContactPage() {
