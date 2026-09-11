@@ -2,16 +2,17 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, Building2, Calendar, Trophy, Users, Layers, Clock, X, ChevronLeft, ChevronRight, Images, Sparkles, ArrowUpRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const gallery = [
-  "DSC_0014.JPG","DSC_0023.JPG","DSC_0025.JPG","DSC_0036.JPG","DSC_0046.JPG","DSC_0047.JPG",
-  "DSC_0048.JPG","DSC_0067.JPG","DSC_0071.JPG","DSC_0072.JPG","DSC_0080.JPG","DSC_0081.JPG",
-  "DSC_0082.JPG","DSC_0098.JPG","DSC_0100.JPG","DSC_0114.JPG","DSC_0115.JPG","DSC_0121.JPG",
-  "DSC_0126.JPG","DSC_0127.JPG","DSC_0132.JPG","DSC_0141.JPG","DSC_0146.JPG","DSC_0164.JPG",
-  "DSC_0173.JPG","DSC_0174.JPG","DSC_0175.JPG","DSC_0177.JPG","DSC_0178.JPG",
+  "DSC_0014.webp","DSC_0023.webp","DSC_0025.webp","DSC_0036.webp","DSC_0046.webp","DSC_0047.webp",
+  "DSC_0048.webp","DSC_0067.webp","DSC_0071.webp","DSC_0072.webp","DSC_0080.webp","DSC_0081.webp",
+  "DSC_0082.webp","DSC_0098.webp","DSC_0100.webp","DSC_0114.webp","DSC_0115.webp","DSC_0121.webp",
+  "DSC_0126.webp","DSC_0127.webp","DSC_0132.webp","DSC_0141.webp","DSC_0146.webp","DSC_0164.webp",
+  "DSC_0173.webp","DSC_0174.webp","DSC_0175.webp","DSC_0177.webp","DSC_0178.webp",
 ];
 
 const container = {
@@ -56,7 +57,7 @@ export default function RkdfHackathonPage() {
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-white/[0.04]">
         <div className="absolute inset-0">
-          <img src={`/rkdf/${gallery[0]}`} alt="" className="w-full h-full object-cover opacity-[0.10]" />
+          <Image src={`/rkdf/${gallery[0]}`} alt="" fill className="object-cover opacity-[0.10]" priority sizes="100vw" />
           <div className="absolute inset-0 bg-gradient-to-b from-[#05070d]/40 via-[#05070d]/80 to-[#05070d]" />
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[520px] bg-accent/10 rounded-full blur-[130px]" />
           <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent" />
@@ -105,7 +106,7 @@ export default function RkdfHackathonPage() {
         >
           {/* Large feature */}
           <motion.button variants={item} onClick={() => setIdx(0)} className="lg:col-span-8 group relative overflow-hidden rounded-[1.5rem] md:rounded-[2rem] border border-white/10 bg-black aspect-[16/10] lg:aspect-[16/10] text-left">
-            <img src={`/rkdf/${gallery[0]}`} alt="Featured" className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700" />
+            <Image src={`/rkdf/${gallery[0]}`} alt="Featured" fill className="object-cover group-hover:scale-[1.02] transition-transform duration-700" priority sizes="(max-width: 1024px) 100vw, 66vw" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
             <div className="absolute bottom-0 p-5 md:p-7">
               <span className="inline-flex items-center gap-1.5 text-[11px] font-bold tracking-widest uppercase text-accent bg-accent/15 border border-accent/20 rounded-full px-3 py-1 mb-3">Featured Moment</span>
@@ -119,7 +120,7 @@ export default function RkdfHackathonPage() {
           <div className="lg:col-span-4 grid grid-rows-2 gap-4 md:gap-5">
             {[1, 2].map((i) => (
               <motion.button key={gallery[i]} variants={item} onClick={() => setIdx(i)} className="group relative overflow-hidden rounded-[1.5rem] md:rounded-[2rem] border border-white/10 bg-black aspect-[16/10] lg:aspect-auto text-left">
-                <img src={`/rkdf/${gallery[i]}`} alt="" className="w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-700" loading="lazy" />
+                <Image src={`/rkdf/${gallery[i]}`} alt="" fill className="object-cover group-hover:scale-[1.04] transition-transform duration-700" sizes="(max-width: 1024px) 100vw, 33vw" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
               </motion.button>
             ))}
@@ -199,17 +200,17 @@ export default function RkdfHackathonPage() {
             >
               <ChevronLeft className="h-5 w-5 text-white" />
             </button>
-            <motion.img
+            <motion.div
               key={gallery[idx]}
               initial={{ scale: 0.96, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.96, opacity: 0 }}
               transition={{ duration: 0.28 }}
-              src={`/rkdf/${gallery[idx]}`}
-              alt="Expanded"
-              className="max-w-[92vw] max-h-[86vh] object-contain rounded-2xl border border-white/10 shadow-2xl"
+              className="relative max-w-[92vw] max-h-[86vh] w-[900px] h-[65vh] rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-black"
               onClick={(e) => e.stopPropagation()}
-            />
+            >
+              <Image src={`/rkdf/${gallery[idx]}`} alt="Expanded" fill className="object-contain" sizes="92vw" priority />
+            </motion.div>
             <button
               onClick={(e) => { e.stopPropagation(); setIdx(v => (v! < gallery.length - 1 ? v! + 1 : 0)); }}
               className="absolute right-2 md:right-6 p-2.5 md:p-3 rounded-full bg-white/10 hover:bg-white/20 border border-white/10"
@@ -233,7 +234,7 @@ function GridCard({ file, idx, span, onOpen, variants }: { file: string; idx: nu
       onClick={() => onOpen(idx)}
       className={`group relative overflow-hidden rounded-2xl md:rounded-[1.5rem] border border-white/[0.07] bg-black aspect-[4/3] hover:border-accent/20 hover:shadow-[0_12px_30px_-12px_hsl(var(--accent)/0.18)] transition-all duration-300 text-left ${span}`}
     >
-      <img src={`/rkdf/${file}`} alt={`RKDF ${idx + 1}`} className="w-full h-full object-cover group-hover:scale-[1.035] transition-transform duration-700" loading="lazy" />
+      <Image src={`/rkdf/${file}`} alt={`RKDF ${idx + 1}`} fill className="object-cover group-hover:scale-[1.035] transition-transform duration-700" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw" />
       <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       <span className="absolute top-3 left-3 text-[10px] font-bold tracking-widest text-white/0 group-hover:text-white/90 bg-black/0 group-hover:bg-black/50 backdrop-blur border border-white/0 group-hover:border-white/10 rounded-full px-2 py-1 transition-all">
         #{String(idx + 1).padStart(2, "0")}

@@ -12,7 +12,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaWhatsapp } from 'react-icons/fa6';
-import HeroOrb from '@/components/hero-orb';
+import dynamic from 'next/dynamic';
+const HeroOrb = dynamic(() => import('@/components/hero-orb'), { ssr: false, loading: () => <div className="w-36 h-36 rounded-full bg-primary/10 animate-pulse border border-primary/10" /> });
 import './portal-button.css';
 import CosmicJoinModal from './cosmic-join-modal';
 

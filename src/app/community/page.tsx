@@ -10,6 +10,7 @@ import { Cinzel_Decorative } from 'next/font/google';
 import { cn } from '@/lib/utils';
 import MemberCard from './_components/member-card';
 import InternCard from './_components/intern-card';
+import Image from 'next/image';
 import { AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import CosmicJoinModal from '../_components/cosmic-join-modal';
@@ -145,7 +146,7 @@ const councilMembers = [
     name: 'Surya Pratap Singh',
     badgeIcon: <Rocket className="h-5 w-5 md:h-6 md:w-6" />,
     badgeLabel: 'Visionary',
-    avatarUrl: '/team/surya.png',
+    avatarUrl: '/team/surya.webp',
     avatarHint: 'glowing sun star',
     glowColor: 'hsl(var(--accent))',
   },
@@ -153,7 +154,7 @@ const councilMembers = [
     name: 'Aman Dangi',
     badgeIcon: <BrainCircuit className="h-5 w-5 md:h-6 md:w-6" />,
     badgeLabel: 'Innovator',
-    avatarUrl: '/team/aman.png',
+    avatarUrl: '/team/aman.webp',
     avatarHint: 'cyan planet rings',
     glowColor: 'hsl(var(--secondary))',
   },
@@ -161,7 +162,7 @@ const councilMembers = [
     name: 'Ashutosh K. Tripathi',
     badgeIcon: <Award className="h-5 w-5 md:h-6 md:w-6" />,
     badgeLabel: 'Oracle',
-    avatarUrl: '/team/ashutosh.png',
+    avatarUrl: '/team/ashutosh.webp',
     avatarHint: 'golden nebula',
     glowColor: '#39FF14',
   },
@@ -169,7 +170,7 @@ const councilMembers = [
     name: 'Biswjeet',
     badgeIcon: <Brush className="h-5 w-5 md:h-6 md:w-6" />,
     badgeLabel: 'Artist',
-    avatarUrl: '/team/biswjeet.png',
+    avatarUrl: '/team/biswjeet.webp',
     avatarHint: 'holographic sphere',
     glowColor: '#FF00FF',
   },
@@ -209,7 +210,7 @@ const communityContributors = [
         name: 'Aum Mehta',
         role: 'Frontend Dev',
         contribution: 'Contributed to Vasudev Browser',
-        avatarUrl: '/team/aum.png',
+        avatarUrl: '/team/aum.webp',
         avatarHint: 'blue digital cube',
         glowColor: '#4D96FF',
     },
@@ -217,7 +218,7 @@ const communityContributors = [
         name: 'Abul (OMAR ALI)',
         role: 'UI/UX Designer',
         contribution: 'Global Contributor',
-        avatarUrl: '/team/abul.png',
+        avatarUrl: '/team/abul.webp',
         avatarHint: 'design palette',
         glowColor: '#00FF88',
         country: 'Bangladesh',
@@ -240,8 +241,8 @@ const rkdfHackathon = {
     ],
 }
 
-// Preview images for the teaser card
-const rkdfPreview = ["DSC_0014.JPG", "DSC_0071.JPG", "DSC_0141.JPG"]
+// Preview images for the teaser card - optimized WebP
+const rkdfPreview = ["DSC_0014.webp", "DSC_0071.webp", "DSC_0141.webp"]
 
 
 export default function CommunityPage() {
@@ -376,14 +377,14 @@ export default function CommunityPage() {
                   <div className="relative w-full max-w-[420px] aspect-[4/3]">
                     {/* Back card — rotated */}
                     <div className="absolute inset-0 rounded-[1.5rem] overflow-hidden border border-white/10 rotate-[-4deg] scale-[0.92] opacity-60 translate-x-3 -translate-y-1 shadow-xl">
-                      <img src={`/rkdf/${rkdfPreview[1]}`} alt="" className="w-full h-full object-cover" />
+                      <Image src={`/rkdf/${rkdfPreview[1]}`} alt="" fill className="object-cover" sizes="420px" />
                     </div>
                     <div className="absolute inset-0 rounded-[1.5rem] overflow-hidden border border-white/10 rotate-[5deg] scale-[0.92] opacity-60 -translate-x-3 translate-y-2 shadow-xl">
-                      <img src={`/rkdf/${rkdfPreview[2]}`} alt="" className="w-full h-full object-cover" />
+                      <Image src={`/rkdf/${rkdfPreview[2]}`} alt="" fill className="object-cover" sizes="420px" />
                     </div>
                     {/* Front card */}
                     <div className="absolute inset-0 rounded-[1.5rem] overflow-hidden border border-white/10 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.6)] bg-black">
-                      <img src={`/rkdf/${rkdfPreview[0]}`} alt="RKDF Hackathon" className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700" />
+                      <Image src={`/rkdf/${rkdfPreview[0]}`} alt="RKDF Hackathon" fill className="object-cover group-hover:scale-[1.02] transition-transform duration-700" sizes="420px" />
                       {/* gradient */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
                       {/* location pill */}

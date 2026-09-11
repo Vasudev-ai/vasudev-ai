@@ -8,11 +8,16 @@ import ConsentBanner from '@/components/consent-banner';
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
+  display: 'swap',
+  preload: true,
+  fallback: ['system-ui', 'sans-serif'],
 });
 const cinzel = Cinzel_Decorative({
   subsets: ['latin'],
   weight: '400',
   variable: '--font-cinzel',
+  display: 'swap',
+  preload: false,
 });
 
 const organizationSchema = {

@@ -297,11 +297,12 @@ export default function HeroOrb() {
       <div className="absolute inset-3 flex items-center justify-center">
         <div className="relative w-full h-full rounded-full overflow-hidden border border-primary/20 shadow-[0_0_60px_-5px_hsl(var(--primary)/0.35),0_0_100px_-10px_hsl(var(--accent)/0.2)]">
           <Image
-            src="/vasudev-ai-hero.png"
+            src="/vasudev-ai-hero.webp"
             alt="Vasudev AI Core"
             width={384}
             height={384}
             priority
+            sizes="384px"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 rounded-full bg-gradient-to-t from-transparent via-white/[0.03] to-transparent pointer-events-none" />
