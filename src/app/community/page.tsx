@@ -4,7 +4,7 @@
 import PageHeader from '@/components/page-header';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { CheckCircle, Heart, Lightbulb, Users, Calendar, Code, Mic, Star, MessageSquare, Book, Compass, Wrench, Award, BrainCircuit, Rocket, Brush, Disc, Palette } from 'lucide-react';
+import { CheckCircle, Heart, Lightbulb, Users, Calendar, Code, Mic, Star, MessageSquare, Book, Compass, Wrench, Award, BrainCircuit, Rocket, Brush, Disc, Palette, Trophy, Building2, Zap, Target, Sparkles, GraduationCap, Clock, Layers, Images, ArrowUpRight, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import { Cinzel_Decorative } from 'next/font/google';
 import { cn } from '@/lib/utils';
@@ -225,6 +225,24 @@ const communityContributors = [
     }
 ]
 
+const rkdfHackathon = {
+    badge: "University Partnership",
+    title: "Vasudev AI × RKDF University, Ranchi",
+    subtitle: "Hackathon 2026",
+    location: "RKDF University, Ranchi",
+    status: "Successfully Conducted",
+    description: "Students turned ideas into working prototypes — mentored by the Vasudev AI core team.",
+    stats: [
+        { value: "200+", label: "Participants" },
+        { value: "40+", label: "Projects" },
+        { value: "24H", label: "Build Sprint" },
+        { value: "Top 3", label: "Awarded" },
+    ],
+}
+
+// Preview images for the teaser card
+const rkdfPreview = ["DSC_0014.JPG", "DSC_0071.JPG", "DSC_0141.JPG"]
+
 
 export default function CommunityPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -293,6 +311,94 @@ export default function CommunityPage() {
                     />
                 ))}
             </div>
+        </div>
+      </section>
+
+      {/* ===== RKDF RANCHI — Preview Teaser (Next-Level) ===== */}
+      <section className="w-full py-10 md:py-16 relative overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[700px] bg-gradient-to-r from-primary/[0.07] via-accent/[0.04] to-primary/[0.07] rounded-full blur-[100px]" />
+        </div>
+
+        <div className="container mx-auto px-4 relative z-10">
+          <Link href="/community/rkdf-hackathon" className="block max-w-6xl mx-auto group">
+            <div className="relative rounded-[2rem] border border-white/[0.06] bg-gradient-to-br from-card/60 via-card/40 to-black/40 backdrop-blur-xl overflow-hidden hover:border-accent/20 transition-all duration-500 hover:shadow-[0_20px_80px_-20px_hsl(var(--accent)/0.15)]">
+              {/* subtle top line */}
+              <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
+
+              <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-0">
+                {/* Left — Content */}
+                <div className="p-7 md:p-10 flex flex-col justify-center">
+                  <div className="flex items-center gap-2 mb-4">
+                    <span className="inline-flex items-center gap-2 text-[11px] font-bold tracking-widest uppercase text-accent bg-accent/10 border border-accent/20 rounded-full px-3 py-1.5">
+                      <Building2 className="h-3.5 w-3.5" /> University Partnership
+                    </span>
+                    <span className="inline-flex items-center gap-1.5 text-[11px] font-medium text-emerald-400 bg-emerald-500/10 border border-emerald-500/15 rounded-full px-2.5 py-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" /> Completed
+                    </span>
+                  </div>
+
+                  <h2 className="text-[26px] md:text-[34px] font-headline font-bold leading-[0.95] tracking-tight">
+                    <span className="text-white">Vasudev AI ×</span>{" "}
+                    <span className="bg-clip-text text-transparent bg-gradient-to-r from-accent to-cyan-300">RKDF University, Ranchi</span>
+                  </h2>
+                  <p className="text-accent/80 text-[13px] font-semibold tracking-widest uppercase mt-1.5">Hackathon 2026</p>
+
+                  <p className="text-gray-400 text-sm md:text-[15px] leading-relaxed mt-4 max-w-lg">
+                    {rkdfHackathon.description} <span className="text-gray-500 hidden md:inline">A high-energy sprint of building, mentorship & demos.</span>
+                  </p>
+
+                  {/* Stats pills */}
+                  <div className="flex flex-wrap gap-2 mt-5">
+                    {rkdfHackathon.stats.map((s) => (
+                      <span key={s.label} className="inline-flex items-baseline gap-1.5 rounded-full bg-white/[0.04] border border-white/[0.06] px-3 py-1.5">
+                        <span className="text-white font-bold text-xs">{s.value}</span>
+                        <span className="text-gray-500 text-[11px] uppercase tracking-wide">{s.label}</span>
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="flex items-center gap-3 mt-7">
+                    <span className="inline-flex items-center gap-2 bg-white text-black font-bold text-sm rounded-full px-5 py-2.5 group-hover:bg-accent group-hover:text-black transition-colors">
+                      Explore Gallery <ArrowUpRight className="h-4 w-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                    </span>
+                    <span className="inline-flex items-center gap-2 text-sm text-gray-400">
+                      <Images className="h-4 w-4" /> 29 photos
+                    </span>
+                  </div>
+                </div>
+
+                {/* Right — Image Collage */}
+                <div className="relative p-4 md:p-6 lg:p-7 flex items-center justify-center bg-gradient-to-br from-white/[0.02] to-transparent overflow-hidden min-h-[320px]">
+                  {/* glow behind */}
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] bg-accent/10 rounded-full blur-[60px]" />
+
+                  <div className="relative w-full max-w-[420px] aspect-[4/3]">
+                    {/* Back card — rotated */}
+                    <div className="absolute inset-0 rounded-[1.5rem] overflow-hidden border border-white/10 rotate-[-4deg] scale-[0.92] opacity-60 translate-x-3 -translate-y-1 shadow-xl">
+                      <img src={`/rkdf/${rkdfPreview[1]}`} alt="" className="w-full h-full object-cover" />
+                    </div>
+                    <div className="absolute inset-0 rounded-[1.5rem] overflow-hidden border border-white/10 rotate-[5deg] scale-[0.92] opacity-60 -translate-x-3 translate-y-2 shadow-xl">
+                      <img src={`/rkdf/${rkdfPreview[2]}`} alt="" className="w-full h-full object-cover" />
+                    </div>
+                    {/* Front card */}
+                    <div className="absolute inset-0 rounded-[1.5rem] overflow-hidden border border-white/10 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.6)] bg-black">
+                      <img src={`/rkdf/${rkdfPreview[0]}`} alt="RKDF Hackathon" className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700" />
+                      {/* gradient */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                      {/* location pill */}
+                      <span className="absolute bottom-3 left-3 inline-flex items-center gap-1.5 text-[11px] font-medium text-white bg-black/60 backdrop-blur border border-white/10 rounded-full px-3 py-1.5">
+                        <Building2 className="h-3 w-3" /> RKDF University, Ranchi
+                      </span>
+                      <span className="absolute top-3 right-3 w-9 h-9 rounded-full bg-white text-black flex items-center justify-center shadow-lg group-hover:rotate-12 transition-transform">
+                        <ArrowUpRight className="h-4 w-4" />
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Link>
         </div>
       </section>
 
