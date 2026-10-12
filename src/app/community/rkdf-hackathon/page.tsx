@@ -74,23 +74,8 @@ export default function RkdfHackathonPage() {
             </h1>
             <p className="text-accent/80 text-xs md:text-sm font-semibold tracking-[0.18em] uppercase mt-3">Hackathon 2026 — Ranchi</p>
             <p className="text-gray-400 text-sm md:text-base max-w-2xl mt-4 leading-relaxed">
-              A 24-hour sprint where students turned ideas into working prototypes — mentored by the Vasudev AI core team.
+              A high-energy sprint where students turned ideas into working prototypes — mentored by the Vasudev AI core team.
             </p>
-
-            <div className="mt-7 flex flex-wrap gap-2.5">
-              {[
-                { icon: Users, v: "200+", l: "Participants" },
-                { icon: Layers, v: "40+", l: "Projects" },
-                { icon: Clock, v: "24H", l: "Build Sprint" },
-                { icon: Trophy, v: "Top 3", l: "Awarded" },
-              ].map((s) => (
-                <span key={s.l} className="inline-flex items-center gap-2 rounded-full bg-white/[0.06] border border-white/10 px-4 py-2 backdrop-blur">
-                  <s.icon className="h-4 w-4 text-accent" />
-                  <span className="text-white font-bold text-sm">{s.v}</span>
-                  <span className="text-gray-500 text-xs uppercase tracking-wide">{s.l}</span>
-                </span>
-              ))}
-            </div>
           </motion.div>
         </div>
       </section>
@@ -111,7 +96,7 @@ export default function RkdfHackathonPage() {
             <div className="absolute bottom-0 p-5 md:p-7">
               <span className="inline-flex items-center gap-1.5 text-[11px] font-bold tracking-widest uppercase text-accent bg-accent/15 border border-accent/20 rounded-full px-3 py-1 mb-3">Featured Moment</span>
               <h3 className="text-xl md:text-2xl font-headline font-bold text-white leading-tight">Energy, Ideas & Execution</h3>
-              <p className="text-sm text-gray-300 mt-1">The hall where 200+ builders came together.</p>
+              <p className="text-sm text-gray-300 mt-1">The hall where builders came together.</p>
             </div>
             <span className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white text-black flex items-center justify-center opacity-90 group-hover:scale-110 transition-transform"><ArrowUpRight className="h-5 w-5" /></span>
           </motion.button>
@@ -175,10 +160,31 @@ export default function RkdfHackathonPage() {
           <Button asChild className="rounded-full bg-accent hover:bg-accent/90 text-black font-bold px-7 h-11">
             <Link href="/contact">Host at Your Campus</Link>
           </Button>
+          <Button asChild variant="outline" className="rounded-full border-emerald-300/20 text-emerald-200 hover:bg-emerald-300/10 h-11">
+            <Link href="/community/devfest-gdg-ranchi-2026">Meet us at DevFest 2026 →</Link>
+          </Button>
           <Button asChild variant="outline" className="rounded-full border-white/10 text-gray-300 hover:bg-white/5 h-11">
             <Link href="/community"><ArrowLeft className="h-4 w-4 mr-1.5" /> Back to Community</Link>
           </Button>
         </div>
+
+        {/* Case-study: journey */}
+        <div className="mt-12 max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4">
+          {[
+            { t: "Ideas → Teams", d: "Day 0: problem statements, team formation, mentor mapping. No solo struggles." },
+            { t: "Build → Debug", d: "Sprint with core team on floor — live debugging, not just judging at end." },
+            { t: "Demo → Awards", d: "Stage demos, awards and full showcase. Photos above are proof." },
+          ].map((s, i) => (
+            <div key={s.t} className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5">
+              <div className="text-xs font-bold text-accent tracking-widest">STEP {i + 1}</div>
+              <div className="text-white font-bold mt-1">{s.t}</div>
+              <div className="text-sm text-gray-400 mt-1.5 leading-relaxed">{s.d}</div>
+            </div>
+          ))}
+        </div>
+        <p className="mt-8 text-center text-sm text-gray-500 italic max-w-2xl mx-auto">
+          “24 hours me idea se working prototype — mentors saath me debug kar rahe the. Aisa campus event pehli baar dekha.” — RKDF participant
+        </p>
       </section>
 
       {/* Lightbox with animation */}
