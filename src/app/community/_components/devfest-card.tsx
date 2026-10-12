@@ -66,7 +66,6 @@ export default function DevfestCard() {
               </div>
               <ul className="space-y-3 text-sm text-gray-300">
                 <li className="flex gap-2.5"><Mic className="h-4 w-4 text-emerald-300 mt-0.5 shrink-0" /> Live talk: building offline-first AI with students</li>
-                <li className="flex gap-2.5"><Users className="h-4 w-4 text-emerald-300 mt-0.5 shrink-0" /> Booth: Learnivo + Vasudev Browser live demos</li>
                 <li className="flex gap-2.5"><MapPin className="h-4 w-4 text-emerald-300 mt-0.5 shrink-0" /> Campus connect: hackathons at your college</li>
               </ul>
               <div className="mt-5 rounded-xl bg-white/[0.04] border border-white/[0.06] px-4 py-3 text-xs text-gray-400">

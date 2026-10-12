@@ -1,21 +1,18 @@
 'use client';
 
-import PageHeader from '@/components/page-header';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { CheckCircle, Heart, Lightbulb, Users, Calendar, Code, Mic, Star, MessageSquare, Book, Compass, Wrench, Award, BrainCircuit, Rocket, Brush, Disc, Palette, Trophy, Building2, Zap, Target, Sparkles, GraduationCap, Clock, Layers, Images, ArrowUpRight, ArrowRight, MapPin, Handshake, Quote } from 'lucide-react';
+import { CheckCircle, Users, Calendar, Code, Mic, Star, MessageSquare, Book, Compass, Wrench, Award, BrainCircuit, Rocket, Brush, Disc, Building2, Sparkles, GraduationCap, Images, ArrowUpRight, Handshake, Quote } from 'lucide-react';
 import Link from 'next/link';
 import { Cinzel_Decorative } from 'next/font/google';
 import { cn } from '@/lib/utils';
 import MemberCard from './_components/member-card';
-import InternCard from './_components/intern-card';
 import Image from 'next/image';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
 import CosmicJoinModal from '../_components/cosmic-join-modal';
 import { FaWhatsapp } from 'react-icons/fa6';
 import ContributorCard from './_components/contributor-card';
-import TrustedStrip from './_components/trusted-strip';
 import DevfestCard from './_components/devfest-card';
 import PressKit from './_components/press-kit';
 
@@ -192,40 +189,11 @@ const councilMembers = [
   },
 ];
 
-const interns = [
-  {
-    name: 'Gunjan Khushwaha',
-    role: 'Full Stack & Marketing Intern',
-    avatarUrl: 'https://media.licdn.com/dms/image/v2/D5603AQHa9ChEmj4v5w/profile-displayphoto-scale_200_200/B56Z1kLeNoKAAc-/0/1775502224772?e=1780531200&v=beta&t=H7KOhw3bCfSKBjspo20DKEqYQBQ_zXCyzP9Ml2Lou-Q',
-    specialties: ['Full Stack', 'Marketing', 'Community'],
-    linkedinUrl: 'https://www.linkedin.com/in/gunjan-kushwaha-78149b311/',
-  },
-  {
-    name: 'Ankar',
-    role: 'Development Intern',
-    avatarUrl: '/vasudev-ai-hero.png',
-    specialties: ['Development', 'Problem Solving'],
-  },
-  {
-    name: 'Manvendra',
-    role: 'Marketing Intern',
-    avatarUrl: '/vasudev-ai-hero.png',
-    specialties: ['Marketing', 'Content', 'Strategy'],
-  },
-  {
-    name: 'Arnay Tiwari',
-    role: 'Frontend Intern',
-    avatarUrl: 'https://media.licdn.com/dms/image/v2/D4D03AQF5dTnfC8Ubzg/profile-displayphoto-scale_200_200/B4DZe7mCiTGgAY-/0/1751199001649?e=1780531200&v=beta&t=R32FPrecmVGodNq0cmdfPG158WGysEHDAvb52V1XPI8',
-    specialties: ['Frontend', 'React', 'UI'],
-    linkedinUrl: 'https://www.linkedin.com/in/arnay-tiwari/',
-  },
-];
-
 const communityContributors = [
     {
         name: 'Aum Mehta',
-        role: 'Frontend Dev',
-        contribution: 'Contributed to Vasudev Browser',
+        role: 'Frontend Developer',
+        contribution: 'Vasudev Browser contributor',
         avatarUrl: '/team/aum.webp',
         avatarHint: 'blue digital cube',
         glowColor: '#4D96FF',
@@ -233,13 +201,41 @@ const communityContributors = [
     {
         name: 'Abul (OMAR ALI)',
         role: 'UI/UX Designer',
-        contribution: 'Global Contributor',
+        contribution: 'Global contributor',
         avatarUrl: '/team/abul.webp',
         avatarHint: 'design palette',
         glowColor: '#00FF88',
         country: 'Bangladesh',
         countryFlag: '🇧🇩',
-    }
+    },
+    {
+        name: 'Gunjan Khushwaha',
+        role: 'Community Alumni',
+        contribution: 'Former Full Stack & Marketing Intern',
+        avatarUrl: '/vasudev-ai-hero.png',
+        glowColor: '#00E5FF',
+    },
+    {
+        name: 'Arnay Tiwari',
+        role: 'Community Alumni',
+        contribution: 'Former Frontend Intern',
+        avatarUrl: '/vasudev-ai-hero.png',
+        glowColor: '#A076F9',
+    },
+    {
+        name: 'Ankar',
+        role: 'Community Alumni',
+        contribution: 'Former Development Intern',
+        avatarUrl: '/vasudev-ai-hero.png',
+        glowColor: '#34D399',
+    },
+    {
+        name: 'Manvendra',
+        role: 'Community Alumni',
+        contribution: 'Former Marketing Intern',
+        avatarUrl: '/vasudev-ai-hero.png',
+        glowColor: '#FBBF24',
+    },
 ]
 
 const rkdfHackathon = {
@@ -259,13 +255,40 @@ export default function CommunityPage() {
 
   return (
     <div className={cn("pb-20", cinzel.variable)}>
-      <PageHeader
-        title="The Vasudev AI Community"
-        subtitle="Backed by universities. Present at DevFest. Building in public with students and developers."
-        className="[background-image:radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(0,229,255,0.1),rgba(255,255,255,0))]"
-      />
-
-      <TrustedStrip />
+      {/* Premium hero — editorial, not generic */}
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[1100px] h-[500px] bg-[radial-gradient(ellipse_at_center,rgba(0,229,255,0.12),transparent_65%)] blur-2xl" />
+          <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent" />
+        </div>
+        <div className="container mx-auto px-4 relative pt-14 md:pt-20 pb-10 md:pb-14">
+          <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="max-w-3xl mx-auto text-center">
+            <div className="flex flex-wrap items-center justify-center gap-2 mb-5 max-w-xl mx-auto">
+              <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold tracking-wide text-accent bg-accent/10 border border-accent/20 rounded-full px-3 py-1">
+                <Building2 className="h-3 w-3 shrink-0" /> <span className="whitespace-nowrap">RKDF University • Hackathon</span>
+              </span>
+              <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold tracking-wide text-emerald-300 bg-emerald-500/10 border border-emerald-400/20 rounded-full px-3 py-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" /> <span className="whitespace-nowrap">GDG Ranchi • DevFest 2026 Partner</span>
+              </span>
+            </div>
+            <h1 className="text-[34px] leading-[1.05] md:text-6xl font-headline font-bold tracking-tight text-balance">
+              <span className="bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-400">The Vasudev AI Community</span>
+            </h1>
+            <p className="mt-4 text-[15px] md:text-lg text-gray-400 max-w-xl mx-auto leading-relaxed text-pretty">
+              A student-led divine-tech collective building offline-first AI in public — with universities, at hackathons, and on the DevFest stage.
+            </p>
+            <div className="mt-7 flex flex-row flex-wrap items-center justify-center gap-3">
+              <Button asChild size="lg" className="rounded-full bg-white text-black hover:bg-accent font-bold px-7">
+                <Link href="https://discord.gg/e5uPQDXSSk" target="_blank" rel="noopener noreferrer">Join the community</Link>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="rounded-full border-white/15 text-white hover:bg-white/5 px-7">
+                <Link href="/contact">Partner with us</Link>
+              </Button>
+            </div>
+            <p className="mt-4 text-xs tracking-wide text-gray-500">Students join to build • Colleges and GDGs partner to host</p>
+          </motion.div>
+        </div>
+      </section>
 
       {/* ===== Live & Upcoming first, Completed below ===== */}
       <section className="w-full py-10 md:py-14 relative overflow-hidden">
@@ -381,29 +404,11 @@ export default function CommunityPage() {
         </div>
       </section>
 
-      <section className="w-full py-14 md:py-16 bg-gradient-to-b from-transparent via-accent/[0.02] to-transparent">
+      <section className="w-full pt-10 pb-14 md:pt-12 md:pb-16">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-headline font-bold text-white mb-4">
-              Our <span className="text-accent">Interns</span>
-            </h2>
-            <p className="text-base md:text-lg text-gray-400 max-w-2xl mx-auto">
-              Fresh talent shaping the future — from campus sprints to DevFest booths.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-            {interns.map((intern, i) => (
-              <InternCard key={intern.name} {...intern} index={i} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="w-full pt-8 pb-14 md:pt-10 md:pb-16">
-        <div className="container mx-auto px-4">
-            <h2 className="text-3xl md:text-4xl font-headline font-bold text-center mb-6">Global Community Contributors</h2>
-            <p className="text-base md:text-lg text-gray-400 text-center max-w-3xl mx-auto mb-10">Builders across borders — including Bangladesh. Proof we are bigger than one campus.</p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-headline font-bold text-center mb-4">Contributors & Alumni</h2>
+            <p className="text-base md:text-lg text-gray-400 text-center max-w-3xl mx-auto mb-10">Builders across borders and batches — including past interns who helped shape this community.</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
                 {communityContributors.map(contributor => (
                     <ContributorCard 
                         key={contributor.name}
@@ -575,9 +580,9 @@ export default function CommunityPage() {
       <section className="w-full py-16 md:py-24 text-center relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-accent/10 rounded-full blur-[100px] pointer-events-none" />
         <div className="container mx-auto px-4 relative">
-          <h2 className="text-2xl md:text-4xl font-headline font-bold text-accent">Awaken with Vasudev AI</h2>
+          <h2 className="text-2xl md:text-4xl font-headline font-bold text-accent">Build with us, or host us at your campus</h2>
           <p className="mt-4 text-base md:text-lg text-gray-300 max-w-2xl mx-auto">
-            Student ho? Join karo. College / GDG ho? Partner karo. Dono ke liye jagah hai.
+            For students: join Discord or WhatsApp and start with the Friday sync. For colleges, GDGs and clubs: invite us for a hackathon or workshop.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row justify-center items-center gap-4">
             <div className="relative w-full sm:w-auto">
@@ -599,7 +604,7 @@ export default function CommunityPage() {
               </Link>
             </Button>
           </div>
-          <p className="mt-5 text-xs text-gray-500">Colleges: hackathon / workshop invite ke liye Partner pe click karo →</p>
+          <p className="mt-5 text-xs text-gray-500">For hackathon or workshop invitations, choose Partner With Us and tell us about your campus.</p>
         </div>
       </section>
 
