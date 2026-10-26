@@ -112,6 +112,15 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
+        <Script id="hackday-signal" strategy="beforeInteractive">
+          {`
+            console.log(
+              "%c⚡ HACKDAY SIGNAL — for builders only%c\\nc2hpcGl0",
+              "color:#64E8C1;font-weight:bold;font-size:16px",
+              "color:#FFE45C;font-size:14px"
+            );
+          `}
+        </Script>
       </head>
       <body
         className={`${inter.variable} ${cinzel.variable} font-body antialiased`}
