@@ -54,11 +54,12 @@ const contactMessageFlow = ai.defineFlow(
     if (process.env.RESEND_API_KEY) {
        const resend = new Resend(process.env.RESEND_API_KEY);
       try {
-        await resend.emails.send({
+        const result = await resend.emails.send({
           from: `Vasudev AI Contact <contact@vasudevai.in>`,
           to: 'info@vasudevai.in',
+          cc: ['surya@vasudevai.in'],
           subject: `New Contact Message from ${input.name}`,
-          reply_to: input.email,
+          replyTo: input.email,
           html: `
             <h1>New Message from Vasudev AI Contact Form</h1>
             <p><strong>Name:</strong> ${input.name}</p>
@@ -68,8 +69,13 @@ const contactMessageFlow = ai.defineFlow(
             <p>${input.message}</p>
           `,
         });
+        if (result.error) {
+          console.error('❌ Resend API error (contact message):', result.error);
+        } else {
+          console.log('✅ Contact email sent. id:', result.data?.id);
+        }
       } catch (error) {
-        console.error('Resend failed to send contact form email:', error);
+        console.error('❌ Resend failed to send contact form email:', error);
       }
     } else {
       console.log('RESEND_API_KEY environment variable not configured. Skipping email send.');

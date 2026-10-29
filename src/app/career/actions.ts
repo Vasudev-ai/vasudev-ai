@@ -52,9 +52,10 @@ export async function submitInternshipApplication(
     if (process.env.RESEND_API_KEY) {
       const resend = new Resend(process.env.RESEND_API_KEY);
       try {
-        await resend.emails.send({
+        const result = await resend.emails.send({
           from: `Vasudev AI Applications <applications@vasudevai.in>`,
           to: 'info@vasudevai.in',
+          cc: ['surya@vasudevai.in'],
           replyTo: email,
           subject: `Internship Application — ${roleTitle} — ${name}`,
           html: `
@@ -64,7 +65,11 @@ export async function submitInternshipApplication(
             <p><strong>Name:</strong> ${escapeHtml(name)}</p>
             <p><strong>Email:</strong> ${escapeHtml(email)}</p>
             ${phone ? `<p><strong>Phone:</strong> ${escapeHtml(phone)}</p>` : ''}
-            ${portfolio ? `<p><strong>Portfolio / GitHub:</strong> ${escapeHtml(portfolio)}</p>` : ''}
+            ${
+              portfolio
+                ? `<p><strong>Portfolio / GitHub:</strong> ${escapeHtml(portfolio)}</p>`
+                : ''
+            }
             ${
               message
                 ? `<hr /><p><strong>Why this role / message:</strong></p><p>${escapeHtml(message)}</p>`
@@ -72,8 +77,13 @@ export async function submitInternshipApplication(
             }
           `,
         });
+        if (result.error) {
+          console.error('❌ Resend API error (internship application):', result.error);
+        } else {
+          console.log('✅ Internship application email sent. id:', result.data?.id);
+        }
       } catch (error) {
-        console.error('Resend failed to send internship application email:', error);
+        console.error('❌ Resend failed to send internship application email:', error);
       }
     } else {
       console.log('RESEND_API_KEY environment variable not configured. Skipping email send.');

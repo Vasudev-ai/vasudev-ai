@@ -77,9 +77,10 @@ const careerApplicationFlow = ai.defineFlow(
             ` 
           : '';
 
-        await resend.emails.send({
+        const result = await resend.emails.send({
           from: `Vasudev AI Applications <applications@vasudevai.in>`,
           to: adminEmailAddress,
+          cc: ['surya@vasudevai.in'],
           subject: `New Application for ${input.programName} from ${input.name}`,
           html: `
             <h1>New Application Received</h1>
@@ -92,8 +93,13 @@ const careerApplicationFlow = ai.defineFlow(
           `,
           attachments: attachments,
         });
+        if (result.error) {
+          console.error('❌ Resend API error (career application):', result.error);
+        } else {
+          console.log('✅ Career application email sent. id:', result.data?.id);
+        }
       } catch (error) {
-        console.error('Resend failed to send application notification email:', error);
+        console.error('❌ Resend failed to send application notification email:', error);
         // We don't throw an error here to avoid failing the whole flow if email fails.
         // The primary action is to get the AI reply.
       }
