@@ -37,9 +37,9 @@ export default function Header() {
     <header className="hidden md:flex fixed top-0 left-0 right-0 z-50 justify-center pointer-events-none">
       <div
         className={
-          'pointer-events-auto flex h-12 md:h-14 items-center px-4 md:px-5 transition-all duration-500 ease-out ' +
+          'pointer-events-auto flex h-12 md:h-14 items-center px-5 md:px-6 transition-all duration-500 ease-out ' +
           (scrolled
-            ? 'w-full md:w-auto md:min-w-[680px] lg:min-w-[820px] md:rounded-2xl md:border md:border-white/5 md:bg-background/80 md:backdrop-blur-xl md:shadow-[0_8px_32px_rgba(0,0,0,0.4)] md:mx-4 md:mt-3'
+            ? 'w-full md:w-auto md:min-w-[760px] lg:min-w-[920px] md:rounded-2xl md:border md:border-white/5 md:bg-background/80 md:backdrop-blur-xl md:shadow-[0_8px_32px_rgba(0,0,0,0.4)] md:mx-4 md:mt-3'
             : 'w-full bg-transparent md:mx-0 md:mt-0')
         }
       >
@@ -51,7 +51,7 @@ export default function Header() {
         </div>
 
         {/* Center — Nav */}
-        <nav className="hidden md:flex flex-1 items-center justify-center gap-7 text-sm">
+        <nav className="hidden md:flex flex-1 items-center justify-center gap-8 text-sm">
           {navLinks.map((link) => (
             <Link
               key={link.href}

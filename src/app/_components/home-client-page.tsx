@@ -4,9 +4,8 @@ import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { 
-  BrainCircuit, ChevronDown, UsersRound, GitFork, 
-  Globe, Code, BookOpen, HeartHandshake, MessageSquare,
-  Calendar, Quote, Rocket, ArrowRight, Disc, Infinity
+  BrainCircuit, ChevronDown, Code, BookOpen, HeartHandshake, MessageSquare,
+  Calendar, Quote, Rocket, ArrowRight, Disc
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
@@ -354,44 +353,6 @@ export default function HomeClientPage() {
           >
             <span className="text-[10px] text-gray-500 tracking-[0.2em] uppercase">Scroll</span>
             <ChevronDown className="h-3 w-3 text-gray-500 animate-bounce" />
-          </motion.div>
-        </section>
-
-        <section className="relative w-full py-8 md:py-10 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/[0.02] to-transparent pointer-events-none" />
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, margin: '-50px' }}
-            transition={{ duration: 1 }}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-primary/[0.04] rounded-full blur-[120px] pointer-events-none"
-          />
-          <motion.div
-            variants={staggerVariants(0.08)}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-50px' }}
-            className="container mx-auto px-4"
-          >
-            <motion.div variants={itemVariant()} className="max-w-3xl mx-auto">
-              <div className="flex items-center justify-center gap-6 md:gap-10 py-2">
-                {[
-                  { icon: <UsersRound className="h-4 w-4" />, value: '200+', label: 'AI Enthusiasts' },
-                  { icon: <GitFork className="h-4 w-4" />, value: '150+', label: 'Projects Built' },
-                  { icon: <Globe className="h-4 w-4" />, value: '50+', label: 'Countries' },
-                  { icon: <Infinity className="h-4 w-4" />, value: '∞', label: 'Infinite Possibilities' },
-                ].map((stat, i) => (
-                  <React.Fragment key={stat.label}>
-                    <div className="flex flex-col items-center gap-1.5 text-center">
-                      <div className="text-primary/50">{stat.icon}</div>
-                      <span className="text-base md:text-xl font-headline text-white/90 leading-none">{stat.value}</span>
-                      <span className="text-[10px] md:text-xs text-slate-500 tracking-wide">{stat.label}</span>
-                    </div>
-                    {i < 3 && <div className="w-px h-8 bg-white/[0.06] self-center" />}
-                  </React.Fragment>
-                ))}
-              </div>
-            </motion.div>
           </motion.div>
         </section>
 
