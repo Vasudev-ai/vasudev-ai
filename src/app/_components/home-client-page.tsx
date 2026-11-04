@@ -244,7 +244,7 @@ export default function HomeClientPage() {
               className="text-center space-y-3"
             >
               {/* --- Title --- */}
-              <h1 className="text-5xl font-headline font-bold bg-clip-text text-transparent bg-gradient-to-b from-white via-gray-100 to-gray-400 tracking-tight leading-none"
+              <h1 className="text-5xl font-headline bg-clip-text text-transparent bg-gradient-to-b from-white via-gray-100 to-gray-400 tracking-tight leading-none"
                 style={{ filter: 'drop-shadow(0 0 40px hsl(var(--primary)/0.2))' }}
               >
                 Vasudev AI
@@ -296,7 +296,7 @@ export default function HomeClientPage() {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.25, ease: 'easeOut' }}
-                className="text-3xl font-headline font-bold bg-clip-text text-transparent bg-gradient-to-b from-white via-gray-100 to-gray-400 tracking-tight text-center leading-none"
+                className="text-3xl font-headline bg-clip-text text-transparent bg-gradient-to-b from-white via-gray-100 to-gray-400 tracking-tight text-center leading-none"
                 style={{ filter: 'drop-shadow(0 0 30px hsl(var(--primary)/0.2))' }}
               >
                 Vasudev AI
@@ -373,21 +373,21 @@ export default function HomeClientPage() {
             viewport={{ once: true, margin: '-50px' }}
             className="container mx-auto px-4"
           >
-            <motion.div variants={itemVariant()} className="rounded-2xl bg-card/30 backdrop-blur-md border border-white/5 py-4 md:py-5 px-3 md:px-5 shadow-lg max-w-2xl mx-auto">
-              <div className="flex items-center justify-center gap-0">
+            <motion.div variants={itemVariant()} className="max-w-3xl mx-auto">
+              <div className="flex items-center justify-center gap-6 md:gap-10 py-2">
                 {[
-                  { icon: <UsersRound className="h-4 w-4 md:h-5 md:w-5" />, value: '200+', label: 'AI Enthusiasts' },
-                  { icon: <GitFork className="h-4 w-4 md:h-5 md:w-5" />, value: '150+', label: 'Projects Built' },
-                  { icon: <Globe className="h-4 w-4 md:h-5 md:w-5" />, value: '50+', label: 'Countries' },
-                  { icon: <Infinity className="h-4 w-4 md:h-5 md:w-5" />, value: '∞', label: 'Infinite Possibilities' },
+                  { icon: <UsersRound className="h-4 w-4" />, value: '200+', label: 'AI Enthusiasts' },
+                  { icon: <GitFork className="h-4 w-4" />, value: '150+', label: 'Projects Built' },
+                  { icon: <Globe className="h-4 w-4" />, value: '50+', label: 'Countries' },
+                  { icon: <Infinity className="h-4 w-4" />, value: '∞', label: 'Infinite Possibilities' },
                 ].map((stat, i) => (
                   <React.Fragment key={stat.label}>
-                    <div className="flex flex-col items-center gap-1 flex-1 justify-center px-1 md:px-3">
-                      <div className="text-primary/60">{stat.icon}</div>
-                      <span className="text-sm md:text-lg font-headline font-bold text-white leading-tight">{stat.value}</span>
-                      <span className="text-[9px] md:text-[11px] text-gray-400 whitespace-nowrap">{stat.label}</span>
+                    <div className="flex flex-col items-center gap-1.5 text-center">
+                      <div className="text-primary/50">{stat.icon}</div>
+                      <span className="text-base md:text-xl font-headline text-white/90 leading-none">{stat.value}</span>
+                      <span className="text-[10px] md:text-xs text-slate-500 tracking-wide">{stat.label}</span>
                     </div>
-                    {i < 3 && <div className="w-px h-8 md:h-10 bg-white/5 self-center" />}
+                    {i < 3 && <div className="w-px h-8 bg-white/[0.06] self-center" />}
                   </React.Fragment>
                 ))}
               </div>
@@ -411,42 +411,33 @@ export default function HomeClientPage() {
             viewport={{ once: true, margin: '-100px' }}
             className="container mx-auto px-4 relative"
           >
-            <motion.div variants={itemVariant()} className="text-center mb-14">
-              <h2 className="text-3xl md:text-5xl font-headline font-bold text-white mb-4">
+            <motion.div variants={itemVariant()} className="text-center mb-12">
+              <h2 className="text-2xl md:text-4xl font-headline text-white/90 mb-3">
                 This is <span className="bg-clip-text text-transparent bg-gradient-to-r from-accent to-primary">the Vibe</span>
               </h2>
-              <p className="text-base md:text-lg text-gray-400 max-w-2xl mx-auto">
+              <p className="text-sm md:text-base text-slate-400 max-w-xl mx-auto">
                 Not a corporation. Not an agency. A community that actually builds.
               </p>
             </motion.div>
-            <div className="flex flex-col lg:flex-row gap-5 lg:gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
               {vibeCards.map((card, i) => (
                 <motion.div
                   key={card.title}
-                  initial={{ opacity: 0, y: 40 }}
+                  initial={{ opacity: 0, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: '-50px' }}
-                  transition={{ duration: 0.5, delay: i * 0.15 }}
-                  className={`group flex-1 ${i === 1 ? 'lg:translate-y-6' : ''}`}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  className="group"
                 >
-                  <Card className="relative bg-card/30 border border-white/5 backdrop-blur-sm p-0 overflow-hidden h-full hover:border-accent/20 transition-all duration-500 shadow-lg hover:shadow-[0_0_40px_-10px_hsl(var(--accent)/0.15)]">
-                    <div className={`h-1.5 w-full bg-gradient-to-r ${card.color}`} />
-                    <div className="p-7 md:p-8 relative">
-                      <span className={`absolute top-7 right-7 text-5xl md:text-6xl font-headline font-bold ${card.iconColor}/10 select-none`}>
-                        {String(i + 1).padStart(2, '0')}
-                      </span>
-                      <div className={`absolute -top-20 -right-20 w-48 h-48 rounded-full blur-3xl ${card.iconBg} opacity-0 group-hover:opacity-60 transition-all duration-700`} />
-                      <CardContent className="relative z-10 p-0">
-                        <div className={`${card.iconBg} ${card.iconColor} rounded-xl p-3.5 inline-flex mb-5 border border-white/5 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-current/20 transition-all duration-500`}>
-                          {card.icon}
-                        </div>
-                        <h3 className="text-xl md:text-2xl font-headline font-bold text-white mb-3 group-hover:text-accent transition-colors duration-300">{card.title}</h3>
-                        <p className="text-sm md:text-base text-gray-400 group-hover:text-gray-300 transition-colors duration-300 leading-relaxed">
-                          {card.desc}
-                        </p>
-                      </CardContent>
+                  <div className="h-full rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 md:p-7 transition-colors duration-300 hover:border-white/[0.12] hover:bg-white/[0.03]">
+                    <div className={`${card.iconColor} mb-5 opacity-80 group-hover:opacity-100 transition-opacity duration-300`}>
+                      {card.icon}
                     </div>
-                  </Card>
+                    <h3 className="text-lg md:text-xl font-headline text-white/90 mb-2 group-hover:text-accent transition-colors duration-300">{card.title}</h3>
+                    <p className="text-sm text-slate-400 leading-relaxed">
+                      {card.desc}
+                    </p>
+                  </div>
                 </motion.div>
               ))}
             </div>
@@ -469,7 +460,7 @@ export default function HomeClientPage() {
               viewport={{ once: true, margin: '-100px' }}
             >
               <motion.div variants={itemVariant()} className="text-center mb-14">
-                <h2 className="text-3xl md:text-5xl font-headline font-bold text-white mb-4">
+                <h2 className="text-3xl md:text-5xl font-headline text-white mb-4">
                   What <span className="bg-clip-text text-transparent bg-gradient-to-r from-accent to-primary">We&apos;re Building</span>
                 </h2>
                 <p className="text-base md:text-lg text-gray-400 max-w-2xl mx-auto">
@@ -489,7 +480,7 @@ export default function HomeClientPage() {
                             {proj.status}
                           </span>
                         </div>
-                        <h3 className="text-base font-headline font-bold text-white mb-1.5 group-hover:text-accent transition-colors duration-300">{proj.title}</h3>
+                        <h3 className="text-base font-headline text-white mb-1.5 group-hover:text-accent transition-colors duration-300">{proj.title}</h3>
                         <p className="text-sm text-gray-400 leading-relaxed">{proj.desc}</p>
                       </CardContent>
                     </Card>
@@ -523,7 +514,7 @@ export default function HomeClientPage() {
               viewport={{ once: true, margin: '-100px' }}
             >
               <motion.div variants={itemVariant()} className="text-center mb-14">
-                <h2 className="text-3xl md:text-5xl font-headline font-bold text-white mb-4">
+                <h2 className="text-3xl md:text-5xl font-headline text-white mb-4">
                   Fresh from <span className="bg-clip-text text-transparent bg-gradient-to-r from-accent to-primary">the Community</span>
                 </h2>
                 <p className="text-base md:text-lg text-gray-400 max-w-2xl mx-auto">
@@ -532,7 +523,7 @@ export default function HomeClientPage() {
               </motion.div>
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
                 <div className="space-y-4">
-                  <h3 className="text-lg font-headline font-bold text-white/80 mb-5 flex items-center gap-2">
+                  <h3 className="text-lg font-headline text-white/80 mb-5 flex items-center gap-2">
                     <Calendar className="h-4 w-4 text-accent" /> Upcoming Events
                   </h3>
                   {communityEvents.map((evt) => (
@@ -541,7 +532,7 @@ export default function HomeClientPage() {
                         <span className="text-accent">{evt.icon}</span>
                       </div>
                       <div className="min-w-0">
-                        <h4 className="text-sm font-headline font-bold text-white group-hover:text-accent transition-colors duration-300">{evt.title}</h4>
+                        <h4 className="text-sm font-headline text-white group-hover:text-accent transition-colors duration-300">{evt.title}</h4>
                         <p className="text-[11px] text-accent font-semibold mt-0.5">{evt.date}</p>
                         <p className="text-xs text-gray-400 mt-1.5">{evt.desc}</p>
                       </div>
@@ -549,7 +540,7 @@ export default function HomeClientPage() {
                   ))}
                 </div>
                 <div className="space-y-4">
-                  <h3 className="text-lg font-headline font-bold text-white/80 mb-5 flex items-center gap-2">
+                  <h3 className="text-lg font-headline text-white/80 mb-5 flex items-center gap-2">
                     <Quote className="h-4 w-4 text-accent" /> Voices
                   </h3>
                   {testimonials.map((t) => (
@@ -558,7 +549,7 @@ export default function HomeClientPage() {
                         {t.quote}
                       </blockquote>
                       <div className="text-right">
-                        <p className="text-sm font-headline font-bold text-white">{t.name}</p>
+                        <p className="text-sm font-headline text-white">{t.name}</p>
                         <p className="text-xs text-accent">{t.role}</p>
                       </div>
                     </div>
@@ -593,7 +584,7 @@ export default function HomeClientPage() {
                         </svg>
                       </div>
                       <div>
-                        <h2 className="text-3xl md:text-4xl font-headline font-bold bg-clip-text text-transparent bg-gradient-to-r from-accent to-primary">
+                        <h2 className="text-3xl md:text-4xl font-headline bg-clip-text text-transparent bg-gradient-to-r from-accent to-primary">
                           Learnivo AI
                         </h2>
                         <p className="text-sm text-gray-400 mt-0.5">by Vasudev AI Community</p>
@@ -646,7 +637,7 @@ export default function HomeClientPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
-              className="text-3xl md:text-5xl lg:text-6xl font-headline font-bold bg-clip-text text-transparent bg-gradient-to-r from-accent via-accent/80 to-primary mb-4"
+              className="text-2xl md:text-4xl font-headline bg-clip-text text-transparent bg-gradient-to-r from-accent via-accent/80 to-primary mb-3"
             >
               Show Up. Build. Belong.
             </motion.h2>
@@ -655,37 +646,103 @@ export default function HomeClientPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.1 }}
-              className="mt-4 text-base md:text-lg text-gray-300 max-w-2xl mx-auto"
+              className="mt-2 text-sm md:text-base text-gray-400 max-w-xl mx-auto"
             >
-              200+ members are already building the future. Pick your gateway.
+              Many of you are already building. Pick your gateway.
             </motion.p>
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.2 }}
-              className="mt-10 flex flex-col sm:flex-row justify-center items-center gap-4"
+              className="mt-8 max-w-4xl mx-auto"
             >
-              <Button asChild size="lg" className="w-full sm:w-auto bg-[#5865F2] hover:bg-[#5865F2]/90 text-white font-bold text-lg px-10 py-6 rounded-full shadow-[0_0_25px_#5865F266] transition-all duration-300 hover:shadow-[0_0_40px_#5865F266] hover:scale-105">
-                <Link href="https://discord.gg/e5uPQDXSSk" target="_blank" rel="noopener noreferrer">
-                  <Disc className="mr-2 h-6 w-6" /> Join on Discord
-                </Link>
-              </Button>
-              <Button asChild size="lg" className="w-full sm:w-auto bg-[#25D366] hover:bg-[#25D366]/90 text-white font-bold text-lg px-10 py-6 rounded-full shadow-[0_0_25px_#25D36666] transition-all duration-300 hover:shadow-[0_0_40px_#25D36666] hover:scale-105">
-                <Link href="https://chat.whatsapp.com/G29jEKT2GZK5t9rQ3T6dBi" target="_blank" rel="noopener noreferrer">
-                  <FaWhatsapp className="mr-2 h-6 w-6" /> Join on WhatsApp
-                </Link>
-              </Button>
+              {/* Animated border shine wrapper */}
+              <div className="relative rounded-3xl p-[1.5px] overflow-hidden">
+                <div className="absolute inset-[-40%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_0deg,transparent_0deg,#5865F2_40deg,#ffffff_70deg,#25D366_100deg,transparent_140deg,transparent_360deg)] opacity-90" />
+                <div className="relative grid grid-cols-1 md:grid-cols-2 rounded-3xl overflow-hidden bg-[#03060C]">
+                  {/* Left: Discord */}
+                  <Link
+                    href="https://discord.gg/e5uPQDXSSk"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group/left relative flex flex-col justify-between gap-4 p-6 md:p-8 bg-gradient-to-br from-[#5865F2]/35 via-[#5865F2]/12 to-transparent transition-all duration-500 hover:from-[#5865F2]/55 hover:via-[#5865F2]/25 hover:-translate-y-1 hover:shadow-[0_20px_60px_-15px_#5865F266]"
+                  >
+                    <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover/left:opacity-100 bg-[radial-gradient(circle_at_30%_20%,#5865F240,transparent_60%)]" />
+                    <div className="flex items-center gap-4">
+                      <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#5865F2]/30 text-white ring-1 ring-[#5865F2]/40 transition-transform duration-300 group-hover/left:scale-110 group-hover/left:rotate-[-6deg]">
+                        <Disc className="h-5 w-5" />
+                      </span>
+                      <div>
+                        <p className="text-[10px] uppercase tracking-[0.3em] text-white/60">Gateway 01</p>
+                        <h3 className="text-lg md:text-xl font-headline text-white">Discord</h3>
+                      </div>
+                    </div>
+                    <div>
+                      <p className="text-sm text-white/70 leading-relaxed mb-5">
+                        Chat, ship, hang out. The main hub where builders actually build.
+                      </p>
+                      <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white ring-1 ring-white/15 transition-all duration-300 group-hover/left:bg-white/20 group-hover/left:gap-3">
+                        Join on Discord <span className="transition-transform duration-300 group-hover/left:translate-x-1">→</span>
+                      </span>
+                    </div>
+                    {/* shaped edge highlight */}
+                    <div className="pointer-events-none absolute -right-px top-0 h-full w-px bg-gradient-to-b from-transparent via-white/20 to-transparent" />
+                  </Link>
+
+                  {/* Right: WhatsApp */}
+                  <Link
+                    href="https://chat.whatsapp.com/G29jEKT2GZK5t9rQ3T6dBi"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group/right relative flex flex-col justify-between gap-4 p-6 md:p-8 bg-gradient-to-bl from-[#25D366]/35 via-[#25D366]/12 to-transparent transition-all duration-500 hover:from-[#25D366]/55 hover:via-[#25D366]/25 hover:-translate-y-1 hover:shadow-[0_20px_60px_-15px_#25D36666]"
+                  >
+                    <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover/right:opacity-100 bg-[radial-gradient(circle_at_70%_20%,#25D36640,transparent_60%)]" />
+                    <div className="flex items-center gap-4">
+                      <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#25D366]/30 text-white ring-1 ring-[#25D366]/40 transition-transform duration-300 group-hover/right:scale-110 group-hover/right:rotate-[6deg]">
+                        <FaWhatsapp className="h-5 w-5" />
+                      </span>
+                      <div>
+                        <p className="text-[10px] uppercase tracking-[0.3em] text-white/60">Gateway 02</p>
+                        <h3 className="text-lg md:text-xl font-headline text-white">WhatsApp</h3>
+                      </div>
+                    </div>
+                    <div>
+                      <p className="text-sm text-white/70 leading-relaxed mb-5">
+                        Quick updates and community pings. Stay in the loop on the go.
+                      </p>
+                      <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white ring-1 ring-white/15 transition-all duration-300 group-hover/right:bg-white/20 group-hover/right:gap-3">
+                        Join on WhatsApp <span className="transition-transform duration-300 group-hover/right:translate-x-1">→</span>
+                      </span>
+                    </div>
+                  </Link>
+
+                  {/* Shaped divider (glowing, non-straight) */}
+                  <div className="pointer-events-none absolute left-1/2 top-0 hidden h-full -translate-x-1/2 md:flex items-center">
+                    <svg width="40" height="100%" viewBox="0 0 40 400" preserveAspectRatio="none" className="h-full">
+                      <defs>
+                        <linearGradient id="divGrad" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stopColor="transparent" />
+                          <stop offset="20%" stopColor="#5865F2" stopOpacity="0.9" />
+                          <stop offset="50%" stopColor="#ffffff" stopOpacity="1" />
+                          <stop offset="80%" stopColor="#25D366" stopOpacity="0.9" />
+                          <stop offset="100%" stopColor="transparent" />
+                        </linearGradient>
+                        <filter id="glow">
+                          <feGaussianBlur stdDeviation="2.5" result="b" />
+                          <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+                        </filter>
+                      </defs>
+                      <path d="M20,0 C28,60 12,120 20,200 C28,280 12,340 20,400" stroke="url(#divGrad)" strokeWidth="2" fill="none" filter="url(#glow)" />
+                      <circle cx="20" cy="200" r="4" fill="#fff" filter="url(#glow)" className="animate-pulse" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <p className="mt-6 text-center text-sm text-slate-500">
+                Free to join. No spam. Just builders.
+              </p>
             </motion.div>
-            <motion.p
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.4 }}
-              className="mt-6 text-sm text-gray-500"
-            >
-              Free to join. No spam. Just builders.
-            </motion.p>
           </div>
         </section>
       </div>
