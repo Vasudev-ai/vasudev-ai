@@ -483,17 +483,6 @@ export default function HomeClientPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-accent/[0.03] to-transparent" />
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/5 rounded-full blur-[120px]" />
           <div className="container mx-auto px-4 relative z-10">
-            <motion.p
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="mb-6 text-lg sm:text-xl md:text-2xl font-medium tracking-wide bg-gradient-to-r from-slate-200 via-cyan-200 to-slate-200 bg-clip-text text-transparent text-balance"
-            >
-              “तमसो मा ज्योतिर्गमय —{' '}
-              <span className="font-[family-name:var(--font-cinzel)]">Lead us from darkness to light.</span>
-              ”
-            </motion.p>
             <motion.h2
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -604,6 +593,17 @@ export default function HomeClientPage() {
               <p className="mt-6 text-center text-sm text-slate-500">
                 Free to join. No spam. Just builders.
               </p>
+              <motion.p
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                className="mt-8 text-center text-lg sm:text-xl md:text-2xl font-medium tracking-wide bg-gradient-to-r from-slate-200 via-cyan-200 to-slate-200 bg-clip-text text-transparent text-balance"
+              >
+                “तमसो मा ज्योतिर्गमय —{' '}
+                <span className="font-[family-name:var(--font-cinzel)]">Lead us from darkness to light.</span>
+                ”
+              </motion.p>
             </motion.div>
           </div>
         </section>
