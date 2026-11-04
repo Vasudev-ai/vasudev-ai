@@ -1,5 +1,5 @@
 import React from 'react';
-import { Cpu, Waves, MessageSquare, ToyBrick, Sprout, Music, GraduationCap } from 'lucide-react';
+import { Cpu, Waves, MessageSquare, ToyBrick, Sprout, Music, GraduationCap, Rocket } from 'lucide-react';
 
 export interface Project {
   icon: React.ReactNode;
@@ -140,5 +140,53 @@ export const projects: Project[] = [
     architecture: "A multi-tenant Next.js application. Genkit's image generation capabilities will be used to create invitation designs from text prompts. Firebase will handle user authentication, and Firestore will store event and guest data. ",
     githubUrl: "#",
     coverImage: "https://picsum.photos/seed/utsavy/1200/600",
+  },
+  {
+    icon: <Cpu className="h-8 w-8 md:h-10 md:w-10 text-accent" />,
+    title: "Vasudev AI Search",
+    slug: "vasudev-ai-search",
+    tagline: "Your browser. Your workspace. Your flow. A customizable productivity-first browser dashboard.",
+    status: 'Live',
+    isExternal: true,
+    liveUrl: "https://search.vasudevai.in",
+    features: ["Customizable Dashboard", "Focus Mode", "Pomodoro Timer", "Habit Tracker", "Quick Links", "Ambient Sounds", "Personalization"],
+    problemStatement: "Everyday browsing is fragmented across tabs, tools and distractions. Users juggle search, tasks, habits and focus with no single calm workspace.",
+    solution: "Vasudev AI Search transforms the new-tab experience into a personal digital workspace — search, quick access, focus sessions, task management, habit tracking and ambient experiences in one streamlined interface.",
+    techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
+    architecture: "A client-first dashboard with local settings, import/export via JSON, keyboard shortcuts and focus mode.",
+    githubUrl: "#",
+    coverImage: "https://picsum.photos/seed/search/1200/600",
+  },
+  {
+    icon: <GraduationCap className="h-8 w-8 md:h-10 md:w-10 text-accent" />,
+    title: "Vasudev AI Academy",
+    slug: "vasudev-ai-academy",
+    tagline: "From AI Users to AI Builders. Practical, project-driven AI education.",
+    status: 'Live',
+    isExternal: true,
+    liveUrl: "https://academy.vasudevai.in",
+    features: ["AI Bootcamps", "Live Workshops", "Project-Based Learning", "AI Agents", "Vibe Coding", "Automation", "Community Learning"],
+    problemStatement: "Most people remain AI users. There is a gap between curiosity and the ability to build real AI products.",
+    solution: "Academy empowers students, developers and curious minds through interactive workshops, guided cohorts and hands-on challenges — websites, AI applications, chatbots, intelligent agents and automation workflows.",
+    techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Firebase"],
+    architecture: "Cohort-based learning platform with live sessions, project tracking and certificates.",
+    githubUrl: "#",
+    coverImage: "https://picsum.photos/seed/academy/1200/600",
+  },
+  {
+    icon: <Rocket className="h-8 w-8 md:h-10 md:w-10 text-accent" />,
+    title: "Vasudev AI Arena",
+    slug: "vasudev-ai-arena",
+    tagline: "Build. Contribute. Grow. A gamified builder ecosystem.",
+    status: 'Live',
+    isExternal: true,
+    liveUrl: "https://arena.vasudevai.in",
+    features: ["Gamified Quests", "XP & Levels", "Leaderboards", "Open-Source Bounties", "Builder Profiles", "Achievements", "Seasonal Rewards"],
+    problemStatement: "Learning and contributing to open source lacks motivation, recognition and a sense of progression for new builders.",
+    solution: "Arena connects developers, students and creators through quests, open-source bounties, collaborative projects and seasonal challenges — earning XP, unlocking achievements and building a public record of progress.",
+    techStack: ["Next.js", "TypeScript", "Firebase", "Tailwind CSS"],
+    architecture: "Gamified platform with XP progression, leaderboards, builder profiles and Discord integration.",
+    githubUrl: "#",
+    coverImage: "https://picsum.photos/seed/arena/1200/600",
   },
 ];

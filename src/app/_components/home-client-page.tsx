@@ -4,11 +4,11 @@ import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { 
-  BrainCircuit, ChevronDown, Code, BookOpen, HeartHandshake, MessageSquare,
-  Calendar, Quote, Rocket, ArrowRight, Disc
+  ChevronDown, Code, BookOpen, HeartHandshake, MessageSquare,
+  Rocket, ArrowRight, Disc
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import Image from 'next/image';
+
 import Link from 'next/link';
 import { FaWhatsapp } from 'react-icons/fa6';
 import dynamic from 'next/dynamic';
@@ -115,44 +115,6 @@ const communityProjects = [
   },
 ];
 
-const communityEvents = [
-  {
-    icon: <BrainCircuit className="h-5 w-5" />,
-    title: 'AI Architect Masterclass',
-    date: 'TBA — 3 Days',
-    desc: 'Build and deploy LLM applications with hands-on guidance from the founder.',
-  },
-  {
-    icon: <Calendar className="h-5 w-5" />,
-    title: 'Weekly Community Sync',
-    date: 'Every Friday, 9 PM IST',
-    desc: 'Project updates, brainstorming, and community planning.',
-  },
-  {
-    icon: <Code className="h-5 w-5" />,
-    title: 'Vasudev Browser Hackathon',
-    date: 'Coming Soon',
-    desc: 'Contribute features to our open-source browser.',
-  },
-];
-
-const testimonials = [
-  {
-    name: 'Aman Dangi',
-    role: 'Co-Builder',
-    quote: '"Being part of Vasudev AI is like building the future in a family. The collaboration and vision here are unparalleled."',
-  },
-  {
-    name: 'Ashutosh K. Tripathi',
-    role: 'AI Engineer',
-    quote: '"Here, we get to architect intelligence that is not only powerful, but purposeful. It\'s a challenge that inspires me every day."',
-  },
-  {
-    name: 'Biswjeet',
-    role: 'UI/UX Designer',
-    quote: '"Design is the bridge between divinity and technology. I love creating experiences that feel both futuristic and deeply human."',
-  },
-];
 
 const PortalButton = ({ children, className, onActivate }: { children: React.ReactNode, className?: string, onActivate: () => void }) => {
   const [isActivating, setIsActivating] = useState(false);
@@ -380,24 +342,26 @@ export default function HomeClientPage() {
                 Not a corporation. Not an agency. A community that actually builds.
               </p>
             </motion.div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
               {vibeCards.map((card, i) => (
                 <motion.div
                   key={card.title}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, y: 40, rotate: -2 }}
+                  whileInView={{ opacity: 1, y: 0, rotate: 0 }}
                   viewport={{ once: true, margin: '-50px' }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="group"
+                  transition={{ duration: 0.7, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
+                  className="group relative"
                 >
-                  <div className="h-full rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 md:p-7 transition-colors duration-300 hover:border-white/[0.12] hover:bg-white/[0.03]">
-                    <div className={`${card.iconColor} mb-5 opacity-80 group-hover:opacity-100 transition-opacity duration-300`}>
-                      {card.icon}
+                  <div className={`absolute -inset-2 rounded-xl ${card.iconBg} blur-2xl opacity-0 group-hover:opacity-60 transition-opacity duration-700`} />
+                  <div className="relative h-full overflow-hidden rounded-xl border border-white/[0.08] bg-gradient-to-b from-white/[0.04] to-transparent p-7 md:p-8 transition-all duration-500 group-hover:border-white/[0.16] group-hover:-translate-y-2 group-hover:shadow-[0_30px_60px_-20px_rgba(0,0,0,0.5)]">
+                    <div className="absolute top-5 right-5 text-[10px] uppercase tracking-[0.3em] text-slate-500">
+                      0{i + 1}
                     </div>
-                    <h3 className="text-lg md:text-xl font-headline text-white/90 mb-2 group-hover:text-accent transition-colors duration-300">{card.title}</h3>
+                    <h3 className="text-xl md:text-2xl font-headline text-white mb-2 group-hover:text-accent transition-colors duration-300">{card.title}</h3>
                     <p className="text-sm text-slate-400 leading-relaxed">
                       {card.desc}
                     </p>
+                    <div className={`mt-6 h-px w-full bg-gradient-to-r ${card.color} opacity-40 group-hover:opacity-80 transition-opacity duration-500`} />
                   </div>
                 </motion.div>
               ))}
@@ -459,133 +423,59 @@ export default function HomeClientPage() {
           </div>
         </section>
 
-        <section className="relative w-full py-12 md:py-16 overflow-hidden">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 1.2 }}
-            className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[550px] h-[550px] bg-accent/[0.03] rounded-full blur-[120px] pointer-events-none"
-          />
-          <div className="container mx-auto px-4">
-            <motion.div
-              variants={staggerVariants(0.1)}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-100px' }}
-            >
-              <motion.div variants={itemVariant()} className="text-center mb-14">
-                <h2 className="text-3xl md:text-5xl font-headline text-white mb-4">
-                  Fresh from <span className="bg-clip-text text-transparent bg-gradient-to-r from-accent to-primary">the Community</span>
-                </h2>
-                <p className="text-base md:text-lg text-gray-400 max-w-2xl mx-auto">
-                  What&apos;s happening right now in our world.
-                </p>
-              </motion.div>
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
-                <div className="space-y-4">
-                  <h3 className="text-lg font-headline text-white/80 mb-5 flex items-center gap-2">
-                    <Calendar className="h-4 w-4 text-accent" /> Upcoming Events
-                  </h3>
-                  {communityEvents.map((evt) => (
-                    <div key={evt.title} className="group flex items-start gap-4 p-4 rounded-xl bg-card/30 border border-primary/5 hover:border-accent/20 hover:bg-card/50 transition-all duration-500">
-                      <div className="p-2.5 bg-accent/10 rounded-xl border border-accent/10 shrink-0">
-                        <span className="text-accent">{evt.icon}</span>
-                      </div>
-                      <div className="min-w-0">
-                        <h4 className="text-sm font-headline text-white group-hover:text-accent transition-colors duration-300">{evt.title}</h4>
-                        <p className="text-[11px] text-accent font-semibold mt-0.5">{evt.date}</p>
-                        <p className="text-xs text-gray-400 mt-1.5">{evt.desc}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                <div className="space-y-4">
-                  <h3 className="text-lg font-headline text-white/80 mb-5 flex items-center gap-2">
-                    <Quote className="h-4 w-4 text-accent" /> Voices
-                  </h3>
-                  {testimonials.map((t) => (
-                    <div key={t.name} className="group p-5 rounded-xl bg-card/30 border border-primary/5 hover:border-accent/20 hover:bg-card/50 transition-all duration-500">
-                      <blockquote className="text-sm text-gray-300 italic leading-relaxed border-l-2 border-accent/40 pl-4 mb-3">
-                        {t.quote}
-                      </blockquote>
-                      <div className="text-right">
-                        <p className="text-sm font-headline text-white">{t.name}</p>
-                        <p className="text-xs text-accent">{t.role}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </section>
 
         <section className="relative w-full py-16 md:py-20 overflow-hidden">
           <div className="absolute inset-0 pointer-events-none">
             <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full bg-accent/5 blur-3xl" />
             <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full bg-primary/5 blur-3xl" />
           </div>
-          <div className="container mx-auto px-4 relative z-10">
-            <div className="max-w-5xl mx-auto">
+           <div className="container mx-auto px-4 relative z-10">
+            <div className="max-w-6xl mx-auto">
               <div className="flex justify-center mb-6">
                 <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-accent border border-accent/40 rounded-full px-4 py-1.5 bg-accent/10 backdrop-blur-sm">
                   <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-                  Built by the Community
+                  Built by Us
                 </span>
               </div>
-              <div className="rounded-3xl border border-accent/30 bg-card/40 backdrop-blur-md p-8 md:p-12 shadow-2xl shadow-accent/10 relative overflow-hidden group hover:border-accent/50 transition-all duration-500">
-                <div className="absolute top-0 right-0 w-72 h-72 bg-accent/8 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none group-hover:bg-accent/15 transition-all duration-700" />
-                <div className="flex flex-col lg:flex-row items-start lg:items-center gap-10">
-                  <div className="flex-1 space-y-6">
-                    <div className="flex items-center gap-4">
-                      <div className="p-3.5 bg-accent/15 rounded-2xl border border-accent/30 group-hover:border-accent/50 group-hover:bg-accent/20 transition-all duration-500">
-                        <svg className="w-8 h-8 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 3.741-1.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" />
-                        </svg>
-                      </div>
-                      <div>
-                        <h2 className="text-3xl md:text-4xl font-headline bg-clip-text text-transparent bg-gradient-to-r from-accent to-primary">
-                          Learnivo AI
-                        </h2>
-                        <p className="text-sm text-gray-400 mt-0.5">by Vasudev AI Community</p>
-                      </div>
-                    </div>
-                    <p className="text-gray-300 text-lg leading-relaxed max-w-xl">
-                      Our flagship AI-powered learning platform. Built by community members, 
-                      Learnivo delivers <span className="text-accent font-semibold">personalized education</span> 
-                      that adapts to every learner&apos;s pace, style, and goals.
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {['AI Personalization', 'Adaptive Learning', 'Multi-language', 'Smart Quizzes', 'Progress Analytics'].map(f => (
-                        <span key={f} className="text-xs font-medium px-3 py-1.5 rounded-full border border-accent/25 bg-accent/8 text-accent/80 group-hover:border-accent/40 transition-all duration-300">
-                          {f}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                  <div className="w-full lg:w-auto lg:min-w-[300px]">
-                    <div className="rounded-2xl border border-accent/20 bg-black/30 p-6 text-center space-y-4 backdrop-blur-sm hover:border-accent/40 transition-all duration-500">
-                      <div className="inline-flex items-center gap-2 bg-green-500/15 border border-green-500/30 rounded-full px-3 py-1 text-xs font-semibold text-green-400">
-                        <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-                        Waitlist Open — Early Access
-                      </div>
-                      <h3 className="text-white font-bold text-lg leading-snug">
-                        Try what the community built
-                      </h3>
-                      <p className="text-gray-400 text-sm">
-                        Get early access to Learnivo AI before the public launch.
-                      </p>
-                      <Link href="https://learnivo.app" target="_blank" rel="noopener noreferrer" className="block w-full">
-                        <button className="w-full py-3.5 px-6 rounded-full font-bold text-sm uppercase tracking-wider text-black bg-gradient-to-r from-accent to-cyan-400 hover:from-cyan-400 hover:to-accent transition-all duration-300 shadow-lg shadow-accent/30 hover:shadow-accent/50 hover:scale-105 active:scale-95">
-                          Try Learnivo →
-                        </button>
-                      </Link>
-                    </div>
-                  </div>
-                </div>
+              <div className="text-center mb-10">
+                <h2 className="text-2xl md:text-4xl font-headline bg-clip-text text-transparent bg-gradient-to-r from-accent to-primary mb-3">
+                  One vision. Multiple innovations.
+                </h2>
+                <p className="text-sm md:text-base text-gray-400 max-w-2xl mx-auto">
+                  We build products that help people discover, learn, create and grow with technology.
+                </p>
               </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+                {[
+                  { name: 'Vasudev AI Search', tag: 'Discover', desc: 'A customizable productivity-first browser dashboard — search, focus, habits and ambient experiences in one workspace.', href: 'https://search.vasudevai.in', accent: 'text-cyan-300', glow: 'from-cyan-500/15 to-transparent' },
+                  { name: 'Vasudev AI Academy', tag: 'Learn', desc: 'Practical AI education — workshops, cohorts and hands-on projects that take you from AI user to AI builder.', href: 'https://academy.vasudevai.in', accent: 'text-purple-300', glow: 'from-purple-500/15 to-transparent' },
+                  { name: 'Vasudev AI Arena', tag: 'Build', desc: 'A gamified builder ecosystem — quests, XP, leaderboards and open-source bounties.', href: 'https://arena.vasudevai.in', accent: 'text-emerald-300', glow: 'from-emerald-500/15 to-transparent' },
+                  { name: 'Learnivo AI', tag: 'Transform', desc: 'An AI-powered education platform — intelligent lesson planning and personalized learning for educators.', href: 'https://learnivo.app', accent: 'text-amber-300', glow: 'from-amber-500/15 to-transparent' },
+                ].map((p, i) => (
+                  <motion.a
+                    key={p.name}
+                    href={p.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: i * 0.1 }}
+                    className="group relative overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6 transition-all duration-500 hover:border-white/[0.16] hover:-translate-y-1 hover:shadow-[0_20px_50px_-15px_rgba(0,0,0,0.5)]"
+                  >
+                    <div className={`absolute -top-12 -right-12 h-32 w-32 rounded-full bg-gradient-to-br ${p.glow} blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+                    <div className="relative">
+                      <div className="flex items-center justify-between mb-4">
+                        <span className={`text-[10px] uppercase tracking-[0.3em] ${p.accent}`}>{p.tag}</span>
+                        <span className="text-slate-600 group-hover:text-white transition-colors duration-300 text-sm">↗</span>
+                      </div>
+                      <h3 className="text-base md:text-lg font-headline text-white mb-2 group-hover:text-accent transition-colors duration-300">{p.name}</h3>
+                      <p className="text-xs text-slate-400 leading-relaxed">{p.desc}</p>
+                    </div>
+                  </motion.a>
+                ))}
             </div>
+          </div>
           </div>
         </section>
 
@@ -593,6 +483,17 @@ export default function HomeClientPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-accent/[0.03] to-transparent" />
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/5 rounded-full blur-[120px]" />
           <div className="container mx-auto px-4 relative z-10">
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              className="mb-6 text-lg sm:text-xl md:text-2xl font-medium tracking-wide bg-gradient-to-r from-slate-200 via-cyan-200 to-slate-200 bg-clip-text text-transparent text-balance"
+            >
+              “तमसो मा ज्योतिर्गमय —{' '}
+              <span className="font-[family-name:var(--font-cinzel)]">Lead us from darkness to light.</span>
+              ”
+            </motion.p>
             <motion.h2
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}

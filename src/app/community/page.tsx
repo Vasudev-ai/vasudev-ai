@@ -338,9 +338,17 @@ export default function CommunityPage() {
                     <span className="inline-flex items-center gap-2 text-sm text-gray-400">
                       <Images className="h-4 w-4" /> 29 photos
                     </span>
-                    <Link href="/contact" onClick={(e) => e.stopPropagation()} className="text-sm text-accent hover:underline font-semibold">
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        window.location.href = '/contact';
+                      }}
+                      className="text-sm text-accent hover:underline font-semibold cursor-pointer"
+                    >
                       Host at your campus →
-                    </Link>
+                    </button>
                   </div>
                 </div>
 
