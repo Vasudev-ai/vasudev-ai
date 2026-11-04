@@ -20,8 +20,10 @@ export default {
         '1000': '1000px',
       },
       fontFamily: {
-        body: ['var(--font-inter)'],
+        body: ['var(--font-jakarta)'],
         headline: ['var(--font-cinzel)'],
+        cinzel: ['var(--font-cinzel)'],
+        jakarta: ['var(--font-jakarta)'],
       },
       colors: {
         background: 'hsl(var(--background))',

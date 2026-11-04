@@ -1,0 +1,922 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>VASUDEV AI — THE NEXT WAVE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Cinzel+Decorative:wght@400;700;900&family=Noto+Serif+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0D0F1A; --cyan:#00E5FF; --gold:#FFC53D; --white:#F6FAFD;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1920px;height:1080px;background:#05060A;overflow:hidden;
+  font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
+#bg{position:absolute;inset:0;width:1920px;height:1080px}
+#ui{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden}
+.scene{position:absolute;inset:0;width:1920px;height:1080px;
+  opacity:0;visibility:hidden}
+
+/* ---------- shared kinetic text ---------- */
+.kt{position:absolute;left:0;right:0;text-align:center;
+  color:var(--white);font-weight:800;letter-spacing:-.01em;
+  text-transform:uppercase;line-height:1.02;
+  will-change:transform,opacity,filter}
+.kt .dim{opacity:.42;font-weight:600}
+.cyan{color:var(--cyan)} .gold{color:var(--gold)}
+.glow{filter:drop-shadow(0 0 34px rgba(0,229,255,.55))}
+.glowg{filter:drop-shadow(0 0 34px rgba(255,197,61,.55))}
+
+/* ---------- S1 ENERGY ---------- */
+#s1 .kt{top:430px;font-size:86px;font-weight:900}
+#s1 .streaks{position:absolute;inset:0}
+
+/* ---------- S2 BUILD-UP ---------- */
+#s2 .shot{position:absolute;overflow:hidden;border-radius:8px;
+  box-shadow:0 30px 90px rgba(0,0,0,.75);opacity:0}
+#s2 .shot img{width:100%;height:100%;object-fit:cover;display:block}
+#s2 .kt{top:840px;font-size:74px;font-weight:800}
+#s2 .code{position:absolute;font-family:ui-monospace,Consolas,monospace;
+  color:rgba(0,229,255,.5);font-size:26px;line-height:1.7;white-space:pre;
+  opacity:0;letter-spacing:.04em}
+
+/* ---------- S3 REVEAL ---------- */
+#s3 .sweep{position:absolute;top:0;bottom:0;width:420px;left:-500px;
+  background:linear-gradient(90deg,rgba(0,229,255,0),rgba(0,229,255,.9),#fff,rgba(0,229,255,.9),rgba(0,229,255,0));
+  filter:blur(6px);opacity:0}
+#s3 .emblemWrap{position:absolute;left:50%;top:300px;width:300px;height:300px;
+  transform:translateX(-50%);opacity:0}
+#s3 .emblemWrap img{position:absolute;left:50%;top:50%;width:174px;height:174px;
+  transform:translate(-50%,-50%);border-radius:34px;
+  box-shadow:0 0 70px rgba(0,229,255,.6)}
+#s3 .ring{position:absolute;left:50%;top:50%;border:1.5px solid rgba(0,229,255,.45);
+  border-radius:50%;transform:translate(-50%,-50%)}
+#s3 .word{position:absolute;left:0;right:0;top:634px;text-align:center;
+  font-family:'Cinzel Decorative',serif;font-weight:700;font-size:96px;
+  letter-spacing:.1em;color:var(--white);opacity:0;
+  text-shadow:0 0 54px rgba(0,229,255,.5)}
+#s3 .aw{position:absolute;left:0;right:0;top:768px;text-align:center;
+  font-weight:600;font-size:30px;letter-spacing:.52em;text-transform:uppercase;
+  color:var(--cyan);opacity:0;padding-left:.52em}
+#s3 .kt{top:880px;font-size:52px;font-weight:700}
+
+/* ---------- S4 ECOSYSTEM ---------- */
+#s4 .kt{top:150px;font-size:76px;font-weight:800}
+#s4 .cards{position:absolute;left:0;right:0;top:330px;height:520px}
+#s4 .card{position:absolute;top:0;width:398px;height:500px;
+  background:linear-gradient(180deg,rgba(15,22,38,.96),rgba(8,11,20,.96));
+  border:1px solid rgba(0,229,255,.3);border-radius:16px;overflow:hidden;
+  opacity:0;transform:translateY(60px);box-shadow:0 26px 70px rgba(0,0,0,.6)}
+#s4 .card .thumb{width:100%;height:264px;overflow:hidden;
+  background:#0A1220}
+#s4 .card .thumb img{width:100%;height:100%;object-fit:cover;display:block;
+  transform:scale(1.02)}
+#s4 .card .body{padding:26px 26px 0}
+#s4 .card .tag{font-size:19px;font-weight:800;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--cyan);margin-bottom:14px}
+#s4 .card .desc{font-size:22px;line-height:1.5;color:rgba(233,239,246,.72);
+  font-weight:500}
+#s4 .cascade{position:absolute;left:0;right:0;top:250px;text-align:center}
+#s4 .cascade .w{display:block;font-weight:900;font-size:104px;line-height:1.06;
+  letter-spacing:.02em;text-transform:uppercase;opacity:0;color:var(--white)}
+#s4 .one{position:absolute;left:0;right:0;top:486px;text-align:center;
+  font-weight:900;font-size:88px;text-transform:uppercase;letter-spacing:.04em;
+  color:var(--white);opacity:0;text-shadow:0 0 46px rgba(0,229,255,.55)}
+
+/* ---------- S5 PHILOSOPHY ---------- */
+#s5 .shloka{position:absolute;left:0;right:0;top:300px;text-align:center;
+  font-family:'Noto Serif Devanagari',serif;font-weight:700;font-size:118px;
+  color:var(--gold);opacity:0;
+  text-shadow:0 0 46px rgba(255,197,61,.6)}
+#s5 .kt{top:560px;font-size:62px;font-weight:800}
+
+/* ---------- S6 MOVEMENT ---------- */
+#s6 .mont{position:absolute;overflow:hidden;border-radius:10px;
+  border:2px solid rgba(0,229,255,.55);opacity:0;
+  box-shadow:0 24px 64px rgba(0,0,0,.72)}
+#s6 .mont img{width:100%;height:100%;object-fit:cover;display:block}
+#s6 .kt{top:760px;font-size:70px;font-weight:800}
+#s6 .big{top:404px;font-size:104px;font-weight:900}
+
+/* ---------- S7 FINAL ---------- */
+#s7 .shloka{position:absolute;left:0;right:0;top:88px;text-align:center;
+  font-family:'Noto Serif Devanagari',serif;font-weight:600;font-size:46px;
+  color:var(--gold);opacity:0;text-shadow:0 0 30px rgba(255,197,61,.5)}
+#s7 .emblemWrap{position:absolute;left:50%;top:214px;width:290px;height:290px;
+  transform:translateX(-50%);opacity:0}
+#s7 .emblemWrap img{position:absolute;left:50%;top:50%;width:168px;height:168px;
+  transform:translate(-50%,-50%);border-radius:33px;
+  box-shadow:0 0 76px rgba(0,229,255,.7)}
+#s7 .ring{position:absolute;left:50%;top:50%;border:1.5px solid rgba(0,229,255,.42);
+  border-radius:50%;transform:translate(-50%,-50%)}
+#s7 .word{position:absolute;left:0;right:0;top:544px;text-align:center;
+  font-family:'Cinzel Decorative',serif;font-weight:700;font-size:94px;
+  letter-spacing:.1em;color:var(--white);opacity:0;
+  text-shadow:0 0 54px rgba(0,229,255,.55)}
+#s7 .aw{position:absolute;left:0;right:0;top:676px;text-align:center;
+  font-weight:600;font-size:28px;letter-spacing:.5em;text-transform:uppercase;
+  color:var(--cyan);opacity:0;padding-left:.5em}
+#s7 .line1{position:absolute;left:0;right:0;top:774px;text-align:center;
+  font-weight:800;font-size:40px;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(246,250,253,.9);opacity:0}
+#s7 .line2{position:absolute;left:0;right:0;top:842px;text-align:center;
+  font-weight:900;font-size:58px;letter-spacing:.05em;text-transform:uppercase;
+  color:var(--white);opacity:0;text-shadow:0 0 44px rgba(0,229,255,.55)}
+#s7 .url{position:absolute;left:0;right:0;bottom:66px;text-align:center;
+  font-weight:700;font-size:30px;letter-spacing:.36em;color:rgba(0,229,255,.92);
+  text-transform:uppercase;opacity:0;padding-left:.36em}
+#s7 .burst{position:absolute;left:50%;top:360px;width:10px;height:10px;
+  border-radius:50%;transform:translate(-50%,-50%);opacity:0;
+  background:radial-gradient(circle,rgba(255,255,255,.95),rgba(0,229,255,.6) 42%,rgba(0,229,255,0) 72%)}
+
+/* full-frame flash used on beats */
+#flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none}
+/* vignette so type always reads */
+#vig{position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(120% 90% at 50% 50%,rgba(0,0,0,0) 46%,rgba(0,0,0,.62) 100%)}
+/* letterbox-ish top/bottom crush for a cinematic feel */
+#crush{position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(5,6,10,.55),rgba(0,0,0,0) 22%,rgba(0,0,0,0) 78%,rgba(5,6,10,.62))}
+</style>
+</head>
+<body>
+<canvas id="bg" width="1920" height="1080"></canvas>
+<div id="ui">
+
+  <!-- 1 · THE ENERGY -->
+  <section class="scene" id="s1">
+    <div class="kt" id="s1a"></div>
+    <div class="kt" id="s1b"></div>
+  </section>
+
+  <!-- 2 · THE BUILD-UP -->
+  <section class="scene" id="s2">
+    <div class="shot" id="shot1"><img src="assets/site_projects.png" alt=""></div>
+    <div class="shot" id="shot2"><img src="assets/products_crop.png" alt=""></div>
+    <div class="shot" id="shot3"><img src="assets/site_hero.png" alt=""></div>
+    <div class="code" id="code1"></div>
+    <div class="kt" id="s2t"></div>
+  </section>
+
+  <!-- 3 · THE REVEAL -->
+  <section class="scene" id="s3">
+    <div class="sweep" id="sweep3"></div>
+    <div class="emblemWrap" id="emb3">
+      <div class="ring" style="width:300px;height:300px"></div>
+      <div class="ring" style="width:238px;height:238px"></div>
+      <img src="assets/emblem.png" alt="Vasudev AI">
+    </div>
+    <div class="word" id="word3">VASUDEV AI</div>
+    <div class="aw" id="aw3">Awakening Intelligence</div>
+    <div class="kt" id="s3t"></div>
+  </section>
+
+  <!-- 4 · THE ECOSYSTEM -->
+  <section class="scene" id="s4">
+    <div class="kt" id="s4t"></div>
+    <div class="cards" id="cards4">
+      <div class="card" id="c4a">
+        <div class="thumb"><img src="assets/products_crop.png" alt=""></div>
+        <div class="body"><div class="tag">Products</div>
+          <div class="desc">Complete problems turned into practical, working solutions.</div></div>
+      </div>
+      <div class="card" id="c4b">
+        <div class="thumb"><img src="assets/site_projects.png" alt=""></div>
+        <div class="body"><div class="tag">Engineering</div>
+          <div class="desc">Powerful solutions engineered from hard problems.</div></div>
+      </div>
+      <div class="card" id="c4c">
+        <div class="thumb"><img src="assets/site_hero.png" alt=""></div>
+        <div class="body"><div class="tag">Learning</div>
+          <div class="desc">Complex concepts transformed into AI builders.</div></div>
+      </div>
+      <div class="card" id="c4d">
+        <div class="thumb"><img src="assets/site_community.png" alt=""></div>
+        <div class="body"><div class="tag">Community</div>
+          <div class="desc">Curious minds, developers and creators — connected.</div></div>
+      </div>
+    </div>
+    <div class="cascade" id="cascade4">
+      <span class="w cyan" id="w0">AI</span>
+      <span class="w" id="w1">Engineering</span>
+      <span class="w" id="w2">Education</span>
+      <span class="w" id="w3">Community</span>
+      <span class="w cyan" id="w4">Innovation</span>
+    </div>
+    <div class="one" id="one4">One connected ecosystem.</div>
+  </section>
+
+  <!-- 5 · THE PHILOSOPHY -->
+  <section class="scene" id="s5">
+    <div class="shloka" id="shloka5">&#2340;&#2350;&#2360;&#2379; &#2350;&#2366; &#2332;&#2381;&#2351;&#2379;&#2340;&#2367;&#2352;&#2381;&#2327;&#2350;&#2351;&#2404;</div>
+    <div class="kt gold" id="s5t"></div>
+  </section>
+
+  <!-- 6 · THE MOVEMENT -->
+  <section class="scene" id="s6">
+    <div class="mont" id="m6a"><img src="assets/DSC_0173.webp" alt=""></div>
+    <div class="mont" id="m6b"><img src="assets/DSC_0175.webp" alt=""></div>
+    <div class="mont" id="m6c"><img src="assets/DSC_0115.webp" alt=""></div>
+    <div class="mont" id="m6d"><img src="assets/DSC_0146.webp" alt=""></div>
+    <div class="kt" id="s6t"></div>
+    <div class="kt big glow" id="s6b"></div>
+  </section>
+
+  <!-- 7 · THE FINAL DROP -->
+  <section class="scene" id="s7">
+    <div class="burst" id="burst7"></div>
+    <div class="shloka" id="shloka7">&#2340;&#2350;&#2360;&#2379; &#2350;&#2366; &#2332;&#2381;&#2351;&#2379;&#2340;&#2367;&#2352;&#2381;&#2327;&#2350;&#2351;&#2404;</div>
+    <div class="emblemWrap" id="emb7">
+      <div class="ring" style="width:290px;height:290px"></div>
+      <div class="ring" style="width:230px;height:230px"></div>
+      <img src="assets/emblem.png" alt="Vasudev AI">
+    </div>
+    <div class="word" id="word7">VASUDEV AI</div>
+    <div class="aw" id="aw7">Awakening Intelligence</div>
+    <div class="line1" id="ln1_7">Building Intelligence. Empowering Innovation.</div>
+    <div class="line2" id="ln2_7">The Next Wave Starts Here.</div>
+    <div class="url" id="url7">vasudevai.in</div>
+  </section>
+
+  <div id="vig"></div>
+  <div id="crush"></div>
+  <div id="flash"></div>
+</div>
+
+<script src="timeline.js"></script>
+<script>
+/* ==================================================================
+   VASUDEV AI — THE NEXT WAVE  |  every frame is a pure function of t
+   ================================================================== */
+const TL = window.TL, L = TL.lines;
+const $ = id => document.getElementById(id);
+const SC = ['s1','s2','s3','s4','s5','s6','s7'].map(id => $(id));
+
+/* scene boundaries = VO section starts; last scene is the extended finale */
+const B = [0, 7.515, 14.697, 20.038, 37.367, 44.825, 55.51, 85.0];
+
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const lerp=(a,b,x)=>a+(b-a)*x;
+const seg=(t,a,b)=>clamp((t-a)/(b-a));
+const outExpo=x=>x>=1?1:1-Math.pow(2,-10*x);
+const inExpo=x=>x<=0?0:Math.pow(2,10*(x-1));
+const outCubic=x=>1-Math.pow(1-x,3);
+const inCubic=x=>x*x*x;
+const outQuint=x=>1-Math.pow(1-x,5);
+const inQuint=x=>x*x*x*x*x;
+const outBack=x=>{const c1=1.9,c3=c1+1;
+  return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2)};
+const inOutQuint=x=>x<.5?16*x*x*x*x*x:1-Math.pow(-2*x+2,5)/2;
+
+/* deterministic PRNG so every seek gives the identical frame */
+function mulberry(a){return function(){a|=0;a=a+0x6D2B79F5|0;
+  let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;
+  return((t^t>>>14)>>>0)/4294967296}}
+
+/* ---------------- beat grid (128 BPM) ---------------- */
+const BPM=128, BEAT=60/BPM;
+const beatPhase=t=>((t%BEAT)/BEAT);
+const beatIdx=t=>Math.floor(t/BEAT);
+/* 0..1 pulse that spikes on every beat — drives the whole cut */
+function pulse(t){const p=beatPhase(t);return Math.pow(1-p,3.2)}
+/* half-bar accent (every 4 beats) — bigger */
+function accent(t){const b=beatIdx(t)%4;const p=(t%BEAT)/BEAT;
+  return b===0?Math.pow(1-p,4):Math.pow(1-p,3)*0.4}
+
+/* ---------------- text helpers ---------------- */
+function setText(el,txt){if(el._t!==txt){el.innerHTML=txt;el._t=txt}}
+
+/* kinetic slam-in: scale down from big, de-blur, and settle */
+function slam(el,t,inStart,inDur,holdEnd,outStart,outDur,scaleFrom){
+  const a=seg(t,inStart,inStart+inDur);
+  const b=outStart!=null?seg(t,outStart,outStart+outDur):0;
+  if(t<inStart||(outStart!=null&&t>=outStart+outDur)){
+    el.style.opacity=0;el.style.visibility='hidden';return false}
+  el.style.visibility='visible';
+  let op=clamp(a*1.35);
+  if(b>0)op*=1-clamp(b);
+  const e=outQuint(a);
+  const sc=lerp(scaleFrom===undefined?1.42:scaleFrom,1,e);
+  const blur=lerp(20,0,outCubic(a)) + b*16;
+  const ty=lerp(46,0,outQuint(a)) - b*40;
+  const tx=b*-90;
+  el.style.opacity=op;
+  el.style.transform=`translate(${tx}px,${ty}px) scale(${sc.toFixed(4)})`;
+  el.style.filter=blur>0.4?`blur(${blur.toFixed(2)}px)`:'none';
+  return true;
+}
+
+/* quick cut-in from a direction (whip) */
+function whip(el,t,start,dur,dirX,dirY){
+  const a=seg(t,start,start+dur);
+  if(t<start){el.style.opacity=0;el.style.visibility='hidden';return false}
+  const e=outQuint(a);
+  el.style.visibility='visible';
+  el.style.opacity=clamp(a*2.2);
+  el.style.transform=`translate(${lerp(dirX,0,e)}px,${lerp(dirY,0,e)}px)`;
+  return true;
+}
+
+/* ---------------- canvas background ---------------- */
+const cv=$('bg'), cx=cv.getContext('2d');
+const W=1920,H=1080;
+
+/* static seeded star/particle field */
+const rnd=mulberry(20261103);
+const STARS=[];for(let i=0;i<230;i++)STARS.push({x:rnd()*W,y:rnd()*H,
+  z:rnd(),s:rnd()*1.9+.5,ph:rnd()*6.28,sp:rnd()*.7+.3});
+const NODES=[];for(let i=0;i<46;i++)NODES.push({x:rnd()*W,y:rnd()*H,
+  vx:(rnd()-.5)*26,vy:(rnd()-.5)*26,ph:rnd()*6.28});
+const GLYPHS='01</>{}[]#=+*ABCDEF'; 
+
+function sceneOf(t){let i=0;for(let k=0;k<B.length-1;k++)if(t>=B[k])i=k;return i}
+
+function drawBG(t){
+  const si=sceneOf(t);
+  const local=t-B[si];
+  const pl=pulse(t), ac=accent(t);
+
+  /* base wash per scene */
+  cx.fillStyle='#05060A';cx.fillRect(0,0,W,H);
+
+  if(si===0){                       /* ENERGY — speed streaks on black */
+    const g=cx.createRadialGradient(W/2,H/2,0,W/2,H/2,900);
+    g.addColorStop(0,`rgba(0,60,90,${0.10+pl*0.16})`);
+    g.addColorStop(1,'rgba(0,0,0,0)');
+    cx.fillStyle=g;cx.fillRect(0,0,W,H);
+    cx.save();cx.globalCompositeOperation='lighter';
+    for(let i=0;i<STARS.length;i++){const s=STARS[i];
+      const len=lerp(70,340,(s.z))*(0.5+local*0.16);
+      const x=((s.x - local*(900+900*s.z))% (W+600)+(W+600))%(W+600)-300;
+      const y=s.y;
+      const gr=cx.createLinearGradient(x,y,x+len,y);
+      gr.addColorStop(0,'rgba(0,229,255,0)');
+      gr.addColorStop(.5,`rgba(0,229,255,${0.10+0.30*s.z+pl*0.2})`);
+      gr.addColorStop(1,'rgba(0,229,255,0)');
+      cx.strokeStyle=gr;cx.lineWidth=s.s*0.9+0.4;
+      cx.beginPath();cx.moveTo(x,y);cx.lineTo(x+len,y);cx.stroke();
+    }
+    cx.restore();
+  }
+  else if(si===1){                  /* BUILD-UP — fast perspective grid */
+    cx.save();
+    const horizon=H*0.46, speed=local*1.15;
+    cx.strokeStyle='rgba(0,229,255,0.20)';cx.lineWidth=1.4;
+    for(let i=0;i<26;i++){
+      let z=((i/26)+speed)%1;
+      const y=horizon+(z*z)*(H-horizon)*1.9;
+      const a=clamp(z*1.7)*0.7;
+      cx.globalAlpha=a;cx.beginPath();cx.moveTo(0,y);cx.lineTo(W,y);cx.stroke();
+    }
+    cx.globalAlpha=0.5;
+    const vpx=W/2;
+    for(let i=-16;i<=16;i++){
+      cx.beginPath();cx.moveTo(vpx+i*26,horizon);
+      cx.lineTo(vpx+i*190,H+200);cx.stroke();
+    }
+    cx.restore();
+    const g=cx.createRadialGradient(W/2,H*0.5,0,W/2,H*0.5,860);
+    g.addColorStop(0,`rgba(0,80,120,${0.10+pl*0.14})`);
+    g.addColorStop(1,'rgba(0,0,0,0)');
+    cx.fillStyle=g;cx.fillRect(0,0,W,H);
+  }
+  else if(si===2){                  /* REVEAL — cyan bloom */
+    const g=cx.createRadialGradient(W/2,H*0.4,0,W/2,H*0.4,1000);
+    const k=clamp(local/1.6);
+    g.addColorStop(0,`rgba(0,150,190,${0.10*k+0.12*pl})`);
+    g.addColorStop(.55,`rgba(0,60,95,${0.07*k})`);
+    g.addColorStop(1,'rgba(0,0,0,0)');
+    cx.fillStyle=g;cx.fillRect(0,0,W,H);
+    drawStars(t,0.55);
+  }
+  else if(si===3){                  /* ECOSYSTEM — equalizer bars */
+    cx.save();
+    const cols=64, bw=W/cols;
+    for(let i=0;i<cols;i++){
+      const n=0.5+0.5*Math.sin(i*0.62+local*4.2)*Math.sin(i*0.19-local*2.3);
+      const h=(40+n*250)*(0.55+pl*0.75);
+      const gr=cx.createLinearGradient(0,H,0,H-h);
+      gr.addColorStop(0,'rgba(0,229,255,0.16)');
+      gr.addColorStop(1,'rgba(0,229,255,0.0)');
+      cx.fillStyle=gr;cx.fillRect(i*bw+2,H-h,bw-4,h);
+    }
+    cx.restore();
+    drawStars(t,0.4);
+    const g2=cx.createRadialGradient(W/2,H*0.5,0,W/2,H*0.5,980);
+    g2.addColorStop(0,`rgba(0,70,110,${0.10+pl*0.12})`);
+    g2.addColorStop(1,'rgba(0,0,0,0)');
+    cx.fillStyle=g2;cx.fillRect(0,0,W,H);
+  }
+  else if(si===4){                  /* PHILOSOPHY — gold bloom + rising motes */
+    const g=cx.createRadialGradient(W/2,H*0.36,0,W/2,H*0.36,980);
+    g.addColorStop(0,`rgba(150,105,20,${0.16+pl*0.10})`);
+    g.addColorStop(.5,`rgba(90,60,10,${0.09})`);
+    g.addColorStop(1,'rgba(0,0,0,0)');
+    cx.fillStyle=g;cx.fillRect(0,0,W,H);
+    cx.save();cx.globalCompositeOperation='lighter';
+    for(let i=0;i<STARS.length;i++){const s=STARS[i];
+      const y=((s.y - local*70*s.sp)%(H+80)+(H+80))%(H+80)-40;
+      const a=(0.14+0.34*s.z)*(0.6+pl*0.6);
+      cx.fillStyle=`rgba(${s.z>.6?'255,197,61':'0,229,255'},${a})`;
+      cx.beginPath();cx.arc(s.x,y,s.s*0.85,0,6.28);cx.fill();
+    }
+    cx.restore();
+  }
+  else if(si===5){                  /* MOVEMENT — light rays + dust */
+    cx.save();cx.globalCompositeOperation='lighter';
+    for(let i=0;i<7;i++){
+      const x=W*0.5+Math.sin(local*0.5+i*1.7)*W*0.42;
+      const gr=cx.createLinearGradient(x,0,x+340,H);
+      gr.addColorStop(0,`rgba(0,229,255,${0.055+pl*0.05})`);
+      gr.addColorStop(1,'rgba(0,229,255,0)');
+      cx.fillStyle=gr;cx.fillRect(x-170,0,340,H);
+    }
+    cx.restore();
+    drawStars(t,0.5);
+  }
+  else{                             /* FINAL — converging energy field */
+    const cxp=W/2, cyp=H*0.42;
+    const g=cx.createRadialGradient(cxp,cyp,0,cxp,cyp,1050);
+    const k=clamp((t-B[6])/6);
+    g.addColorStop(0,`rgba(0,140,180,${0.13*k+0.13*pl})`);
+    g.addColorStop(.5,`rgba(0,60,100,${0.08*k})`);
+    g.addColorStop(1,'rgba(0,0,0,0)');
+    cx.fillStyle=g;cx.fillRect(0,0,W,H);
+    /* particles pulled toward centre — energy gathering */
+    cx.save();cx.globalCompositeOperation='lighter';
+    const conv=clamp((t-63.5)/9);
+    for(let i=0;i<STARS.length;i++){const s=STARS[i];
+      const ang=s.ph+local*0.16*s.sp;
+      const rad=lerp(s.z*900+220, s.z*160+70, conv);
+      const x=cxp+Math.cos(ang)*rad*1.45;
+      const y=cyp+Math.sin(ang)*rad;
+      const a=(0.12+0.4*s.z)*(0.55+pl*0.7);
+      cx.fillStyle=`rgba(0,229,255,${a})`;
+      cx.beginPath();cx.arc(x,y,s.s*(1+conv*1.4),0,6.28);cx.fill();
+    }
+    cx.restore();
+    drawStars(t,0.35);
+  }
+
+  /* shared: faint node network in the mid scenes */
+  if(si>=1&&si<=5){
+    cx.save();cx.globalAlpha=0.34;cx.lineWidth=1;
+    cx.strokeStyle='rgba(0,229,255,0.30)';
+    for(let i=0;i<NODES.length;i++){
+      const a=NODES[i];
+      const ax=a.x+Math.sin(local*0.5+a.ph)*36+a.vx*local*0.4;
+      const ay=a.y+Math.cos(local*0.45+a.ph)*36+a.vy*local*0.4;
+      for(let j=i+1;j<NODES.length;j++){
+        const b=NODES[j];
+        const bx=b.x+Math.sin(local*0.5+b.ph)*36+b.vx*local*0.4;
+        const by=b.y+Math.cos(local*0.45+b.ph)*36+b.vy*local*0.4;
+        const d=Math.hypot(ax-bx,ay-by);
+        if(d<190){cx.globalAlpha=0.30*(1-d/190);
+          cx.beginPath();cx.moveTo(ax,ay);cx.lineTo(bx,by);cx.stroke()}
+      }
+      cx.globalAlpha=0.5;
+      cx.fillStyle='rgba(0,229,255,0.75)';
+      cx.beginPath();cx.arc(ax,ay,2.4,0,6.28);cx.fill();
+    }
+    cx.restore();
+  }
+}
+
+function drawStars(t,alpha){
+  cx.save();cx.globalCompositeOperation='lighter';
+  for(let i=0;i<STARS.length;i++){const s=STARS[i];
+    const tw=0.55+0.45*Math.sin(t*1.5*s.sp+s.ph);
+    cx.fillStyle=`rgba(200,240,255,${(0.16+0.5*s.z)*tw*alpha})`;
+    cx.beginPath();cx.arc(s.x,s.y,s.s,0,6.28);cx.fill();
+  }
+  cx.restore();
+}
+/* ================= element refs ================= */
+const s1a=$('s1a'), s1b=$('s1b'), s2t=$('s2t'), code1=$('code1');
+const shot1=$('shot1'), shot2=$('shot2'), shot3=$('shot3');
+const sweep3=$('sweep3'), emb3=$('emb3'), word3=$('word3'), aw3=$('aw3'), s3t=$('s3t');
+const R3=[...emb3.querySelectorAll('.ring')].map(r=>({el:r,
+  w:parseFloat(r.style.width), h:parseFloat(r.style.height)}));
+const s4t=$('s4t'), cascade4=$('cascade4'), one4=$('one4');
+const C4=[$('c4a'),$('c4b'),$('c4c'),$('c4d')];
+const CW=[$('w0'),$('w1'),$('w2'),$('w3'),$('w4')];
+const shloka5=$('shloka5'), s5t=$('s5t');
+const M6=[$('m6a'),$('m6b'),$('m6c'),$('m6d')], s6t=$('s6t'), s6b=$('s6b');
+const burst7=$('burst7'), shloka7=$('shloka7'), emb7=$('emb7'), word7=$('word7'),
+      aw7=$('aw7'), ln1_7=$('ln1_7'), ln2_7=$('ln2_7'), url7=$('url7');
+const R7=[...emb7.querySelectorAll('.ring')].map(r=>({el:r,
+  w:parseFloat(r.style.width), h:parseFloat(r.style.height)}));
+const flashEl=$('flash');
+
+/* fixed layout rects (set once) */
+function rect(el,x,y,w,h){el.style.left=x+'px';el.style.top=y+'px';
+  el.style.width=w+'px';el.style.height=h+'px';}
+rect(shot1,190,120,880,540);
+rect(shot2,860,214,880,540);
+rect(shot3,330,96,1260,610);
+rect(C4[0],134,330,398,500);
+rect(C4[1],552,330,398,500);
+rect(C4[2],970,330,398,500);
+rect(C4[3],1388,330,398,500);
+rect(M6[0],250,116,780,450);
+rect(M6[1],900,186,780,450);
+rect(M6[2],470,86,980,530);
+rect(M6[3],330,164,1260,466);
+rect(code1,300,170,1320,500);
+code1.style.padding='40px 46px';
+code1.style.background='linear-gradient(180deg,rgba(6,10,18,.96),rgba(4,7,14,.96))';
+code1.style.border='1px solid rgba(0,229,255,.35)';
+code1.style.borderRadius='12px';
+code1.style.boxShadow='0 30px 90px rgba(0,0,0,.75)';
+code1.style.fontSize='27px';
+code1.style.lineHeight='1.9';
+code1.style.textAlign='left';
+
+/* ---------------------------------------------------------------- S1 */
+const S1TXT=[
+ 'The world is <span class="cyan glow">moving faster</span>.',
+ 'Tech is <span class="cyan">evolving</span>.',
+ 'Intelligence is <span class="cyan glow">expanding</span>.',
+ "And we're just <span class='cyan'>getting started</span>."];
+function animS1(t){
+  let idx=-1;
+  for(let k=0;k<4;k++) if(t>=L[k].start-0.02 && t<L[k].end+0.08) idx=k;
+  const a=idx===3?s1b:s1a, o=idx===3?s1a:s1b;
+  o.style.opacity=0; o.style.visibility='hidden';
+  if(idx<0){a.style.opacity=0;a.style.visibility='hidden';return;}
+  setText(a,S1TXT[idx]);
+  const e=L[idx];
+  slam(a,t,e.start,0.26,null,e.end-0.04,0.12,1.36);
+}
+
+/* ---------------------------------------------------------------- S2 */
+const S2TXT=[
+ 'Ideas are <span class="cyan glow">everywhere</span>.',
+ 'Possibilities are <span class="cyan">endless</span>.',
+ 'But the <span class="cyan">real difference</span>?',
+ 'Is what you <span class="cyan glow">choose to build</span>.'];
+const SHOTS=[
+  [shot1,[[7.515,9.241]]],
+  [shot2,[[9.241,11.133]]],
+  [shot3,[[11.133,12.732]]]
+];
+function animShots(t){
+  for(const [el,wins] of SHOTS){
+    let on=false, s=0, e=0;
+    for(const w of wins) if(t>=w[0]&&t<w[1]){on=true;s=w[0];e=w[1];}
+    if(!on){el.style.opacity=0;el.style.visibility='hidden';continue;}
+    el.style.visibility='visible';
+    const a=seg(t,s,s+0.24), k=clamp((t-s)/(e-s));
+    el.style.opacity=clamp(a*1.7);
+    const sc=lerp(1.16,1,outQuint(a))*lerp(1.0,1.08,k);
+    const tx=lerp(90,0,outQuint(a));
+    el.style.transform=`translateX(${tx.toFixed(1)}px) scale(${sc.toFixed(4)})`;
+  }
+}
+const CODE='const wave = await vasudev.build({\n'+
+           '  mind:    "awakened",\n'+
+           '  stack:   ["AI","ENGINEERING","EDUCATION","COMMUNITY"],\n'+
+           '  signal:  NEXT_WAVE,\n'+
+           '});\n\n'+
+           '→ deploying intelligence …';
+function animCode(t){
+  const s=12.732, e=14.697;
+  if(t<s||t>=e){code1.style.opacity=0;code1.style.visibility='hidden';return;}
+  code1.style.visibility='visible';
+  const a=seg(t,s,s+0.22);
+  code1.style.opacity=clamp(a*1.6);
+  const n=Math.floor(clamp((t-s-0.15)/1.05)*CODE.length);
+  const cur='<span class="cyan">'+(((t*2|0)%2)?'▌':'▏')+'</span>';
+  setText(code1, CODE.slice(0,n)+ (n<CODE.length?cur:cur));
+  const sc=lerp(1.04,1,outQuint(a));
+  code1.style.transform=`scale(${sc.toFixed(4)})`;
+}
+function animS2(t){
+  animShots(t); animCode(t);
+  let idx=-1;
+  for(let k=4;k<=7;k++) if(t>=L[k].start-0.02 && t<L[k].end+0.08) idx=k;
+  if(idx<0){s2t.style.opacity=0;s2t.style.visibility='hidden';return;}
+  setText(s2t,S2TXT[idx-4]);
+  const e=L[idx];
+  slam(s2t,t,e.start,0.24,null,e.end-0.04,0.12,1.32);
+}
+
+/* ---------------------------------------------------------------- S3 */
+function animS3(t){
+  /* cyan light sweep across the screen on the reveal beat */
+  const sw0=14.697, swD=0.8;
+  if(t<sw0||t>=sw0+swD){sweep3.style.opacity=0;sweep3.style.visibility='hidden';}
+  else{
+    const sw=(t-sw0)/swD;
+    sweep3.style.visibility='visible';
+    sweep3.style.opacity=(sw<0.5?sw*2:(1-sw)*2).toFixed(3);
+    sweep3.style.transform=`translateX(${lerp(-560,2400,outQuint(sw)).toFixed(1)}px)`;
+  }
+  /* line 8 — the setup line */
+  if(t<16.59){
+    setText(s3t,'Meet the future of <span class="cyan glow">building</span>.');
+    slam(s3t,t,14.697,0.28,null,16.44,0.14,1.34);
+  }else{s3t.style.opacity=0;s3t.style.visibility='hidden';}
+
+  /* emblem + wordmark — the brand beat */
+  const e9=L[9].start;
+  if(t<e9){
+    emb3.style.opacity=0;emb3.style.visibility='hidden';
+    word3.style.opacity=0;word3.style.visibility='hidden';
+  }else{
+    emb3.style.visibility='visible';
+    const a=seg(t,e9,e9+0.55);
+    emb3.style.opacity=clamp(a*1.5);
+    emb3.style.transform=`translateX(-50%) scale(${lerp(1.7,1,outQuint(a)).toFixed(4)})`;
+    for(const r of R3){
+      const s=1+0.05*pulse(t)+0.10*outCubic(seg(t,e9,e9+1.4));
+      r.el.style.transform=`translate(-50%,-50%) scale(${s.toFixed(4)})`;
+    }
+    word3.style.visibility='visible';
+    slam(word3,t,e9+0.14,0.46,null,null,null,1.28);
+  }
+  /* tagline */
+  slam(aw3,t,L[10].start,0.5,null,null,null,1.10);
+}
+
+/* ---------------------------------------------------------------- S4 */
+const S4H=[
+ 'We build <span class="cyan glow">intelligent products</span>.',
+ 'Engineer <span class="cyan">powerful solutions</span>.',
+ 'Make learning more <span class="cyan glow">accessible</span>.',
+ 'Connect <span class="cyan">ambitious minds</span>.',
+ 'Turn <span class="cyan glow">bold ideas</span> into reality.'];
+const CARD_AT=[11,12,13,14];
+const W_IN=[0,0.78,1.62,2.48,3.38];
+function animS4(t){
+  /* headline: lines 11..15 */
+  const showHead = t>=L[11].start-0.02 && t<L[15].end+0.10;
+  if(showHead){
+    let idx=11;
+    for(let k=11;k<=15;k++) if(t>=L[k].start-0.02) idx=k;
+    setText(s4t,S4H[idx-11]);
+    slam(s4t,t,L[idx].start,0.24,null,L[idx].end-0.02,0.12,1.30);
+  }else{s4t.style.opacity=0;s4t.style.visibility='hidden';}
+
+  /* four product cards, one lights up per line, the rest sit as ghosts */
+  const glow = t>=L[15].start-0.02 && t<L[16].start-0.04;
+  for(let i=0;i<4;i++){
+    const el=C4[i], s=L[CARD_AT[i]].start;
+    const inScene = t>=L[11].start-0.02 && t<L[15].end+0.10;
+    if(!inScene){el.style.opacity=0;el.style.visibility='hidden';continue;}
+    el.style.visibility='visible';
+    const lit = t>=s-0.02;
+    if(!lit){
+      el.style.opacity='0.15';
+      el.style.transform='translateY(0px) scale(1)';
+      el.style.borderColor='rgba(0,229,255,.14)';
+      el.style.boxShadow='0 26px 70px rgba(0,0,0,.6)';
+      continue;
+    }
+    const a=seg(t,s,s+0.40);
+    el.style.opacity=clamp(a*1.5);
+    const ty=lerp(76,0,outQuint(a));
+    const sc=lerp(1.07,1,outQuint(a))*(glow?1.025:1);
+    el.style.transform=`translateY(${ty.toFixed(1)}px) scale(${sc.toFixed(4)})`;
+    if(glow){
+      const p=pulse(t);
+      el.style.borderColor='rgba(0,229,255,.9)';
+      el.style.boxShadow=`0 0 ${(26+46*p).toFixed(0)}px rgba(0,229,255,.5),0 26px 70px rgba(0,0,0,.6)`;
+    }else{
+      el.style.borderColor='rgba(0,229,255,.3)';
+      el.style.boxShadow='0 26px 70px rgba(0,0,0,.6)';
+    }
+  }
+
+  /* word cascade — AI / ENGINEERING / EDUCATION / COMMUNITY / INNOVATION */
+  const cs=L[16].start, ce=L[16].end;
+  const inC = t>=cs-0.02 && t<ce+0.10;
+  for(let i=0;i<5;i++){
+    const el=CW[i];
+    const s=cs+W_IN[i];
+    if(!inC||t<s){el.style.opacity=0;el.style.visibility='hidden';continue;}
+    el.style.visibility='visible';
+    const a=seg(t,s,s+0.38);
+    el.style.opacity=clamp(a*1.5);
+    const dir=i%2?126:-126;
+    el.style.transform=`translateX(${lerp(dir,0,outQuint(a)).toFixed(1)}px) scale(${lerp(1.34,1,outQuint(a)).toFixed(4)})`;
+  }
+
+  /* closing statement */
+  const on1 = t>=L[17].start-0.02 && t<L[17].end+0.30;
+  if(on1){
+    setText(one4,'One connected <span class="cyan glow">ecosystem</span>.');
+    slam(one4,t,L[17].start,0.32,null,L[17].end+0.06,0.22,1.42);
+  }else{one4.style.opacity=0;one4.style.visibility='hidden';}
+}
+
+/* ---------------------------------------------------------------- S5 */
+const S5TXT=[
+ 'From darkness to <span class="cyan">light</span>.',
+ 'From <span class="cyan">curiosity</span> to creation.',
+ 'From <span class="cyan">ideas</span> to innovation.'];
+function animS5(t){
+  const e18=L[18].start;
+  if(t<e18){shloka5.style.opacity=0;shloka5.style.visibility='hidden';}
+  else{
+    shloka5.style.visibility='visible';
+    const a=seg(t,e18,e18+0.75);
+    shloka5.style.opacity=clamp(a*1.35);
+    shloka5.style.transform=`translateY(${lerp(56,0,outQuint(a)).toFixed(1)}px) scale(${lerp(1.16,1,outQuint(a)).toFixed(4)})`;
+    shloka5.style.filter=`blur(${lerp(16,0,outCubic(a)).toFixed(2)}px)`;
+    const p=0.5+0.5*pulse(t);
+    shloka5.style.textShadow=`0 0 ${(34+30*p).toFixed(0)}px rgba(255,197,61,.6)`;
+  }
+  let idx=-1;
+  for(let k=19;k<=21;k++) if(t>=L[k].start-0.02 && t<L[k].end+0.08) idx=k;
+  if(idx<0){s5t.style.opacity=0;s5t.style.visibility='hidden';return;}
+  setText(s5t,S5TXT[idx-19]);
+  slam(s5t,t,L[idx].start,0.26,null,L[idx].end-0.04,0.14,1.30);
+}
+
+/* ---------------------------------------------------------------- S6 */
+const S6TXT=[
+ 'For the <span class="cyan glow">thinkers</span>.',
+ 'For the <span class="cyan">creators</span>.',
+ 'For the <span class="cyan glow">developers</span>.',
+ "For everyone <span class='cyan'>building what's next</span>."];
+const M_AT=[22,23,24,25];
+function animS6(t){
+  const mFull = t>=L[26].start-0.02 && t<L[27].end+0.30;
+
+  /* rapid montage cuts — one photo per line, whip-in + slow push */
+  const MR=[[250,116,780,450],[900,186,780,450],[470,86,980,530],[330,164,1260,466]];
+  for(let i=0;i<4;i++){
+    const el=M6[i];
+    if(mFull){ /* big statement: last frame goes full-bleed, darkened */
+      if(i!==3){el.style.opacity=0;el.style.visibility='hidden';continue;}
+      rect(el,0,0,1920,1080);
+      el.style.borderRadius='0px';
+      el.style.border='0px solid transparent';
+      el.style.boxShadow='none';
+      el.style.visibility='visible';
+      const k=clamp((t-L[26].start)/(L[27].end-L[26].start));
+      el.style.opacity=(0.30+0.10*pulse(t)).toFixed(3);
+      el.style.transform=`scale(${lerp(1.0,1.10,k).toFixed(4)})`;
+      continue;
+    }
+    const s=L[M_AT[i]].start;
+    const next=(i<3)?L[M_AT[i]+1].start:L[25].end+0.10;
+    const on = t>=s-0.02 && t<next;
+    if(!on){el.style.opacity=0;el.style.visibility='hidden';continue;}
+    const R=MR[i];
+    rect(el,R[0],R[1],R[2],R[3]);
+    el.style.borderRadius='10px';
+    el.style.border='2px solid rgba(0,229,255,.55)';
+    el.style.boxShadow='0 24px 64px rgba(0,0,0,.72)';
+    el.style.visibility='visible';
+    const a=seg(t,s,s+0.26), k=clamp((t-s)/(next-s));
+    el.style.opacity=clamp(a*1.7);
+    const dirX=[-150,150,-120,130][i];
+    const sc=lerp(1.14,1,outQuint(a))*lerp(1.0,1.07,k);
+    el.style.transform=`translateX(${lerp(dirX,0,outQuint(a)).toFixed(1)}px) scale(${sc.toFixed(4)})`;
+  }
+
+  /* headline lines 22..25 */
+  const showHead = t>=L[22].start-0.02 && t<L[25].end+0.10 && !mFull;
+  if(showHead){
+    let idx=22;
+    for(let k=22;k<=25;k++) if(t>=L[k].start-0.02) idx=k;
+    setText(s6t,S6TXT[idx-22]);
+    slam(s6t,t,L[idx].start,0.24,null,L[idx].end-0.04,0.12,1.32);
+  }else{s6t.style.opacity=0;s6t.style.visibility='hidden';}
+
+  /* the manifesto — lines 26, 27 */
+  if(mFull){
+    if(t<L[27].start-0.02){
+      setText(s6b,"We don't just <span class='dim'>follow</span> the future.");
+      slam(s6b,t,L[26].start,0.34,null,L[26].end-0.06,0.16,1.34);
+    }else{
+      setText(s6b,"We <span class='cyan glow'>build</span> it.");
+      slam(s6b,t,L[27].start,0.30,null,L[27].end+0.10,0.24,1.55);
+    }
+  }else{s6b.style.opacity=0;s6b.style.visibility='hidden';}
+}
+
+/* ---------------------------------------------------------------- S7 */
+const HITS=[[0,1.0],[7.515,.70],[14.697,.85],[16.59,1.0],[20.038,.70],
+            [30.336,.60],[37.367,.75],[44.825,.70],[51.693,.55],
+            [55.51,1.0],[60.105,.70]];
+function flashAmt(t){
+  let a=0;
+  for(const h of HITS){
+    if(t>=h[0]&&t<h[0]+0.40){const k=(t-h[0])/0.40;
+      a=Math.max(a,h[1]*(1-k)*(1-k));}
+  }
+  return a;
+}
+
+function animS7(t){
+  const e28=L[28].start;              /* 55.51 — the drop */
+  const FIN=63.5;                     /* VO ends → finale hold to 85 */
+
+  /* energy burst on the drop */
+  if(t<e28||t>e28+1.15){
+    burst7.style.opacity=0;burst7.style.visibility='hidden';
+  }else{
+    const k=clamp((t-e28)/1.15);
+    burst7.style.visibility='visible';
+    const sc=lerp(1,150,outQuint(clamp(k*1.5)));
+    burst7.style.transform=`translate(-50%,-50%) scale(${sc.toFixed(2)})`;
+    burst7.style.opacity=(Math.pow(1-k,1.7)).toFixed(3);
+  }
+
+  /* emblem + wordmark */
+  if(t<e28){
+    emb7.style.opacity=0;emb7.style.visibility='hidden';
+    word7.style.opacity=0;word7.style.visibility='hidden';
+  }else{
+    emb7.style.visibility='visible';
+    const a=seg(t,e28,e28+0.7);
+    emb7.style.opacity=clamp(a*1.5);
+    const push=lerp(1.0,1.06,clamp((t-FIN)/(85-FIN)));
+    emb7.style.transform=`translateX(-50%) scale(${(lerp(1.9,1,outQuint(a))*push).toFixed(4)})`;
+    const conv=clamp((t-FIN)/16);
+    for(const r of R7){
+      const s=1+0.05*pulse(t)+0.34*outCubic(conv);
+      r.el.style.transform=`translate(-50%,-50%) scale(${s.toFixed(4)})`;
+      r.el.style.opacity=(0.9-0.55*conv).toFixed(3);
+    }
+    word7.style.visibility='visible';
+    slam(word7,t,e28+0.18,0.5,null,null,null,1.30);
+  }
+
+  /* shloka + tagline live through the finale */
+  if(t<e28+0.5){shloka7.style.opacity=0;shloka7.style.visibility='hidden';}
+  else{
+    shloka7.style.visibility='visible';
+    const a=seg(t,e28+0.5,e28+1.4);
+    shloka7.style.opacity=(clamp(a)*0.92).toFixed(3);
+    shloka7.style.transform=`translateY(${lerp(30,0,outQuint(a)).toFixed(1)}px)`;
+  }
+  slam(aw7,t,57.4,0.7,null,null,null,1.08);
+
+  /* closing lines */
+  if(t>=L[29].start-0.02){
+    slam(ln1_7,t,L[29].start,0.42,null,null,null,1.24);
+  }else{ln1_7.style.opacity=0;ln1_7.style.visibility='hidden';}
+  if(t>=L[30].start-0.02){
+    slam(ln2_7,t,L[30].start,0.38,null,null,null,1.34);
+  }else{ln2_7.style.opacity=0;ln2_7.style.visibility='hidden';}
+  if(t>=L[31].start-0.02){
+    slam(url7,t,L[31].start,0.5,null,null,null,1.18);
+    /* URL gets a soft breathing glow through the hold */
+    const g=0.5+0.5*pulse(t);
+    url7.style.textShadow=`0 0 ${(18+26*g).toFixed(0)}px rgba(0,229,255,.75)`;
+  }else{url7.style.opacity=0;url7.style.visibility='hidden';}
+
+  /* slow fade to black on the very last beat */
+  const out=seg(t,83.4,85.0);
+  SC[6].style.opacity=(1-out).toFixed(3);
+}
+
+/* ---------------------------------------------------------------- camera */
+const PBASE=[1.045,1.040,1.050,1.035,1.045,1.040,1.070];
+function applyCam(si,t){
+  const s=B[si], e=B[si+1], u=clamp((t-s)/(e-s));
+  const el=SC[si];
+  let tx=Math.sin(u*3.1)*9, ty=Math.cos(u*2.3)*6;
+  let sc=lerp(1.0,PBASE[si],u), bl=0;
+  if(si>0&&t<s+0.18){                     /* whip-pan into the scene */
+    const w=outQuint(seg(t,s,s+0.18));
+    tx+=lerp(-230,0,w); sc*=lerp(1.17,1,w); bl=lerp(12,0,w);
+  }
+  el.style.transform=`translate(${tx.toFixed(2)}px,${ty.toFixed(2)}px) scale(${sc.toFixed(4)})`;
+  el.style.filter=bl>0.3?`blur(${bl.toFixed(2)}px)`:'none';
+}
+
+/* ---------------------------------------------------------------- seek */
+function seek(t){
+  t=Math.max(0,Math.min(TL.total,+t||0));
+  drawBG(t);
+  const si=sceneOf(t);
+  for(let k=0;k<SC.length;k++){
+    if(k===si){SC[k].style.visibility='visible';SC[k].style.opacity='1';}
+    else{SC[k].style.visibility='hidden';SC[k].style.opacity='0';
+         SC[k].style.transform='';SC[k].style.filter='';}
+  }
+  applyCam(si,t);
+  cv.style.opacity=(1-seg(t,83.4,85.0)).toFixed(3);
+  if(si===0)animS1(t); else if(si===1)animS2(t); else if(si===2)animS3(t);
+  else if(si===3)animS4(t); else if(si===4)animS5(t); else if(si===5)animS6(t);
+  else animS7(t);
+  flashEl.style.opacity=(flashAmt(t)*0.55).toFixed(3);
+}
+window.seek=seek;
+
+function boot(){
+  seek(0);
+  window.__ready=true;
+}
+const fontsReady=(document.fonts&&document.fonts.ready)?document.fonts.ready:Promise.resolve();
+if(document.readyState==='complete') fontsReady.then(boot);
+else window.addEventListener('load',()=>fontsReady.then(boot));
+</script>
+</body>
+</html>

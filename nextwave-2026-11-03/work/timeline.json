@@ -1,0 +1,328 @@
+{
+ "lines": [
+  {
+   "i": 0,
+   "section": "energy",
+   "text": "The world is moving faster.",
+   "file": "E:\\vasudev-ai\\nextwave-2026-11-03\\work\\vo\\line_00.wav",
+   "start": 0.0,
+   "end": 1.775,
+   "dur": 1.775,
+   "words": []
+  },
+  {
+   "i": 1,
+   "section": "energy",
+   "text": "Tech is evolving.",
+   "file": "E:\\vasudev-ai\\nextwave-2026-11-03\\work\\vo\\line_01.wav",
+   "start": 1.875,
+   "end": 3.333,
+   "dur": 1.457,
+   "words": []
+  },
+  {
+   "i": 2,
+   "section": "energy",
+   "text": "Intelligence is expanding.",
+   "file": "E:\\vasudev-ai\\nextwave-2026-11-03\\work\\vo\\line_02.wav",
+   "start": 3.433,
+   "end": 5.133,
+   "dur": 1.7,
+   "words": []
+  },
+  {
+   "i": 3,
+   "section": "energy",
+   "text": "And we're just getting started.",
+   "file": "E:\\vasudev-ai\\nextwave-2026-11-03\\work\\vo\\line_03.wav",
+   "start": 5.233,
+   "end": 7.175,
+   "dur": 1.943,
+   "words": []
+  },
+  {
+   "i": 4,
+   "section": "buildup",
+   "text": "Ideas are everywhere.",
+   "file": "E:\\vasudev-ai\\nextwave-2026-11-03\\work\\vo\\line_04.wav",
+   "start": 7.515,
+   "end": 9.141,
+   "dur": 1.625,
+   "words": []
+  },
+  {
+   "i": 5,
+   "section": "buildup",
+   "text": "Possibilities are endless.",
+   "file": "E:\\vasudev-ai\\nextwave-2026-11-03\\work\\vo\\line_05.wav",
+   "start": 9.241,
+   "end": 11.033,
+   "dur": 1.792,
+   "words": []
+  },
+  {
+   "i": 6,
+   "section": "buildup",
+   "text": "But the real difference?",
+   "file": "E:\\vasudev-ai\\nextwave-2026-11-03\\work\\vo\\line_06.wav",
+   "start": 11.133,
+   "end": 12.632,
+   "dur": 1.499,
+   "words": []
+  },
+  {
+   "i": 7,
+   "section": "buildup",
+   "text": "Is what you choose to build.",
+   "file": "E:\\vasudev-ai\\nextwave-2026-11-03\\work\\vo\\line_07.wav",
+   "start": 12.732,
+   "end": 14.357,
+   "dur": 1.625,
+   "words": []
+  },
+  {
+   "i": 8,
+   "section": "reveal",
+   "text": "Meet the future of building.",
+   "file": "E:\\vasudev-ai\\nextwave-2026-11-03\\work\\vo\\line_08.wav",
+   "start": 14.697,
+   "end": 16.49,
+   "dur": 1.792,
+   "words": []
+  },
+  {
+   "i": 9,
+   "section": "reveal",
+   "text": "Vasudev AI.",
+   "file": "E:\\vasudev-ai\\nextwave-2026-11-03\\work\\vo\\line_09.wav",
+   "start": 16.59,
+   "end": 18.048,
+   "dur": 1.458,
+   "words": []
+  },
+  {
+   "i": 10,
+   "section": "reveal",
+   "text": "Awakening intelligence.",
+   "file": "E:\\vasudev-ai\\nextwave-2026-11-03\\work\\vo\\line_10.wav",
+   "start": 18.148,
+   "end": 19.698,
+   "dur": 1.55,
+   "words": []
+  },
+  {
+   "i": 11,
+   "section": "ecosystem",
+   "text": "We build intelligent products.",
+   "file": "E:\\vasudev-ai\\nextwave-2026-11-03\\work\\vo\\line_11.wav",
+   "start": 20.038,
+   "end": 21.963,
+   "dur": 1.926,
+   "words": []
+  },
+  {
+   "i": 12,
+   "section": "ecosystem",
+   "text": "Engineer powerful solutions.",
+   "file": "E:\\vasudev-ai\\nextwave-2026-11-03\\work\\vo\\line_12.wav",
+   "start": 22.063,
+   "end": 23.931,
+   "dur": 1.868,
+   "words": []
+  },
+  {
+   "i": 13,
+   "section": "ecosystem",
+   "text": "Make learning more accessible.",
+   "file": "E:\\vasudev-ai\\nextwave-2026-11-03\\work\\vo\\line_13.wav",
+   "start": 24.031,
+   "end": 25.933,
+   "dur": 1.902,
+   "words": []
+  },
+  {
+   "i": 14,
+   "section": "ecosystem",
+   "text": "Connect ambitious minds.",
+   "file": "E:\\vasudev-ai\\nextwave-2026-11-03\\work\\vo\\line_14.wav",
+   "start": 26.033,
+   "end": 27.733,
+   "dur": 1.7,
+   "words": []
+  },
+  {
+   "i": 15,
+   "section": "ecosystem",
+   "text": "And turn bold ideas into reality.",
+   "file": "E:\\vasudev-ai\\nextwave-2026-11-03\\work\\vo\\line_15.wav",
+   "start": 27.833,
+   "end": 30.236,
+   "dur": 2.403,
+   "words": []
+  },
+  {
+   "i": 16,
+   "section": "ecosystem",
+   "text": "AI. Engineering. Education. Community. Innovation.",
+   "file": "E:\\vasudev-ai\\nextwave-2026-11-03\\work\\vo\\line_16.wav",
+   "start": 30.336,
+   "end": 35.21,
+   "dur": 4.874,
+   "words": []
+  },
+  {
+   "i": 17,
+   "section": "ecosystem",
+   "text": "One connected ecosystem.",
+   "file": "E:\\vasudev-ai\\nextwave-2026-11-03\\work\\vo\\line_17.wav",
+   "start": 35.31,
+   "end": 37.027,
+   "dur": 1.717,
+   "words": []
+  },
+  {
+   "i": 18,
+   "section": "philosophy",
+   "text": "तमसो मा ज्योतिर्गमय।",
+   "file": "E:\\vasudev-ai\\nextwave-2026-11-03\\work\\vo\\line_18.wav",
+   "start": 37.367,
+   "end": 39.051,
+   "dur": 1.683,
+   "words": []
+  },
+  {
+   "i": 19,
+   "section": "philosophy",
+   "text": "From darkness to light.",
+   "file": "E:\\vasudev-ai\\nextwave-2026-11-03\\work\\vo\\line_19.wav",
+   "start": 39.151,
+   "end": 40.701,
+   "dur": 1.55,
+   "words": []
+  },
+  {
+   "i": 20,
+   "section": "philosophy",
+   "text": "From curiosity to creation.",
+   "file": "E:\\vasudev-ai\\nextwave-2026-11-03\\work\\vo\\line_20.wav",
+   "start": 40.801,
+   "end": 42.61,
+   "dur": 1.809,
+   "words": []
+  },
+  {
+   "i": 21,
+   "section": "philosophy",
+   "text": "From ideas to innovation.",
+   "file": "E:\\vasudev-ai\\nextwave-2026-11-03\\work\\vo\\line_21.wav",
+   "start": 42.71,
+   "end": 44.485,
+   "dur": 1.775,
+   "words": []
+  },
+  {
+   "i": 22,
+   "section": "movement",
+   "text": "For the thinkers.",
+   "file": "E:\\vasudev-ai\\nextwave-2026-11-03\\work\\vo\\line_22.wav",
+   "start": 44.825,
+   "end": 46.264,
+   "dur": 1.439,
+   "words": []
+  },
+  {
+   "i": 23,
+   "section": "movement",
+   "text": "For the creators.",
+   "file": "E:\\vasudev-ai\\nextwave-2026-11-03\\work\\vo\\line_23.wav",
+   "start": 46.364,
+   "end": 47.824,
+   "dur": 1.46,
+   "words": []
+  },
+  {
+   "i": 24,
+   "section": "movement",
+   "text": "For the developers.",
+   "file": "E:\\vasudev-ai\\nextwave-2026-11-03\\work\\vo\\line_24.wav",
+   "start": 47.924,
+   "end": 49.366,
+   "dur": 1.442,
+   "words": []
+  },
+  {
+   "i": 25,
+   "section": "movement",
+   "text": "For everyone building what's next.",
+   "file": "E:\\vasudev-ai\\nextwave-2026-11-03\\work\\vo\\line_25.wav",
+   "start": 49.466,
+   "end": 51.593,
+   "dur": 2.127,
+   "words": []
+  },
+  {
+   "i": 26,
+   "section": "movement",
+   "text": "We don't just follow the future.",
+   "file": "E:\\vasudev-ai\\nextwave-2026-11-03\\work\\vo\\line_26.wav",
+   "start": 51.693,
+   "end": 53.653,
+   "dur": 1.96,
+   "words": []
+  },
+  {
+   "i": 27,
+   "section": "movement",
+   "text": "We build it.",
+   "file": "E:\\vasudev-ai\\nextwave-2026-11-03\\work\\vo\\line_27.wav",
+   "start": 53.753,
+   "end": 55.17,
+   "dur": 1.417,
+   "words": []
+  },
+  {
+   "i": 28,
+   "section": "final",
+   "text": "Vasudev AI.",
+   "file": "E:\\vasudev-ai\\nextwave-2026-11-03\\work\\vo\\line_28.wav",
+   "start": 55.51,
+   "end": 56.966,
+   "dur": 1.457,
+   "words": []
+  },
+  {
+   "i": 29,
+   "section": "final",
+   "text": "Building intelligence. Empowering innovation.",
+   "file": "E:\\vasudev-ai\\nextwave-2026-11-03\\work\\vo\\line_29.wav",
+   "start": 57.066,
+   "end": 60.005,
+   "dur": 2.939,
+   "words": []
+  },
+  {
+   "i": 30,
+   "section": "final",
+   "text": "The next wave starts here.",
+   "file": "E:\\vasudev-ai\\nextwave-2026-11-03\\work\\vo\\line_30.wav",
+   "start": 60.105,
+   "end": 61.847,
+   "dur": 1.741,
+   "words": []
+  },
+  {
+   "i": 31,
+   "section": "final",
+   "text": "vasudevai.in",
+   "file": "E:\\vasudev-ai\\nextwave-2026-11-03\\work\\vo\\line_31.wav",
+   "start": 61.947,
+   "end": 63.48,
+   "dur": 1.533,
+   "words": []
+  }
+ ],
+ "total": 85.0,
+ "fps": 30,
+ "frames": 2550,
+ "vo_total": 65.08
+}

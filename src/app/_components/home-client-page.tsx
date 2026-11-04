@@ -201,7 +201,7 @@ export default function HomeClientPage() {
   return (
     <>
       <div className="flex flex-col items-center text-white overflow-x-hidden">
-        <section className="relative w-full h-dvh flex flex-col overflow-hidden bg-[#05080f]">
+        <section id="home" className="relative w-full h-dvh flex flex-col overflow-hidden bg-[#05080f]">
           {/* --- Background Layer --- */}
           <div className="absolute inset-0">
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-2/3 bg-gradient-to-b from-primary/[0.04] via-primary/[0.02] to-transparent" />
@@ -453,7 +453,7 @@ export default function HomeClientPage() {
           </motion.div>
         </section>
 
-        <section className="relative w-full py-12 md:py-16 overflow-hidden">
+        <section id="projects" className="relative w-full py-12 md:py-16 overflow-hidden">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -637,7 +637,7 @@ export default function HomeClientPage() {
           </div>
         </section>
 
-        <section className="relative w-full py-16 md:py-20 text-center overflow-hidden">
+        <section id="community" className="relative w-full py-16 md:py-20 text-center overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-accent/[0.03] to-transparent" />
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/5 rounded-full blur-[120px]" />
           <div className="container mx-auto px-4 relative z-10">

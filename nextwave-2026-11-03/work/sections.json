@@ -1,0 +1,21 @@
+{
+ "names": [
+  "energy",
+  "buildup",
+  "reveal",
+  "ecosystem",
+  "philosophy",
+  "movement",
+  "final"
+ ],
+ "bounds": [
+  0.0,
+  7.515,
+  14.697,
+  20.038,
+  37.367,
+  44.825,
+  55.51,
+  65.08
+ ]
+}

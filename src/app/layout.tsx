@@ -1,23 +1,24 @@
 import type { Metadata, Viewport } from 'next';
-import { Inter, Cinzel_Decorative } from 'next/font/google';
+import { Cinzel_Decorative, Plus_Jakarta_Sans } from 'next/font/google';
 import Script from 'next/script';
 import './globals.css';
 import LayoutWrapper from '@/components/layout-wrapper';
 import ConsentBanner from '@/components/consent-banner';
 
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
-  preload: true,
-  fallback: ['system-ui', 'sans-serif'],
-});
 const cinzel = Cinzel_Decorative({
   subsets: ['latin'],
-  weight: '400',
+  weight: ['400', '700'],
   variable: '--font-cinzel',
   display: 'swap',
   preload: false,
+});
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  variable: '--font-jakarta',
+  display: 'swap',
+  preload: true,
+  fallback: ['system-ui', 'sans-serif'],
 });
 
 const organizationSchema = {
@@ -123,7 +124,7 @@ export default function RootLayout({
         </Script>
       </head>
       <body
-        className={`${inter.variable} ${cinzel.variable} font-body antialiased`}
+        className={`${jakarta.variable} ${cinzel.variable} font-body antialiased bg-[#03060C]`}
         suppressHydrationWarning
       >
         <ConsentBanner>
